@@ -1,22 +1,21 @@
 //
-//  ViewController.swift
+//  TransactionController.swift
 //  news app for blockchain
 //
-//  Created by Sheng Li on 12/4/18.
+//  Created by Bruce Feng on 19/4/18.
 //  Copyright © 2018 Sheng Li. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class TransactionController: UIViewController {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -24,4 +23,3 @@ class ViewController: UIViewController {
     
     
 }
-
