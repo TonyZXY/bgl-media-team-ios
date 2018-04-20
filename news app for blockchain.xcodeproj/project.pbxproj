@@ -15,6 +15,7 @@
 		041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */; };
 		041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DD207EDD49008DCA69 /* Assets.xcassets */; };
 		041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */; };
+		04BE9A722089782E00A33655 /* NewsFlashTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE9A712089782E00A33655 /* NewsFlashTableViewCell.swift */; };
 		FAC17EFFA9174369FA91CAE4 /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		041F40DD207EDD49008DCA69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041F40E0207EDD49008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041F40E2207EDD49008DCA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04BE9A712089782E00A33655 /* NewsFlashTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlashTableViewCell.swift; sourceTree = "<group>"; };
 		AF335468AB7AE16EB4646891 /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
 		B5C51F49BD9D7EBC19255EF6 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +78,7 @@
 				041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */,
 				041F40E2207EDD49008DCA69 /* Info.plist */,
 				041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */,
+				04BE9A712089782E00A33655 /* NewsFlashTableViewCell.swift */,
 			);
 			path = "news app for blockchain";
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxJSON/RxJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TimelineTableViewCell/TimelineTableViewCell.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -190,6 +194,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TimelineTableViewCell.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -222,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0415730620871E7000FC4557 /* NewsFlashViewController.swift in Sources */,
+				04BE9A722089782E00A33655 /* NewsFlashTableViewCell.swift in Sources */,
 				0415730420871E2100FC4557 /* NewsFlashView.swift in Sources */,
 				041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */,
 				041F40D6207EDD48008DCA69 /* ViewController.swift in Sources */,
@@ -373,7 +379,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -389,7 +398,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

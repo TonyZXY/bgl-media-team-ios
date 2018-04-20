@@ -8,4 +8,5 @@ target 'news app for blockchain' do
     pod 'SwiftyJSON'
     pod 'Alamofire'
     pod 'RxJSON'
+    pod 'TimelineTableViewCell'
 end
