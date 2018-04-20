@@ -7,4 +7,5 @@ target 'news app for blockchain' do
     pod 'RealmSwift'
     pod 'SwiftyJSON'
     pod 'Alamofire'
+    pod 'RxJSON'
 end

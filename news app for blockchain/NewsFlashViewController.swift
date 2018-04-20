@@ -7,10 +7,19 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class NewsFlashViewController: UIViewController {
     
     @IBOutlet weak var dateAndTimeLabel: UILabel!
+    
+    @IBOutlet weak var newsFlashTableView: UITableView!
+    
+    
+    
+    var shownCities = [String]() // Data source for UITableView
+    let allCities = ["New York", "London", "Oslo", "Warsaw", "Berlin", "Praga"] // Our mocked API data source
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +36,9 @@ class NewsFlashViewController: UIViewController {
             label.clipsToBounds = true
             label.layer.borderWidth = 2
             label.layer.borderColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
-            
         }
+        
+        newsFlashTableView.tableFooterView = UIView() //Prevent empty rows
 
         // Do any additional setup after loading the view.
     }
