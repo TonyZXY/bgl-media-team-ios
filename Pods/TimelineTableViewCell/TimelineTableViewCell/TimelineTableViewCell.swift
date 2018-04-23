@@ -27,7 +27,7 @@ open class TimelineTableViewCell: UITableViewCell {
             self.setNeedsDisplay()
         }
     }
-
+    
     open var bubbleRadius: CGFloat = 2.0 {
         didSet {
             if (bubbleRadius < 0.0) {
@@ -46,13 +46,13 @@ open class TimelineTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override open func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
     override open func draw(_ rect: CGRect) {
         for layer in self.contentView.layer.sublayers! {
             if layer is CAShapeLayer {
@@ -64,9 +64,10 @@ open class TimelineTableViewCell: UITableViewCell {
         titleLabel.sizeToFit()
         descriptionLabel.sizeToFit()
         
-        timelinePoint.position = CGPoint(x: timeline.leftMargin + timeline.width / 2, y: titleLabel.frame.origin.y + titleLabel.intrinsicContentSize.height / 2 - timelinePoint.diameter / 2)
-
-        timeline.start = CGPoint(x: timelinePoint.position.x + timelinePoint.diameter / 2, y: 0)
+        // timelinePoint.position = CGPoint(x: timeline.leftMargin + timeline.width / 2, y: titleLabel.frame.origin.y + titleLabel.intrinsicContentSize.height / 2 - timelinePoint.diameter / 2)
+        timelinePoint.position = CGPoint(x: timeline.leftMargin + timeline.width / 2, y: timelinePoint.lineWidth)
+        
+        timeline.start = CGPoint(x: timelinePoint.position.x + timelinePoint.diameter / 2, y: timelinePoint.position.y)
         timeline.middle = CGPoint(x: timeline.start.x, y: timelinePoint.position.y)
         timeline.end = CGPoint(x: timeline.start.x, y: self.bounds.size.height)
         timeline.draw(view: self.contentView)
@@ -92,7 +93,7 @@ open class TimelineTableViewCell: UITableViewCell {
         path.addLine(to: startPoint)
         path.addLine(to: CGPoint(x: bubbleRect.origin.x - 8, y: bubbleRect.origin.y + bubbleRect.height / 2))
         path.addLine(to: CGPoint(x: bubbleRect.origin.x, y: bubbleRect.origin.y + bubbleRect.height / 2 + 8))
-
+        
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.fillColor = bubbleColor.cgColor

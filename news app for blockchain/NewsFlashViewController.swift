@@ -10,11 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-import TimelineTableViewCell
-
 class NewsFlashViewController: UIViewController {
     @IBOutlet weak var dateAndTimeLabel: UILabel!
         
+    @IBOutlet weak var timelineView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let label = dateAndTimeLabel {
@@ -30,6 +30,8 @@ class NewsFlashViewController: UIViewController {
             label.clipsToBounds = true
             label.layer.borderWidth = 2
             label.layer.borderColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
+//            
+//            timelineView.backgroundColor = UIColor.clear
         }
         
         // Do any additional setup after loading the view.
