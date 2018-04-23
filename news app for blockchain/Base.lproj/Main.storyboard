@@ -6,8 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -64,9 +63,8 @@
                                 <color key="textColor" red="0.50196078431372548" green="0.85882352941176465" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vj8-QS-Xrh">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vj8-QS-Xrh">
                                 <rect key="frame" x="0.0" y="80" width="375" height="538"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="5hn-FP-iU2" kind="embed" id="4Ii-N4-zKD"/>
                                 </connections>
@@ -74,11 +72,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20392156862745098" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="UBa-AN-CZG" firstAttribute="firstBaseline" secondItem="9nN-DQ-5Ok" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="HpX-1H-HLR"/>
-                            <constraint firstItem="9nN-DQ-5Ok" firstAttribute="centerX" secondItem="4Kt-Fu-FwY" secondAttribute="centerX" id="I2r-yP-sgU"/>
-                            <constraint firstItem="4Kt-Fu-FwY" firstAttribute="trailing" secondItem="UBa-AN-CZG" secondAttribute="trailing" constant="16" id="PuU-YN-AdL"/>
-                            <constraint firstItem="9nN-DQ-5Ok" firstAttribute="top" secondItem="4Kt-Fu-FwY" secondAttribute="top" id="SUB-I7-SrG"/>
-                            <constraint firstItem="UBa-AN-CZG" firstAttribute="leading" secondItem="4Kt-Fu-FwY" secondAttribute="leading" constant="16" id="oai-fU-D1m"/>
+                            <constraint firstItem="9nN-DQ-5Ok" firstAttribute="centerX" secondItem="qDb-3W-P60" secondAttribute="centerX" id="1ef-mz-qdZ"/>
+                            <constraint firstItem="UBa-AN-CZG" firstAttribute="leading" secondItem="qDb-3W-P60" secondAttribute="leadingMargin" id="Ctc-ki-abN"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="centerX" secondItem="9nN-DQ-5Ok" secondAttribute="centerX" id="EYJ-i1-boh"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="centerX" secondItem="UBa-AN-CZG" secondAttribute="centerX" id="YYS-ej-nP2"/>
+                            <constraint firstItem="9nN-DQ-5Ok" firstAttribute="top" secondItem="4Kt-Fu-FwY" secondAttribute="top" id="Z6Q-bn-M34"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="top" secondItem="UBa-AN-CZG" secondAttribute="bottom" constant="8" symbolic="YES" id="evL-GU-hu6"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="bottom" secondItem="4Kt-Fu-FwY" secondAttribute="bottom" id="fxc-fg-HJF"/>
+                            <constraint firstItem="UBa-AN-CZG" firstAttribute="top" secondItem="9nN-DQ-5Ok" secondAttribute="bottom" constant="2" id="kV3-2a-p8c"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="leading" secondItem="qDb-3W-P60" secondAttribute="leading" id="q38-CY-h1u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4Kt-Fu-FwY"/>
                         <connections>
