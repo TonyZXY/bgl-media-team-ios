@@ -64,20 +64,13 @@
                                 <color key="textColor" red="0.50196078431372548" green="0.85882352941176465" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4vS-Ft-SRh">
-                                <rect key="frame" x="16" y="80" width="343" height="538"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="newsFlashCell" rowHeight="119" id="xcb-7a-pL1" customClass="NewsFlashTableViewCell" customModule="news_app_for_blockchain" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="119"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xcb-7a-pL1" id="hGT-Mw-kSd">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="118.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vj8-QS-Xrh">
+                                <rect key="frame" x="0.0" y="80" width="375" height="538"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="5hn-FP-iU2" kind="embed" id="4Ii-N4-zKD"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" red="0.20000000000000001" green="0.20392156862745098" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -85,11 +78,7 @@
                             <constraint firstItem="9nN-DQ-5Ok" firstAttribute="centerX" secondItem="4Kt-Fu-FwY" secondAttribute="centerX" id="I2r-yP-sgU"/>
                             <constraint firstItem="4Kt-Fu-FwY" firstAttribute="trailing" secondItem="UBa-AN-CZG" secondAttribute="trailing" constant="16" id="PuU-YN-AdL"/>
                             <constraint firstItem="9nN-DQ-5Ok" firstAttribute="top" secondItem="4Kt-Fu-FwY" secondAttribute="top" id="SUB-I7-SrG"/>
-                            <constraint firstItem="4vS-Ft-SRh" firstAttribute="leading" secondItem="4Kt-Fu-FwY" secondAttribute="leading" constant="16" id="i7p-1L-UpO"/>
                             <constraint firstItem="UBa-AN-CZG" firstAttribute="leading" secondItem="4Kt-Fu-FwY" secondAttribute="leading" constant="16" id="oai-fU-D1m"/>
-                            <constraint firstItem="4Kt-Fu-FwY" firstAttribute="trailing" secondItem="4vS-Ft-SRh" secondAttribute="trailing" constant="16" id="qyO-7F-ydY"/>
-                            <constraint firstItem="4vS-Ft-SRh" firstAttribute="firstBaseline" secondItem="UBa-AN-CZG" secondAttribute="baseline" constant="12.5" symbolType="layoutAnchor" id="wHq-iT-uzm"/>
-                            <constraint firstItem="4vS-Ft-SRh" firstAttribute="bottom" secondItem="4Kt-Fu-FwY" secondAttribute="bottom" id="xMO-ux-US3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4Kt-Fu-FwY"/>
                         <connections>
@@ -99,12 +88,29 @@
                     <tabBarItem key="tabBarItem" title="快讯" id="jL6-CM-1YQ"/>
                     <connections>
                         <outlet property="dateAndTimeLabel" destination="UBa-AN-CZG" id="t1c-Yh-thS"/>
-                        <outlet property="newsFlashTableView" destination="4vS-Ft-SRh" id="Ge3-N8-741"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jGh-Gs-VTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1706.4000000000001" y="789.35532233883066"/>
+        </scene>
+        <!--Timeline Table View Controller-->
+        <scene sceneID="ZeY-Ly-oIw">
+            <objects>
+                <tableViewController id="5hn-FP-iU2" customClass="TimelineTableViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RGE-tv-jLa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="5hn-FP-iU2" id="b8Z-NR-qMy"/>
+                            <outlet property="delegate" destination="5hn-FP-iU2" id="l0h-Xy-Hkx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lJh-eK-CNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1706" y="1496"/>
         </scene>
         <!--新闻-->
         <scene sceneID="iDc-km-PSG">

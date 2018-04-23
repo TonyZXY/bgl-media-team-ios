@@ -10,17 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import TimelineTableViewCell
+
 class NewsFlashViewController: UIViewController {
-    
     @IBOutlet weak var dateAndTimeLabel: UILabel!
-    
-    @IBOutlet weak var newsFlashTableView: UITableView!
-    
-    
-    
-    var shownCities = [String]() // Data source for UITableView
-    let allCities = ["New York", "London", "Oslo", "Warsaw", "Berlin", "Praga"] // Our mocked API data source
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         if let label = dateAndTimeLabel {
@@ -38,24 +32,13 @@ class NewsFlashViewController: UIViewController {
             label.layer.borderColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         }
         
-        newsFlashTableView.tableFooterView = UIView() //Prevent empty rows
-
         // Do any additional setup after loading the view.
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

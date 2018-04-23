@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 class NewsFlashView: UIView {
 
     @IBOutlet weak var newsFlashLabel: UILabel!
