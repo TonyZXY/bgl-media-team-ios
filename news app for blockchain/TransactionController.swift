@@ -9,10 +9,16 @@
 import UIKit
 
 class TransactionController: UIViewController {
-    
-    
+    let logoimage = UIImageView(image: UIImage(named: "bcg_logo.png"))
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        logoimage.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        logoimage.clipsToBounds = true
+        logoimage.contentMode = UIViewContentMode.scaleAspectFit
+        navigationItem.titleView = logoimage
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     

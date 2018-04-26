@@ -16,6 +16,8 @@
 		570A3EA1208806E200080919 /* WalletListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3EA0208806E200080919 /* WalletListCell.swift */; };
 		570A3EA32088070C00080919 /* WalletListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3EA22088070C00080919 /* WalletListController.swift */; };
 		570A3EA720886FAC00080919 /* TransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3EA620886FAC00080919 /* TransactionController.swift */; };
+		570A3EAB208D775000080919 /* TransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3EAA208D775000080919 /* TransactionsController.swift */; };
+		5713B636208EC3D0000506FD /* SearchDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5713B635208EC3D0000506FD /* SearchDetailController.swift */; };
 		FAC17EFFA9174369FA91CAE4 /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,8 @@
 		570A3EA0208806E200080919 /* WalletListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletListCell.swift; sourceTree = "<group>"; };
 		570A3EA22088070C00080919 /* WalletListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletListController.swift; sourceTree = "<group>"; };
 		570A3EA620886FAC00080919 /* TransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionController.swift; sourceTree = "<group>"; };
+		570A3EAA208D775000080919 /* TransactionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsController.swift; sourceTree = "<group>"; };
+		5713B635208EC3D0000506FD /* SearchDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailController.swift; sourceTree = "<group>"; };
 		AF335468AB7AE16EB4646891 /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
 		B5C51F49BD9D7EBC19255EF6 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,11 +78,13 @@
 				041F40D7207EDD48008DCA69 /* Main.storyboard */,
 				570A3EA0208806E200080919 /* WalletListCell.swift */,
 				570A3EA22088070C00080919 /* WalletListController.swift */,
+				570A3EAA208D775000080919 /* TransactionsController.swift */,
 				570A3EA620886FAC00080919 /* TransactionController.swift */,
 				041F40DD207EDD49008DCA69 /* Assets.xcassets */,
 				041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */,
 				041F40E2207EDD49008DCA69 /* Info.plist */,
 				041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */,
+				5713B635208EC3D0000506FD /* SearchDetailController.swift */,
 			);
 			path = "news app for blockchain";
 			sourceTree = "<group>";
@@ -222,8 +228,10 @@
 				570A3EA32088070C00080919 /* WalletListController.swift in Sources */,
 				570A3EA720886FAC00080919 /* TransactionController.swift in Sources */,
 				041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */,
+				5713B636208EC3D0000506FD /* SearchDetailController.swift in Sources */,
 				041F40D6207EDD48008DCA69 /* ViewController.swift in Sources */,
 				041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */,
+				570A3EAB208D775000080919 /* TransactionsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

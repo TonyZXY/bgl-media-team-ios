@@ -10,12 +10,23 @@ import UIKit
 
 class WalletListController: UIViewController,UITableViewDelegate,UITableViewDataSource{
 
-    @IBOutlet weak var walletTableview: UITableView!
+    //Section 1 title bar view
+    
+    
+    //Section 2 总资产view
     @IBOutlet weak var totalPriceView: UIView!
-    @IBOutlet weak var titleBar: UINavigationBar!
-    @IBOutlet weak var barLogo: UIImageView!
+    
+    //Section 3 add transaction button view
     @IBOutlet weak var addbuttonView: UIView!
     @IBOutlet weak var addButton: UIButton!
+    
+    //Section 4 WalletTableview
+    @IBOutlet weak var walletTableview: UITableView!
+    
+    
+    @IBOutlet weak var titleBar: UINavigationBar!
+    @IBOutlet weak var barLogo: UIImageView!
+    
     @IBOutlet weak var totalUpDown: UIImageView!
     
     var test = ["-13","+12","+15","-1","-3","-3","+2","+3"]
@@ -39,11 +50,10 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         addButton.titleLabel?.textAlignment = NSTextAlignment.center
         addButton.backgroundColor = UIColor.white
         addButton.setTitleColor(UIColor.black, for: .normal)
+        
         DispatchQueue.main.async {
             self.walletTableview.separatorStyle = .none
             self.walletTableview.reloadData()
-            
-            
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
