@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct Timeline {
     public var width: CGFloat = 2.0 {

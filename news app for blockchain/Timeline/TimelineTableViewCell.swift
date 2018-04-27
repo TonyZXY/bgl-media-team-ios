@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 open class TimelineTableViewCell: UITableViewCell {
     
     @IBOutlet weak open var titleLabel: UILabel!

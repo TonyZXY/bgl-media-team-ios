@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct TimelinePoint {
     public var diameter: CGFloat = 6.0 {
