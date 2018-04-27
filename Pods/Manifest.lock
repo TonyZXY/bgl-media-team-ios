@@ -11,7 +11,6 @@ PODS:
     - RxSwift (>= 4.0.0-beta.0)
   - RxSwift (4.1.2)
   - SwiftyJSON (4.1.0)
-  - TimelineTableViewCell (1.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -20,7 +19,6 @@ DEPENDENCIES:
   - RxJSON
   - RxSwift (~> 4.0)
   - SwiftyJSON
-  - TimelineTableViewCell
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -31,7 +29,6 @@ SPEC REPOS:
     - RxJSON
     - RxSwift
     - SwiftyJSON
-    - TimelineTableViewCell
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -41,8 +38,7 @@ SPEC CHECKSUMS:
   RxJSON: f1f70d66ae6598f88921a8dfc3a90c73442e7fec
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
-  TimelineTableViewCell: 71a4bc787bfeb5a85083171d18b113a5f5db2be8
 
-PODFILE CHECKSUM: a361d16aa8d5b568a15321a7a98914ac5fe61a97
+PODFILE CHECKSUM: 380fd5a30521f18d07f74da90c5b77cb22657721
 
 COCOAPODS: 1.5.0
