@@ -13,6 +13,8 @@ class NewsFlashViewController: UIViewController {
         
     @IBOutlet weak var timelineView: UIView!
     
+    @IBOutlet weak var newsFlashLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if let label = dateAndTimeLabel {

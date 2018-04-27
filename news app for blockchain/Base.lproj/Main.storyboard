@@ -46,7 +46,7 @@
         <scene sceneID="Ib0-H7-0P5">
             <objects>
                 <viewController id="maJ-wj-9XT" customClass="NewsFlashViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="qDb-3W-P60" customClass="NewsFlashView" customModule="news_app_for_blockchain" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="qDb-3W-P60">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -84,13 +84,11 @@
                             <constraint firstItem="vj8-QS-Xrh" firstAttribute="leading" secondItem="XDn-7g-0bZ" secondAttribute="leading" id="q38-CY-h1u"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XDn-7g-0bZ"/>
-                        <connections>
-                            <outlet property="newsFlashLabel" destination="9nN-DQ-5Ok" id="kOh-8K-GAT"/>
-                        </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="快讯" id="jL6-CM-1YQ"/>
                     <connections>
                         <outlet property="dateAndTimeLabel" destination="UBa-AN-CZG" id="t1c-Yh-thS"/>
+                        <outlet property="newsFlashLabel" destination="9nN-DQ-5Ok" id="k3Q-cv-onW"/>
                         <outlet property="timelineView" destination="vj8-QS-Xrh" id="uVL-Io-IKa"/>
                     </connections>
                 </viewController>

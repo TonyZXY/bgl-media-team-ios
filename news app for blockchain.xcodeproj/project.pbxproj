@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0415730620871E7000FC4557 /* NewsFlashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415730520871E7000FC4557 /* NewsFlashViewController.swift */; };
 		041599122092DD0200EDD5A2 /* NewsFlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041599112092DD0200EDD5A2 /* NewsFlash.swift */; };
-		041599142092E7F500EDD5A2 /* NewsFlashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041599132092E7F500EDD5A2 /* NewsFlashView.swift */; };
 		0415991620930B6E00EDD5A2 /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0415991520930B6D00EDD5A2 /* TimelineTableViewCell.xib */; };
 		0415991820930B8700EDD5A2 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415991720930B8600EDD5A2 /* Timeline.swift */; };
 		0415991A20930B8A00EDD5A2 /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415991920930B8A00EDD5A2 /* TimelinePoint.swift */; };
@@ -27,7 +26,6 @@
 /* Begin PBXFileReference section */
 		0415730520871E7000FC4557 /* NewsFlashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlashViewController.swift; sourceTree = "<group>"; };
 		041599112092DD0200EDD5A2 /* NewsFlash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlash.swift; sourceTree = "<group>"; };
-		041599132092E7F500EDD5A2 /* NewsFlashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlashView.swift; sourceTree = "<group>"; };
 		0415991520930B6D00EDD5A2 /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		0415991720930B8600EDD5A2 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		0415991920930B8A00EDD5A2 /* TimelinePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePoint.swift; sourceTree = "<group>"; };
@@ -90,20 +88,35 @@
 		041F40D2207EDD48008DCA69 /* news app for blockchain */ = {
 			isa = PBXGroup;
 			children = (
-				041F40D3207EDD48008DCA69 /* AppDelegate.swift */,
 				041F40D5207EDD48008DCA69 /* ViewController.swift */,
 				041F40D7207EDD48008DCA69 /* Main.storyboard */,
-				041599132092E7F500EDD5A2 /* NewsFlashView.swift */,
-				0415730520871E7000FC4557 /* NewsFlashViewController.swift */,
 				041F40DD207EDD49008DCA69 /* Assets.xcassets */,
-				041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */,
 				041F40E2207EDD49008DCA69 /* Info.plist */,
-				041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */,
-				049968E0208D7D090078536A /* TimelineTableViewController.swift */,
-				041599112092DD0200EDD5A2 /* NewsFlash.swift */,
+				04C3DD6D20932AB800474638 /* Supporting Files */,
+				04C3DD6C20932A2800474638 /* NewsFlash */,
 				0415991D20930D4F00EDD5A2 /* Timeline */,
 			);
 			path = "news app for blockchain";
+			sourceTree = "<group>";
+		};
+		04C3DD6C20932A2800474638 /* NewsFlash */ = {
+			isa = PBXGroup;
+			children = (
+				0415730520871E7000FC4557 /* NewsFlashViewController.swift */,
+				049968E0208D7D090078536A /* TimelineTableViewController.swift */,
+				041599112092DD0200EDD5A2 /* NewsFlash.swift */,
+			);
+			path = NewsFlash;
+			sourceTree = "<group>";
+		};
+		04C3DD6D20932AB800474638 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				041F40D3207EDD48008DCA69 /* AppDelegate.swift */,
+				041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */,
+				041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		98DED943C61F4B0CDFD5E84E /* Frameworks */ = {
@@ -257,7 +270,6 @@
 				0415991A20930B8A00EDD5A2 /* TimelinePoint.swift in Sources */,
 				049968E1208D7D090078536A /* TimelineTableViewController.swift in Sources */,
 				041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */,
-				041599142092E7F500EDD5A2 /* NewsFlashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
