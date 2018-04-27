@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletListController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class WalletViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     //Section 1 title bar view
     
@@ -24,31 +24,23 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var walletTableview: UITableView!
     
     
-//    @IBOutlet weak var titleBar: UINavigationBar!
-//    @IBOutlet weak var barLogo: UIImageView!
+
     
     @IBOutlet weak var totalUpDown: UIImageView!
     
-    var color = ThemeColor()
-    var image = AppImage()
-    
     var test = ["-13","+12","+15","-1","-3","-3","+2","+3"]
-    
     let logoimage = UIImage(named: "bcg_logo.png")
     let upimage = UIImage(named:"up.png")
     let downimage = UIImage(named:"down.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        barLogo.image = logoimage
-//        titleBar.barTintColor = UIColor.init(red:47/255.0, green:49/255.0, blue:54/255.0, alpha:1)
-        totalPriceView.backgroundColor = color.themeColor()
+        
+        totalPriceView.backgroundColor = UIColor.init(red:47/255.0, green:49/255.0, blue:54/255.0, alpha:1)
         totalPriceView.layer.borderColor = UIColor.white.cgColor
         totalPriceView.layer.borderWidth = CGFloat((Float(1.0)))
-        
-        addbuttonView.backgroundColor = color.themeColor()
-        walletTableview.backgroundColor = color.themeColor()
-        view.backgroundColor = color.themeColor()
+        addbuttonView.backgroundColor = UIColor.init(red:47/255.0, green:49/255.0, blue:54/255.0, alpha:1)
+        walletTableview.backgroundColor = UIColor.init(red:47/255.0, green:49/255.0, blue:54/255.0, alpha:1)
         
         addButton.layer.cornerRadius = 20
         addButton.titleLabel?.textAlignment = NSTextAlignment.justified
@@ -56,23 +48,12 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         addButton.backgroundColor = UIColor.white
         addButton.setTitleColor(UIColor.black, for: .normal)
         
-        navigationController?.navigationBar.barTintColor =  color.themeColor()
-        navigationController?.navigationBar.isTranslucent = false
-        
-        let titilebarlogo = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        titilebarlogo.image = image.logoImage()
-        titilebarlogo.contentMode = .scaleAspectFit
-        navigationItem.titleView = titilebarlogo
-        
-//        navigationController?.navigationBar.backgroundColor = UIColor.green
         DispatchQueue.main.async {
             self.walletTableview.separatorStyle = .none
             self.walletTableview.reloadData()
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return test.count
@@ -82,8 +63,14 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "WalletListCell") as? WalletListCell else{
             return UITableViewCell()
         }
-
-        //Automatically fit the cell
+        
+        //Change the radius of the tableview cell
+        cell.backgroundColor = UIColor.init(red:54/255.0, green:57/255.0, blue:62/255.0, alpha:1)
+        cell.layer.cornerRadius =  cell.walletCell.frame.height/4
+        cell.walletCell.layer.cornerRadius =  cell.walletCell.frame.height/4
+        cell.walletCell.backgroundColor = UIColor.init(red:47/255.0, green:49/255.0, blue:54/255.0, alpha:1)
+        cell.walletCell.layer.borderColor = UIColor.white.cgColor
+        cell.walletCell.layer.borderWidth = CGFloat((Float(1.0)))
         tableView.sectionHeaderHeight = UITableViewAutomaticDimension
         
         //Read data to view
@@ -92,9 +79,21 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         cell.coinProfit.text = test[indexPath.row]
         cell.coinPrice.text = test[indexPath.row]
         
-        //check price rise or fall
-        cell.checkRiseandfall(risefallnumber: cell.coinProfit.text!)
         
+        //Change the color of price according profit or loss
+        cell.coinPrice.textColor = UIColor.white
+        if cell.coinProfit.text?.prefix(1) == "+" {
+            //Profit with green
+            cell.coinProfit.textColor = UIColor.init(red:37/255.0, green:155/255.0, blue:36/255.0, alpha:1)
+            cell.coinProfit.text = "▲ " + cell.coinProfit.text!
+        }else if cell.coinProfit.text?.prefix(1) == "-" {
+            // lost with red
+            cell.coinProfit.textColor = UIColor.init(red:229.0/255.0, green:28.0/255.0, blue:35.0/255.0, alpha:1)
+            cell.coinProfit.text = "▼ " + cell.coinProfit.text!
+        } else{
+            // Not any change with white
+            cell.coinProfit.textColor = UIColor.white
+        }
         return cell
     }
     
