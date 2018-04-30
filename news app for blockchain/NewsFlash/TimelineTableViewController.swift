@@ -57,7 +57,7 @@ class TimelineTableViewController: UITableViewController {
         dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
         
         cell.timelinePoint = TimelinePoint(diameter: CGFloat(16.0), color: UIColor.green, filled: false)
-        cell.timelinePointInside = TimelinePoint(diameter: CGFloat(4.0), color: UIColor.green, filled: true, offSet: CGFloat(6.0), insidePoint: true)
+        cell.timelinePointInside = TimelinePoint(diameter: CGFloat(4.0), color: UIColor.green, filled: true, insidePoint: true)
         cell.timeline.frontColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         cell.timeline.backColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         cell.titleLabel.text = dateFormatter.string(from: object.dateTime)
