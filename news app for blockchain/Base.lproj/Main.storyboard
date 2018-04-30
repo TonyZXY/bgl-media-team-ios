@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="es6-dM-P9s">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,10 +15,10 @@
             <objects>
                 <viewController id="d4b-Vg-VbT" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DS6-bt-1Nm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="tcD-my-GHJ"/>
+                        <viewLayoutGuide key="safeArea" id="Rxd-VJ-sdM"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="行情" id="5Be-hW-a4s"/>
                 </viewController>
@@ -31,10 +31,10 @@
             <objects>
                 <viewController id="54e-2H-jMW" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qPk-qd-A8n">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="gff-3N-51H"/>
+                        <viewLayoutGuide key="safeArea" id="UEl-s7-Ngr"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="更多" id="faM-5Q-V8Y"/>
                 </viewController>
@@ -43,30 +43,87 @@
             <point key="canvasLocation" x="-2559" y="790"/>
         </scene>
         <!--快讯-->
-        <scene sceneID="Pts-fX-pIY">
+        <scene sceneID="Ib0-H7-0P5">
             <objects>
-                <viewController id="AuB-Jj-HfO" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yIl-Tv-mrh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="maJ-wj-9XT" customClass="NewsFlashViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qDb-3W-P60">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快讯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nN-DQ-5Ok">
+                                <rect key="frame" x="167" y="44" width="41" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.72941176470588232" green="0.72941176470588232" blue="0.72941176470588232" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-AN-CZG">
+                                <rect key="frame" x="0.0" y="70" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.50196078431372548" green="0.85882352941176465" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vj8-QS-Xrh">
+                                <rect key="frame" x="0.0" y="99" width="375" height="630"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="5hn-FP-iU2" kind="embed" id="4Ii-N4-zKD"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20392156862745098" blue="0.22352941176470587" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="9nN-DQ-5Ok" firstAttribute="centerX" secondItem="XDn-7g-0bZ" secondAttribute="centerX" id="1ef-mz-qdZ"/>
+                            <constraint firstItem="UBa-AN-CZG" firstAttribute="leading" secondItem="vj8-QS-Xrh" secondAttribute="leading" id="1mP-hL-g7T"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="centerX" secondItem="9nN-DQ-5Ok" secondAttribute="centerX" id="EYJ-i1-boh"/>
+                            <constraint firstItem="UBa-AN-CZG" firstAttribute="top" secondItem="9nN-DQ-5Ok" secondAttribute="bottom" constant="2" id="Oh4-NZ-PwS"/>
+                            <constraint firstItem="UBa-AN-CZG" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vj8-QS-Xrh" secondAttribute="trailing" id="PnZ-7g-AXW"/>
+                            <constraint firstItem="9nN-DQ-5Ok" firstAttribute="top" secondItem="XDn-7g-0bZ" secondAttribute="top" id="Z6Q-bn-M34"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="top" secondItem="UBa-AN-CZG" secondAttribute="bottom" constant="8" symbolic="YES" id="cWs-ap-UX6"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="bottom" secondItem="XDn-7g-0bZ" secondAttribute="bottom" id="fxc-fg-HJF"/>
+                            <constraint firstItem="UBa-AN-CZG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vj8-QS-Xrh" secondAttribute="leading" id="h13-gj-Ps7"/>
+                            <constraint firstItem="vj8-QS-Xrh" firstAttribute="leading" secondItem="XDn-7g-0bZ" secondAttribute="leading" id="q38-CY-h1u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XDn-7g-0bZ"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="快讯" id="jL6-CM-1YQ"/>
+                    <connections>
+                        <outlet property="dateAndTimeLabel" destination="UBa-AN-CZG" id="t1c-Yh-thS"/>
+                        <outlet property="newsFlashLabel" destination="9nN-DQ-5Ok" id="k3Q-cv-onW"/>
+                        <outlet property="timelineView" destination="vj8-QS-Xrh" id="uVL-Io-IKa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jGh-Gs-VTi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1706.4000000000001" y="789.35532233883066"/>
+        </scene>
+        <!--Timeline Table View Controller-->
+        <scene sceneID="ZeY-Ly-oIw">
+            <objects>
+                <tableViewController id="5hn-FP-iU2" customClass="TimelineTableViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="RGE-tv-jLa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="630"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="dLx-6C-HTo"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="快讯" id="bCi-G6-ad9"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fND-mY-6mg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="5hn-FP-iU2" id="b8Z-NR-qMy"/>
+                            <outlet property="delegate" destination="5hn-FP-iU2" id="l0h-Xy-Hkx"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lJh-eK-CNc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1706" y="792"/>
+            <point key="canvasLocation" x="-1706" y="1496"/>
         </scene>
         <!--新闻-->
         <scene sceneID="iDc-km-PSG">
             <objects>
                 <viewController id="izm-yd-kfl" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Br7-Qz-w9l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="R2L-ep-v1a"/>
+                        <viewLayoutGuide key="safeArea" id="2sd-8h-9sb"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="新闻" id="8jz-a5-K0Q"/>
                 </viewController>
@@ -79,10 +136,10 @@
             <objects>
                 <viewController id="Y7A-af-4GC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fPQ-wi-HUp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="7bu-wX-gU1"/>
+                        <viewLayoutGuide key="safeArea" id="RLu-RD-Kyu"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="钱包" id="REJ-BG-MsD"/>
                 </viewController>
@@ -98,13 +155,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="979-U3-Aue"/>
                     </tabBar>
                     <connections>
                         <segue destination="Y7A-af-4GC" kind="relationship" relationship="viewControllers" id="nd7-vx-J5K"/>
+                        <segue destination="maJ-wj-9XT" kind="relationship" relationship="viewControllers" id="gmA-Am-QvF"/>
                         <segue destination="d4b-Vg-VbT" kind="relationship" relationship="viewControllers" id="s2h-5k-24p"/>
-                        <segue destination="AuB-Jj-HfO" kind="relationship" relationship="viewControllers" id="KSh-sf-6oP"/>
-                        <segue destination="izm-yd-kfl" kind="relationship" relationship="viewControllers" id="uVf-Dn-J4v"/>
                         <segue destination="54e-2H-jMW" kind="relationship" relationship="viewControllers" id="ZeG-mK-vsA"/>
+                        <segue destination="izm-yd-kfl" kind="relationship" relationship="viewControllers" id="uVf-Dn-J4v"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fu-6h-f4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
