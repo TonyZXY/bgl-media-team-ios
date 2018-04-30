@@ -49,9 +49,8 @@ public struct TimelinePoint {
         self.init(diameter: diameter, lineWidth: 2.0, color: color, filled: filled)
     }
     
-    public init(diameter: CGFloat, color: UIColor, filled: Bool, offSet: CGFloat, insidePoint: Bool) {
+    public init(diameter: CGFloat, color: UIColor, filled: Bool, insidePoint: Bool) {
         self.init(diameter: diameter, lineWidth: 2.0, color: color, filled: filled)
-        // self.position = CGPoint(x:0, y: offSet)
         self.insidePoint = insidePoint
     }
     
