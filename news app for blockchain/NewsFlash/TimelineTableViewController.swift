@@ -17,16 +17,10 @@ import RealmSwift
 class TimelineTableViewController: UITableViewController {
     
     let realm = try! Realm()
-    let results = try! Realm().objects(NewsFlash.self)
+    var results = try! Realm().objects(NewsFlash.self).sorted(byKeyPath: "dateTime", ascending: false)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         let timelineTableViewCellNib = UINib(nibName: "TimelineTableViewCell", bundle: Bundle(for: TimelineTableViewCell.self))
         self.tableView.register(timelineTableViewCellNib, forCellReuseIdentifier: "TimelineTableViewCell")
@@ -59,10 +53,13 @@ class TimelineTableViewController: UITableViewController {
         
         let object = results[indexPath.row]
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
+        
         cell.timelinePoint = TimelinePoint(diameter: CGFloat(16.0), color: UIColor.green, filled: false)
         cell.timeline.frontColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         cell.timeline.backColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
-        cell.titleLabel.text = object.dateTime
+        cell.titleLabel.text = dateFormatter.string(from: object.dateTime)
         cell.descriptionLabel.text = object.contents
         cell.bubbleColor = UIColor.clear
         
@@ -75,12 +72,13 @@ class TimelineTableViewController: UITableViewController {
     }
     
     private func getNews() {
-        Alamofire.request("http://0.0.0.0:8000/test.json", method: .get).validate().responseJSON { response in
+        Alamofire.request("http://0.0.0.0:8000/test1.json", method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 self.JSONtoData(json: json)
                 DispatchQueue.main.async {
+                    self.results = try! Realm().objects(NewsFlash.self).sorted(byKeyPath: "dateTime", ascending: false)
                     self.tableView.reloadData()
                 }
             case .failure(let error):
@@ -90,10 +88,16 @@ class TimelineTableViewController: UITableViewController {
     }
     
     private func JSONtoData(json: JSON) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
         realm.beginWrite()
         if let collection = json["articles"].array {
             for item in collection {
-                realm.create(NewsFlash.self, value: [item["publishedAt"].string!, item["description"].string!])
+                let date = dateFormatter.date(from: item["publishedAt"].string!)
+                let id = item["id"].int!
+                if realm.object(ofType: NewsFlash.self, forPrimaryKey: id) == nil {
+                    realm.create(NewsFlash.self, value: [id, date!, item["description"].string!])
+                }
             }
         }
         try! realm.commitWrite()
