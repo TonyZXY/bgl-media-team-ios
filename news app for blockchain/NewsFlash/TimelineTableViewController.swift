@@ -78,6 +78,7 @@ class TimelineTableViewController: UITableViewController {
                 let json = JSON(value)
                 self.JSONtoData(json: json)
                 DispatchQueue.main.async {
+                    self.cleanOldNewsFlash()
                     self.results = try! Realm().objects(NewsFlash.self).sorted(byKeyPath: "dateTime", ascending: false)
                     self.tableView.reloadData()
                 }
@@ -97,6 +98,8 @@ class TimelineTableViewController: UITableViewController {
                 let id = item["id"].int!
                 if realm.object(ofType: NewsFlash.self, forPrimaryKey: id) == nil {
                     realm.create(NewsFlash.self, value: [id, date!, item["description"].string!])
+                } else {
+                    realm.create(NewsFlash.self, value: [id, date!, item["description"].string!], update: true)
                 }
             }
         }
@@ -110,6 +113,16 @@ class TimelineTableViewController: UITableViewController {
         
         return refreshControl
     }()
+    
+    func cleanOldNewsFlash() {
+        let oneWeekBefore = Date.init(timeIntervalSinceNow: -(86400*7))
+        let oldObjects = realm.objects(NewsFlash.self).filter("dateTime < %@", oneWeekBefore)
+        print(oldObjects)
+        
+        try! realm.write {
+            realm.delete(oldObjects)
+        }
+    }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         getNews()
