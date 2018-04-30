@@ -21,6 +21,13 @@ open class TimelineTableViewCell: UITableViewCell {
             self.setNeedsDisplay()
         }
     }
+
+    open var timelinePointInside = TimelinePoint() {
+        didSet {
+            self.setNeedsDisplay()
+        }
+    }
+
     open var timeline = Timeline() {
         didSet {
             self.setNeedsDisplay()
@@ -66,12 +73,18 @@ open class TimelineTableViewCell: UITableViewCell {
         // timelinePoint.position = CGPoint(x: timeline.leftMargin + timeline.width / 2, y: titleLabel.frame.origin.y + titleLabel.intrinsicContentSize.height / 2 - timelinePoint.diameter / 2)
         timelinePoint.position = CGPoint(x: timeline.leftMargin + timeline.width / 2, y: timelinePoint.lineWidth)
         
-        timeline.start = CGPoint(x: timelinePoint.position.x + timelinePoint.diameter / 2, y: timelinePoint.position.y)
-        timeline.middle = CGPoint(x: timeline.start.x, y: timelinePoint.position.y)
+        timeline.start = CGPoint(x: timelinePoint.position.x + timelinePoint.diameter / 2, y: timelinePoint.position.y + timelinePoint.diameter)
+        timeline.middle = CGPoint(x: timeline.start.x, y: timelinePoint.position.y + timelinePoint.diameter)
         timeline.end = CGPoint(x: timeline.start.x, y: self.bounds.size.height)
         timeline.draw(view: self.contentView)
         
         timelinePoint.draw(view: self.contentView)
+        
+        if timelinePointInside.insidePoint {
+            timelinePointInside.position = CGPoint(x: timelinePoint.position.x + (timelinePoint.diameter - timelinePointInside.diameter) / 2,
+                                                   y: timelinePoint.position.y + (timelinePoint.diameter - timelinePointInside.diameter) / 2)
+            timelinePointInside.draw(view: self.contentView)
+        }
         
         if let title = titleLabel.text, !title.isEmpty {
             drawBubble()

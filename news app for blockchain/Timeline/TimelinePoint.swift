@@ -35,6 +35,8 @@ public struct TimelinePoint {
     public var isFilled = false
     
     internal var position = CGPoint(x: 0, y: 0)
+
+    public var insidePoint = false
     
     public init(diameter: CGFloat, lineWidth: CGFloat, color: UIColor, filled: Bool) {
         self.diameter = diameter
@@ -45,6 +47,12 @@ public struct TimelinePoint {
     
     public init(diameter: CGFloat, color: UIColor, filled: Bool) {
         self.init(diameter: diameter, lineWidth: 2.0, color: color, filled: filled)
+    }
+    
+    public init(diameter: CGFloat, color: UIColor, filled: Bool, offSet: CGFloat, insidePoint: Bool) {
+        self.init(diameter: diameter, lineWidth: 2.0, color: color, filled: filled)
+        // self.position = CGPoint(x:0, y: offSet)
+        self.insidePoint = insidePoint
     }
     
     public init(color: UIColor, filled: Bool) {
@@ -61,7 +69,7 @@ public struct TimelinePoint {
         let shapeLayer = CAShapeLayer()
         shapeLayer.path = path.cgPath
         shapeLayer.strokeColor = color.cgColor
-        shapeLayer.fillColor = isFilled ? color.cgColor : UIColor.white.cgColor
+        shapeLayer.fillColor = isFilled ? color.cgColor : UIColor.clear.cgColor
         shapeLayer.lineWidth = lineWidth
 
         view.layer.addSublayer(shapeLayer)

@@ -57,6 +57,7 @@ class TimelineTableViewController: UITableViewController {
         dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
         
         cell.timelinePoint = TimelinePoint(diameter: CGFloat(16.0), color: UIColor.green, filled: false)
+        cell.timelinePointInside = TimelinePoint(diameter: CGFloat(4.0), color: UIColor.green, filled: true, offSet: CGFloat(6.0), insidePoint: true)
         cell.timeline.frontColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         cell.timeline.backColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         cell.titleLabel.text = dateFormatter.string(from: object.dateTime)
@@ -117,7 +118,6 @@ class TimelineTableViewController: UITableViewController {
     func cleanOldNewsFlash() {
         let oneWeekBefore = Date.init(timeIntervalSinceNow: -(86400*7))
         let oldObjects = realm.objects(NewsFlash.self).filter("dateTime < %@", oneWeekBefore)
-        print(oldObjects)
         
         try! realm.write {
             realm.delete(oldObjects)
@@ -128,7 +128,6 @@ class TimelineTableViewController: UITableViewController {
         getNews()
         self.refresher.endRefreshing()
     }
-    
     
     /*
      // Override to support conditional editing of the table view.
