@@ -10,10 +10,8 @@ import UIKit
 
 class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelegate{
     let items = ["单价","总额"]
-    
-    var selectitems: String = ""
+    let pickerview = UIPickerView()
 
-    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -27,17 +25,14 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectitems = items[row]
     }
-    
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupviews()
         createpricedonebutton()
         setPriceTypebutton()
-        
-        
+        pricetypedoneclick()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -67,7 +62,7 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
     let priceType: UITextField = {
         let textfield = UITextField()
         textfield.textColor = UIColor.white
-        textfield.text = "单价  ▼"
+//        textfield.text = "单价  ▼"
         textfield.layer.cornerRadius = 8;
         textfield.tintColor = .clear
         textfield.layer.borderColor = UIColor.white.cgColor
@@ -108,7 +103,6 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
     }
     
     func setPriceTypebutton() {
-        let pickerview = UIPickerView()
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let donebutton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(pricetypedoneclick))
@@ -117,11 +111,12 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
         priceType.inputView = pickerview
         pickerview.delegate = self
         pickerview.dataSource = self
-        pickerview.selectRow(0, inComponent: 0, animated: false)
+        pickerview.selectRow(0, inComponent: 0, animated: true)
     }
     
     @objc func pricetypedoneclick(){
-        priceType.text = selectitems + "  ▼"
+        let row = pickerview.selectedRow(inComponent: 0)
+        priceType.text = items[row] + "  ▼"
         self.endEditing(true)
     }
     

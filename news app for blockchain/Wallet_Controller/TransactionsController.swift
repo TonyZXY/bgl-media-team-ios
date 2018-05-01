@@ -11,6 +11,7 @@ import UIKit
 class TransactionsController: UITableViewController{
     var cells = ["CoinTypeCell","CoinMarketCell","TradePairsCell","PriceCell","NumberCell","DateCell","TimeCell","ExpensesCell","AdditionalCell"]
     var selectedindex = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(TransCoinTypeCell.self, forCellReuseIdentifier: "CoinTypeCell")
@@ -28,10 +29,14 @@ class TransactionsController: UITableViewController{
         tableView.delegate = self
         tableView.dataSource = self
         
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
+//        DispatchQueue.main.async {
+//            self.tableView.reloadData()
+//        }
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        tableView.register(TransPriceCell.self, forCellReuseIdentifier: "PriceCell")
+//    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -50,5 +55,9 @@ class TransactionsController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row <= 2{
+            performSegue(withIdentifier: "showdetails", sender: self)
+
+        }
     }
 }

@@ -10,15 +10,15 @@ import UIKit
 
 class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegate,UIPickerViewDataSource{
     let items = ["%BTC","%AUD","AUD","USD","BTC"]
-    
+    let pickerview = UIPickerView()
     var selectitems: String = ""
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupviews()
-        _ = createKeyboarddonebutton()
-        createKeyboarddonebutton2()
-        
+        createKeyboarddonebutton()
+        setExpenseTypeButton()
+        expensesTypedoneclick()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,7 +40,6 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectitems = items[row]
-        expensesbutton.text = self.selectitems + "  ▼"
     }
     
     let expensesLabel:UILabel = {
@@ -77,7 +76,7 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
         textfield.textColor = UIColor.white
         textfield.layer.cornerRadius = 8;
         textfield.tintColor = .clear
-        textfield.text = "%BTC  ▼"
+//        textfield.text = "%BTC  ▼"
         textfield.layer.borderColor = UIColor.white.cgColor
         textfield.layer.borderWidth = 1
         // Create a padding view for padding on left
@@ -107,27 +106,16 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
         NSLayoutConstraint.activate([myLabelverticalConstraint])
     }
     
-    func createKeyboarddonebutton()->UIToolbar {
+    func createKeyboarddonebutton() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let donebutton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done
             , target: self, action: #selector(expensesdoneclick))
         toolbar.setItems([donebutton], animated: false)
         expenses.inputAccessoryView = toolbar
-        return toolbar
     }
     
-    @objc func expensesTypedoneclick(){
-        expensesbutton.text = selectitems + "  ▼"
-        self.endEditing(true)
-    }
-    
-    @objc func expensesdoneclick(){
-        self.endEditing(true)
-    }
-    
-    func createKeyboarddonebutton2() {
-        let pickerview = UIPickerView()
+    func setExpenseTypeButton() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let donebutton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done
@@ -137,7 +125,16 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
         expensesbutton.inputView = pickerview
         pickerview.delegate = self
         pickerview.dataSource = self
-        pickerview.selectRow(0, inComponent: 0, animated: false)
+        pickerview.selectRow(0, inComponent: 0, animated: true)
     }
     
+    @objc func expensesTypedoneclick(){
+        let row = pickerview.selectedRow(inComponent: 0)
+        expensesbutton.text = items[row] + "  ▼"
+        self.endEditing(true)
+    }
+    
+    @objc func expensesdoneclick(){
+        self.endEditing(true)
+    }
 }

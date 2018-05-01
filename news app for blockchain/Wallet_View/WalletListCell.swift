@@ -30,6 +30,7 @@ class WalletListCell: UITableViewCell {
         walletCell.backgroundColor = color.walletCellcolor()
         walletCell.layer.borderColor = UIColor.white.cgColor
         walletCell.layer.borderWidth = CGFloat((Float(1.0)))
+        selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
