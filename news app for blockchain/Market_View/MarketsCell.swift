@@ -133,7 +133,7 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
     //市场总数据view,日期筛选view--cell的宽高
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
          if collectionView == totalCollectionView{
-            return CGSize(width:(totalCollectionView.frame.width-3) / 3, height: totalCollectionView.frame.height)
+            return CGSize(width:(totalCollectionView.frame.width) / 3, height: totalCollectionView.frame.height)
          } else if collectionView == filterDate{
             return CGSize(width:filterDate.frame.width / 3, height: filterDate.frame.height)
          } else{

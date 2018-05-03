@@ -89,7 +89,7 @@ class MenuBar:UIView,UICollectionViewDelegate,UICollectionViewDataSource,UIColle
 }
 
 class MenuCell: UICollectionViewCell{
-    
+    var color = ThemeColor()
     let menuLabel:UILabel = {
        let menuLabel = UILabel()
         menuLabel.textColor = UIColor.gray
@@ -110,7 +110,7 @@ class MenuCell: UICollectionViewCell{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.black
+        backgroundColor = color.themeColor()
         setupView()
     }
     

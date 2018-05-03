@@ -9,9 +9,10 @@
 import UIKit
 
 class MarketsTotalView:UICollectionViewCell{
+    var color = ThemeColor()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.black
+        backgroundColor = color.walletCellcolor()
         setupView()
     }
     

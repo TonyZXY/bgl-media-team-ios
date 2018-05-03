@@ -31,17 +31,11 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
     
     var color = ThemeColor()
     var image = AppImage()
-    
     var test = ["-13","+12","+15","-1","-3","-3","+2","+3"]
-    
     let logoimage = UIImage(named: "bcg_logo.png")
-    let upimage = UIImage(named:"up.png")
-    let downimage = UIImage(named:"down.png")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        barLogo.image = logoimage
-//        titleBar.barTintColor = UIColor.init(red:47/255.0, green:49/255.0, blue:54/255.0, alpha:1)
         totalPriceView.backgroundColor = color.themeColor()
         totalPriceView.layer.borderColor = UIColor.white.cgColor
         totalPriceView.layer.borderWidth = CGFloat((Float(1.0)))
@@ -49,12 +43,9 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         addbuttonView.backgroundColor = color.themeColor()
         walletTableview.backgroundColor = color.themeColor()
         view.backgroundColor = color.themeColor()
-        
         addButton.layer.cornerRadius = 20
-
         addButton.titleLabel?.sizeToFit()
-        print(addButton.titleLabel?.frame.height)
-        
+        addButton.addTarget(self, action: #selector(changetotransaction), for: .touchUpInside)
 //addButton.titleLabel.
 //        addButton.titleEdgeInsets = UIEdgeInsetsMake((addButton.frame.height - (addButton.titleLabel?.frame.height)!)/2, -(addButton.frame.width - (addButton.titleLabel?.frame.width)!)/2, (addButton.frame.height - (addButton.titleLabel?.frame.height)!)/2, -(addButton.frame.width - (addButton.titleLabel?.frame.width)!)/2);
 
@@ -68,7 +59,6 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         
         navigationController?.navigationBar.barTintColor =  color.themeColor()
         navigationController?.navigationBar.isTranslucent = false
-        
         let titilebarlogo = UIImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         titilebarlogo.image = image.logoImage()
         titilebarlogo.contentMode = .scaleAspectFit
@@ -82,7 +72,18 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
     
+    @objc func changetotransaction(){
+        let transactions = TransactionsController()
+        
+//        let navController = UINavigationController(rootViewController: transactions)
+//        self.present(navController, animated: true, completion: nil)
+        
+        self.navigationController?.pushViewController(transactions, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return test.count

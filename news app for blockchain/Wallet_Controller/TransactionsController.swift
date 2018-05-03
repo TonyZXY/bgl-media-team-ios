@@ -20,6 +20,11 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         view.backgroundColor = color.themeColor()
         setupView()
+        tabBarController?.tabBar.isHidden = true
+        let titleLabel = UILabel()
+        titleLabel.text = "Blockchain Global"
+        titleLabel.textColor = UIColor.white
+        navigationItem.titleView = titleLabel
         
         //        DispatchQueue.main.async {
         //            self.tableView.reloadData()
@@ -41,12 +46,6 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
         tableViews.delegate = self
         tableViews.dataSource = self
         tableViews.separatorStyle = .none
-        
-        func jj(){
-            
-        }
-        
-        //        tableViews.backgroundColor = color.themeColor()
         return tableViews
     }()
     
@@ -60,6 +59,9 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
     }()
     
     @objc func addTransaction(){
+        
+        
+        
         let index = IndexPath(row: 3, section: 0)
         let cellss: TransPriceCell = transactionTableView.cellForRow(at: index) as! TransPriceCell
         print(cellss.price.text!)
@@ -135,17 +137,16 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.row == 3{
-//            let cell = tableView.dequeueReusableCell(withIdentifier: cells[3], for: indexPath) as! TransPriceCell
-//            cell.backgroundColor = color.themeColor()
-//            return cell
-//        } else {
-//            return UITableViewCell()
-//        }
-        
-                let cell = tableView.dequeueReusableCell(withIdentifier: cells[indexPath.row], for: indexPath)
-                cell.backgroundColor = color.themeColor()
-                return cell
+        //        if indexPath.row == 3{
+        //            let cell = tableView.dequeueReusableCell(withIdentifier: cells[3], for: indexPath) as! TransPriceCell
+        //            cell.backgroundColor = color.themeColor()
+        //            return cell
+        //        } else {
+        //            return UITableViewCell()
+        //        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cells[indexPath.row], for: indexPath)
+        cell.backgroundColor = color.themeColor()
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

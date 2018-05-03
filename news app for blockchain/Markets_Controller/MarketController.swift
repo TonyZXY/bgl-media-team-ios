@@ -58,8 +58,11 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         navigationController?.navigationBar.barTintColor = color.themeColor()
         setupMenuBar()
         setupColleectionView()
-        
-        collectionviews.index
+        let titleLabel = UILabel()
+        titleLabel.text = "Blockchain Global"
+        titleLabel.textColor = UIColor.white
+        navigationItem.titleView = titleLabel
+//        collectionviews.index
         // Do any additional setup after loading the view.
     }
 

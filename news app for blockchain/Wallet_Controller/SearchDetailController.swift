@@ -43,6 +43,7 @@ class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDa
     }
 
     
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == ""{
             isSearching = false

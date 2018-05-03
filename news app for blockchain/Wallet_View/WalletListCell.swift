@@ -9,7 +9,6 @@
 import UIKit
 
 class WalletListCell: UITableViewCell {
-
     @IBOutlet weak var coinType: UILabel!
     @IBOutlet weak var coinNumber: UILabel!
     @IBOutlet weak var coinProfit: UILabel!

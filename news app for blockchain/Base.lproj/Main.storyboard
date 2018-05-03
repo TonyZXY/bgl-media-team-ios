@@ -75,6 +75,21 @@
             </objects>
             <point key="canvasLocation" x="-754" y="791"/>
         </scene>
+        <!--Wallet Controller-->
+        <scene sceneID="g3K-Nq-zyc">
+            <objects>
+                <viewController id="A4p-NS-O0W" customClass="WalletController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dTU-nN-lcr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="j3U-oW-x6z"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sxY-y1-Oje" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="188" y="-1672"/>
+        </scene>
         <!--Wallet List Controller-->
         <scene sceneID="H2k-bv-dAG">
             <objects>
@@ -136,8 +151,13 @@
                                         <state key="normal" title="+">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ya1-Cg-vBZ">
+                                        <rect key="frame" x="51" y="19" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
                                         <connections>
-                                            <segue destination="f3e-Az-qhX" kind="show" id="Uos-or-11a"/>
+                                            <segue destination="A4p-NS-O0W" kind="show" id="M4n-X2-TxG"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -227,7 +247,6 @@
                                             <outlet property="coinType" destination="RUk-E3-Q7K" id="6OH-jF-C3j"/>
                                             <outlet property="upDownlogo" destination="MLs-ze-EK4" id="HkC-s9-f8x"/>
                                             <outlet property="walletCell" destination="Dfm-Mw-4Lr" id="FDD-X9-5xb"/>
-                                            <segue destination="nps-zq-ItM" kind="show" id="YZd-hs-1Bv"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -265,22 +284,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RkT-Pi-eAR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="188" y="-1011.576354679803"/>
-        </scene>
-        <!--Transactions Controller-->
-        <scene sceneID="UB5-Ba-1wo">
-            <objects>
-                <viewController id="YIW-9c-J5V" customClass="TransactionsController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yzf-nr-O1W">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="OPX-rq-6oM"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="e3e-OX-1UA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RAZ-2w-YJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2036" y="-1012"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3Mh-df-t8l">
@@ -322,21 +325,6 @@
             </objects>
             <point key="canvasLocation" x="-754.39999999999998" y="-1011.576354679803"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="SgZ-ab-L9F">
-            <objects>
-                <viewController id="nps-zq-ItM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OIN-38-TgN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="0Ze-qu-Ua0"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OOV-Ub-Ydq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="964" y="-1784"/>
-        </scene>
         <!--行情-->
         <scene sceneID="z75-Sl-2ee">
             <objects>
@@ -355,24 +343,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvN-Az-Ev9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-754" y="-90"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="0MR-Sz-KG0">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f3e-Az-qhX" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4bT-q6-qze">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="YIW-9c-J5V" kind="relationship" relationship="rootViewController" id="6mR-KO-I5g"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dsf-Ky-IW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1277.5999999999999" y="-1012.3152709359606"/>
         </scene>
     </scenes>
 </document>

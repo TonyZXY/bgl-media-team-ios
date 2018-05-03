@@ -10,9 +10,6 @@ import UIKit
 
 class TransactionController: UIViewController {
     var color = ThemeColor()
-    
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
