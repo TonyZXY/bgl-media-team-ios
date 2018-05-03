@@ -8,16 +8,16 @@
 
 import Foundation
 
-
-import RealmSwift
-
-class TransactionSearchJson: Object {
-    @objc dynamic var coinName = ""
-    @objc dynamic var coiname = ""
-//    @objc dynamic var exchangeMarket = Date()
-//    @objc dynamic var contents = ""
-    
-    override class func primaryKey() -> String {
-        return "id"
-    }
-}
+//
+//import RealmSwift
+//
+//class TransactionSearchJson: Object {
+//    @objc dynamic var coinName = ""
+//    @objc dynamic var coiname = ""
+////    @objc dynamic var exchangeMarket = Date()
+////    @objc dynamic var contents = ""
+//    
+//    override class func primaryKey() -> String {
+//        return "id"
+//    }
+//}

@@ -42,22 +42,6 @@
             </objects>
             <point key="canvasLocation" x="-2559" y="790"/>
         </scene>
-        <!--快讯-->
-        <scene sceneID="Pts-fX-pIY">
-            <objects>
-                <viewController id="AuB-Jj-HfO" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yIl-Tv-mrh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="dLx-6C-HTo"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="快讯" id="bCi-G6-ad9"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fND-mY-6mg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1706" y="792"/>
-        </scene>
         <!--新闻-->
         <scene sceneID="iDc-km-PSG">
             <objects>
@@ -72,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNU-id-ogN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-754" y="791"/>
+            <point key="canvasLocation" x="-754" y="790"/>
         </scene>
         <!--Wallet Controller-->
         <scene sceneID="g3K-Nq-zyc">
@@ -88,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sxY-y1-Oje" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50" y="-1012"/>
+            <point key="canvasLocation" x="188" y="-1012"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="3Mh-df-t8l">
@@ -102,7 +86,7 @@
                     <connections>
                         <segue destination="vDn-uj-q1H" kind="relationship" relationship="viewControllers" id="nd7-vx-J5K"/>
                         <segue destination="yJ1-Ou-v1F" kind="relationship" relationship="viewControllers" id="s2h-5k-24p"/>
-                        <segue destination="AuB-Jj-HfO" kind="relationship" relationship="viewControllers" id="KSh-sf-6oP"/>
+                        <segue destination="KOa-Tr-5Hc" kind="relationship" relationship="viewControllers" id="5Lc-Aj-3RZ"/>
                         <segue destination="izm-yd-kfl" kind="relationship" relationship="viewControllers" id="uVf-Dn-J4v"/>
                         <segue destination="54e-2H-jMW" kind="relationship" relationship="viewControllers" id="ZeG-mK-vsA"/>
                     </connections>
@@ -114,7 +98,6 @@
         <!--钱包-->
         <scene sceneID="9xf-BY-cQa">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DvV-pv-Ttj" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vDn-uj-q1H" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="钱包" id="REJ-BG-MsD"/>
                     <toolbarItems/>
@@ -127,8 +110,9 @@
                         <segue destination="A4p-NS-O0W" kind="relationship" relationship="rootViewController" id="hoq-8p-zwK"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DvV-pv-Ttj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-754.39999999999998" y="-1011.576354679803"/>
+            <point key="canvasLocation" x="-754" y="-1012"/>
         </scene>
         <!--行情-->
         <scene sceneID="z75-Sl-2ee">
@@ -148,6 +132,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvN-Az-Ev9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-754" y="-90"/>
+        </scene>
+        <!--快讯-->
+        <scene sceneID="mFb-ab-Uso">
+            <objects>
+                <viewController id="KOa-Tr-5Hc" customClass="NewsFlashViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3XO-na-vOv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快讯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0K-v2-OZB">
+                                <rect key="frame" x="167" y="44" width="41" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.72941176470000002" green="0.72941176470000002" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doB-Q4-FzU">
+                                <rect key="frame" x="0.0" y="70" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.50196078430000002" green="0.85882352939999995" blue="0.71764705880000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiS-mC-vbz">
+                                <rect key="frame" x="0.0" y="99" width="375" height="630"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <segue destination="AMK-Dr-eDh" kind="embed" id="rXZ-3X-6oN"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20392156859999999" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="doB-Q4-FzU" firstAttribute="leading" secondItem="WiS-mC-vbz" secondAttribute="leading" id="16M-9Z-cjz"/>
+                            <constraint firstItem="WiS-mC-vbz" firstAttribute="top" secondItem="doB-Q4-FzU" secondAttribute="bottom" constant="8" symbolic="YES" id="1fW-GT-1Ar"/>
+                            <constraint firstItem="WiS-mC-vbz" firstAttribute="leading" secondItem="CCK-e4-100" secondAttribute="leading" id="5Ec-Gl-wTF"/>
+                            <constraint firstItem="doB-Q4-FzU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WiS-mC-vbz" secondAttribute="leading" id="HrP-Mf-7ze"/>
+                            <constraint firstItem="WiS-mC-vbz" firstAttribute="bottom" secondItem="CCK-e4-100" secondAttribute="bottom" id="Od3-yI-YTc"/>
+                            <constraint firstItem="WiS-mC-vbz" firstAttribute="centerX" secondItem="x0K-v2-OZB" secondAttribute="centerX" id="QhA-ZM-ZHp"/>
+                            <constraint firstItem="doB-Q4-FzU" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WiS-mC-vbz" secondAttribute="trailing" id="RJo-Yz-pMV"/>
+                            <constraint firstItem="doB-Q4-FzU" firstAttribute="top" secondItem="x0K-v2-OZB" secondAttribute="bottom" constant="2" id="d8u-6h-fZK"/>
+                            <constraint firstItem="x0K-v2-OZB" firstAttribute="top" secondItem="CCK-e4-100" secondAttribute="top" id="dye-fH-OMu"/>
+                            <constraint firstItem="x0K-v2-OZB" firstAttribute="centerX" secondItem="CCK-e4-100" secondAttribute="centerX" id="kpX-VC-SvX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CCK-e4-100"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="快讯" id="zIz-NJ-VV8"/>
+                    <connections>
+                        <outlet property="dateAndTimeLabel" destination="doB-Q4-FzU" id="KUr-wb-5FK"/>
+                        <outlet property="newsFlashLabel" destination="x0K-v2-OZB" id="w1M-8d-ups"/>
+                        <outlet property="timelineView" destination="WiS-mC-vbz" id="W65-bB-aMH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bYG-Qi-HaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1706" y="790"/>
+        </scene>
+        <!--Timeline Table View Controller-->
+        <scene sceneID="ZZH-d2-Jqm">
+            <objects>
+                <tableViewController id="AMK-Dr-eDh" customClass="TimelineTableViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="B3F-MS-ozY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="630"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="AMK-Dr-eDh" id="Syj-AQ-spS"/>
+                            <outlet property="delegate" destination="AMK-Dr-eDh" id="L5U-LX-MT4"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U0R-Ul-dlm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1706" y="1619"/>
         </scene>
     </scenes>
 </document>

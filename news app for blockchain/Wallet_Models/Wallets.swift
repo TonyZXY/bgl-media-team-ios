@@ -8,14 +8,14 @@
 
 import Foundation
 
-import RealmSwift
-
-class NewsFlash: Object{
-    @objc dynamic var id = 0
-    @objc dynamic var dateTime = Date()
-    @objc dynamic var contents = ""
-    
-    override class func primaryKey() -> String {
-        return "id"
-    }
-}
+//import RealmSwift
+//
+//class NewsFlash: Object{
+//    @objc dynamic var id = 0
+//    @objc dynamic var dateTime = Date()
+//    @objc dynamic var contents = ""
+//    
+//    override class func primaryKey() -> String {
+//        return "id"
+//    }
+//}
