@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDataSource{
+class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout{
     var cells = ["CoinTypeCell","CoinMarketCell","TradePairsCell","PriceCell","NumberCell","DateCell","TimeCell","ExpensesCell","AdditionalCell"]
     var selectedindex = 0
     var color = ThemeColor()
@@ -59,9 +59,6 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
     }()
     
     @objc func addTransaction(){
-        
-        
-        
         let index = IndexPath(row: 3, section: 0)
         let cellss: TransPriceCell = transactionTableView.cellForRow(at: index) as! TransPriceCell
         print(cellss.price.text!)
