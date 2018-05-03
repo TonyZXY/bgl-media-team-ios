@@ -14,13 +14,59 @@
 		0415991A20930B8A00EDD5A2 /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415991920930B8A00EDD5A2 /* TimelinePoint.swift */; };
 		0415991C20930B8D00EDD5A2 /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415991B20930B8D00EDD5A2 /* TimelineTableViewCell.swift */; };
 		041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F40D3207EDD48008DCA69 /* AppDelegate.swift */; };
-		041F40D6207EDD48008DCA69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F40D5207EDD48008DCA69 /* ViewController.swift */; };
 		041F40D9207EDD48008DCA69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40D7207EDD48008DCA69 /* Main.storyboard */; };
-		041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */; };
 		041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DD207EDD49008DCA69 /* Assets.xcassets */; };
 		041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */; };
-		049968E1208D7D090078536A /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049968E0208D7D090078536A /* TimelineTableViewController.swift */; };
-		8EB268D291F8ADA814F0A744 /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E95DB7DB9DD746B9C7F71718 /* Pods_news_app_for_blockchain.framework */; };
+		04E4F018209B19A700A2D0BF /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F015209B19A700A2D0BF /* TimelineTableViewController.swift */; };
+		04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F016209B19A700A2D0BF /* NewsFlash.swift */; };
+		04E4F01A209B19A700A2D0BF /* NewsFlashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F017209B19A700A2D0BF /* NewsFlashViewController.swift */; };
+		04E4F020209B19BB00A2D0BF /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01C209B19BB00A2D0BF /* TimelineTableViewCell.swift */; };
+		04E4F021209B19BB00A2D0BF /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01D209B19BB00A2D0BF /* Timeline.swift */; };
+		04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */; };
+		04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */; };
+		4577D63C2091A3920087DF80 /* MarketCapCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D62E2091A3920087DF80 /* MarketCapCoin.swift */; };
+		4577D63D2091A3920087DF80 /* CryptoCompareCoinListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D62F2091A3920087DF80 /* CryptoCompareCoinListResult.swift */; };
+		4577D63E2091A3920087DF80 /* ExchangeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6302091A3920087DF80 /* ExchangeList.swift */; };
+		4577D63F2091A3920087DF80 /* CryptoCompareCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6312091A3920087DF80 /* CryptoCompareCoin.swift */; };
+		4577D6402091A3920087DF80 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6322091A3920087DF80 /* Exchange.swift */; };
+		4577D6412091A3920087DF80 /* APIErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6342091A3920087DF80 /* APIErrors.swift */; };
+		4577D6422091A3920087DF80 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6352091A3920087DF80 /* APIClient.swift */; };
+		4577D6432091A3920087DF80 /* CryptoCompareEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6362091A3920087DF80 /* CryptoCompareEndpoint.swift */; };
+		4577D6442091A3920087DF80 /* MarketCapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6372091A3920087DF80 /* MarketCapClient.swift */; };
+		4577D6452091A3920087DF80 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4577D6382091A3920087DF80 /* README.md */; };
+		4577D6462091A3920087DF80 /* CryptoCompareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6392091A3920087DF80 /* CryptoCompareClient.swift */; };
+		4577D6472091A3920087DF80 /* MarketCapEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D63A2091A3920087DF80 /* MarketCapEndpoint.swift */; };
+		4577D6482091A3920087DF80 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D63B2091A3920087DF80 /* Endpoint.swift */; };
+		570A3EA1208806E200080919 /* WalletListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3EA0208806E200080919 /* WalletListCell.swift */; };
+		570A3EA32088070C00080919 /* WalletListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3EA22088070C00080919 /* WalletListController.swift */; };
+		570A3EAB208D775000080919 /* TransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570A3EAA208D775000080919 /* TransactionsController.swift */; };
+		5713B636208EC3D0000506FD /* SearchDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5713B635208EC3D0000506FD /* SearchDetailController.swift */; };
+		576FA8DC2091D66F005B6406 /* TransAdditionalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8DB2091D66F005B6406 /* TransAdditionalCell.swift */; };
+		576FA8DE2091DB67005B6406 /* TransExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8DD2091DB67005B6406 /* TransExpensesCell.swift */; };
+		576FA8E02091E02C005B6406 /* TransCoinTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8DF2091E02C005B6406 /* TransCoinTypeCell.swift */; };
+		576FA8E22091E154005B6406 /* TransCoinMarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8E12091E154005B6406 /* TransCoinMarketCell.swift */; };
+		576FA8E42091E1F2005B6406 /* TransPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8E32091E1F2005B6406 /* TransPriceCell.swift */; };
+		576FA8E62091E30B005B6406 /* TransTradePairsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8E52091E30B005B6406 /* TransTradePairsCell.swift */; };
+		576FA8E82091E53F005B6406 /* TransNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8E72091E53F005B6406 /* TransNumberCell.swift */; };
+		576FA8EA2091E5AC005B6406 /* TransDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8E92091E5AC005B6406 /* TransDateCell.swift */; };
+		576FA8EC2091E5D8005B6406 /* TransTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8EB2091E5D8005B6406 /* TransTimeCell.swift */; };
+		576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F02092DA5C005B6406 /* ThemeColor.swift */; };
+		576FA8F42092E670005B6406 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F32092E670005B6406 /* AppImage.swift */; };
+		576FA8F6209564CF005B6406 /* TransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F5209564CF005B6406 /* TransactionController.swift */; };
+		576FA8F92095D89F005B6406 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F82095D89F005B6406 /* MenuBar.swift */; };
+		576FA8FB2095DA82005B6406 /* MarketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8FA2095DA82005B6406 /* MarketController.swift */; };
+		576FA9002096ACD1005B6406 /* MarketsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8FF2096ACD1005B6406 /* MarketsCell.swift */; };
+		576FA903209733ED005B6406 /* MarketsTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA902209733ED005B6406 /* MarketsTotalView.swift */; };
+		576FA90720976509005B6406 /* MarketsCoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90620976509005B6406 /* MarketsCoinTableViewCell.swift */; };
+		576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA9082097D41A005B6406 /* WatchlistCell.swift */; };
+		576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90A20980201005B6406 /* MarketFilterCollectionView.swift */; };
+		576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90C20980641005B6406 /* MarketSortPickerView.swift */; };
+		576FA90F20983F60005B6406 /* CoinTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90E20983F60005B6406 /* CoinTypeTableViewCell.swift */; };
+		576FA91120995164005B6406 /* TransactionsHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA91020995164005B6406 /* TransactionsHistory.swift */; };
+		576FA913209951D3005B6406 /* Wallets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA912209951D3005B6406 /* Wallets.swift */; };
+		576FA917209A64B1005B6406 /* TransactionSearchJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA916209A64B1005B6406 /* TransactionSearchJson.swift */; };
+		576FA919209AC702005B6406 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA918209AC702005B6406 /* WalletController.swift */; };
+		F0A477DC98285AF7CF6AD1CC /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,16 +78,62 @@
 		0415991B20930B8D00EDD5A2 /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		041F40D0207EDD48008DCA69 /* news app for blockchain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "news app for blockchain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		041F40D3207EDD48008DCA69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		041F40D5207EDD48008DCA69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		041F40D8207EDD48008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		041F40DB207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = news_app_for_blockchain.xcdatamodel; sourceTree = "<group>"; };
 		041F40DD207EDD49008DCA69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041F40E0207EDD49008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041F40E2207EDD49008DCA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		049968E0208D7D090078536A /* TimelineTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
-		CDA9E0D9FB6C973204EAC9FE /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
-		DA41D798FD3A792597F2F94C /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
-		E95DB7DB9DD746B9C7F71718 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04E4F015209B19A700A2D0BF /* TimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
+		04E4F016209B19A700A2D0BF /* NewsFlash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFlash.swift; sourceTree = "<group>"; };
+		04E4F017209B19A700A2D0BF /* NewsFlashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFlashViewController.swift; sourceTree = "<group>"; };
+		04E4F01C209B19BB00A2D0BF /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
+		04E4F01D209B19BB00A2D0BF /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
+		04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinePoint.swift; sourceTree = "<group>"; };
+		04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
+		2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
+		4577D62E2091A3920087DF80 /* MarketCapCoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCapCoin.swift; sourceTree = "<group>"; };
+		4577D62F2091A3920087DF80 /* CryptoCompareCoinListResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareCoinListResult.swift; sourceTree = "<group>"; };
+		4577D6302091A3920087DF80 /* ExchangeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeList.swift; sourceTree = "<group>"; };
+		4577D6312091A3920087DF80 /* CryptoCompareCoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareCoin.swift; sourceTree = "<group>"; };
+		4577D6322091A3920087DF80 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
+		4577D6342091A3920087DF80 /* APIErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIErrors.swift; sourceTree = "<group>"; };
+		4577D6352091A3920087DF80 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		4577D6362091A3920087DF80 /* CryptoCompareEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareEndpoint.swift; sourceTree = "<group>"; };
+		4577D6372091A3920087DF80 /* MarketCapClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCapClient.swift; sourceTree = "<group>"; };
+		4577D6382091A3920087DF80 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		4577D6392091A3920087DF80 /* CryptoCompareClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareClient.swift; sourceTree = "<group>"; };
+		4577D63A2091A3920087DF80 /* MarketCapEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCapEndpoint.swift; sourceTree = "<group>"; };
+		4577D63B2091A3920087DF80 /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		570A3EA0208806E200080919 /* WalletListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletListCell.swift; sourceTree = "<group>"; };
+		570A3EA22088070C00080919 /* WalletListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletListController.swift; sourceTree = "<group>"; };
+		570A3EAA208D775000080919 /* TransactionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsController.swift; sourceTree = "<group>"; };
+		5713B635208EC3D0000506FD /* SearchDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailController.swift; sourceTree = "<group>"; };
+		576FA8DB2091D66F005B6406 /* TransAdditionalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransAdditionalCell.swift; sourceTree = "<group>"; };
+		576FA8DD2091DB67005B6406 /* TransExpensesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransExpensesCell.swift; sourceTree = "<group>"; };
+		576FA8DF2091E02C005B6406 /* TransCoinTypeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransCoinTypeCell.swift; sourceTree = "<group>"; };
+		576FA8E12091E154005B6406 /* TransCoinMarketCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransCoinMarketCell.swift; sourceTree = "<group>"; };
+		576FA8E32091E1F2005B6406 /* TransPriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransPriceCell.swift; sourceTree = "<group>"; };
+		576FA8E52091E30B005B6406 /* TransTradePairsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransTradePairsCell.swift; sourceTree = "<group>"; };
+		576FA8E72091E53F005B6406 /* TransNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransNumberCell.swift; sourceTree = "<group>"; };
+		576FA8E92091E5AC005B6406 /* TransDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransDateCell.swift; sourceTree = "<group>"; };
+		576FA8EB2091E5D8005B6406 /* TransTimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransTimeCell.swift; sourceTree = "<group>"; };
+		576FA8F02092DA5C005B6406 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
+		576FA8F32092E670005B6406 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
+		576FA8F5209564CF005B6406 /* TransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionController.swift; sourceTree = "<group>"; };
+		576FA8F82095D89F005B6406 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
+		576FA8FA2095DA82005B6406 /* MarketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketController.swift; sourceTree = "<group>"; };
+		576FA8FF2096ACD1005B6406 /* MarketsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsCell.swift; sourceTree = "<group>"; };
+		576FA902209733ED005B6406 /* MarketsTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsTotalView.swift; sourceTree = "<group>"; };
+		576FA90620976509005B6406 /* MarketsCoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketsCoinTableViewCell.swift; sourceTree = "<group>"; };
+		576FA9082097D41A005B6406 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
+		576FA90A20980201005B6406 /* MarketFilterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketFilterCollectionView.swift; sourceTree = "<group>"; };
+		576FA90C20980641005B6406 /* MarketSortPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSortPickerView.swift; sourceTree = "<group>"; };
+		576FA90E20983F60005B6406 /* CoinTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTypeTableViewCell.swift; sourceTree = "<group>"; };
+		576FA91020995164005B6406 /* TransactionsHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHistory.swift; sourceTree = "<group>"; };
+		576FA912209951D3005B6406 /* Wallets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallets.swift; sourceTree = "<group>"; };
+		576FA916209A64B1005B6406 /* TransactionSearchJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSearchJson.swift; sourceTree = "<group>"; };
+		576FA918209AC702005B6406 /* WalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
+		E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2B5A1DB09E3F04A1F83FF22 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +141,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EB268D291F8ADA814F0A744 /* Pods_news_app_for_blockchain.framework in Frameworks */,
+				F0A477DC98285AF7CF6AD1CC /* Pods_news_app_for_blockchain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,8 +164,8 @@
 			children = (
 				041F40D2207EDD48008DCA69 /* news app for blockchain */,
 				041F40D1207EDD48008DCA69 /* Products */,
-				E20A85ABE7CF43E48382B23B /* Pods */,
-				98DED943C61F4B0CDFD5E84E /* Frameworks */,
+				5AC8BC7FE114A8134E15E233 /* Pods */,
+				7FA2035E59CC4A76CA64B71E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,52 +180,159 @@
 		041F40D2207EDD48008DCA69 /* news app for blockchain */ = {
 			isa = PBXGroup;
 			children = (
-				041F40D5207EDD48008DCA69 /* ViewController.swift */,
-				041F40D7207EDD48008DCA69 /* Main.storyboard */,
-				041F40DD207EDD49008DCA69 /* Assets.xcassets */,
+				576FA8FC2096A004005B6406 /* Market_View */,
+				576FA8DA2091AD27005B6406 /* Wallet_View */,
+				576FA8F72095C044005B6406 /* Wallet_Controller */,
+				576FA9012096ACEA005B6406 /* Markets_Controller */,
+				4577D62D2091A3920087DF80 /* Wallet_Models */,
+				4577D6332091A3920087DF80 /* Wallet_Networking */,
+				576FA8F22092E47E005B6406 /* UI_Tools */,
+				04E4F013209AFB9900A2D0BF /* Supporting Files */,
+				04E4F01B209B19BB00A2D0BF /* Timeline */,
+				04E4F014209B19A700A2D0BF /* NewsFlash */,
 				041F40E2207EDD49008DCA69 /* Info.plist */,
-				04C3DD6D20932AB800474638 /* Supporting Files */,
-				04C3DD6C20932A2800474638 /* NewsFlash */,
-				0415991D20930D4F00EDD5A2 /* Timeline */,
+				041F40D7207EDD48008DCA69 /* Main.storyboard */,
 			);
 			path = "news app for blockchain";
 			sourceTree = "<group>";
 		};
-		04C3DD6C20932A2800474638 /* NewsFlash */ = {
-			isa = PBXGroup;
-			children = (
-				0415730520871E7000FC4557 /* NewsFlashViewController.swift */,
-				049968E0208D7D090078536A /* TimelineTableViewController.swift */,
-				041599112092DD0200EDD5A2 /* NewsFlash.swift */,
-			);
-			path = NewsFlash;
-			sourceTree = "<group>";
-		};
-		04C3DD6D20932AB800474638 /* Supporting Files */ = {
+		04E4F013209AFB9900A2D0BF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
 				041F40D3207EDD48008DCA69 /* AppDelegate.swift */,
 				041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */,
-				041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */,
+				041F40DD207EDD49008DCA69 /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		98DED943C61F4B0CDFD5E84E /* Frameworks */ = {
+		04E4F014209B19A700A2D0BF /* NewsFlash */ = {
 			isa = PBXGroup;
 			children = (
-				E95DB7DB9DD746B9C7F71718 /* Pods_news_app_for_blockchain.framework */,
+				04E4F015209B19A700A2D0BF /* TimelineTableViewController.swift */,
+				04E4F016209B19A700A2D0BF /* NewsFlash.swift */,
+				04E4F017209B19A700A2D0BF /* NewsFlashViewController.swift */,
 			);
-			name = Frameworks;
+			path = NewsFlash;
 			sourceTree = "<group>";
 		};
-		E20A85ABE7CF43E48382B23B /* Pods */ = {
+		04E4F01B209B19BB00A2D0BF /* Timeline */ = {
 			isa = PBXGroup;
 			children = (
-				DA41D798FD3A792597F2F94C /* Pods-news app for blockchain.debug.xcconfig */,
-				CDA9E0D9FB6C973204EAC9FE /* Pods-news app for blockchain.release.xcconfig */,
+				04E4F01C209B19BB00A2D0BF /* TimelineTableViewCell.swift */,
+				04E4F01D209B19BB00A2D0BF /* Timeline.swift */,
+				04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */,
+				04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		4577D62D2091A3920087DF80 /* Wallet_Models */ = {
+			isa = PBXGroup;
+			children = (
+				4577D62E2091A3920087DF80 /* MarketCapCoin.swift */,
+				4577D62F2091A3920087DF80 /* CryptoCompareCoinListResult.swift */,
+				4577D6302091A3920087DF80 /* ExchangeList.swift */,
+				4577D6312091A3920087DF80 /* CryptoCompareCoin.swift */,
+				4577D6322091A3920087DF80 /* Exchange.swift */,
+				576FA91020995164005B6406 /* TransactionsHistory.swift */,
+				576FA912209951D3005B6406 /* Wallets.swift */,
+			);
+			path = Wallet_Models;
+			sourceTree = "<group>";
+		};
+		4577D6332091A3920087DF80 /* Wallet_Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4577D6342091A3920087DF80 /* APIErrors.swift */,
+				4577D6352091A3920087DF80 /* APIClient.swift */,
+				4577D6362091A3920087DF80 /* CryptoCompareEndpoint.swift */,
+				4577D6372091A3920087DF80 /* MarketCapClient.swift */,
+				4577D6382091A3920087DF80 /* README.md */,
+				4577D6392091A3920087DF80 /* CryptoCompareClient.swift */,
+				4577D63A2091A3920087DF80 /* MarketCapEndpoint.swift */,
+				4577D63B2091A3920087DF80 /* Endpoint.swift */,
+			);
+			path = Wallet_Networking;
+			sourceTree = "<group>";
+		};
+		576FA8DA2091AD27005B6406 /* Wallet_View */ = {
+			isa = PBXGroup;
+			children = (
+				576FA8DF2091E02C005B6406 /* TransCoinTypeCell.swift */,
+				576FA8E12091E154005B6406 /* TransCoinMarketCell.swift */,
+				576FA8E52091E30B005B6406 /* TransTradePairsCell.swift */,
+				576FA8E32091E1F2005B6406 /* TransPriceCell.swift */,
+				576FA8E72091E53F005B6406 /* TransNumberCell.swift */,
+				576FA8E92091E5AC005B6406 /* TransDateCell.swift */,
+				576FA8EB2091E5D8005B6406 /* TransTimeCell.swift */,
+				576FA8DD2091DB67005B6406 /* TransExpensesCell.swift */,
+				576FA8DB2091D66F005B6406 /* TransAdditionalCell.swift */,
+				570A3EA0208806E200080919 /* WalletListCell.swift */,
+				576FA90E20983F60005B6406 /* CoinTypeTableViewCell.swift */,
+				576FA916209A64B1005B6406 /* TransactionSearchJson.swift */,
+			);
+			path = Wallet_View;
+			sourceTree = "<group>";
+		};
+		576FA8F22092E47E005B6406 /* UI_Tools */ = {
+			isa = PBXGroup;
+			children = (
+				576FA8F02092DA5C005B6406 /* ThemeColor.swift */,
+				576FA8F32092E670005B6406 /* AppImage.swift */,
+			);
+			path = UI_Tools;
+			sourceTree = "<group>";
+		};
+		576FA8F72095C044005B6406 /* Wallet_Controller */ = {
+			isa = PBXGroup;
+			children = (
+				570A3EA22088070C00080919 /* WalletListController.swift */,
+				576FA8F5209564CF005B6406 /* TransactionController.swift */,
+				570A3EAA208D775000080919 /* TransactionsController.swift */,
+				5713B635208EC3D0000506FD /* SearchDetailController.swift */,
+				576FA918209AC702005B6406 /* WalletController.swift */,
+			);
+			path = Wallet_Controller;
+			sourceTree = "<group>";
+		};
+		576FA8FC2096A004005B6406 /* Market_View */ = {
+			isa = PBXGroup;
+			children = (
+				576FA8F82095D89F005B6406 /* MenuBar.swift */,
+				576FA8FF2096ACD1005B6406 /* MarketsCell.swift */,
+				576FA902209733ED005B6406 /* MarketsTotalView.swift */,
+				576FA90620976509005B6406 /* MarketsCoinTableViewCell.swift */,
+				576FA9082097D41A005B6406 /* WatchlistCell.swift */,
+				576FA90A20980201005B6406 /* MarketFilterCollectionView.swift */,
+				576FA90C20980641005B6406 /* MarketSortPickerView.swift */,
+			);
+			path = Market_View;
+			sourceTree = "<group>";
+		};
+		576FA9012096ACEA005B6406 /* Markets_Controller */ = {
+			isa = PBXGroup;
+			children = (
+				576FA8FA2095DA82005B6406 /* MarketController.swift */,
+			);
+			path = Markets_Controller;
+			sourceTree = "<group>";
+		};
+		5AC8BC7FE114A8134E15E233 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2B5A1DB09E3F04A1F83FF22 /* Pods-news app for blockchain.debug.xcconfig */,
+				2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		7FA2035E59CC4A76CA64B71E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,11 +342,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 041F40E5207EDD49008DCA69 /* Build configuration list for PBXNativeTarget "news app for blockchain" */;
 			buildPhases = (
-				A39FA3B82C50D7BFBBDB3ED4 /* [CP] Check Pods Manifest.lock */,
+				249647254B45F2117D397189 /* [CP] Check Pods Manifest.lock */,
 				041F40CC207EDD48008DCA69 /* Sources */,
 				041F40CD207EDD48008DCA69 /* Frameworks */,
 				041F40CE207EDD48008DCA69 /* Resources */,
-				A15FD645433AFF426C26E394 /* [CP] Embed Pods Frameworks */,
+				B9ED2D803E1F1DE5FA57718D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -199,6 +398,8 @@
 				0415991620930B6E00EDD5A2 /* TimelineTableViewCell.xib in Resources */,
 				041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */,
 				041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */,
+				04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */,
+				4577D6452091A3920087DF80 /* README.md in Resources */,
 				041F40D9207EDD48008DCA69 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,7 +407,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A15FD645433AFF426C26E394 /* [CP] Embed Pods Frameworks */ = {
+		249647254B45F2117D397189 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-news app for blockchain-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9ED2D803E1F1DE5FA57718D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -236,24 +455,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A39FA3B82C50D7BFBBDB3ED4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-news app for blockchain-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -261,15 +462,54 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0415991820930B8700EDD5A2 /* Timeline.swift in Sources */,
-				0415730620871E7000FC4557 /* NewsFlashViewController.swift in Sources */,
-				0415991C20930B8D00EDD5A2 /* TimelineTableViewCell.swift in Sources */,
-				041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */,
-				041F40D6207EDD48008DCA69 /* ViewController.swift in Sources */,
-				041599122092DD0200EDD5A2 /* NewsFlash.swift in Sources */,
-				0415991A20930B8A00EDD5A2 /* TimelinePoint.swift in Sources */,
-				049968E1208D7D090078536A /* TimelineTableViewController.swift in Sources */,
+				04E4F021209B19BB00A2D0BF /* Timeline.swift in Sources */,
+				570A3EA1208806E200080919 /* WalletListCell.swift in Sources */,
+				4577D6412091A3920087DF80 /* APIErrors.swift in Sources */,
+				4577D63E2091A3920087DF80 /* ExchangeList.swift in Sources */,
+				576FA90720976509005B6406 /* MarketsCoinTableViewCell.swift in Sources */,
+				576FA8DE2091DB67005B6406 /* TransExpensesCell.swift in Sources */,
+				4577D6472091A3920087DF80 /* MarketCapEndpoint.swift in Sources */,
+				570A3EA32088070C00080919 /* WalletListController.swift in Sources */,
+				4577D6442091A3920087DF80 /* MarketCapClient.swift in Sources */,
+				576FA8E62091E30B005B6406 /* TransTradePairsCell.swift in Sources */,
+				576FA8F42092E670005B6406 /* AppImage.swift in Sources */,
+				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
+				576FA8E02091E02C005B6406 /* TransCoinTypeCell.swift in Sources */,
+				576FA917209A64B1005B6406 /* TransactionSearchJson.swift in Sources */,
+				576FA8FB2095DA82005B6406 /* MarketController.swift in Sources */,
+				576FA919209AC702005B6406 /* WalletController.swift in Sources */,
+				4577D6402091A3920087DF80 /* Exchange.swift in Sources */,
+				4577D6462091A3920087DF80 /* CryptoCompareClient.swift in Sources */,
+				576FA8DC2091D66F005B6406 /* TransAdditionalCell.swift in Sources */,
+				04E4F018209B19A700A2D0BF /* TimelineTableViewController.swift in Sources */,
+				576FA91120995164005B6406 /* TransactionsHistory.swift in Sources */,
+				04E4F01A209B19A700A2D0BF /* NewsFlashViewController.swift in Sources */,
+				576FA8F6209564CF005B6406 /* TransactionController.swift in Sources */,
+				576FA8EA2091E5AC005B6406 /* TransDateCell.swift in Sources */,
+				576FA8EC2091E5D8005B6406 /* TransTimeCell.swift in Sources */,
+				4577D63C2091A3920087DF80 /* MarketCapCoin.swift in Sources */,
+				576FA8F92095D89F005B6406 /* MenuBar.swift in Sources */,
+				4577D6422091A3920087DF80 /* APIClient.swift in Sources */,
+				576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */,
+				5713B636208EC3D0000506FD /* SearchDetailController.swift in Sources */,
+				576FA913209951D3005B6406 /* Wallets.swift in Sources */,
+				576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */,
+				4577D63D2091A3920087DF80 /* CryptoCompareCoinListResult.swift in Sources */,
+				04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */,
+				4577D6482091A3920087DF80 /* Endpoint.swift in Sources */,
+				576FA8E22091E154005B6406 /* TransCoinMarketCell.swift in Sources */,
+				04E4F020209B19BB00A2D0BF /* TimelineTableViewCell.swift in Sources */,
+				04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */,
+				576FA8E82091E53F005B6406 /* TransNumberCell.swift in Sources */,
+				576FA8E42091E1F2005B6406 /* TransPriceCell.swift in Sources */,
+				576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */,
+				576FA90F20983F60005B6406 /* CoinTypeTableViewCell.swift in Sources */,
 				041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */,
+				576FA9002096ACD1005B6406 /* MarketsCell.swift in Sources */,
+				570A3EAB208D775000080919 /* TransactionsController.swift in Sources */,
+				4577D63F2091A3920087DF80 /* CryptoCompareCoin.swift in Sources */,
+				4577D6432091A3920087DF80 /* CryptoCompareEndpoint.swift in Sources */,
+				576FA903209733ED005B6406 /* MarketsTotalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,12 +651,13 @@
 		};
 		041F40E6207EDD49008DCA69 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DA41D798FD3A792597F2F94C /* Pods-news app for blockchain.debug.xcconfig */;
+			baseConfigurationReference = E2B5A1DB09E3F04A1F83FF22 /* Pods-news app for blockchain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -430,12 +671,13 @@
 		};
 		041F40E7207EDD49008DCA69 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CDA9E0D9FB6C973204EAC9FE /* Pods-news app for blockchain.release.xcconfig */;
+			baseConfigurationReference = 2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -469,19 +711,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				041F40DB207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodel */,
-			);
-			currentVersion = 041F40DB207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodel */;
-			path = news_app_for_blockchain.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 041F40C8207EDD47008DCA69 /* Project object */;
 }

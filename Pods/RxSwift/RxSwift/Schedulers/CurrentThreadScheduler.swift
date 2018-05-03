@@ -53,7 +53,7 @@ public class CurrentThreadScheduler : ImmediateSchedulerType {
         defer {
             key.deallocate()
         }
-                                                               
+
         guard pthread_key_create(key, nil) == 0 else {
             rxFatalError("isScheduleRequired key creation failed")
         }
