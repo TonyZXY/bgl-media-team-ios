@@ -1,6 +1,0 @@
-framework module Pods_news_app_for_blockchain {
-  umbrella header "Pods-news app for blockchain-umbrella.h"
-
-  export *
-  module * { export * }
-}

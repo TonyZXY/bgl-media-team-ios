@@ -55,7 +55,6 @@
 		576FA913209951D3005B6406 /* Wallets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA912209951D3005B6406 /* Wallets.swift */; };
 		576FA917209A64B1005B6406 /* TransactionSearchJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA916209A64B1005B6406 /* TransactionSearchJson.swift */; };
 		576FA919209AC702005B6406 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA918209AC702005B6406 /* WalletController.swift */; };
-		FAC17EFFA9174369FA91CAE4 /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,9 +108,6 @@
 		576FA912209951D3005B6406 /* Wallets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallets.swift; sourceTree = "<group>"; };
 		576FA916209A64B1005B6406 /* TransactionSearchJson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSearchJson.swift; sourceTree = "<group>"; };
 		576FA918209AC702005B6406 /* WalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
-		AF335468AB7AE16EB4646891 /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
-		B5C51F49BD9D7EBC19255EF6 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
-		D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAC17EFFA9174369FA91CAE4 /* Pods_news_app_for_blockchain.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,8 +126,6 @@
 			children = (
 				041F40D2207EDD48008DCA69 /* news app for blockchain */,
 				041F40D1207EDD48008DCA69 /* Products */,
-				897F039D03BB793D6A335682 /* Pods */,
-				1F5A2A758F467E4E3FD3E288 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,14 +156,6 @@
 				041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */,
 			);
 			path = "news app for blockchain";
-			sourceTree = "<group>";
-		};
-		1F5A2A758F467E4E3FD3E288 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		4577D62D2091A3920087DF80 /* Wallet_Models */ = {
@@ -264,15 +249,6 @@
 			path = Markets_Controller;
 			sourceTree = "<group>";
 		};
-		897F039D03BB793D6A335682 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				B5C51F49BD9D7EBC19255EF6 /* Pods-news app for blockchain.debug.xcconfig */,
-				AF335468AB7AE16EB4646891 /* Pods-news app for blockchain.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,11 +256,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 041F40E5207EDD49008DCA69 /* Build configuration list for PBXNativeTarget "news app for blockchain" */;
 			buildPhases = (
-				1AF6A85D4473C6297207A333 /* [CP] Check Pods Manifest.lock */,
 				041F40CC207EDD48008DCA69 /* Sources */,
 				041F40CD207EDD48008DCA69 /* Frameworks */,
 				041F40CE207EDD48008DCA69 /* Resources */,
-				17A586B9548C10FB48528F22 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -341,51 +315,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		17A586B9548C10FB48528F22 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1AF6A85D4473C6297207A333 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-news app for blockchain-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		041F40CC207EDD48008DCA69 /* Sources */ = {
@@ -577,17 +506,13 @@
 		};
 		041F40E6207EDD49008DCA69 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5C51F49BD9D7EBC19255EF6 /* Pods-news app for blockchain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -597,17 +522,13 @@
 		};
 		041F40E7207EDD49008DCA69 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF335468AB7AE16EB4646891 /* Pods-news app for blockchain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
