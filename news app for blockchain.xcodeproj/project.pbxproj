@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0415730620871E7000FC4557 /* NewsFlashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415730520871E7000FC4557 /* NewsFlashViewController.swift */; };
-		041599122092DD0200EDD5A2 /* NewsFlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041599112092DD0200EDD5A2 /* NewsFlash.swift */; };
-		0415991620930B6E00EDD5A2 /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0415991520930B6D00EDD5A2 /* TimelineTableViewCell.xib */; };
-		0415991820930B8700EDD5A2 /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415991720930B8600EDD5A2 /* Timeline.swift */; };
-		0415991A20930B8A00EDD5A2 /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415991920930B8A00EDD5A2 /* TimelinePoint.swift */; };
-		0415991C20930B8D00EDD5A2 /* TimelineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0415991B20930B8D00EDD5A2 /* TimelineTableViewCell.swift */; };
 		041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F40D3207EDD48008DCA69 /* AppDelegate.swift */; };
 		041F40D9207EDD48008DCA69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40D7207EDD48008DCA69 /* Main.storyboard */; };
 		041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DD207EDD49008DCA69 /* Assets.xcassets */; };
@@ -70,12 +64,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0415730520871E7000FC4557 /* NewsFlashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlashViewController.swift; sourceTree = "<group>"; };
-		041599112092DD0200EDD5A2 /* NewsFlash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFlash.swift; sourceTree = "<group>"; };
-		0415991520930B6D00EDD5A2 /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
-		0415991720930B8600EDD5A2 /* Timeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
-		0415991920930B8A00EDD5A2 /* TimelinePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelinePoint.swift; sourceTree = "<group>"; };
-		0415991B20930B8D00EDD5A2 /* TimelineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTableViewCell.swift; sourceTree = "<group>"; };
 		041F40D0207EDD48008DCA69 /* news app for blockchain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "news app for blockchain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		041F40D3207EDD48008DCA69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		041F40D8207EDD48008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -148,17 +136,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0415991D20930D4F00EDD5A2 /* Timeline */ = {
-			isa = PBXGroup;
-			children = (
-				0415991520930B6D00EDD5A2 /* TimelineTableViewCell.xib */,
-				0415991720930B8600EDD5A2 /* Timeline.swift */,
-				0415991920930B8A00EDD5A2 /* TimelinePoint.swift */,
-				0415991B20930B8D00EDD5A2 /* TimelineTableViewCell.swift */,
-			);
-			path = Timeline;
-			sourceTree = "<group>";
-		};
 		041F40C7207EDD47008DCA69 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +143,7 @@
 				041F40D1207EDD48008DCA69 /* Products */,
 				5AC8BC7FE114A8134E15E233 /* Pods */,
 				7FA2035E59CC4A76CA64B71E /* Frameworks */,
+				0488BAB5209B2DD400695114 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -194,6 +172,13 @@
 				041F40D7207EDD48008DCA69 /* Main.storyboard */,
 			);
 			path = "news app for blockchain";
+			sourceTree = "<group>";
+		};
+		0488BAB5209B2DD400695114 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		04E4F013209AFB9900A2D0BF /* Supporting Files */ = {
@@ -395,12 +380,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0415991620930B6E00EDD5A2 /* TimelineTableViewCell.xib in Resources */,
 				041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */,
 				041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */,
-				04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */,
 				4577D6452091A3920087DF80 /* README.md in Resources */,
 				041F40D9207EDD48008DCA69 /* Main.storyboard in Resources */,
+				04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
