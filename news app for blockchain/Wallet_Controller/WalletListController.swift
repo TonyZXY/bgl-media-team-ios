@@ -51,8 +51,18 @@ class WalletListController: UIViewController,UITableViewDelegate,UITableViewData
         view.backgroundColor = color.themeColor()
         
         addButton.layer.cornerRadius = 20
-        addButton.titleLabel?.textAlignment = NSTextAlignment.justified
-        addButton.titleLabel?.textAlignment = NSTextAlignment.center
+
+        addButton.titleLabel?.sizeToFit()
+        print(addButton.titleLabel?.frame.height)
+        
+//addButton.titleLabel.
+//        addButton.titleEdgeInsets = UIEdgeInsetsMake((addButton.frame.height - (addButton.titleLabel?.frame.height)!)/2, -(addButton.frame.width - (addButton.titleLabel?.frame.width)!)/2, (addButton.frame.height - (addButton.titleLabel?.frame.height)!)/2, -(addButton.frame.width - (addButton.titleLabel?.frame.width)!)/2);
+
+        
+        addButton.titleEdgeInsets = UIEdgeInsetsMake(0,0,0,0);
+        
+//        addButton.titleLabel?.textAlignment = NSTextAlignment.justified
+//        addButton.titleLabel?.textAlignment = NSTextAlignment.center
         addButton.backgroundColor = UIColor.white
         addButton.setTitleColor(UIColor.black, for: .normal)
         

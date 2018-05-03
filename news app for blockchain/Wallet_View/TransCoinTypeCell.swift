@@ -56,6 +56,9 @@ class TransCoinTypeCell:UITableViewCell{
         let myLabelverticalConstraint = NSLayoutConstraint(item: coinarrow, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
         NSLayoutConstraint.activate([myLabelverticalConstraint])
         //            NSLayoutConstraint.activate([myLabelhorizontalConstraint])
-        
+    }
+    
+    func checkPage(){
+        coinLabel.text = "hahahah"
     }
 }

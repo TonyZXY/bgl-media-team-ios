@@ -19,6 +19,7 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        
     }
     
     //排序按钮
@@ -57,7 +58,6 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
         addSubview(marketSortPickerView)
         addSubview(sortDate)
         addSubview(coinList)
-        
         //排序按钮
         marketSortPickerView.translatesAutoresizingMaskIntoConstraints = false
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":marketSortPickerView,"v1":self]))

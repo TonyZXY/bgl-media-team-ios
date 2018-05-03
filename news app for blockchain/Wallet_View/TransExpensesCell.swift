@@ -100,7 +100,7 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":expensesLabel,"v1":expenses]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v1(150)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":expensesLabel,"v1":expenses]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[v0]-10-[v1(30)]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":expensesLabel,"v1":expenses]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v1]-5-[v3(110)]-16-|", options: .alignAllCenterY, metrics: nil, views: ["v0":expensesLabel,"v1":expenses,"v3":expensesbutton]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v3(110)]-16-|", options: .alignAllCenterY, metrics: nil, views: ["v0":expensesLabel,"v1":expenses,"v3":expensesbutton]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v3(==v1)]", options: .alignAllCenterX, metrics: nil, views: ["v0":expensesLabel,"v1":expenses,"v3":expensesbutton]))
         let myLabelverticalConstraint = NSLayoutConstraint(item: expensesbutton, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: expenses, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
         NSLayoutConstraint.activate([myLabelverticalConstraint])

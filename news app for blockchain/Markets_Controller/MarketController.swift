@@ -45,18 +45,21 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x/2
     }
     
-//    func  scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        let index = targetContentOffset.pointee.x / view.frame.width
-//        let indexpath = NSIndexPath(item: Int(index), section: 0)
-//        menuBar.collectionView.selectItem(at: indexpath as IndexPath, animated: true, scrollPosition:[])
-//    }
-//
+    func  scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let index = targetContentOffset.pointee.x / view.frame.width
+        let indexpath = NSIndexPath(item: Int(index), section: 0)
+        menuBar.collectionView.selectItem(at: indexpath as IndexPath, animated: true, scrollPosition:[])
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+//        navigationController?.hidesBarsOnSwipe = true
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = color.themeColor()
         setupMenuBar()
         setupColleectionView()
+        
+        collectionviews.index
         // Do any additional setup after loading the view.
     }
 

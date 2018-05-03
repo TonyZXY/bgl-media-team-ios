@@ -34,4 +34,27 @@ class ThemeColor:UIColor{
         return color
     }
     
+    func greenColor() -> UIColor {
+        _ = #colorLiteral(red: 0.1450980392, green: 0.6078431373, blue: 0.1411764706, alpha: 1)
+        let color = UIColor.init(red:37/255.0, green:155/255.0, blue:36/255.0, alpha:1)
+        return color
+    }
+    
+    func greenTransColor() -> UIColor {
+        _ = #colorLiteral(red: 0.1450980392, green: 0.6078431373, blue: 0.1411764706, alpha: 0.5)
+        let color = UIColor.init(red:37/255.0, green:155/255.0, blue:36/255.0, alpha:0.8)
+        return color
+    }
+    
+    func redColor() -> UIColor {
+        _ = #colorLiteral(red: 0.8980392157, green: 0.1098039216, blue: 0.137254902, alpha: 1)
+        let color = UIColor.init(red:229.0/255.0, green:28.0/255.0, blue:35.0/255.0, alpha:1)
+        return color
+    }
+    
+    func redTransColor() -> UIColor {
+        _ = #colorLiteral(red: 0.8980392157, green: 0.1098039216, blue: 0.137254902, alpha: 0.5)
+        let color = UIColor.init(red:229.0/255.0, green:28.0/255.0, blue:35.0/255.0, alpha:0.8)
+        return color
+    }
 }
