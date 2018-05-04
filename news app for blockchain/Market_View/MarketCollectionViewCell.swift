@@ -1,22 +1,18 @@
 //
-//  MarketsCoinListTableView.swift
+//  MarketCollectionViewCell.swift
 //  news app for blockchain
 //
-//  Created by Bruce Feng on 1/5/18.
+//  Created by Bruce Feng on 4/5/18.
 //  Copyright © 2018 Sheng Li. All rights reserved.
 //
 
 import UIKit
 
-class MarketsCoinTableViewCell:UITableViewCell{
+class MarketCollectionViewCell:UICollectionViewCell{
     var color = ThemeColor()
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupviews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init has not been completed")
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
     }
     
     let coinImage: UIImageView = {
@@ -37,7 +33,7 @@ class MarketsCoinTableViewCell:UITableViewCell{
     
     let coinChange:UILabel = {
         let label = UILabel()
-        label.text = "+4.98%"
+        label.text = "-4.98%"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -58,7 +54,9 @@ class MarketsCoinTableViewCell:UITableViewCell{
         return label
     }()
     
-    func setupviews(){
+    func setupView(){
+        backgroundColor = color.walletCellcolor()
+        
         addSubview(coinImage)
         addSubview(coinLabel)
         addSubview(coinChange)
@@ -80,7 +78,6 @@ class MarketsCoinTableViewCell:UITableViewCell{
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v2]-5-[v4]-30-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
     }
     
-    
     func checkRiseandfall(risefallnumber: String) {
         if risefallnumber.prefix(1) == "+" {
             //Profit with green
@@ -94,5 +91,9 @@ class MarketsCoinTableViewCell:UITableViewCell{
             // Not any change with white
             coinChange.textColor = UIColor.white
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init Error")
     }
 }
