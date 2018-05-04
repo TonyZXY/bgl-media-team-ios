@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource{
+class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     
     var color = ThemeColor()
     var sortItems = ["按字母排序","按最高价排序"]
@@ -29,10 +29,10 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
     lazy var totalCollectionView:UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectview = UICollectionView(frame: .zero, collectionViewLayout:layout)
-        collectview.backgroundColor = UIColor.red
-        collectview.layer.cornerRadius = self.frame.width/8
-        collectview.layer.borderWidth = 1
-        collectview.layer.borderColor = UIColor.white.cgColor
+        collectview.backgroundColor = color.themeColor()
+//        collectview.layer.cornerRadius = self.frame.width/8
+//        collectview.layer.borderWidth = 1
+//        collectview.layer.borderColor = UIColor.white.cgColor
         collectview.delegate = self
         collectview.dataSource = self
         return collectview
@@ -57,20 +57,33 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         return collect
     }()
     
-    //币种列表
-    lazy var coinList:UITableView = {
-        var coinlist=UITableView()
-        coinlist.backgroundColor = color.themeColor()
-        coinlist.delegate = self
-        coinlist.dataSource = self
-        return coinlist
+    lazy var searchBar:UISearchBar={
+        var searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.barTintColor = color.themeColor()
+        searchBar.tintColor = color.themeColor()
+        searchBar.backgroundColor = color.themeColor()
+        return searchBar
     }()
     
+    lazy var coinList:UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout:layout)
+        collectionView.backgroundColor = color.themeColor()
+        collectionView.register(MarketCollectionViewCell.self, forCellWithReuseIdentifier: "MarketCollectionViewCell")
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        return collectionView
+    }()
     
     func setupView(){
         addSubview(totalCollectionView)
         addSubview(sortCoin)
         addSubview(filterDate)
+        addSubview(searchBar)
         addSubview(coinList)
         
         //总额View
@@ -90,11 +103,16 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0(200)]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":filterDate,"v1":sortCoin]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0(20)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":filterDate,"v1":totalCollectionView]))
         
+        //搜索栏
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":sortCoin]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":sortCoin]))
+        
         //币种列表
         coinList.translatesAutoresizingMaskIntoConstraints = false
-        coinList.register(MarketsCoinTableViewCell.self, forCellReuseIdentifier: "coinsMarkets")
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":sortCoin]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":sortCoin]))
+//        coinList.register(MarketCollectionViewCell.self, forCellReuseIdentifier: "MarketCollectionViewCell")
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -107,10 +125,11 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
             return 3
         } else if collectionView == filterDate{
             return 3
-        }else{
+        }else if collectionView == coinList{
+            return 5
+        }else {
             return 0
         }
-        
     }
     
     //市场总数据view,日期筛选view--cell的设定
@@ -123,6 +142,10 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SortDate", for: indexPath) as! MarketFilterCollectionView
             cell.label.text = filterDateitems[indexPath.row]
             return cell
+        } else if collectionView == coinList{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectionViewCell", for: indexPath) as! MarketCollectionViewCell
+            cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
+            return cell
         } else{
             return UICollectionViewCell()
         }
@@ -133,10 +156,12 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
     //市场总数据view,日期筛选view--cell的宽高
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
          if collectionView == totalCollectionView{
-            return CGSize(width:(totalCollectionView.frame.width) / 3, height: totalCollectionView.frame.height)
+            return CGSize(width:(totalCollectionView.frame.width-5) / 3, height: totalCollectionView.frame.height)
          } else if collectionView == filterDate{
             return CGSize(width:filterDate.frame.width / 3, height: filterDate.frame.height)
-         } else{
+         } else if collectionView == coinList{
+            return CGSize(width:self.frame.width-10, height: 100)
+        }else{
             return CGSize()
         }
     }
@@ -149,6 +174,22 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
             return 0
         } else{
             return CGFloat()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == coinList{
+            return 10
+        }else{
+            return CGFloat()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if collectionView == coinList{
+            return CGSize(width:self.frame.width, height: 10)
+        } else{
+            return CGSize()
         }
     }
     

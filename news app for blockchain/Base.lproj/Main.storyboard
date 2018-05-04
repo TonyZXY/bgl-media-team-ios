@@ -42,21 +42,21 @@
             </objects>
             <point key="canvasLocation" x="-2559" y="790"/>
         </scene>
-        <!--新闻-->
+        <!--Home View Controller-->
         <scene sceneID="iDc-km-PSG">
             <objects>
-                <viewController id="izm-yd-kfl" sceneMemberID="viewController">
+                <viewController id="izm-yd-kfl" customClass="HomeViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Br7-Qz-w9l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="2sd-8h-9sb"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="新闻" id="8jz-a5-K0Q"/>
+                    <navigationItem key="navigationItem" id="pRX-Xe-HqC"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNU-id-ogN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-754" y="790"/>
+            <point key="canvasLocation" x="188" y="789.90147783251234"/>
         </scene>
         <!--Wallet Controller-->
         <scene sceneID="g3K-Nq-zyc">
@@ -88,8 +88,8 @@
                         <segue destination="vDn-uj-q1H" kind="relationship" relationship="viewControllers" id="nd7-vx-J5K"/>
                         <segue destination="yJ1-Ou-v1F" kind="relationship" relationship="viewControllers" id="s2h-5k-24p"/>
                         <segue destination="KOa-Tr-5Hc" kind="relationship" relationship="viewControllers" id="5Lc-Aj-3RZ"/>
-                        <segue destination="izm-yd-kfl" kind="relationship" relationship="viewControllers" id="uVf-Dn-J4v"/>
-                        <segue destination="54e-2H-jMW" kind="relationship" relationship="viewControllers" id="yM9-u5-PQB"/>
+                        <segue destination="TX3-Hz-XTC" kind="relationship" relationship="viewControllers" id="uVf-Dn-J4v"/>
+                        <segue destination="54e-2H-jMW" kind="relationship" relationship="viewControllers" id="ZeG-mK-vsA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fu-6h-f4k" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -206,6 +206,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U0R-Ul-dlm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1706" y="1619"/>
+        </scene>
+        <!--新闻-->
+        <scene sceneID="xkC-wr-ebI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TX3-Hz-XTC" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="新闻" id="8jz-a5-K0Q"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9e9-CO-PLV">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="izm-yd-kfl" kind="relationship" relationship="rootViewController" id="TDb-a7-INk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BRQ-a7-E03" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-754.39999999999998" y="789.90147783251234"/>
         </scene>
     </scenes>
 </document>

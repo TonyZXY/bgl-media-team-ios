@@ -12,6 +12,7 @@ import UIKit
 class TransCoinMarketCell:UITableViewCell{
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        selectionStyle = .none
         setupviewsk()
     }
     

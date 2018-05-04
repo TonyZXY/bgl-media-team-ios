@@ -49,6 +49,7 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
     lazy var coinList:UITableView = {
         var coinlist=UITableView()
         coinlist.backgroundColor = color.themeColor()
+        coinlist.separatorStyle = .none
         coinlist.delegate = self
         coinlist.dataSource = self
         return coinlist
@@ -108,6 +109,7 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath) as! MarketsCoinTableViewCell
         cell.backgroundColor = color.themeColor()
+        cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
         return cell
     }
 }
