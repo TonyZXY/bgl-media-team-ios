@@ -8,6 +8,9 @@
 
 import UIKit
 
+var coinNameSelect:String = ""
+var exchangesNameSelect:String = ""
+var tradingPairsNameSelect:String = ""
 class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegateFlowLayout{
     var cells = ["CoinTypeCell","CoinMarketCell","TradePairsCell","PriceCell","NumberCell","DateCell","TimeCell","ExpensesCell","AdditionalCell"]
     var selectedindex = 0
@@ -15,7 +18,7 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
     var theme:ThemeColor!
     var transaction:String = "Buy"
     var prices:String = "kk"
-    
+    var gg = GetCoinData()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = color.themeColor()
@@ -25,10 +28,15 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
         titleLabel.text = "Blockchain Global"
         titleLabel.textColor = UIColor.white
         navigationItem.titleView = titleLabel
+        gg.getExchangeList()
+
         
-        //        DispatchQueue.main.async {
-        //            self.tableView.reloadData()
-        //        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.transactionTableView.reloadData()
+        }
     }
     
     lazy var transactionTableView:UITableView = {
@@ -68,7 +76,7 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
         var button = UIButton(type: .system)
         button.setTitle("Buy", for: .normal)
         button.tintColor = UIColor.white
-        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderColor = color.greenColor().cgColor
         button.layer.borderWidth = 3
         button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(buyPage), for: .touchUpInside)
@@ -82,20 +90,31 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
         button.layer.borderColor = UIColor.lightGray.cgColor
         button.layer.borderWidth = 3
         button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(sellPage), for: .touchUpInside)
         return button
     }()
     
-    @objc func buyPage(sender:AnyObject){
+    @objc func buyPage(){
         transaction = "Buy"
         buy.layer.borderColor = color.greenColor().cgColor
         sell.layer.borderColor = UIColor.lightGray.cgColor
-        transactionButton.backgroundColor = color.greenTransColor()
+        transactionButton.backgroundColor = color.greenColor()
         
+//        for name in 1...{
+//
+//        }
         
-        let index = IndexPath(row: 3, section: 0)
-        let cellss: TransPriceCell = transactionTableView.cellForRow(at: index) as! TransPriceCell
-        print(cellss.price.text!)
+//        let index = IndexPath(row: 3, section: 0)
+//        let cellss: TransPriceCell = transactionTableView.cellForRow(at: index) as! TransPriceCell
+//        print(cellss.price.text!)
         
+    }
+    
+    @objc func sellPage(){
+        transaction = "Sell"
+        sell.layer.borderColor = color.redColor().cgColor
+        buy.layer.borderColor = UIColor.lightGray.cgColor
+        transactionButton.backgroundColor = color.redColor()
     }
     
     func setupView(){
@@ -134,21 +153,34 @@ class TransactionsController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //        if indexPath.row == 3{
-        //            let cell = tableView.dequeueReusableCell(withIdentifier: cells[3], for: indexPath) as! TransPriceCell
-        //            cell.backgroundColor = color.themeColor()
-        //            return cell
-        //        } else {
-        //            return UITableViewCell()
-        //        }
-        let cell = tableView.dequeueReusableCell(withIdentifier: cells[indexPath.row], for: indexPath)
-        cell.backgroundColor = color.themeColor()
-        return cell
+        if indexPath.row == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: cells[0], for: indexPath) as! TransCoinTypeCell
+            cell.backgroundColor = color.themeColor()
+            cell.coin.text = coinNameSelect
+            return cell
+        }else if indexPath.row == 1{
+            let cell = tableView.dequeueReusableCell(withIdentifier: cells[1], for: indexPath) as! TransCoinMarketCell
+            cell.backgroundColor = color.themeColor()
+            cell.market.text = exchangesNameSelect
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: cells[indexPath.row], for: indexPath)
+            cell.backgroundColor = color.themeColor()
+            return cell
+        }
+        
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
             let searchdetail = SearchDetailController()
+            navigationController?.pushViewController(searchdetail, animated: true)
+        } else if indexPath.row == 1{
+            let searchdetail = SearchExchangesController()
+            navigationController?.pushViewController(searchdetail, animated: true)
+        } else if indexPath.row == 2{
+            let searchdetail = SearchTradingPairController()
             navigationController?.pushViewController(searchdetail, animated: true)
         }
     }

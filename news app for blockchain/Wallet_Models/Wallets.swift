@@ -10,7 +10,7 @@ import Foundation
 
 import RealmSwift
 
-class NewsFlash: Object{
+class Wallets: Object{
     @objc dynamic var id = 0
     @objc dynamic var dateTime = Date()
     @objc dynamic var contents = ""

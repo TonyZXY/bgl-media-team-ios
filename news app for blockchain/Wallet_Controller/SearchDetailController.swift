@@ -41,6 +41,14 @@ class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDa
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let table:CoinTypeTableViewCell = searchResult.cellForRow(at: indexPath) as! CoinTypeTableViewCell
+        coinNameSelect = table.coinName.text!
+//        print(coinNameSelect)
+
+            navigationController?.popViewController(animated: true)
+    }
 
     
     
