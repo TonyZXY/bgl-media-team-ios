@@ -18,6 +18,9 @@
 		04E4F021209B19BB00A2D0BF /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01D209B19BB00A2D0BF /* Timeline.swift */; };
 		04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */; };
 		04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */; };
+		1A3D5DA0209C187100F22CFA /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D5D9F209C187100F22CFA /* News.swift */; };
+		1AEDD904209C149600935361 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEDD903209C149600935361 /* NewsDetailViewController.swift */; };
+		1AEDD906209C150E00935361 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEDD905209C150E00935361 /* NewsDetailView.swift */; };
 		4577D63C2091A3920087DF80 /* MarketCapCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D62E2091A3920087DF80 /* MarketCapCoin.swift */; };
 		4577D63D2091A3920087DF80 /* CryptoCompareCoinListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D62F2091A3920087DF80 /* CryptoCompareCoinListResult.swift */; };
 		4577D63E2091A3920087DF80 /* ExchangeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6302091A3920087DF80 /* ExchangeList.swift */; };
@@ -92,6 +95,9 @@
 		04E4F01D209B19BB00A2D0BF /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinePoint.swift; sourceTree = "<group>"; };
 		04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
+		1A3D5D9F209C187100F22CFA /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		1AEDD903209C149600935361 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		1AEDD905209C150E00935361 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
 		4577D62E2091A3920087DF80 /* MarketCapCoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCapCoin.swift; sourceTree = "<group>"; };
 		4577D62F2091A3920087DF80 /* CryptoCompareCoinListResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareCoinListResult.swift; sourceTree = "<group>"; };
@@ -345,6 +351,7 @@
 		57DA49E4209BE95800C59BD4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				1AEDD903209C149600935361 /* NewsDetailViewController.swift */,
 				57DA49E5209BE95800C59BD4 /* HomeViewController.swift */,
 			);
 			path = Controller;
@@ -353,6 +360,7 @@
 		57DA49E6209BE95800C59BD4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1A3D5D9F209C187100F22CFA /* News.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -367,6 +375,7 @@
 				57DA49EC209BE95800C59BD4 /* ListViewCell.swift */,
 				57DA49ED209BE95800C59BD4 /* NewsMenuBar.swift */,
 				57DA49EE209BE95800C59BD4 /* SelectionViewCell.swift */,
+				1AEDD905209C150E00935361 /* NewsDetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -529,6 +538,7 @@
 				4577D63E2091A3920087DF80 /* ExchangeList.swift in Sources */,
 				57DA49FB209BE95800C59BD4 /* BaseCell.swift in Sources */,
 				5701A900209B6C9C00A216C4 /* WalletCell.swift in Sources */,
+				1A3D5DA0209C187100F22CFA /* News.swift in Sources */,
 				576FA90720976509005B6406 /* MarketsCoinTableViewCell.swift in Sources */,
 				576FA8DE2091DB67005B6406 /* TransExpensesCell.swift in Sources */,
 				5701A904209BC66B00A216C4 /* SearchTradingPairController.swift in Sources */,
@@ -563,6 +573,7 @@
 				5713B636208EC3D0000506FD /* SearchDetailController.swift in Sources */,
 				576FA913209951D3005B6406 /* Wallets.swift in Sources */,
 				576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */,
+				1AEDD904209C149600935361 /* NewsDetailViewController.swift in Sources */,
 				4577D63D2091A3920087DF80 /* CryptoCompareCoinListResult.swift in Sources */,
 				04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */,
 				4577D6482091A3920087DF80 /* Endpoint.swift in Sources */,
@@ -586,6 +597,7 @@
 				4577D6432091A3920087DF80 /* CryptoCompareEndpoint.swift in Sources */,
 				576FA903209733ED005B6406 /* MarketsTotalView.swift in Sources */,
 				57DA49F3209BE95800C59BD4 /* NewsCell.swift in Sources */,
+				1AEDD906209C150E00935361 /* NewsDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +743,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 37MSAELA6E;
+				DEVELOPMENT_TEAM = DY5859UN44;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -751,7 +763,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 37MSAELA6E;
+				DEVELOPMENT_TEAM = DY5859UN44;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = (

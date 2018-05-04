@@ -10,16 +10,17 @@ import UIKit
 
 class NewsCell: BaseCell {
     
+    var homeViewController: HomeViewController!
+    
+    let view:UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     let newsImage: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.blue
         return imageView
-    }()
-    
-    let separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.black
-        return view
     }()
     
     let titleLabel: UILabel = {
@@ -44,15 +45,18 @@ class NewsCell: BaseCell {
     }()
     
     override func setupViews(){
-        addSubview(newsImage)
-        addSubview(separatorView)
-        addSubview(titleLabel)
-        addSubview(subtitleTextView)
-        addSubview(authorText)
-        
-        addConstraintsWithFormat(format: "H:|-16-[v0(138)]-8-[v1]-16-|",    views: newsImage,titleLabel)
-        addConstraintsWithFormat(format: "V:|-16-[v0]-16-[v1(1)]|",         views: newsImage,separatorView)
-        addConstraintsWithFormat(format: "H:|[v0]|",                        views: separatorView)
+        addSubview(view)
+        addConstraintsWithFormat(format: "H:|-4-[v0]-4-|", views: view)
+        addConstraintsWithFormat(format: "V:|-1-[v0]-1-|", views: view)
+        view.layer.cornerRadius = 15
+        view.layer.masksToBounds = true
+        view.addSubview(newsImage)
+        view.addSubview(titleLabel)
+        view.addSubview(subtitleTextView)
+        view.addSubview(authorText)
+        view.backgroundColor = ThemeColor().walletCellcolor()
+        addConstraintsWithFormat(format: "H:|-16-[v0(135)]-8-[v1]-16-|",    views: newsImage,titleLabel)
+        addConstraintsWithFormat(format: "V:|-16-[v0]-16-|",                views: newsImage)
         addConstraintsWithFormat(format: "V:|-16-[v0]",                     views: titleLabel)
         
         

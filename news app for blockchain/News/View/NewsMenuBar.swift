@@ -15,7 +15,7 @@ class NewsMenuBar: UIView,UICollectionViewDataSource,UICollectionViewDelegate,UI
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.darkGray
+        cv.backgroundColor = ThemeColor().themeColor()
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -33,7 +33,6 @@ class NewsMenuBar: UIView,UICollectionViewDataSource,UICollectionViewDelegate,UI
         collectionView.register(NewsMenuCell.self, forCellWithReuseIdentifier: cellId)
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition:.left)
-        
         setupHorBar()
     }
     
@@ -53,12 +52,6 @@ class NewsMenuBar: UIView,UICollectionViewDataSource,UICollectionViewDelegate,UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//                let x = CGFloat(indexPath.item) * frame.width / 2
-//                horizontalBarLeftAnchorConstraint?.constant = x
-//                UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-//                    self.layoutIfNeeded()
-//                }, completion: nil)
-//
         homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
     

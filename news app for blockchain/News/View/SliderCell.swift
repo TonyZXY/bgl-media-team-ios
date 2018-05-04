@@ -13,18 +13,21 @@ class SliderCell: BaseCell {
         super.setupViews()
         setupRootView()
         setupSubViews()
-        backgroundColor = UIColor.green
+        backgroundColor = ThemeColor().themeColor()
     }
     
     let view: UIView = {
         let vi = UIView()
+        vi.backgroundColor = ThemeColor().walletCellcolor()
+        vi.layer.cornerRadius = 2
+        vi.layer.masksToBounds = true
         return vi
     }()
     
     func setupRootView(){
         addSubview(view)
-        addConstraintsWithFormat(format: "H:|[v0]|", views: view)
-        addConstraintsWithFormat(format: "V:|[v0]|", views: view)
+        addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: view)
+        addConstraintsWithFormat(format: "V:|-2-[v0]-2-|", views: view)
     }
     
     let image:UIImageView = {
@@ -45,7 +48,7 @@ class SliderCell: BaseCell {
         addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: image)
         image.addSubview(textView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: textView)
-        addConstraintsWithFormat(format: "V:|-120-[v0]|", views: textView)
+        addConstraintsWithFormat(format: "V:|-100-[v0]|", views: textView)
     }
     
     

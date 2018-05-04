@@ -22,7 +22,6 @@ class SliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewDeleg
     lazy var sliderView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.brown
         layout.scrollDirection = .horizontal
         cv.isPagingEnabled = true
         layout.minimumInteritemSpacing = 0
@@ -39,19 +38,11 @@ class SliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewDeleg
         addSubview(rootView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: rootView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: rootView)
-        rootView.backgroundColor = .yellow
-        backgroundColor = UIColor.green
+        backgroundColor = ThemeColor().themeColor()
         
         rootView.addSubview(sliderView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: sliderView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: sliderView)
-        
-//        rootView.addSubview(image)
-//        addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: image)
-//        addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: image)
-//        image.addSubview(textLabel)
-//        addConstraintsWithFormat(format: "H:|[v0]|", views: textLabel)
-//        addConstraintsWithFormat(format: "V:|-100-[v0]|", views: textLabel)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -65,6 +56,11 @@ class SliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Slider", for: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(indexPath.item)
     }
     
 }

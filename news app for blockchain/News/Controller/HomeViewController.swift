@@ -12,22 +12,19 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
     
     let cellId = "cellId"
     
-//    let titleLab:[String] = ["新闻","原创"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        
-        
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = UIColor.darkGray
-        navigationController?.navigationBar.backgroundColor = UIColor.darkGray
+        navigationController?.navigationBar.barTintColor = ThemeColor().themeColor()
+        navigationController?.navigationBar.backgroundColor = ThemeColor().themeColor()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        navigationController?.navigationItem
-//        navigationController?.hidesBarsOnSwipe = true
         
+        
+//        navigationController?.pushViewController(<#T##viewController: UIViewController##UIViewController#>, animated: <#T##Bool#>)
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: view.frame.height))
         titleLabel.text = "新闻"
         titleLabel.textColor = UIColor.white
@@ -37,7 +34,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         collectionView.backgroundColor = UIColor.white
         setupView()
         
-//        collectionView.register(NewsCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.register(ListViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -45,13 +41,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.bounces = false
         collectionView.alwaysBounceHorizontal = false
-//        DispatchQueue.main.async {
-//            self.collectionView.reloadData()
-//        }
-        
-//        let index = IndexPath(row: 1, section: 0)
-//        let cell: ListViewCell = collectionView.cellForItem(at: index) as! ListViewCell
-//        print(cell.option)
     }
     
     lazy var menuBar: NewsMenuBar = {
@@ -74,18 +63,9 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }()
 
     func setupView(){
-        let colorView = UIView()
-        colorView.backgroundColor = UIColor.darkGray
-        view.addSubview(colorView)
-        view.addConstraintsWithFormat(format: "H:|[v0]|", views: colorView)
-        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: colorView)
-        
-        
         view.addSubview(menuBar)
         view.addSubview(collectionView)
-//        view.addConstraintsWithFormat(format: "H:[v0]", views: collectionView)
         view.addConstraintsWithFormat(format: "V:[v0(40)]-0-[v1]|", views: menuBar,collectionView)
-//        view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
 
         menuBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         menuBar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
@@ -94,7 +74,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
     }
     
-//
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
@@ -112,8 +91,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ListViewCell
-//        cell.option = titleLab[indexPath.item]
-//        print(titleLab[indexPath.item])
         return cell
     }
 
@@ -125,22 +102,12 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         return 0
     }
     
+    let vi:NewsDetailViewController = NewsDetailViewController()
     
+    func push(){
+        navigationController?.pushViewController(vi, animated: true)
+    }
     
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 10
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-//        return cell
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: view.frame.width, height: 110)
-//    }
-//
     func scrollToMenuIndex(menuIndex: Int){
         let indexPath = IndexPath(item: menuIndex, section: 0)
         collectionView.scrollToItem(at: indexPath, at: [], animated: true)

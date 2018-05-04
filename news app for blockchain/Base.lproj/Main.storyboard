@@ -209,7 +209,7 @@
         <!--新闻-->
         <scene sceneID="xkC-wr-ebI">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TX3-Hz-XTC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="myNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="TX3-Hz-XTC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="新闻" id="8jz-a5-K0Q"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9e9-CO-PLV">
