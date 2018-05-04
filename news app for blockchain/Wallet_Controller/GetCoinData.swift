@@ -18,7 +18,7 @@ class GetCoinData{
             case .success(let resultData):
 //                print(resultData?.AllExchanges["BTCMarkets"]?.TradingPairs["BTC"] ?? "")
                 guard let exchangePairs = resultData?.AllExchanges else {return}
-                for(exc, pairs) in exchangePairs{
+                for(exc, _) in exchangePairs{
                     print(exc)
                 }
             case .failure(let error):

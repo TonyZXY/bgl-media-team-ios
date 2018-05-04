@@ -8,19 +8,19 @@
 
 import UIKit
 
-class SearchTradingPairController:ViewController,UITableViewDelegate,UITableViewDataSource{
+class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableViewDataSource{
     let cryptoCompareClient = CryptoCompareClient()
     var tableViews = UITableView()
     var color = ThemeColor()
     var allTradingPairs = [String]()
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getExchangeList()
         setupView()
         
-
+        
     }
     
     lazy var searchResult:UITableView = {
@@ -61,8 +61,8 @@ class SearchTradingPairController:ViewController,UITableViewDelegate,UITableView
                 //                print(resultData?.AllExchanges["BTCMarkets"]?.TradingPairs["BTC"] ?? "")
                 guard let exchangePairs = resultData?.AllExchanges else {return}
                 for(exc, _) in exchangePairs{
-//                    var name = resultData?.AllExchanges["exchangesNameSelect"]?.TradingPairs["coinNameSelect"] ?? ""
-//                    print(name)
+                    //                    var name = resultData?.AllExchanges["exchangesNameSelect"]?.TradingPairs["coinNameSelect"] ?? ""
+                    //                    print(name)
                     self.allTradingPairs.append(exc)
                 }
                 DispatchQueue.main.async {

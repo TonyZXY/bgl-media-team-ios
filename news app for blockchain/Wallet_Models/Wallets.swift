@@ -8,7 +8,7 @@
 
 import Foundation
 
-//import RealmSwift
+import RealmSwift
 //
 //class NewsFlash: Object{
 //    @objc dynamic var id = 0
