@@ -10,6 +10,8 @@ import UIKit
 
 class ListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
+    var homeViewController: HomeViewController?
+    
     let view: UIView = {
         let vi = UIView()
         return vi
@@ -60,6 +62,8 @@ class ListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         selectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition:.left)
         data = fetchData(d: 0)
+        
+        print("ListViewnavi \(String(describing: homeViewController?.navigationController))")
     }
     
     func setupRootView(){
@@ -101,8 +105,6 @@ class ListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath)
             }else{
                 let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-                let navigationController: UINavigationController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "myNavigationController") as! UINavigationController
-                cell2.homeViewController = navigationController.childViewControllers.first as! HomeViewController
                 cell2.titleLabel.text = data[indexPath.item-1]
                 return cell2
             }
@@ -132,14 +134,12 @@ class ListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == selectionView){
             data = fetchData(d: indexPath.item)
-            print(data)
-            print(indexPath.item)
             cellListView.reloadData()
         }else{
-            let cell: NewsCell = collectionView.cellForItem(at: indexPath) as! NewsCell
-            // 
-            cell.homeViewController.navigationController?.pushViewController(newsViewController, animated: true)
-            print(indexPath.item)
+            print("ListViewNavi \(String(describing: homeViewController?.navigationController))")
+            let newsDetail = NewsDetailViewController()
+            newsDetail.string = "123"
+
         }
     }
     
@@ -155,3 +155,4 @@ class ListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate
     
     
 }
+

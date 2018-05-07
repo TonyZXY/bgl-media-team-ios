@@ -19,6 +19,8 @@
 		04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */; };
 		04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */; };
 		1A3D5DA0209C187100F22CFA /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D5D9F209C187100F22CFA /* News.swift */; };
+		1A3D5DA2209FD16B00F22CFA /* NewsLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D5DA1209FD16B00F22CFA /* NewsLauncher.swift */; };
+		1A3D5DA4209FE21900F22CFA /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D5DA3209FE21900F22CFA /* ListViewController.swift */; };
 		1AEDD904209C149600935361 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEDD903209C149600935361 /* NewsDetailViewController.swift */; };
 		1AEDD906209C150E00935361 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEDD905209C150E00935361 /* NewsDetailView.swift */; };
 		4577D63C2091A3920087DF80 /* MarketCapCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D62E2091A3920087DF80 /* MarketCapCoin.swift */; };
@@ -96,6 +98,8 @@
 		04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinePoint.swift; sourceTree = "<group>"; };
 		04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		1A3D5D9F209C187100F22CFA /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		1A3D5DA1209FD16B00F22CFA /* NewsLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsLauncher.swift; sourceTree = "<group>"; };
+		1A3D5DA3209FE21900F22CFA /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		1AEDD903209C149600935361 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		1AEDD905209C150E00935361 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 			children = (
 				1AEDD903209C149600935361 /* NewsDetailViewController.swift */,
 				57DA49E5209BE95800C59BD4 /* HomeViewController.swift */,
+				1A3D5DA3209FE21900F22CFA /* ListViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -385,6 +390,7 @@
 			children = (
 				57DA49F0209BE95800C59BD4 /* Extensions.swift */,
 				57DA49F1209BE95800C59BD4 /* BaseCell.swift */,
+				1A3D5DA1209FD16B00F22CFA /* NewsLauncher.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -566,6 +572,7 @@
 				576FA8EA2091E5AC005B6406 /* TransDateCell.swift in Sources */,
 				576FA8EC2091E5D8005B6406 /* TransTimeCell.swift in Sources */,
 				4577D63C2091A3920087DF80 /* MarketCapCoin.swift in Sources */,
+				1A3D5DA4209FE21900F22CFA /* ListViewController.swift in Sources */,
 				576FA8F92095D89F005B6406 /* MenuBar.swift in Sources */,
 				4577D6422091A3920087DF80 /* APIClient.swift in Sources */,
 				576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */,
@@ -576,6 +583,7 @@
 				1AEDD904209C149600935361 /* NewsDetailViewController.swift in Sources */,
 				4577D63D2091A3920087DF80 /* CryptoCompareCoinListResult.swift in Sources */,
 				04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */,
+				1A3D5DA2209FD16B00F22CFA /* NewsLauncher.swift in Sources */,
 				4577D6482091A3920087DF80 /* Endpoint.swift in Sources */,
 				576FA8E22091E154005B6406 /* TransCoinMarketCell.swift in Sources */,
 				04E4F020209B19BB00A2D0BF /* TimelineTableViewCell.swift in Sources */,

@@ -12,6 +12,7 @@ class NewsDetailViewController: UIViewController {
     
     let newsDetailView:NewsDetailView = NewsDetailView()
     
+    var string = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +81,7 @@ class NewsDetailViewController: UIViewController {
     
     func setupRootView(){
         view.addSubview(rootView)
-        print(view.frame.width)
+//        print(view.frame.width)
         //        rootView.contentSize = CGSize(width: view.frame.width, height: 4000)
         //        view.addConstraintsWithFormat(format: "H:|[v0]|", views: rootView)
         //        view.addConstraintsWithFormat(format: "V:|[v0]|", views: rootView)

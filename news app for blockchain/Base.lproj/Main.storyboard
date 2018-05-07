@@ -56,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNU-id-ogN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188" y="789.90147783251234"/>
+            <point key="canvasLocation" x="188" y="790"/>
         </scene>
         <!--Wallet Controller-->
         <scene sceneID="g3K-Nq-zyc">
@@ -87,7 +87,7 @@
                         <segue destination="vDn-uj-q1H" kind="relationship" relationship="viewControllers" id="nd7-vx-J5K"/>
                         <segue destination="yJ1-Ou-v1F" kind="relationship" relationship="viewControllers" id="s2h-5k-24p"/>
                         <segue destination="KOa-Tr-5Hc" kind="relationship" relationship="viewControllers" id="5Lc-Aj-3RZ"/>
-                        <segue destination="TX3-Hz-XTC" kind="relationship" relationship="viewControllers" id="uVf-Dn-J4v"/>
+                        <segue destination="aDI-8o-ULF" kind="relationship" relationship="viewControllers" id="oem-nT-xdW"/>
                         <segue destination="54e-2H-jMW" kind="relationship" relationship="viewControllers" id="ZeG-mK-vsA"/>
                     </connections>
                 </tabBarController>
@@ -207,23 +207,23 @@
             <point key="canvasLocation" x="-1706" y="1619"/>
         </scene>
         <!--新闻-->
-        <scene sceneID="xkC-wr-ebI">
+        <scene sceneID="GsM-xM-7z1">
             <objects>
-                <navigationController storyboardIdentifier="myNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="TX3-Hz-XTC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="新闻" id="8jz-a5-K0Q"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aDI-8o-ULF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="新闻" id="hQE-O6-frX"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9e9-CO-PLV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cRB-fL-gix">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="izm-yd-kfl" kind="relationship" relationship="rootViewController" id="TDb-a7-INk"/>
+                        <segue destination="izm-yd-kfl" kind="relationship" relationship="rootViewController" id="OeH-Ef-X8V"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BRQ-a7-E03" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Va1-Ji-vwg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-754.39999999999998" y="789.90147783251234"/>
+            <point key="canvasLocation" x="-754" y="790"/>
         </scene>
     </scenes>
 </document>

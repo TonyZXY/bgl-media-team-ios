@@ -9,6 +9,7 @@
 import UIKit
 
 class SliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+    
     override func setupViews() {
         super.setupViews()
         setupRootView()
@@ -60,7 +61,6 @@ class SliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print(indexPath.item)
     }
     
 }
