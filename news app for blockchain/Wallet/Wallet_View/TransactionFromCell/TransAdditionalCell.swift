@@ -12,7 +12,7 @@ class TransAdditionalCell:UITableViewCell{
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupviews()
-        _ = createKeyboarddonebutton()
+        createKeyboarddonebutton()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,6 +54,7 @@ class TransAdditionalCell:UITableViewCell{
     }()
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(additionalLabel)
         addSubview(additional)
         

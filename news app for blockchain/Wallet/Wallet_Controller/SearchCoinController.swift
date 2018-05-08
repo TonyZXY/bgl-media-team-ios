@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
+class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     var tableViews = UITableView()
     var isSearching = false
     var filteringdata = [String]()
@@ -22,7 +23,7 @@ class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDa
     var coinDetail = [String:String]()
     let cryptoCompareClient = CryptoCompareClient()
     var color = ThemeColor()
-    
+    let realm = try! Realm()
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching {
             return filteringdata1.count
@@ -45,11 +46,13 @@ class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let table:CoinTypeTableViewCell = searchResult.cellForRow(at: indexPath) as! CoinTypeTableViewCell
         coinNameSelect = table.coinName.text!
-//        print(coinNameSelect)
-
-            navigationController?.popViewController(animated: true)
+        coinAbbNameSelect = table.coinNameAbb.text!
+        tradingPairsAll.removeAll()
+        tradingPairsAll.append(coinAbbNameSelect)
+        tradingPairsAll.append("%"+coinAbbNameSelect)
+        navigationController?.popViewController(animated: true)
     }
-
+    
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -59,7 +62,7 @@ class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDa
             searchResult.reloadData()
         } else{
             isSearching = true
-//            filteringdata = coinNameItem.filter{coinName in return coinName.lowercased().contains(searchBar.text!.lowercased())}
+            //            filteringdata = coinNameItem.filter{coinName in return coinName.lowercased().contains(searchBar.text!.lowercased())}
             filteringdata1 = coinDetail.filter{ haha in return haha.value.lowercased().contains(searchBar.text!.lowercased())}
             filterName = [String]()
             filterNameAbb = [String]()
@@ -73,30 +76,15 @@ class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDa
         super.viewDidLoad()
         setupView()
         
-        cryptoCompareClient.getCoinList(){result in
-            switch result{
-            case .success(let resultData):
-                guard let coinList = resultData?.Data else {return}
-                for (key,value) in coinList{
-                    self.coinDetail[key] = value.CoinName
-                    self.coinAllAbb.append(key)
-                    self.coinAllName.append(value.CoinName!)
-//                    self.coinNameItem.append(value.CoinName!)
-//                    self.coinAbbItem.append(key)
-//                    print(value.CoinName ?? "")
-                }
-                
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
-            }
+        let result = try! Realm().objects(CryptoCompareCoinsRealm.self)
+        for n in result {
+            self.coinDetail[n.Name] = n.CoinName
+            self.coinAllAbb.append(n.Name)
+            self.coinAllName.append(n.CoinName)
         }
-        
         DispatchQueue.main.async {
-                    self.searchResult.reloadData()
-                }
-        
-        
-        // Do any additional setup after loading the view.
+            self.searchResult.reloadData()
+        }
     }
     
     
@@ -112,7 +100,9 @@ class SearchDetailController: UIViewController,UITableViewDelegate,UITableViewDa
     }()
     
     lazy var searchResult:UITableView = {
+        tableViews.separatorInset = UIEdgeInsets.zero
         tableViews.backgroundColor = color.themeColor()
+        tableViews.separatorColor = ThemeColor().themeColor()
         tableViews.delegate = self
         tableViews.dataSource = self
         tableViews.register(CoinTypeTableViewCell.self, forCellReuseIdentifier: "coins")

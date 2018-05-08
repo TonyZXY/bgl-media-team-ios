@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ExchangeList {
+struct ExchangeList:Decodable{
     var AllExchanges: [String: Exchange]
     
     init(){

@@ -34,6 +34,7 @@ class TransNumberCell:UITableViewCell, UITextFieldDelegate{
     
     let number: UITextField = {
         let textfield = UITextField()
+        textfield.text = "0"
         textfield.keyboardType = UIKeyboardType.decimalPad
         //            textfield.resignFirstResponder()
         textfield.textColor = UIColor.white
@@ -43,6 +44,7 @@ class TransNumberCell:UITableViewCell, UITextFieldDelegate{
     }()
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(numberLabel)
         addSubview(number)
         

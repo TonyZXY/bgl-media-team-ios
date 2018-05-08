@@ -30,7 +30,6 @@ class TransCoinMarketCell:UITableViewCell{
     
     let market: UILabel = {
         let label = UILabel()
-        label.text = "BTCMarkets"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,6 +47,7 @@ class TransCoinMarketCell:UITableViewCell{
     }()
     
     func setupviewsk(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(marketLabel)
         addSubview(market)
         addSubview(marketarrow)

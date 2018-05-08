@@ -7,19 +7,47 @@
 //
 
 import UIKit
+import RealmSwift
+import Alamofire
+import SwiftyJSON
 
-class WalletController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    
+class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     var color = ThemeColor()
     var image = AppImage()
-//    var test = ["fd","dfd"]
+    let realm = try! Realm()
+    var results = try! Realm().objects(Wallet.self)
+    let cryptoCompareClient = CryptoCompareClient()
+    var activityIndicator = UIActivityIndicatorView()
+    let container = try! Container()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        let statusItem = realm.objects(Wallet.self)
+        writeJsonExchange()
+        print(statusItem)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
+        DispatchQueue.main.async {
+            self.walletList.reloadData()
+        }
+    }
+    
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        //        results = try! Realm().objects(Wallet.self)
+        //        self.walletList.reloadData()
+        self.refresher.endRefreshing()
     }
     
     func setupView(){
@@ -27,6 +55,7 @@ class WalletController: UIViewController,UICollectionViewDelegate,UICollectionVi
         
         //NavigationBar
         navigationController?.navigationBar.barTintColor =  color.themeColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.isTranslucent = false
         let titilebarlogo = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         titilebarlogo.image = image.logoImage()
@@ -41,6 +70,7 @@ class WalletController: UIViewController,UICollectionViewDelegate,UICollectionVi
         view.addSubview(totalProfitView)
         view.addSubview(buttonView)
         view.addSubview(walletList)
+        walletList.addSubview(self.refresher)
         
         //Total Profit View Constraints(总资产)
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":totalProfitView]))
@@ -50,7 +80,7 @@ class WalletController: UIViewController,UICollectionViewDelegate,UICollectionVi
         NSLayoutConstraint(item: totalNumber, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: totalProfitView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: totalNumber, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: totalProfitView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: totalChange, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: totalProfitView, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
-
+        
         totalProfitView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v2]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v1":totalLabel,"v2":totalNumber,"v3":totalChange]))
         totalProfitView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v2]-10-[v3]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v1":totalLabel,"v2":totalNumber,"v3":totalChange]))
         
@@ -104,10 +134,10 @@ class WalletController: UIViewController,UICollectionViewDelegate,UICollectionVi
     }()
     
     lazy var buttonView:UIView = {
-       var view = UIView()
-       view.backgroundColor = color.themeColor()
+        var view = UIView()
+        view.backgroundColor = color.themeColor()
         view.translatesAutoresizingMaskIntoConstraints = false
-       return view
+        return view
     }()
     
     var addTransactionButton:UIButton = {
@@ -122,50 +152,116 @@ class WalletController: UIViewController,UICollectionViewDelegate,UICollectionVi
         return button
     }()
     
-    lazy var walletList:UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout:layout)
+    lazy var walletList:UITableView = {
+        var collectionView = UITableView()
+        collectionView.separatorStyle = .none
         collectionView.backgroundColor = color.themeColor()
-        collectionView.register(WalletCell.self, forCellWithReuseIdentifier: "WalletCell")
+        collectionView.register(WalletsCell.self, forCellReuseIdentifier: "WalletCell")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
     }()
     
-    @objc func changetotransaction(){
-        let transactions = TransactionsController()
-        self.navigationController?.pushViewController(transactions, animated: true)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return results.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WalletCell", for: indexPath) as! WalletCell
-        cell.checkRiseandfall(risefallnumber: cell.profitChange.text!)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletsCell
+        let object = results[indexPath.row]
+        var single:String = ""
+        cryptoCompareClient.getTradePrice(from: object.coinAbbName, to: object.tradingPairsName, exchange: object.exchangName){ result in
+            switch result{
+            case .success(let resultData):
+                for(_, value) in resultData!{
+                    single = String(value)
+                    cell.coinSinglePrice.text = single
+                    let currentTotalPrice:Float = (Float(single)! * Float(object.coinAmount))
+                    let purchaseTotalPrice:Float = object.totalPrice
+                    cell.coinTotalPrice.text = "("+String(currentTotalPrice)+")"
+                    let riseFall = String(format: "%.2f", (((currentTotalPrice - purchaseTotalPrice) / purchaseTotalPrice) * 100.0))
+                    cell.checkRiseandfall(risefallnumber: riseFall)
+                }
+            case .failure(let error):
+                print("the error \(error.localizedDescription)")
+            }
+        }
+        cell.coinName.text = object.coinName
+        cell.profitChange.text = object.priceChange
+        cell.coinAmount.text = String(object.coinAmount) + object.coinAbbName
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:view.frame.width-10, height: 100)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete{
+            let cell:WalletsCell = walletList.cellForRow(at: indexPath) as! WalletsCell
+            let filterName = "coinName = '" + cell.coinName.text! + "' "
+            let statusItem = realm.objects(Wallet.self).filter(filterName)
+            try! realm.write {
+                realm.delete(statusItem)
+            }
+            tableView.reloadData()
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    @objc func changetotransaction(){
+        coinNameSelect = ""
+        coinAbbNameSelect = ""
+        exchangesNameSelect = ""
+        tradingPairsNameSelect = ""
+        tradingPairsAll.removeAll()
+        transactionExpense = ""
+        let transactions = TransactionsController()
+        
+        cryptoCompareClient.getCoinList(){result in
+            switch result{
+            case .success(let resultData):
+                guard let coinList = resultData?.Data else {return}
+                for (_,value) in coinList{
+                    try! self.container.write { transaction in
+                        transaction.add(value, update: true)
+                    }
+                }
+            case .failure(let error):
+                print("the error \(error.localizedDescription)")
+            }
+        }
+        self.navigationController?.pushViewController(transactions, animated: true)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+    //    func getCoinList(completion: @escaping (Result<CryptoCompareCoinListResult?, APIError>) -> Void){
+    //        let endpoint = CryptoCompareEndpoint(type: CryptoComparePath.coinlist)
+    //        let request = endpoint.request
+    //
+    //        fetch(with: request, decode:{ json -> CryptoCompareCoinListResult? in
+    //            guard let coinListResult = json as? CryptoCompareCoinListResult else {return nil}
+    //            return coinListResult
+    //        }, completion: completion)
+    //    }
+    //
+    func writeJsonExchange(){
+        Alamofire.request("https://min-api.cryptocompare.com/data/all/exchanges", method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let fileURL = documentsURL.appendingPathComponent("Exchanges.json")
+                let json = JSON(value)
+                do {
+                    let rawData = try json.rawData()
+                    try rawData.write(to: fileURL, options: .atomic)
+                } catch {
+                    print("Error \(error)")
+                    print("save data")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width:view.frame.width, height: 10)
-    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return 0
-//    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

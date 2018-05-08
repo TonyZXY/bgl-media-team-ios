@@ -29,7 +29,6 @@ class TransTradePairsCell:UITableViewCell{
     
     let trade: UILabel = {
         let label = UILabel()
-        label.text = "BTC/AUD"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -44,6 +43,7 @@ class TransTradePairsCell:UITableViewCell{
     }()
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(tradeLabel)
         addSubview(trade)
         addSubview(tradearrow)

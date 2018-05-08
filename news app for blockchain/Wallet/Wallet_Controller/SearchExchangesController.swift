@@ -15,12 +15,11 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
     var allExchanges = [String]()
     var filterExchanges = [String]()
     var isSearching = false
-    
+    let getDataResult = GetDataResult()
     override func viewDidLoad() {
         super.viewDidLoad()
         getExchangeList()
         setupView()
-
         DispatchQueue.main.async {
             self.searchResult.reloadData()
         }
@@ -38,6 +37,8 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
     }()
     
     lazy var searchResult:UITableView = {
+        tableViews.rowHeight = 80
+        tableViews.separatorInset = UIEdgeInsets.zero
         tableViews.backgroundColor = color.themeColor()
         tableViews.delegate = self
         tableViews.dataSource = self
@@ -82,18 +83,12 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
         navigationController?.popViewController(animated: true)
     }
     
+    
+    
     func getExchangeList()->Void{
-        cryptoCompareClient.getExchangeList(){ result in
-            switch result{
-            case .success(let resultData):
-                //                print(resultData?.AllExchanges["BTCMarkets"]?.TradingPairs["BTC"] ?? "")
-                guard let exchangePairs = resultData?.AllExchanges else {return}
-                for(exc, _) in exchangePairs{
-                    self.allExchanges.append(exc)
-                }
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
-            }
+        let data = getDataResult.getExchangeList()
+        for (key,_) in data{
+            self.allExchanges.append(key)
         }
     }
     

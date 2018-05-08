@@ -46,6 +46,7 @@ class TransTimeCell:UITableViewCell, UITextFieldDelegate{
     }()
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(timeLabel)
         addSubview(time)
         

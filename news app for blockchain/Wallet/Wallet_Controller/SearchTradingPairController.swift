@@ -13,18 +13,17 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
     var tableViews = UITableView()
     var color = ThemeColor()
     var allTradingPairs = [String]()
-    
-    
+    let getDataResults = GetDataResult()
     override func viewDidLoad() {
         super.viewDidLoad()
-        getExchangeList()
+        getTradingPairsList()
         setupView()
-        
-        
     }
     
     lazy var searchResult:UITableView = {
         tableViews.backgroundColor = color.themeColor()
+        tableViews.rowHeight = 80
+        tableViews.separatorInset = UIEdgeInsets.zero
         tableViews.delegate = self
         tableViews.dataSource = self
         tableViews.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -51,25 +50,22 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let table:UITableViewCell = searchResult.cellForRow(at: indexPath)!
         tradingPairsNameSelect = (table.textLabel?.text)!
+        
+        tradingPairsAll.removeAll()
+        tradingPairsAll.append(coinNameSelect)
+        tradingPairsAll.append("%"+coinNameSelect)
+        tradingPairsAll.append(tradingPairsNameSelect)
+        tradingPairsAll.append("%"+tradingPairsNameSelect)
+        print(tradingPairsAll)
         navigationController?.popViewController(animated: true)
     }
     
-    func getExchangeList()->Void{
-        cryptoCompareClient.getExchangeList(){ result in
-            switch result{
-            case .success(let resultData):
-                //                print(resultData?.AllExchanges["BTCMarkets"]?.TradingPairs["BTC"] ?? "")
-                guard let exchangePairs = resultData?.AllExchanges else {return}
-                for(exc, _) in exchangePairs{
-                    //                    var name = resultData?.AllExchanges["exchangesNameSelect"]?.TradingPairs["coinNameSelect"] ?? ""
-                    //                    print(name)
-                    self.allTradingPairs.append(exc)
-                }
-                DispatchQueue.main.async {
-                    self.searchResult.reloadData()
-                }
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
+    
+    func getTradingPairsList()->Void{
+        let data = getDataResults.getTradingCoinList(market: exchangesNameSelect,coin:coinAbbNameSelect)
+        if data != []{
+            for pairs in data{
+                self.allTradingPairs.append(pairs)
             }
         }
     }

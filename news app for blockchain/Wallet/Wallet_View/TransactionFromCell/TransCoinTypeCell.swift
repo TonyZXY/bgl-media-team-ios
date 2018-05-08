@@ -27,9 +27,10 @@ class TransCoinTypeCell:UITableViewCell{
         return label
     }()
     
+    let nihao:String = ""
+    
     let coin: UILabel = {
         let label = UILabel()
-        label.text = "Bitcoins"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -44,6 +45,7 @@ class TransCoinTypeCell:UITableViewCell{
     }()
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(coinLabel)
         addSubview(coin)
         addSubview(coinarrow)
@@ -58,7 +60,8 @@ class TransCoinTypeCell:UITableViewCell{
         //            NSLayoutConstraint.activate([myLabelhorizontalConstraint])
     }
     
-    func checkPage(){
-        coinLabel.text = "hahahah"
+    func checkPage(ss:String){
+        coinLabel.text = "hhhh"
     }
+
 }

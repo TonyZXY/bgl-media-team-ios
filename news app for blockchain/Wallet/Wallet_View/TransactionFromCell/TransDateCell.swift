@@ -41,6 +41,7 @@ class TransDateCell:UITableViewCell,UITextFieldDelegate {
     
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(dateLabel)
         addSubview(date)
         

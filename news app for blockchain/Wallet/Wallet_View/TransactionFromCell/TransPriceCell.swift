@@ -49,6 +49,7 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
     
     let price: UITextField = {
         let textfield = UITextField()
+        textfield.text = "0"
 //        textfield.resignFirstResponder()
         textfield.keyboardType = UIKeyboardType.decimalPad
         textfield.placeholder = "输入买入价格"
@@ -62,7 +63,6 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
     let priceType: UITextField = {
         let textfield = UITextField()
         textfield.textColor = UIColor.white
-//        textfield.text = "单价  ▼"
         textfield.layer.cornerRadius = 8;
         textfield.tintColor = .clear
         textfield.layer.borderColor = UIColor.white.cgColor
@@ -80,6 +80,7 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
     }()
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(priceLabel)
         addSubview(price)
         addSubview(priceType)

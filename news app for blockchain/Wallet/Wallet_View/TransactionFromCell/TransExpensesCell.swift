@@ -9,7 +9,7 @@
 import UIKit
 
 class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegate,UIPickerViewDataSource{
-    let items = ["%BTC","%AUD","AUD","USD","BTC"]
+    var items = ["币种"]
     let pickerview = UIPickerView()
     var selectitems: String = ""
     
@@ -39,7 +39,7 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectitems = items[row]
+//        selectitems = items[row]
     }
     
     let expensesLabel:UILabel = {
@@ -93,6 +93,7 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
     }()
     
     func setupviews(){
+        backgroundColor = ThemeColor().themeColor()
         addSubview(expensesLabel)
         addSubview(expenses)
         addSubview(expensesbutton)
@@ -129,12 +130,24 @@ class TransExpensesCell:UITableViewCell,UITextFieldDelegate, UIPickerViewDelegat
     }
     
     @objc func expensesTypedoneclick(){
-        let row = pickerview.selectedRow(inComponent: 0)
-        expensesbutton.text = items[row] + "  ▼"
-        self.endEditing(true)
+        if items == []{
+            pickerview.selectedRow(inComponent: 0)
+            self.endEditing(true)
+        } else{
+            let row = pickerview.selectedRow(inComponent: 0)
+            expensesbutton.text = items[row] + "  ▼"
+            self.endEditing(true)
+        }
     }
     
     @objc func expensesdoneclick(){
         self.endEditing(true)
+    }
+    
+    func changeText(input:[String])-> Void{
+            items.removeAll()
+            for index in input{
+                items.append(index)
+            }
     }
 }

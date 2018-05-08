@@ -1,5 +1,5 @@
 //
-//  CoinTypeTableView.swift
+//  CoinTypeTableViewCell.swift
 //  news app for blockchain
 //
 //  Created by Bruce Feng on 1/5/18.
@@ -31,7 +31,6 @@ setupView()
     
     let coinNameAbb:UILabel={
         var coinNameAbb = UILabel()
-        coinNameAbb.text = "BTC"
         coinNameAbb.translatesAutoresizingMaskIntoConstraints = false
         return coinNameAbb
     }()
