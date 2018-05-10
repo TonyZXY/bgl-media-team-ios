@@ -39,7 +39,6 @@ class MarketCollectionViewCell:UICollectionViewCell{
     }
     
     let coinImage: UIImageView = {
-//        let imageView = UIImageView(image: UIImage(named: "navigation_arrow.png"))
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         imageView.clipsToBounds = true
@@ -131,45 +130,68 @@ class MarketCollectionViewCell:UICollectionViewCell{
     }
     
     func changeCoinIcon() {
+//        coinImage = UIImageView()
+//        coinImage.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+//        coinImage.clipsToBounds = true
+//        coinImage.contentMode = UIViewContentMode.scaleAspectFit
+//        coinImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        coinImage.image = nil
+        
+        coinImage.subviews.forEach({ $0.removeFromSuperview() })
+        
+        let icon: UIButton = {
+            let button = UIButton()
+            button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            button.layer.cornerRadius = 25
+            button.backgroundColor = #colorLiteral(red: 0.2, green: 0.2039215686, blue: 0.2235294118, alpha: 1)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.setTitle(object!.symbol, for: .normal)
+            button.setTitleColor(.white, for: .normal)
+            button.titleLabel?.font = button.titleLabel?.font.withSize(20)
+            button.titleLabel?.numberOfLines = 1
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleEdgeInsets.left = 0
+            button.titleEdgeInsets.right = 0
+            button.titleEdgeInsets.top = 0
+            button.titleEdgeInsets.bottom = 0
+            return button
+        }()
+        coinImage.addSubview(icon)
+        
+        var constraints = [NSLayoutConstraint]()
+        
+        let centerXConstraints = NSLayoutConstraint(item: icon, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
+        
+        let centerYConstraints = NSLayoutConstraint(item: icon, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0)
+        
+        let widthContraints =  NSLayoutConstraint(item: icon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
+        let heightContraints = NSLayoutConstraint(item: icon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
+        
+        constraints.append(centerXConstraints)
+        constraints.append(centerYConstraints)
+        constraints.append(widthContraints)
+        constraints.append(heightContraints)
+        
+        NSLayoutConstraint.activate(constraints)
+        
         let realm = try! Realm()
         let result = realm.objects(CryptoCompareCoinsRealm.self).filter("Name = %@", object!.symbol)
         if result.count == 1 {
+//            icon.removeFromSuperview()
             let coin = result[0]
             let url = URL(string: "https://www.cryptocompare.com" + coin.ImageUrl)
-            coinImage.kf.setImage(with: url)
+            coinImage.kf.setImage(with: url, completionHandler: {
+                (image, error, cacheType, imageUrl) in
+                icon.removeFromSuperview()
+                // image: Image? `nil` means failed
+                // error: NSError? non-`nil` means failed
+                // cacheType: CacheType
+                //                  .none - Just downloaded
+                //                  .memory - Got from memory cache
+                //                  .disk - Got from disk cache
+                // imageUrl: URL of the image
+                })
         }
-//        else {
-//            let icon: UIButton = {
-//                let button = UIButton()
-//                button.layer.cornerRadius = 25
-//                button.backgroundColor = #colorLiteral(red: 0.2, green: 0.2039215686, blue: 0.2235294118, alpha: 1)
-//                button.translatesAutoresizingMaskIntoConstraints = false
-//                button.setTitle(object!.symbol, for: .normal)
-//                button.setTitleColor(.white, for: .normal)
-//                button.titleLabel?.font = button.titleLabel?.font.withSize(20)
-//                button.titleLabel?.numberOfLines = 1
-//                button.titleLabel?.adjustsFontSizeToFitWidth = true
-//                button.titleEdgeInsets.left = 0
-//                button.titleEdgeInsets.right = 0
-//                button.titleEdgeInsets.top = 0
-//                button.titleEdgeInsets.bottom = 0
-//                return button
-//            }()
-//            coinImage.addSubview(icon)
-//            
-//            var constraints = [NSLayoutConstraint]()
-//            
-//            let centerXConstraints = NSLayoutConstraint(item: icon, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerX, multiplier: 1.0, constant: 0.0)
-//            
-//            let centerYConstraints = NSLayoutConstraint(item: icon, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1.0, constant: 0.0)
-//            
-//            let widthContraints =  NSLayoutConstraint(item: icon, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
-//            let heightContraints = NSLayoutConstraint(item: icon, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
-//            
-//            constraints.append(centerXConstraints)
-//            constraints.append(centerYConstraints)
-//            constraints.append(widthContraints)
-//            constraints.append(heightContraints)
-//        }
     }
 }

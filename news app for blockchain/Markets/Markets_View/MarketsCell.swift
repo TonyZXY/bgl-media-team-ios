@@ -373,8 +373,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
                 numberOfCoinWillDisplay += 10
                 let tickerDataFetcher = TickerDataFetcherV2()
                 tickerDataFetcher.getTickerData(start: numberOfCoinWillDisplay - 9, completionHandler: {_ in
-                    print("\(self.numberOfCoinWillDisplay) will display")
-                    print("\(self.tickerDataRealmObjects.count) ticker data realm objects")
                     self.numberOfCoinWillDisplay = self.tickerDataRealmObjects.count
                     collectionView.reloadData()
                 })
