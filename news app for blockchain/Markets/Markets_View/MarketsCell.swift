@@ -35,6 +35,10 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     
     static var initStatus = 0
     
+    var isSearching = false
+    
+    lazy var filteredCoinList = try! Realm().objects(TickerDataRealm.self)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         refreshData()
@@ -147,6 +151,10 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         } else if collectionView == filterDate{
             return 3
         }else if collectionView == coinList{
+            if isSearching == true {
+                return filteredCoinList.count
+            }
+            
             if MarketsCell.initStatus == 0 {
                 MarketsCell.initStatus = 1
                 if tickerDataRealmObjects.count == 0 {
@@ -202,7 +210,10 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         } else if collectionView == coinList{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectionViewCell", for: indexPath) as! MarketCollectionViewCell
             cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
-            let object = tickerDataRealmObjects[indexPath.row]
+            var object = tickerDataRealmObjects[indexPath.row]
+            if isSearching {
+                object = filteredCoinList[indexPath.row]
+            }
             cell.priceChange = [object.percent_change_7d, object.percent_change_24h, object.percent_change_1h][filterDateSelection ?? 0]
             cell.object = object
             
@@ -377,6 +388,18 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
                     collectionView.reloadData()
                 })
             }
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text == nil || searchBar.text == ""{
+            isSearching = false
+            contentView.endEditing(true)
+            coinList.reloadData()
+        } else{
+            isSearching = true
+            filteredCoinList = tickerDataRealmObjects.filter("symbol CONTAINS %@", searchBar.text!.uppercased())
+            coinList.reloadData()
         }
     }
 }
