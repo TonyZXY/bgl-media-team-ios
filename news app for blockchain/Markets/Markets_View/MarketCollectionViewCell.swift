@@ -34,7 +34,15 @@ class MarketCollectionViewCell:UICollectionViewCell{
             } else {
                 coinChange.textColor = .red
             }
+            
             coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
+            
+            let watchList = try! Realm().objects(CoinsInWatchListRealm.self).filter("symbol = %@", object!.symbol)
+            if watchList.count == 1 {
+                addWish.setTitle("★", for: .normal)
+            } else {
+                addWish.setTitle("☆", for: .normal)
+            }
         }
     }
     
@@ -96,6 +104,8 @@ class MarketCollectionViewCell:UICollectionViewCell{
         addSubview(coinNumber)
         addSubview(addWish)
         
+        addWish.addTarget(self, action: #selector(MarketCollectionViewCell.addOrRemoveWatch), for: .touchUpInside)
+        
         //coinImage
         self.layer.cornerRadius = self.frame.height / 4
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[v0(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v3":coinChange,"v4":coinType,"v5":coinNumber]))
@@ -140,5 +150,20 @@ class MarketCollectionViewCell:UICollectionViewCell{
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init Error")
+    }
+    
+    @objc func addOrRemoveWatch(sender: UIButton) {
+        let realm = try! Realm()
+        
+        let watchList = try! Realm().objects(CoinsInWatchListRealm.self).filter("symbol = %@", object!.symbol)
+        realm.beginWrite()
+        if watchList.count == 1 {
+            addWish.setTitle("☆", for: .normal)
+            realm.delete(watchList[0])
+        } else {
+            addWish.setTitle("★", for: .normal)
+            realm.create(CoinsInWatchListRealm.self, value: [object!.symbol])
+        }
+        try! realm.commitWrite()
     }
 }

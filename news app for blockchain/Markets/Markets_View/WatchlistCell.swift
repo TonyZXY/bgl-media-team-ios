@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource{
+class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
     var marketSortPickerView = MarketSortPickerView()
     var sortitems = ["按字母排序","按最高价排序"]
     var sortdate = ["1W","1D","1H"]
@@ -16,6 +17,10 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
     let pickerview = UIPickerView()
     var color = ThemeColor()
     var colors = ThemeColor()
+    
+    let watchListRealm = try! Realm().objects(CoinsInWatchListRealm.self)
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -104,14 +109,23 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
     
     //收藏列表
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return watchListRealm.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellid", for: indexPath) as! MarketsCoinTableViewCell
         cell.backgroundColor = color.themeColor()
         cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
+        
+        let symbol = watchListRealm[indexPath.row].symbol
+
+        cell.coinLabel.text = symbol
+        
         return cell
+    }
+    
+    func getCoinWatchList() {
+        
     }
 }
 

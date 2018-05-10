@@ -12,6 +12,7 @@ PODS:
     - RxSwift (>= 4.0.0-beta.0)
   - RxSwift (4.1.2)
   - SwiftyJSON (4.1.0)
+  - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - RxJSON
   - RxSwift (~> 4.0)
   - SwiftyJSON
+  - YouTubePlayer
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -32,6 +34,7 @@ SPEC REPOS:
     - RxJSON
     - RxSwift
     - SwiftyJSON
+    - YouTubePlayer
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -42,7 +45,8 @@ SPEC CHECKSUMS:
   RxJSON: f1f70d66ae6598f88921a8dfc3a90c73442e7fec
   RxSwift: e49536837d9901277638493ea537394d4b55f570
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 623d9d7309adc6d9d648cc50a78dfeb90b34129c
+PODFILE CHECKSUM: c565b1bed2cbbce98beb5b02a7b7d94c664ed80f
 
 COCOAPODS: 1.5.0

@@ -22,7 +22,7 @@ class MarketsCoinTableViewCell:UITableViewCell{
     }
     
     let coinImage: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "navigation_arrow.png"))
+        let imageView = UIImageView()
         imageView.clipsToBounds = true
         imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         imageView.contentMode = UIViewContentMode.scaleAspectFit
@@ -64,7 +64,7 @@ class MarketsCoinTableViewCell:UITableViewCell{
     
     let addWish:UIButton = {
         let button = UIButton()
-        button.setTitle("☆", for: .normal)
+        button.setTitle("★", for: .normal)
         button.setTitleColor(UIColor.yellow, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -77,6 +77,7 @@ class MarketsCoinTableViewCell:UITableViewCell{
         addSubview(coinType)
         addSubview(coinNumber)
         addSubview(addWish)
+        addWish.addTarget(self, action: #selector(MarketsCoinTableViewCell.removeWatch), for: .touchUpInside)
         
         //coinImage
         self.layer.cornerRadius = self.frame.height / 4
@@ -118,6 +119,38 @@ class MarketsCoinTableViewCell:UITableViewCell{
         } else{
             // Not any change with white
             coinChange.textColor = UIColor.white
+        }
+    }
+    
+    @objc func removeWatch(sender: UIButton) {
+        let realm = try! Realm()
+        
+        let watchList = try! Realm().objects(CoinsInWatchListRealm.self).filter("symbol = %@", object!.symbol)
+        realm.beginWrite()
+        addWish.setTitle("☆", for: .normal)
+        realm.delete(watchList[0])
+        try! realm.commitWrite()
+    }
+    
+    var priceChange: Double?
+    
+    var object: TickerDataRealm? {
+        didSet {
+            var roundedPrice = object?.price ?? 0.0
+            roundedPrice = round(roundedPrice * 100) / 100
+            coinLabel.text = object?.symbol
+            coinNumber.text = "AUD $" + "\(roundedPrice)"
+            coinChange.text = "\(priceChange ?? 0.0)"
+            guard let percentChange = priceChange else { return }
+            if percentChange > 0.0 {
+                coinChange.textColor = .green
+            } else if percentChange == 0.0 {
+                coinChange.textColor = .white
+            } else {
+                coinChange.textColor = .red
+            }
+            
+            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
         }
     }
 }

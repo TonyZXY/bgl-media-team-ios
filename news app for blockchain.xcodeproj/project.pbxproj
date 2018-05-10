@@ -14,6 +14,7 @@
 		041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DD207EDD49008DCA69 /* Assets.xcassets */; };
 		041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */; };
 		045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */; };
+		045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */; };
 		0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479A03C20A16584004A0433 /* GlobalDataRealm.swift */; };
 		04E4F018209B19A700A2D0BF /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F015209B19A700A2D0BF /* TimelineTableViewController.swift */; };
 		04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F016209B19A700A2D0BF /* NewsFlash.swift */; };
@@ -91,6 +92,7 @@
 		041F40E0207EDD49008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041F40E2207EDD49008DCA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageSetter.swift; sourceTree = "<group>"; };
+		045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInWatchListRealm.swift; sourceTree = "<group>"; };
 		0479A03C20A16584004A0433 /* GlobalDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataRealm.swift; sourceTree = "<group>"; };
 		04E4F015209B19A700A2D0BF /* TimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 		04E4F016209B19A700A2D0BF /* NewsFlash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFlash.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 			children = (
 				0479A03C20A16584004A0433 /* GlobalDataRealm.swift */,
 				041519B320A283C70031D98F /* TickerDataRealm.swift */,
+				045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */,
 			);
 			path = Markets_Model;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxJSON/RxJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -553,6 +557,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -580,6 +585,7 @@
 				4577D6442091A3920087DF80 /* MarketCapClient.swift in Sources */,
 				576FA8E62091E30B005B6406 /* TransTradePairsCell.swift in Sources */,
 				5701A902209BB74800A216C4 /* SearchExchangesController.swift in Sources */,
+				045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */,
 				576FA8F42092E670005B6406 /* AppImage.swift in Sources */,
 				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
 				576FA8E02091E02C005B6406 /* TransCoinTypeCell.swift in Sources */,
@@ -780,10 +786,7 @@
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -800,10 +803,7 @@
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
