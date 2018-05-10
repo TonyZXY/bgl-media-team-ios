@@ -161,33 +161,33 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
     
     // MARK: Player controls
     
-    open func mute() {
-        evaluatePlayerCommand("mute()")
-    }
-    
-    open func unMute() {
-        evaluatePlayerCommand("unMute()")
-    }
-    
-    open func play() {
-        evaluatePlayerCommand("playVideo()")
-    }
-    
-    open func pause() {
-        evaluatePlayerCommand("pauseVideo()")
-    }
-    
-    open func stop() {
-        evaluatePlayerCommand("stopVideo()")
-    }
-    
-    open func clear() {
-        evaluatePlayerCommand("clearVideo()")
-    }
-    
-    open func seekTo(_ seconds: Float, seekAhead: Bool) {
-        evaluatePlayerCommand("seekTo(\(seconds), \(seekAhead))")
-    }
+//    open func mute() {
+//        evaluatePlayerCommand("mute()")
+//    }
+//
+//    open func unMute() {
+//        evaluatePlayerCommand("unMute()")
+//    }
+//
+//    open func play() {
+//        evaluatePlayerCommand("playVideo()")
+//    }
+//
+//    open func pause() {
+//        evaluatePlayerCommand("pauseVideo()")
+//    }
+//
+//    open func stop() {
+//        evaluatePlayerCommand("stopVideo()")
+//    }
+//
+//    open func clear() {
+//        evaluatePlayerCommand("clearVideo()")
+//    }
+//
+//    open func seekTo(_ seconds: Float, seekAhead: Bool) {
+//        evaluatePlayerCommand("seekTo(\(seconds), \(seekAhead))")
+//    }
     
     open func getDuration() -> String? {
         return evaluatePlayerCommand("getDuration()")
@@ -199,13 +199,13 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
     
     // MARK: Playlist controls
     
-    open func previousVideo() {
-        evaluatePlayerCommand("previousVideo()")
-    }
-    
-    open func nextVideo() {
-        evaluatePlayerCommand("nextVideo()")
-    }
+//    open func previousVideo() {
+//        evaluatePlayerCommand("previousVideo()")
+//    }
+//
+//    open func nextVideo() {
+//        evaluatePlayerCommand("nextVideo()")
+//    }
     
     fileprivate func evaluatePlayerCommand(_ command: String) -> String? {
         let fullCommand = "player." + command + ";"
@@ -281,7 +281,7 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
             let jsonData = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
             
             // Succeeded
-            return NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as? String
+            return NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as String?
             
         } catch let jsonError {
             

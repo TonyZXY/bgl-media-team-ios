@@ -47,7 +47,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         setSortbutton()
         sortdoneclick()
         
-        refreshTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
     }
     
     //总额view

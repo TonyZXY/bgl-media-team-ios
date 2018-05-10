@@ -12,7 +12,7 @@ import RealmSwift
 
 func coinImageSetter(coinImage: UIImageView, coinName: String, width: Double = 50, height: Double = 50, fontSize: CGFloat = 20) {
     coinImage.image = nil
-    
+
     coinImage.subviews.forEach({ $0.removeFromSuperview() })
     
     let icon: UIButton = {
@@ -53,7 +53,6 @@ func coinImageSetter(coinImage: UIImageView, coinName: String, width: Double = 5
     let realm = try! Realm()
     let result = realm.objects(CryptoCompareCoinsRealm.self).filter("Name = %@", coinName)
     if result.count == 1 {
-        //            icon.removeFromSuperview()
         let coin = result[0]
         let url = URL(string: "https://www.cryptocompare.com" + coin.ImageUrl)
         coinImage.kf.setImage(with: url, completionHandler: {
