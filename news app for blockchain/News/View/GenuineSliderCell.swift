@@ -13,9 +13,12 @@ class GenuineSliderCell: BaseCell {
     var newsContent: Genuine? {
         didSet{
             textView.text = newsContent?.title
+<<<<<<< HEAD
             if (newsContent != nil){
                 image.image = ImageLoader.instance.loadImage(imageURL: (newsContent?.imageURL)!)
             }
+=======
+>>>>>>> sheng
         }
     }
     
@@ -42,13 +45,21 @@ class GenuineSliderCell: BaseCell {
     
     let image:UIImageView = {
         let iv = UIImageView()
+<<<<<<< HEAD
+=======
+        iv.backgroundColor = UIColor.blue
+>>>>>>> sheng
         return iv
     }()
     
     let textView:UILabel = {
         let tv = UILabel()
+<<<<<<< HEAD
         tv.backgroundColor = UIColor(white: 0.2, alpha: 0.8)
         tv.textColor = UIColor.white
+=======
+        tv.backgroundColor = UIColor.yellow
+>>>>>>> sheng
         return tv
     }()
     

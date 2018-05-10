@@ -47,7 +47,11 @@ class NewsSliderCell: BaseCell {
     
     let textView:UILabel = {
         let tv = UILabel()
+<<<<<<< HEAD
         tv.backgroundColor = UIColor(white: 0.2, alpha: 0.8)
+=======
+        tv.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+>>>>>>> sheng
         tv.textColor = UIColor.white
         return tv
     }()
