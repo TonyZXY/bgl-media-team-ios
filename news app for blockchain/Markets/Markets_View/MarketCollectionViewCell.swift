@@ -78,6 +78,14 @@ class MarketCollectionViewCell:UICollectionViewCell{
         return label
     }()
     
+    let addWish:UIButton = {
+        let button = UIButton()
+        button.setTitle("☆", for: .normal)
+        button.setTitleColor(UIColor.yellow, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     func setupView(){
         backgroundColor = color.walletCellcolor()
         
@@ -86,6 +94,7 @@ class MarketCollectionViewCell:UICollectionViewCell{
         addSubview(coinChange)
         addSubview(coinType)
         addSubview(coinNumber)
+        addSubview(addWish)
         
         //coinImage
         self.layer.cornerRadius = self.frame.height / 4
@@ -102,12 +111,16 @@ class MarketCollectionViewCell:UICollectionViewCell{
         NSLayoutConstraint(item: coinType, attribute: .top, relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         
         //coinChange
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v2]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v2]-5-[v5]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber,"v5":addWish]))
         NSLayoutConstraint(item: coinChange, attribute:.centerY , relatedBy: NSLayoutRelation.equal, toItem: coinLabel, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         
         //coinNunmber
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v4]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v4]-5-[v5]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber,"v5":addWish]))
         NSLayoutConstraint(item: coinNumber, attribute:.centerY , relatedBy: NSLayoutRelation.equal, toItem: coinType, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
+        
+        //addWish Button
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v5]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber,"v5":addWish]))
+        NSLayoutConstraint(item: addWish, attribute:.centerY , relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
     }
     
     func checkRiseandfall(risefallnumber: String) {
