@@ -95,7 +95,7 @@ class TimelineTableViewController: UITableViewController {
         if let collection = json["articles"].array {
             for item in collection {
                 let date = dateFormatter.date(from: item["publishedAt"].string!)
-                let id = item["id"].int!
+                let id = "\(item["id"].int!)"
                 if realm.object(ofType: NewsFlash.self, forPrimaryKey: id) == nil {
                     realm.create(NewsFlash.self, value: [id, date!, item["description"].string!])
                 } else {
