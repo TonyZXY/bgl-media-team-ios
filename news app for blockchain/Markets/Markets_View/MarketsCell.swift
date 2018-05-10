@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     
@@ -17,6 +18,10 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
     
     //排序窗口 sort window
     let sortPickerView = UIPickerView()
+    
+    let realm = try! Realm()
+    var globalData = try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
+    var refreshTimer: Timer!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -241,6 +246,31 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         let row = sortPickerView.selectedRow(inComponent: 0)
         sortCoin.text = "▼ "+sortItems[row]
         self.endEditing(true)
+    }
+    
+    @objc func refreshGlobalData() {
+        let marketCapClient = MarketCapClient()
+        marketCapClient.getGlobalCap(convert: "AUD"){ result in
+            switch result{
+            case .success(let resultData):
+                guard let globalCap = resultData else {return}
+                
+                let bitcoin_percentage_of_market_cap = String(globalCap["bitcoin_percentage_of_market_cap"]!!)
+                let total_market_cap_aud = String((globalCap["total_market_cap_aud"]!! / 10000000.0).rounded() / 100.0)
+                let total_24h_volume_aud = String((globalCap["total_24h_volume_aud"]!! / 10000000.0).rounded() / 100.0)
+                
+                self.realm.beginWrite()
+                self.realm.create(GlobalDataRealm.self, value: [bitcoin_percentage_of_market_cap, total_market_cap_aud, total_24h_volume_aud, "0"], update: true)
+                try! self.realm.commitWrite()
+                
+                self.globalData = try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
+                
+                self.totalCollectionView.reloadData()
+                
+            case .failure(let error):
+                print("the error \(error.localizedDescription)")
+            }
+        }
     }
 }
 
