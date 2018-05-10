@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
+class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var color = ThemeColor()
     var sortItems = ["按字母排序","按最高价排序"]
@@ -23,11 +23,27 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
     var globalData = try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
     var refreshTimer: Timer!
     
+    let currency = "AUD $"
+    
+    var coinListRealmObjects = try! Realm().objects(CryptoCompareCoinsRealm.self)
+    
+    var tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self)
+    
+    var filterDateSelection: Int?
+    
+    var numberOfCoinWillDisplay = 10
+    
+    static var initStatus = 0
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        refreshData()
+        getCoinList()
         setupView()
         setSortbutton()
         sortdoneclick()
+        
+        refreshTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
     }
     
     //总额view
@@ -35,9 +51,9 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         let layout = UICollectionViewFlowLayout()
         let collectview = UICollectionView(frame: .zero, collectionViewLayout:layout)
         collectview.backgroundColor = color.themeColor()
-//        collectview.layer.cornerRadius = self.frame.width/8
-//        collectview.layer.borderWidth = 1
-//        collectview.layer.borderColor = UIColor.white.cgColor
+        //        collectview.layer.cornerRadius = self.frame.width/8
+        //        collectview.layer.borderWidth = 1
+        //        collectview.layer.borderColor = UIColor.white.cgColor
         collectview.delegate = self
         collectview.dataSource = self
         return collectview
@@ -115,7 +131,7 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         
         //币种列表
         coinList.translatesAutoresizingMaskIntoConstraints = false
-//        coinList.register(MarketCollectionViewCell.self, forCellReuseIdentifier: "MarketCollectionViewCell")
+        //        coinList.register(MarketCollectionViewCell.self, forCellReuseIdentifier: "MarketCollectionViewCell")
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
     }
@@ -131,7 +147,17 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         } else if collectionView == filterDate{
             return 3
         }else if collectionView == coinList{
-            return 5
+            if MarketsCell.initStatus == 0 {
+                MarketsCell.initStatus = 1
+                if tickerDataRealmObjects.count == 0 {
+                    return 0
+                }
+            }
+            if tickerDataRealmObjects.count >= numberOfCoinWillDisplay {
+                return numberOfCoinWillDisplay
+            } else {
+                return tickerDataRealmObjects.count
+            }
         }else {
             return 0
         }
@@ -141,6 +167,32 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == totalCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath) as! MarketsTotalView
+            
+            if indexPath.row == 0 {
+                cell.totalFunds.text = "市场总资产"
+                if let total_market_cap = globalData?.total_market_cap {
+                    cell.number.text = currency + total_market_cap + "B"
+                } else {
+                    cell.number.text = "--"
+                }
+                cell.change.text = "1%"
+            } else if indexPath.row == 1 {
+                cell.totalFunds.text = "24小时交易量"
+                if let total_volume_24h = globalData?.total_volume_24h {
+                    cell.number.text = currency + total_volume_24h + "B"
+                } else {
+                    cell.number.text = "--"
+                }
+                cell.change.text = "2%"
+            } else if indexPath.row == 2 {
+                cell.totalFunds.text = "BTC占比"
+                if let bitcoin_percentage_of_market_cap = globalData?.bitcoin_percentage_of_market_cap {
+                    cell.number.text = bitcoin_percentage_of_market_cap + "%"
+                } else {
+                    cell.number.text = "--"
+                }
+                cell.change.text = "3%"
+            }
             cell.totalFunds.textColor = UIColor.white
             return cell
         } else if collectionView == filterDate{
@@ -150,21 +202,23 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         } else if collectionView == coinList{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectionViewCell", for: indexPath) as! MarketCollectionViewCell
             cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
+            let object = tickerDataRealmObjects[indexPath.row]
+            cell.priceChange = [object.percent_change_7d, object.percent_change_24h, object.percent_change_1h][filterDateSelection ?? 0]
+            cell.object = object
+            
             return cell
         } else{
             return UICollectionViewCell()
         }
-        //        let color:[UIColor] = [.blue,.gray,.red,.green]
-        //        cell.backgroundColor = color[indexPath.item]
     }
     
     //市场总数据view,日期筛选view--cell的宽高
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-         if collectionView == totalCollectionView{
+        if collectionView == totalCollectionView{
             return CGSize(width:(totalCollectionView.frame.width-5) / 3, height: totalCollectionView.frame.height)
-         } else if collectionView == filterDate{
+        } else if collectionView == filterDate{
             return CGSize(width:filterDate.frame.width / 3, height: filterDate.frame.height)
-         } else if collectionView == coinList{
+        } else if collectionView == coinList{
             return CGSize(width:self.frame.width-10, height: 100)
         }else{
             return CGSize()
@@ -246,10 +300,17 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
         let row = sortPickerView.selectedRow(inComponent: 0)
         sortCoin.text = "▼ "+sortItems[row]
         self.endEditing(true)
+        if row == 0 {
+            tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self).sorted(byKeyPath: "symbol", ascending: true)
+        } else {
+            tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self).sorted(byKeyPath: "price", ascending: false)
+        }
+        coinList.reloadData()
     }
     
-    @objc func refreshGlobalData() {
+    @objc func refreshData() {
         let marketCapClient = MarketCapClient()
+        
         marketCapClient.getGlobalCap(convert: "AUD"){ result in
             switch result{
             case .success(let resultData):
@@ -269,6 +330,54 @@ class MarketsCell:UICollectionViewCell,UICollectionViewDelegate,UICollectionView
                 
             case .failure(let error):
                 print("the error \(error.localizedDescription)")
+            }
+        }
+        
+        let tickerDataFetcher = TickerDataFetcherV2()
+        tickerDataFetcher.getTickerData(start: numberOfCoinWillDisplay - 10, completionHandler:
+            {_ in
+                self.coinList.reloadData()
+        })
+    }
+    
+    func getCoinList() {
+        let cryptoCompareClient = CryptoCompareClient()
+        let container = try! Container()
+        
+        cryptoCompareClient.getCoinList(){result in
+            switch result{
+            case .success(let resultData):
+                guard let coinList = resultData?.Data else {return}
+                for (_, value) in coinList{
+                    try! container.write { transaction in
+                        transaction.add(value, update: true)
+                    }
+                }
+                self.coinListRealmObjects = try! Realm().objects(CryptoCompareCoinsRealm.self)
+            case .failure(let error):
+                print("the error \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == filterDate {
+            filterDateSelection = indexPath.row
+            coinList.reloadData()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == coinList {
+            if indexPath.row == numberOfCoinWillDisplay - 1 && numberOfCoinWillDisplay <= tickerDataRealmObjects.count {  //numberofitem count
+                numberOfCoinWillDisplay += 10
+                let tickerDataFetcher = TickerDataFetcherV2()
+                tickerDataFetcher.getTickerData(start: numberOfCoinWillDisplay - 9, completionHandler: {_ in
+                    print("\(self.numberOfCoinWillDisplay) will display")
+                    print("\(self.tickerDataRealmObjects.count) ticker data realm objects")
+                    self.numberOfCoinWillDisplay = self.tickerDataRealmObjects.count
+                    collectionView.reloadData()
+                })
             }
         }
     }

@@ -35,7 +35,7 @@ class GetDataResult{
         if FileManager.default.fileExists(atPath: filePath), let data = FileManager.default.contents(atPath: filePath) {
             do{
                 let json = try JSONDecoder().decode(exchangeChoose.self, from: data)
-                var coinTradingPairs = json[market]?[coin]
+                let coinTradingPairs = json[market]?[coin]
                 if coinTradingPairs != nil{
                     jsonData = coinTradingPairs!
                 }

@@ -50,6 +50,7 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
         var coinlist=UITableView()
         coinlist.backgroundColor = color.themeColor()
         coinlist.separatorStyle = .none
+        coinlist.rowHeight = 100
         coinlist.delegate = self
         coinlist.dataSource = self
         return coinlist

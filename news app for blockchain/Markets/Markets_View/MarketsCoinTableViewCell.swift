@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MarketsCoinTableViewCell:UITableViewCell{
     var color = ThemeColor()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupviews()
@@ -22,6 +24,7 @@ class MarketsCoinTableViewCell:UITableViewCell{
     let coinImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "navigation_arrow.png"))
         imageView.clipsToBounds = true
+        imageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -42,6 +45,7 @@ class MarketsCoinTableViewCell:UITableViewCell{
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     let coinType: UILabel = {
         let label = UILabel()
         label.text = "全球市场平均价"
@@ -65,19 +69,27 @@ class MarketsCoinTableViewCell:UITableViewCell{
         addSubview(coinType)
         addSubview(coinNumber)
         
+        //coinImage
         self.layer.cornerRadius = self.frame.height / 4
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-16-[v0(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v3":coinChange,"v4":coinType,"v5":coinNumber]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[v0(50)]-30-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v3":coinChange,"v4":coinType,"v5":coinNumber]))
-        let myLabelverticalConstraint = NSLayoutConstraint(item: coinImage, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0)
-        NSLayoutConstraint.activate([myLabelverticalConstraint])
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[v0(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v3":coinChange,"v4":coinType,"v5":coinNumber]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v3":coinChange,"v4":coinType,"v5":coinNumber]))
+        NSLayoutConstraint(item: coinImage, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]-5-[v1]-[v2]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[v1]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-30-[v2]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
+        //coinLabel
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]-5-[v1]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
+        NSLayoutConstraint(item: coinLabel, attribute: .bottom, relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
+        
+        //coinType
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]-5-[v3]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-5-[v3]-30-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v3]-[v4]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v2]-5-[v4]-30-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
+        NSLayoutConstraint(item: coinType, attribute: .top, relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
+        
+        //coinChange
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v2]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
+        NSLayoutConstraint(item: coinChange, attribute:.centerY , relatedBy: NSLayoutRelation.equal, toItem: coinLabel, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
+        
+        //coinNunmber
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v4]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber]))
+        NSLayoutConstraint(item: coinNumber, attribute:.centerY , relatedBy: NSLayoutRelation.equal, toItem: coinType, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
     }
     
     

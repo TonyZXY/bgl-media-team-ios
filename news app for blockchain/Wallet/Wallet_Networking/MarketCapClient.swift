@@ -65,10 +65,4 @@ class MarketCapClient: APIClient{
         }, completion: completion)
         
     }
-    
-    
-    
-    
-    
-    
 }
