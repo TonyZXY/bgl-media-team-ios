@@ -33,6 +33,12 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return cv
     }()
     
+    let line: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.gray
+        return view
+    }()
+    
     lazy var cellListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -65,13 +71,15 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     }
     
     func setupSubViews(){
-        
+        view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
         
+        addConstraintsWithFormat(format: "H:|[v0]|", views: line)
+        
         addConstraintsWithFormat(format: "H:|-5-[v0]|", views: selectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: cellListView)
-        addConstraintsWithFormat(format: "V:|-5-[v0(30)]", views: selectionView)
+        addConstraintsWithFormat(format: "V:|[v0(1)]-5-[v1(30)]", views: line,selectionView)
         
         
         
