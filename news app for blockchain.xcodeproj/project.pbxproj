@@ -13,6 +13,7 @@
 		041F40D9207EDD48008DCA69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40D7207EDD48008DCA69 /* Main.storyboard */; };
 		041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DD207EDD49008DCA69 /* Assets.xcassets */; };
 		041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */; };
+		045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */; };
 		0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479A03C20A16584004A0433 /* GlobalDataRealm.swift */; };
 		04E4F018209B19A700A2D0BF /* TimelineTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F015209B19A700A2D0BF /* TimelineTableViewController.swift */; };
 		04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F016209B19A700A2D0BF /* NewsFlash.swift */; };
@@ -89,6 +90,7 @@
 		041F40DD207EDD49008DCA69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041F40E0207EDD49008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041F40E2207EDD49008DCA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageSetter.swift; sourceTree = "<group>"; };
 		0479A03C20A16584004A0433 /* GlobalDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataRealm.swift; sourceTree = "<group>"; };
 		04E4F015209B19A700A2D0BF /* TimelineTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineTableViewController.swift; sourceTree = "<group>"; };
 		04E4F016209B19A700A2D0BF /* NewsFlash.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsFlash.swift; sourceTree = "<group>"; };
@@ -177,7 +179,6 @@
 				041F40D1207EDD48008DCA69 /* Products */,
 				5AC8BC7FE114A8134E15E233 /* Pods */,
 				7FA2035E59CC4A76CA64B71E /* Frameworks */,
-				0488BAB5209B2DD400695114 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -331,6 +332,7 @@
 			children = (
 				576FA8F02092DA5C005B6406 /* ThemeColor.swift */,
 				576FA8F32092E670005B6406 /* AppImage.swift */,
+				045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */,
 			);
 			path = UI_Tools;
 			sourceTree = "<group>";
@@ -573,6 +575,7 @@
 				5701A904209BC66B00A216C4 /* SearchTradingPairController.swift in Sources */,
 				57DA49F6209BE95800C59BD4 /* SliderCell.swift in Sources */,
 				57510E1620A0FAA700E7A7D9 /* CryptoCompareCoinsRealm.swift in Sources */,
+				045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */,
 				4577D6472091A3920087DF80 /* MarketCapEndpoint.swift in Sources */,
 				4577D6442091A3920087DF80 /* MarketCapClient.swift in Sources */,
 				576FA8E62091E30B005B6406 /* TransTradePairsCell.swift in Sources */,
