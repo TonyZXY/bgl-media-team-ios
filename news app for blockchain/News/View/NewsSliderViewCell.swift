@@ -55,15 +55,12 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
         return pc
     }()
     
-<<<<<<< HEAD
     let line: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         return view
     }()
     
-=======
->>>>>>> sheng
     
     func setupRootView(){
         addSubview(rootView)
