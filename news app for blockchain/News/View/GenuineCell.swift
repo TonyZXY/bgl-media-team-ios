@@ -14,7 +14,7 @@ class GenuineCell: BaseCell {
     var genuine:Genuine? {
         didSet{
             titleLabel.text = genuine?.title
-            newsImage.image = ImageLoader.instance.loadImage(imageURL: "http://www.randwick.nsw.gov.au/__data/assets/image/0007/14875/Latest-News.jpg")
+            newsImage.image = ImageLoader.instance.loadImage(imageURL: (genuine?.imageURL)!)
             subtitleTextView.text = genuine?.genuineDescription
             authorText.text = genuine?.author
         }
