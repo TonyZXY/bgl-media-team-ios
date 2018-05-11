@@ -16,6 +16,14 @@ class VideoCell: BaseCell {
             titleLabel.text = video?.title
             timeLabel.text = video?.publishedTime
             authorLabel.text = video?.author
+//            print(video?.url)
+            imageView.image = #imageLiteral(resourceName: "loading")
+            viimage = ImageLoader.instance.loadImage(imageURL: (video?.imageURL)!)
+        }
+    }
+    var viimage: UIImage?{
+        didSet{
+            imageView.image = viimage
         }
     }
     
@@ -26,14 +34,13 @@ class VideoCell: BaseCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.blue   
         return iv
     }()
     
     let titleLabel: UILabel = {
         let tl = UILabel()
         tl.textAlignment = .left
-        tl.font = tl.font.withSize(20)
+        tl.font = tl.font.withSize(15)
         tl.text = "测试标题"
         tl.textColor = UIColor.white
         return tl
@@ -84,6 +91,6 @@ class VideoCell: BaseCell {
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 5))
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 15))
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .left, relatedBy: .equal, toItem: authorLabel, attribute: .right, multiplier: 1, constant: 5))
-        addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: 150))
+        addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: 200))
     }
 }

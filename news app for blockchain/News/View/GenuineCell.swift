@@ -33,7 +33,8 @@ class GenuineCell: BaseCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = label.font.withSize(20)
+        label.font = label.font.withSize(14)
+        label.numberOfLines = 2
         label.textColor = UIColor.white
 //        label.backgroundColor = UIColor.blue
         return label
@@ -72,10 +73,10 @@ class GenuineCell: BaseCell {
         view.backgroundColor = ThemeColor().walletCellcolor()
         addConstraintsWithFormat(format: "H:|-16-[v0(135)]-8-[v1]-16-|",    views: newsImage,titleLabel)
         addConstraintsWithFormat(format: "V:|-16-[v0]-16-|",                views: newsImage)
-        addConstraintsWithFormat(format: "V:|-16-[v0]",                     views: titleLabel)
+        addConstraintsWithFormat(format: "V:|-13-[v0]",                     views: titleLabel)
         
         
-        addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
+        addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 34))
         
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4))
         addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .left, relatedBy: .equal, toItem: newsImage, attribute: .right, multiplier: 1, constant: 8))

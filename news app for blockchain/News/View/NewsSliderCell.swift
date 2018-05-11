@@ -58,7 +58,7 @@ class NewsSliderCell: BaseCell {
         addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: image)
         image.addSubview(textView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: textView)
-        addConstraintsWithFormat(format: "V:|-100-[v0]|", views: textView)
+        addConstraintsWithFormat(format: "V:|-95-[v0]|", views: textView)
     }
     
     

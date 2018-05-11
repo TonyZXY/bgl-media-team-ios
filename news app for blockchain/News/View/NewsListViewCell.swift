@@ -36,6 +36,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     let line: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray
+//        view.backgroundColor = ThemeColor().themeColor()
         return view
     }()
     
