@@ -11,9 +11,7 @@ import UIKit
 class MarketController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     var color = ThemeColor()
     var menuitems = ["Markets","Watchlists"]
-    
-//    weak var removeDelegateFromMarketController: SyncWatchListAfterRemoveWatchFromWatchListCellDelegate?
-    
+        
     func scrollToMenuIndex(menuIndex: Int){
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
         collectionviews.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
@@ -27,11 +25,11 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuitems[indexPath.row], for: indexPath)
-        if indexPath.row == 0 {
-//            if let marketsCell = cell as? MarketsCell {
-//                marketsCell.removeDelegateFromMarketController = removeDelegateFromMarketController
-//                return marketsCell
-//            }
+        if indexPath.row == 1 {
+            if let watchListCell = cell as? Watchlist {
+                watchListCell.removeWatchInMarketsCellDelegate = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? MarketsCell
+                return watchListCell
+            }
         }
 
         return cell

@@ -38,9 +38,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     var isSearching = false
     
     lazy var filteredCoinList = try! Realm().objects(TickerDataRealm.self)
-    
-//    weak var removeDelegateFromMarketController: SyncWatchListAfterRemoveWatchFromWatchListCellDelegate?
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         refreshData()
@@ -405,12 +403,8 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         }
     }
     
-//    func reloadDataAfterRemoveWatch() {
-//        coinList.reloadData()
-//    }
-//    
-//    func reloadDataInMarketsCell() {
-//        coinList.reloadData()
-//    }
+    func reloadDataAfterRemove() {
+        coinList.reloadData()
+    }
 }
 
