@@ -12,6 +12,8 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
     var color = ThemeColor()
     var menuitems = ["Markets","Watchlists"]
     
+//    weak var removeDelegateFromMarketController: SyncWatchListAfterRemoveWatchFromWatchListCellDelegate?
+    
     func scrollToMenuIndex(menuIndex: Int){
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
         collectionviews.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
@@ -25,14 +27,13 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuitems[indexPath.row], for: indexPath)
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellId", for: indexPath)
-//        let color:[UIColor] = [.blue,.gray]
-        
-//        if indexPath.item == 1 {
-//            
-//            return collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
-//        }
-//        cell.backgroundColor = color[indexPath.item]
+        if indexPath.row == 0 {
+//            if let marketsCell = cell as? MarketsCell {
+//                marketsCell.removeDelegateFromMarketController = removeDelegateFromMarketController
+//                return marketsCell
+//            }
+        }
+
         return cell
     }
     
@@ -62,14 +63,11 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         titleLabel.text = "Blockchain Global"
         titleLabel.textColor = UIColor.white
         navigationItem.titleView = titleLabel
-//        collectionviews.index
-        // Do any additional setup after loading the view.
     }
 
     lazy var menuBar: MenuBar = {
        let mb = MenuBar()
         mb.marketController = self
-//       mb.translatesAutoresizingMaskIntoConstraints = false
        return mb
     }()
     
@@ -83,22 +81,7 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         collectionview.delegate = self
         collectionview.dataSource = self
         return collectionview
-        
-//        let layout = UICollectionViewFlowLayout()
-//        let collectionview = UICollectionView(frame: .zero, collectionViewLayout:layout)
-//        if let flowlayout = collectionview.collectionViewLayout as? UICollectionViewFlowLayout{
-//            flowlayout.scrollDirection = .horizontal
-//        }
     }()
-    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 4
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionview.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
-//        return cell
-//    }
     
     private func setupMenuBar(){
         view.addSubview(menuBar)

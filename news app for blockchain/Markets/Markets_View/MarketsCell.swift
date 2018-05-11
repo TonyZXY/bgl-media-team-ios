@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, RemoveWatchDelegate {
     
     var color = ThemeColor()
     var sortItems = ["按字母排序","按最高价排序"]
@@ -38,6 +38,8 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     var isSearching = false
     
     lazy var filteredCoinList = try! Realm().objects(TickerDataRealm.self)
+    
+//    weak var removeDelegateFromMarketController: SyncWatchListAfterRemoveWatchFromWatchListCellDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -402,5 +404,13 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             coinList.reloadData()
         }
     }
+    
+//    func reloadDataAfterRemoveWatch() {
+//        coinList.reloadData()
+//    }
+//    
+//    func reloadDataInMarketsCell() {
+//        coinList.reloadData()
+//    }
 }
 

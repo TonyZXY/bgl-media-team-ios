@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
-class MarketSortPickerView:UITextField,UIPickerViewDelegate,UIPickerViewDataSource{
+class MarketSortPickerView:UITextField,UIPickerViewDelegate, UIPickerViewDataSource{
     var sortItems = ["按字母排序","按最高价排序"]
     let pickerview = UIPickerView()
+    
+    weak var sortPickerViewDelegate: SortPickerViewDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -36,6 +40,14 @@ class MarketSortPickerView:UITextField,UIPickerViewDelegate,UIPickerViewDataSour
         return sortItems[row]
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if row == 0 {
+            sortPickerViewDelegate?.reloadDataSortedByName()
+        } else {
+            sortPickerViewDelegate?.reloadDataSortedByPrice()
+        }
+    }
+    
     func setPickerViewToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -47,7 +59,7 @@ class MarketSortPickerView:UITextField,UIPickerViewDelegate,UIPickerViewDataSour
         pickerview.dataSource = self
         pickerview.selectRow(0, inComponent: 0, animated: true)
     }
-    
+
     @objc func setPickerViewDoneButton(){
         let row = pickerview.selectedRow(inComponent: 0)
         self.text = "▼ "+sortItems[row]
@@ -57,4 +69,9 @@ class MarketSortPickerView:UITextField,UIPickerViewDelegate,UIPickerViewDataSour
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+protocol SortPickerViewDelegate: class {
+    func reloadDataSortedByName()
+    func reloadDataSortedByPrice()
 }

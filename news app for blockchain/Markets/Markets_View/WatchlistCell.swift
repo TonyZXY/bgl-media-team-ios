@@ -9,7 +9,8 @@
 import UIKit
 import RealmSwift
 
-class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource {
+class Watchlist: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, SortPickerViewDelegate, RemoveWatchDelegate {
+    
     var marketSortPickerView = MarketSortPickerView()
     var sortitems = ["按字母排序","按最高价排序"]
     var sortdate = ["1W","1D","1H"]
@@ -18,20 +19,24 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
     var color = ThemeColor()
     var colors = ThemeColor()
     
-    let watchListRealm = try! Realm().objects(CoinsInWatchListRealm.self)
+    var coinSymbolRealm = try! Realm().objects(CoinsInWatchListRealm.self)
+    var tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self)
     
+    var filterDateSelection: Int?
+    
+//    weak var syncWatchListAfterRemoveWatchFromWatchListCellDelegate: SyncWatchListAfterRemoveWatchFromWatchListCellDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        
+        getCoinWatchList()
+//        setSortbutton()
+        marketSortPickerView.sortPickerViewDelegate = self
     }
     
     //排序按钮
     let sortCoin:UITextField={
         var sort = UITextField()
-        //        sort.layer.borderWidth = 1
-        //        sort.layer.cornerRadius = 8;
         sort.tintColor = .clear
         sort.layer.borderColor = UIColor.white.cgColor
         sort.textColor = UIColor.white
@@ -109,7 +114,7 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
     
     //收藏列表
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return watchListRealm.count
+        return coinSymbolRealm.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,15 +122,46 @@ class Watchlist: UICollectionViewCell,UICollectionViewDelegate,UICollectionViewD
         cell.backgroundColor = color.themeColor()
         cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
         
-        let symbol = watchListRealm[indexPath.row].symbol
+        let object = tickerDataRealmObjects[indexPath.row]
 
-        cell.coinLabel.text = symbol
+        cell.priceChange = [object.percent_change_7d, object.percent_change_24h, object.percent_change_1h][filterDateSelection ?? 0]
+        cell.object = object
+        cell.removeWatchDelegate = self
         
         return cell
     }
     
     func getCoinWatchList() {
-        
+        let allCoinsSymbol = coinSymbolRealm.map {$0.symbol}
+        tickerDataRealmObjects = tickerDataRealmObjects.filter("symbol in %@", Array(allCoinsSymbol))
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == sortDate {
+            filterDateSelection = indexPath.row
+            coinList.reloadData()
+        }
+    }
+    
+    func reloadDataSortedByName() {
+        tickerDataRealmObjects = tickerDataRealmObjects.sorted(byKeyPath: "symbol", ascending: true)
+        coinList.reloadData()
+    }
+    
+    func reloadDataSortedByPrice() {
+        tickerDataRealmObjects = tickerDataRealmObjects.sorted(byKeyPath: "price", ascending: false)
+        coinList.reloadData()
+    }
+    
+    func reloadDataAfterRemove() {
+        getCoinWatchList()
+        coinList.reloadData()
+        // Reload data in Markets Cell
+//        syncWatchListAfterRemoveWatchFromWatchListCellDelegate?.reloadDataAfterRemoveWatch()
+    }
+    
 }
 
+//protocol SyncWatchListAfterRemoveWatchFromWatchListCellDelegate: class {
+//    func reloadDataAfterRemoveWatch()
+//}

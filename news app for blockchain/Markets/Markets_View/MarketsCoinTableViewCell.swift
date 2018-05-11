@@ -12,6 +12,9 @@ import RealmSwift
 class MarketsCoinTableViewCell:UITableViewCell{
     var color = ThemeColor()
     
+    weak var removeWatchDelegate: RemoveWatchDelegate?
+    weak var removeWatchInMarketsCellDelegate: RemoveWatchDelegate?
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupviews()
@@ -124,12 +127,12 @@ class MarketsCoinTableViewCell:UITableViewCell{
     
     @objc func removeWatch(sender: UIButton) {
         let realm = try! Realm()
-        
-        let watchList = try! Realm().objects(CoinsInWatchListRealm.self).filter("symbol = %@", object!.symbol)
+        let watchList = realm.objects(CoinsInWatchListRealm.self).filter("symbol = %@", object!.symbol)
         realm.beginWrite()
-        addWish.setTitle("☆", for: .normal)
         realm.delete(watchList[0])
         try! realm.commitWrite()
+        removeWatchDelegate?.reloadDataAfterRemove?()
+        removeWatchInMarketsCellDelegate?.reloadDataInMarketsCell?()
     }
     
     var priceChange: Double?
@@ -153,4 +156,9 @@ class MarketsCoinTableViewCell:UITableViewCell{
             coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
         }
     }
+}
+
+@objc protocol RemoveWatchDelegate: class {
+    @objc optional func reloadDataAfterRemove()
+    @objc optional func reloadDataInMarketsCell()
 }
