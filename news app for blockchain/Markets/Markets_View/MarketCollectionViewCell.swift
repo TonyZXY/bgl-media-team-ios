@@ -134,22 +134,7 @@ class MarketCollectionViewCell:UICollectionViewCell{
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v5]-16-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinImage,"v1":coinLabel,"v2":coinChange,"v3":coinType,"v4":coinNumber,"v5":addWish]))
         NSLayoutConstraint(item: addWish, attribute:.centerY , relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
     }
-    
-    func checkRiseandfall(risefallnumber: String) {
-        if risefallnumber.prefix(1) == "+" {
-            //Profit with green
-            coinChange.textColor = color.riseColor()
-            coinChange.text = "▲ " + risefallnumber
-        }else if risefallnumber.prefix(1) == "-" {
-            // lost with red
-            coinChange.textColor = color.fallColor()
-            coinChange.text = "▼ " + risefallnumber
-        } else{
-            // Not any change with white
-            coinChange.textColor = UIColor.white
-        }
-    }
-    
+        
     required init?(coder aDecoder: NSCoder) {
         fatalError("init Error")
     }

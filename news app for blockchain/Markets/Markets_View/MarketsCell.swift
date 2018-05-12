@@ -208,7 +208,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             return cell
         } else if collectionView == coinList{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectionViewCell", for: indexPath) as! MarketCollectionViewCell
-            cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
             var object = tickerDataRealmObjects[indexPath.row]
             if isSearching {
                 object = filteredCoinList[indexPath.row]
@@ -274,7 +273,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.white.cgColor
         cell.backgroundColor = color.walletCellcolor()
-        cell.checkRiseandfall(risefallnumber: cell.coinChange.text!)
         return cell
     }
     

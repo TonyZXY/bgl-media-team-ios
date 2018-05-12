@@ -37,7 +37,6 @@ class MenuBar:UIView,UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         collectionView.selectItem(at: selectindexpath as IndexPath, animated: false, scrollPosition:.left)
         
         setHorizontalBar()
-//        self.backgroundColor = UIColor.red
     }
     
     var horizontalBarLeftAnchorConstraint:NSLayoutConstraint?
@@ -48,20 +47,12 @@ class MenuBar:UIView,UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
         horizontalBarLeftAnchorConstraint = horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
         horizontalBarLeftAnchorConstraint?.isActive = true
-//        horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor,multiplier:1/2).isActive = true
         horizontalBarView.heightAnchor.constraint(equalToConstant: 5).isActive = true
-        
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let x = CGFloat(indexPath.item) * frame.width/2
-//        horizontalBarLeftAnchorConstraint?.constant = x
-//        UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseOut, animations: {self.layoutIfNeeded()}, completion: nil)
-        
         marketController?.scrollToMenuIndex(menuIndex: indexPath.row)
     }
     
@@ -72,7 +63,7 @@ class MenuBar:UIView,UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! MenuCell
         cell.menuLabel.text = menuitems[indexPath.row]
-//        cell.backgroundColor = UIColor.blue
+        //        cell.backgroundColor = UIColor.blue
         return cell
     }
     
@@ -91,7 +82,7 @@ class MenuBar:UIView,UICollectionViewDelegate,UICollectionViewDataSource,UIColle
 class MenuCell: UICollectionViewCell{
     var color = ThemeColor()
     let menuLabel:UILabel = {
-       let menuLabel = UILabel()
+        let menuLabel = UILabel()
         menuLabel.textColor = UIColor.gray
         return menuLabel
     }()

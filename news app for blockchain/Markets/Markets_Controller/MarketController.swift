@@ -12,9 +12,6 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
     var color = ThemeColor()
     var menuitems = ["Markets","Watchlists"]
     
-    var marketsCell: MarketsCell?
-    var watchList: WatchList?
-    
     func scrollToMenuIndex(menuIndex: Int){
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
         collectionviews.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
@@ -34,8 +31,6 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
                 watchListCell.removeWatchInMarketsCellDelegate = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? MarketsCell
                 if let marketsCell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? MarketsCell {
                     marketsCell.updateWatchInWatchListDelegate = watchListCell
-                } else {
-                    print("fail")
                 }
                 return watchListCell
             }
@@ -103,17 +98,11 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":collectionviews,"v1":menuBar]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-0-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":collectionviews,"v1":menuBar]))
         collectionviews.backgroundColor = color.themeColor()
-        
-        marketsCell = collectionviews.dequeueReusableCell(withReuseIdentifier: "Markets", for: IndexPath(row: 0, section: 0)) as? MarketsCell
-        watchList = collectionviews.dequeueReusableCell(withReuseIdentifier: "Watchlists", for: IndexPath(row: 1, section: 0)) as? WatchList
-//        print(marketsCell)
-//        print(watchList)
     }
     
     class market:UICollectionViewCell{
         override init(frame: CGRect) {
             super.init(frame: frame)
-            
         }
         
         let view:UIView = {
@@ -138,12 +127,6 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
-            
         }
     }
 }

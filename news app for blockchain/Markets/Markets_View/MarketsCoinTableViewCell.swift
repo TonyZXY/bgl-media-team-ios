@@ -109,22 +109,6 @@ class MarketsCoinTableViewCell:UITableViewCell{
         NSLayoutConstraint(item: addWish, attribute:.centerY , relatedBy: NSLayoutRelation.equal, toItem: coinImage, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
     }
     
-    
-    func checkRiseandfall(risefallnumber: String) {
-        if risefallnumber.prefix(1) == "+" {
-            //Profit with green
-            coinChange.textColor = color.riseColor()
-            coinChange.text = "▲ " + risefallnumber
-        }else if risefallnumber.prefix(1) == "-" {
-            // lost with red
-            coinChange.textColor = color.fallColor()
-            coinChange.text = "▼ " + risefallnumber
-        } else{
-            // Not any change with white
-            coinChange.textColor = UIColor.white
-        }
-    }
-    
     @objc func removeWatch(sender: UIButton) {
         let realm = try! Realm()
         let watchList = realm.objects(CoinsInWatchListRealm.self).filter("symbol = %@", object!.symbol)
@@ -144,16 +128,17 @@ class MarketsCoinTableViewCell:UITableViewCell{
             coinLabel.text = object?.symbol
             coinNumber.text = "AUD $" + "\(roundedPrice)"
             coinChange.text = "\(priceChange ?? 0.0)"
+            
+            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
+            
             guard let percentChange = priceChange else { return }
             if percentChange > 0.0 {
-                coinChange.textColor = .green
+                coinChange.textColor = color.riseColor()
             } else if percentChange == 0.0 {
                 coinChange.textColor = .white
             } else {
-                coinChange.textColor = .red
+                coinChange.textColor = color.fallColor()
             }
-            
-            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
         }
     }
 }
