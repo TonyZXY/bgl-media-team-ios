@@ -26,6 +26,8 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
     
     weak var removeWatchInMarketsCellDelegate: UpdateWatchDelegate?
     
+    var sortOption: Int?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -125,7 +127,7 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
 
         cell.priceChange = [object.percent_change_7d, object.percent_change_24h, object.percent_change_1h][filterDateSelection ?? 0]
         cell.object = object
-        cell.removeWatchInWatchListDelegate = self
+        cell.updateWatchInWatchListDelegate = self
         cell.removeWatchInMarketsCellDelegate = removeWatchInMarketsCellDelegate
         
         return cell
@@ -156,7 +158,19 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
     func reloadDataAfterUpdateWatchList() {
         print("reload data")
         getCoinWatchList()
-        coinList.reloadData()
+        if let sortOption = sortOption {
+            if sortOption == 0 {
+                reloadDataSortedByName()
+            } else {
+                reloadDataSortedByPrice()
+            }
+        } else {
+            coinList.reloadData()
+        }
+    }
+    
+    func setSortOption(option: Int) {
+        sortOption = option
     }
 }
 

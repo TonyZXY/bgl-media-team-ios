@@ -39,7 +39,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     
     lazy var filteredCoinList = try! Realm().objects(TickerDataRealm.self)
     
-    weak var removeWatchInWatchListDelegate: UpdateWatchDelegate?
+    weak var updateWatchInWatchListDelegate: UpdateWatchDelegate?
         
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -215,7 +215,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             }
             cell.priceChange = [object.percent_change_7d, object.percent_change_24h, object.percent_change_1h][filterDateSelection ?? 0]
             cell.object = object
-            cell.updateWatchInWatchListDelegate = removeWatchInWatchListDelegate
+            cell.updateWatchInWatchListDelegate = updateWatchInWatchListDelegate
             
             return cell
         } else{

@@ -33,7 +33,7 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
             if let watchListCell = cell as? WatchList {
                 watchListCell.removeWatchInMarketsCellDelegate = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? MarketsCell
                 if let marketsCell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? MarketsCell {
-                    marketsCell.removeWatchInWatchListDelegate = watchListCell
+                    marketsCell.updateWatchInWatchListDelegate = watchListCell
                 } else {
                     print("fail")
                 }

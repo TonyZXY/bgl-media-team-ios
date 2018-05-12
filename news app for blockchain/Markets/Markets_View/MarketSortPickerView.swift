@@ -43,8 +43,10 @@ class MarketSortPickerView:UITextField,UIPickerViewDelegate, UIPickerViewDataSou
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if row == 0 {
             sortPickerViewDelegate?.reloadDataSortedByName()
+            sortPickerViewDelegate?.setSortOption!(option: 0)
         } else {
             sortPickerViewDelegate?.reloadDataSortedByPrice()
+            sortPickerViewDelegate?.setSortOption!(option: 1)
         }
     }
     
@@ -71,7 +73,8 @@ class MarketSortPickerView:UITextField,UIPickerViewDelegate, UIPickerViewDataSou
     }
 }
 
-protocol SortPickerViewDelegate: class {
+@objc protocol SortPickerViewDelegate: class {
     func reloadDataSortedByName()
     func reloadDataSortedByPrice()
+    @objc optional func setSortOption(option: Int)
 }
