@@ -82,7 +82,6 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout:layout)
-        //        collectionview.backgroundColor = UIColor.red
         collectionview.isPagingEnabled = true
         collectionview.delegate = self
         collectionview.dataSource = self

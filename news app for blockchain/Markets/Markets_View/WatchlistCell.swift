@@ -133,7 +133,7 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
     
     func getCoinWatchList() {
         let allCoinsSymbol = coinSymbolRealm.map {$0.symbol}
-        tickerDataRealmObjects = tickerDataRealmObjects.filter("symbol in %@", Array(allCoinsSymbol))
+        tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self).filter("symbol in %@", Array(allCoinsSymbol))
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

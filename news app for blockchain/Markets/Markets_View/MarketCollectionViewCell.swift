@@ -169,8 +169,5 @@ class MarketCollectionViewCell:UICollectionViewCell{
         try! realm.commitWrite()
         
         updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
-        if let _ = updateWatchInWatchListDelegate {
-            print("not nil")
-        }
     }
 }
