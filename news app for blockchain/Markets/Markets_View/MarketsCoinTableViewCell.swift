@@ -12,8 +12,8 @@ import RealmSwift
 class MarketsCoinTableViewCell:UITableViewCell{
     var color = ThemeColor()
     
-    weak var removeWatchInWatchListDelegate: RemoveWatchDelegate?
-    weak var removeWatchInMarketsCellDelegate: RemoveWatchDelegate?
+    weak var removeWatchInWatchListDelegate: UpdateWatchDelegate?
+    weak var removeWatchInMarketsCellDelegate: UpdateWatchDelegate?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -131,8 +131,8 @@ class MarketsCoinTableViewCell:UITableViewCell{
         realm.beginWrite()
         realm.delete(watchList[0])
         try! realm.commitWrite()
-        removeWatchInWatchListDelegate?.reloadDataAfterRemove?()
-        removeWatchInMarketsCellDelegate?.reloadDataAfterRemove?()
+        removeWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
+        removeWatchInMarketsCellDelegate?.reloadDataAfterUpdateWatchList?()
     }
     
     var priceChange: Double?
@@ -156,8 +156,4 @@ class MarketsCoinTableViewCell:UITableViewCell{
             coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
         }
     }
-}
-
-@objc protocol RemoveWatchDelegate: class {
-    @objc optional func reloadDataAfterRemove()
 }

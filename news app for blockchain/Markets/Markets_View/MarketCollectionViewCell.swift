@@ -19,6 +19,8 @@ class MarketCollectionViewCell:UICollectionViewCell{
     
     var priceChange: Double?
     
+    weak var updateWatchInWatchListDelegate: UpdateWatchDelegate?
+    
     var object: TickerDataRealm? {
         didSet {
             var roundedPrice = object?.price ?? 0.0
@@ -165,5 +167,10 @@ class MarketCollectionViewCell:UICollectionViewCell{
             realm.create(CoinsInWatchListRealm.self, value: [object!.symbol])
         }
         try! realm.commitWrite()
+        
+        updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
+        if let _ = updateWatchInWatchListDelegate {
+            print("not nil")
+        }
     }
 }

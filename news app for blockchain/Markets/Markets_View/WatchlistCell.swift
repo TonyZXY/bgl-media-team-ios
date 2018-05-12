@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Watchlist: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, SortPickerViewDelegate, RemoveWatchDelegate {
+class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, SortPickerViewDelegate, UpdateWatchDelegate {
     
     var marketSortPickerView = MarketSortPickerView()
     var sortitems = ["按字母排序","按最高价排序"]
@@ -24,7 +24,7 @@ class Watchlist: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
     
     var filterDateSelection: Int?
     
-    weak var removeWatchInMarketsCellDelegate: RemoveWatchDelegate?
+    weak var removeWatchInMarketsCellDelegate: UpdateWatchDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -153,9 +153,15 @@ class Watchlist: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
         coinList.reloadData()
     }
     
-    func reloadDataAfterRemove() {
+    func reloadDataAfterUpdateWatchList() {
+        print("reload data")
         getCoinWatchList()
         coinList.reloadData()
     }
-    
 }
+
+
+@objc protocol UpdateWatchDelegate: class {
+    @objc optional func reloadDataAfterUpdateWatchList()
+}
+
