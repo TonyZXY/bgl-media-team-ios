@@ -61,7 +61,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
-        //refreshControl.addTarget(self, action: #selector(self.fetchData(d:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.white
         
         return refreshControl
@@ -196,7 +195,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        //getNews()
         fetchData()
         print("start refreshing")
         self.refresher.endRefreshing()
