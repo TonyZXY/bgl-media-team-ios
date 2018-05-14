@@ -10,6 +10,12 @@ import UIKit
 
 class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
+    var position:Int = 0 {
+        didSet{
+            fetchData()
+        }
+    }
+    
     weak var homeViewController: HomeViewController?
     
     let newsViewController: NewsDetailViewController = NewsDetailViewController()
@@ -51,7 +57,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     override func setupViews() {
         super.setupViews()
-        fetchData(d: 0)
+        fetchData()
         setupRootView()
         setupSubViews()
         // REVIEW: put in a separate method - registerCells -Johnny Lin
@@ -137,7 +143,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == selectionView){
-            fetchData(d: indexPath.item)
+            position = indexPath.item
         }else{
             if(indexPath.item != 0){
             newsViewController.newsContent = newsArrayList[indexPath.item-1]
@@ -146,18 +152,18 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         }
     }
     
-    func fetchData(d:Int) {
-        if(d == 0){
+    func fetchData() {
+        if(position == 0){
             APIService.shardInstance.fetchLocalNews { (newsArrayList:[News]) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
-        }else if(d==1){
+        }else if(position == 1){
             APIService.shardInstance.fetchInternationalNews { (newsArrayList:[News]) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
-        }else if (d==2){
+        }else if (position == 2){
             APIService.shardInstance.fetchNewsContentTypeOne { (newsArrayList:[News]) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()

@@ -170,7 +170,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         if(collectionView == selectionView){
             fetchData()
             position = indexPath.item
-            cellListView.reloadData()
         }else{
             if(position==1){
                 videoDetailViewController.video = videoArrayList[indexPath.item]
