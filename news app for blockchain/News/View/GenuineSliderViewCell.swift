@@ -11,6 +11,7 @@ import UIKit
 class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     weak var homeViewController:HomeViewController?
+    // REVIEW: no need to store the details view controller as property  -Johnny Lin
     let genuineDetailViewController: GenuineDetailViewController = GenuineDetailViewController()
     
     var newsArrayList:[Genuine]? {

@@ -33,6 +33,7 @@ class GenuineDetailViewController: UIViewController {
     func setupContent(){
         titleView.text = genuineContent?.title
         newsImageView.setImage(urlString: (genuineContent?.imageURL)!)
+        // REVIEW: should use time string it self, something like (genuineContent?.publishedTime)!.formattedString() -Johnny Lin
         timeLabel.text = String().timeFormatter(timeString: (genuineContent?.publishedTime)!)
         authorLabel.text = genuineContent?.author
         textView.text = genuineContent?.detail

@@ -42,6 +42,8 @@ class GenuineSliderCell: BaseCell {
     
     let image:UIImageView = {
         let iv = UIImageView()
+        // REVIEW: use contentMode to stop scaling of the image -Johnny Lin
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
