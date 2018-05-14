@@ -30,6 +30,8 @@ class NewsCell: BaseCell {
     
     let newsImage: UIImageView = {
         let imageView = UIImageView()
+        // REVIEW: use contentMode to stop scaling of the image -Johnny Lin
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     

@@ -11,11 +11,11 @@ import UIKit
 class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     weak var homeViewController:HomeViewController?
+    // REVIEW: no need to store the details view controller as property  -Johnny Lin
     let genuineDetailViewController: GenuineDetailViewController = GenuineDetailViewController()
     
     var newsArrayList:[Genuine]? {
         didSet{
-            //            print("01234")
             sliderView.reloadData()
         }
     }
@@ -93,8 +93,5 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         genuineDetailViewController.genuineContent = newsArrayList?[indexPath.item]
         homeViewController?.navigationController?.pushViewController(genuineDetailViewController, animated: true)
-        // This area calls News Detail View
-        //        let newsLauncher = NewsLauncher()
-        //        newsLauncher.showNewsDetail(str:"123")
     }
 }

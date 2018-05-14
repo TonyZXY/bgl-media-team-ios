@@ -13,12 +13,12 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     var position:Int = 0 {
         didSet{
             fetchData()
-            cellListView.reloadData()
         }
     }
     // This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
     weak var homeViewController: HomeViewController?
-    
+
+    // REVIEW: no need to store as property if it's only being used in one func -Johnny Lin
     var videoDetailViewController: VideoDetailViewController = VideoDetailViewController()
     var genuineDetailViewController: GenuineDetailViewController = GenuineDetailViewController()
     
@@ -45,8 +45,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     let line:UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray
-//        view.backgroundColor = ThemeColor().themeColor()
-
         return view
     }()
     
@@ -184,7 +182,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         if(collectionView == selectionView){
             fetchData()
             position = indexPath.item
-            cellListView.reloadData()
         }else{
             if(position==1){
                 videoDetailViewController.video = videoArrayList[indexPath.item]

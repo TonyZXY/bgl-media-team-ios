@@ -10,6 +10,12 @@ import UIKit
 
 class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
+    var position:Int = 0 {
+        didSet{
+            fetchData()
+        }
+    }
+    
     weak var homeViewController: HomeViewController?
     
     let newsViewController: NewsDetailViewController = NewsDetailViewController()
@@ -36,7 +42,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     let line: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray
-//      view.backgroundColor = ThemeColor().themeColor()
         return view
     }()
     
@@ -50,18 +55,9 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return cv
     }()
     
-    lazy var refresher: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
-        //refreshControl.addTarget(self, action: #selector(self.fetchData(d:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor.white
-        
-        return refreshControl
-    }()
-    
     override func setupViews() {
         super.setupViews()
-        fetchData(d: 0)
+        fetchData()
         setupRootView()
         setupSubViews()
         // REVIEW: put in a separate method - registerCells -Johnny Lin
@@ -71,8 +67,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         selectionView.reloadData() // REVIEW: no need to call it here as it's loaded on start-Johnny Lin
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         selectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition:.left)
-        //cellListView.addSubview(self.refresher)
-        
     }
     
     func setupRootView(){
@@ -86,7 +80,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
-        cellListView.addSubview(self.refresher)
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: line)
         
@@ -111,7 +104,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //  var cell:UICollectionViewCell
         if collectionView == self.cellListView{
             if indexPath.item == 0{
                 let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! NewsSliderViewCell
@@ -124,7 +116,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
                 return cell3
             }else{
                 let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-//                cell2.titleLabel.text = newsArrayList[indexPath.item-1].title
                 cell2.news = newsArrayList[indexPath.item - 1]
                 return cell2
             }
@@ -133,7 +124,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             cell1.textLabel.text = selectionOptionOne[indexPath.item]
             return cell1
         }
-        //        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -153,46 +143,27 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == selectionView){
-            fetchData(d: indexPath.item)
+            position = indexPath.item
         }else{
             if(indexPath.item != 0){
-//            print("List \(homeViewController!.navigationController)")
-//            newsViewController.newsContent = ??
             newsViewController.newsContent = newsArrayList[indexPath.item-1]
             homeViewController!.navigationController?.pushViewController(newsViewController, animated: true)
             }
-            // This area calls News Detail View
-            //            let newsLauncher = NewsLauncher()
-            //            newsLauncher.showNewsDetail(str: "123")
         }
     }
     
-//    @objc func getData(){
-//        APIService.shardInstance.fetchNews { (newsArrayList:[News]) in
-//            self.newsArrayList = newsArrayList
-//            self.collectionView.reloadData()
-//        }
-//    }
-    
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        //getNews()
-        fetchData(d: newsArrayList.count)
-        print("start refreshing")
-        self.refresher.endRefreshing()
-    }
-    
-    func fetchData(d:Int) {
-        if(d == 0){
+    func fetchData() {
+        if(position == 0){
             APIService.shardInstance.fetchLocalNews { (newsArrayList:[News]) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
-        }else if(d==1){
+        }else if(position == 1){
             APIService.shardInstance.fetchInternationalNews { (newsArrayList:[News]) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
-        }else if (d==2){
+        }else if (position == 2){
             APIService.shardInstance.fetchNewsContentTypeOne { (newsArrayList:[News]) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
