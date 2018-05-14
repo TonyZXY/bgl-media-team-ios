@@ -18,4 +18,5 @@ class Genuine :  Decodable {
     var publishedTime: String?
     var author: String?
     var genuineTag: String?
+    
 }

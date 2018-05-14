@@ -15,7 +15,7 @@ class VideoCell: BaseCell {
     var video:Video? {
         didSet{
             titleLabel.text = video?.title
-            timeLabel.text = video?.publishedTime
+            timeLabel.text = String().timeFormatter(timeString: (video?.publishedTime)!)
             authorLabel.text = video?.author
 //            print(video?.imageURL)
             if video?.imageURL != nil {
@@ -39,7 +39,6 @@ class VideoCell: BaseCell {
         let tl = UILabel()
         tl.textAlignment = .left
         tl.font = tl.font.withSize(15)
-        tl.text = "测试标题"
         tl.textColor = UIColor.white
         return tl
     }()

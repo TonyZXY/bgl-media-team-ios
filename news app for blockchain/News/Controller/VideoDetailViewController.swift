@@ -56,14 +56,12 @@ class VideoDetailViewController: UIViewController {
     }
     
     func setupContent(){
-        //        videoplayer.loadVideoID("ljbhiEuGKSI")
         let vurl = URL(string: (video?.url)!)
         videoplayer.loadVideoURL(vurl!)
-//        videoplayer.loadVideoID((video?.url)!)
         descriptionLabel.text = video?.videoDescription
         authorLabel.text = video?.author
         titleLabel.text = video?.title
-        timeLabel.text = video?.publishedTime
+        timeLabel.text = String().timeFormatter(timeString: (video?.publishedTime)!)
     }
     
     let scrollView: UIScrollView = {

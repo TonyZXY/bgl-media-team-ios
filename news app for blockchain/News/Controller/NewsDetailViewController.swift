@@ -31,12 +31,8 @@ class NewsDetailViewController: UIViewController {
     }
     
     func setupContent(){
-//        print(newsContent?.title)
-        //to be setup content here
         titleView.text = newsContent?.title
-//        newsImageView.image = ??
-        timeLabel.text = newsContent?.publishedTime
-        timeLabel.text = String().formatDate(date: (newsContent?.publishedTime)!)
+        timeLabel.text = String().timeFormatter(timeString: (newsContent?.publishedTime)!)
         authorLabel.text = newsContent?.author
         textView.text = newsContent?.detail
         newsImageView.setImage(urlString: (newsContent?.imageURL)!)
