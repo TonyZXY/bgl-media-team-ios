@@ -9,14 +9,14 @@
 import UIKit
 import RealmSwift
 
-class News: Decodable {
-    var _id: String?
-    var title: String?
-    var newsDescription: String?
-    var imageURL: String?
-    var detail: String?
-    var publishedTime: String?
-    var author: String?
-    var localeTag: String?
-    var contentTag: String?
+struct News: Decodable {
+    let _id: String?
+    let title: String?
+    let newsDescription: String?
+    let imageURL: String?
+    let detail: String?
+    let publishedTime: String?
+    let author: String?
+    let localeTag: String?
+    let contentTag: String?
 }

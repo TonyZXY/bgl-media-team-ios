@@ -9,22 +9,39 @@
 import UIKit
 import Alamofire
 import Realm
+import SwiftyJSON
+import Alamofire
+import RealmSwift
 
 class APIService: NSObject {
     static let shardInstance = APIService()
     
+    let realm = try! Realm()
+    //var newsResults = try! Realm().objects(News.self).sorted(byKeyPath: "_id", ascending: false)
+    
     func fetchLocalNews(completion: @escaping ([News]) -> ()){
         //国内
         Alamofire.request("http://10.10.6.111:3000/api/getNewsLocaleOnly?localeTag=%E5%9B%BD%E5%86%85", method: .get).validate().responseJSON { response in
-            if let data = response.data {
-                do{
-                    let newsList = try JSONDecoder().decode([News].self, from: data)
-                    // to be implement realm action
-                    completion(newsList)
-                } catch let jsonErr{
-                    print(jsonErr)
-                }
+            switch response.result{
+            case .success(let value):
+                let json = JSON(value)
+                self.JSONtoData(json: json)
+//                DispatchQueue.main.async {
+//                 //print("loading data")
+//                }
+            case .failure(let error):
+                print(error)
             }
+
+//            if let data = response.data {
+//                do{
+//                    let newsList = try JSONDecoder().decode([News].self, from: data)
+//                    // to be implement realm action
+//                    completion(newsList)
+//                } catch let jsonErr{
+//                    print(jsonErr)
+//                }
+//            }
         }
     }
     
@@ -159,6 +176,22 @@ class APIService: NSObject {
                 }
             }
         }
+    }
+    
+    private func JSONtoData(json: JSON){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
+        realm.beginWrite()
+        if let collection = json["articles"].array{
+            for item in collection {
+                let date = dateFormatter.date(from: item["publishedTime"].string!)
+                if realm.object(ofType: News.self, forPrimaryKey: _id) == nil {
+                    realm.create(News.self, value: [_id, title, newsDescription, imageURL, detail, publishedTiem, author, localeTag, contentTag])
+                    
+                }
+            }
+        }
+        
     }
     
 }

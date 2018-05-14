@@ -45,6 +45,8 @@
 		1A092E4620A42D1E00FB71C0 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A092E2F20A42D1E00FB71C0 /* APIService.swift */; };
 		1A092E4720A42D1E00FB71C0 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A092E3020A42D1E00FB71C0 /* Extensions.swift */; };
 		1A092E4820A42D1E00FB71C0 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A092E3120A42D1E00FB71C0 /* BaseCell.swift */; };
+		2BCF5C3420A966B3002131BF /* NewsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF5C3320A966B3002131BF /* NewsRealm.swift */; };
+		2BCF5C3620A97185002131BF /* SaveStructToRealmObjectsInNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCF5C3520A97185002131BF /* SaveStructToRealmObjectsInNews.swift */; };
 		4577D63C2091A3920087DF80 /* MarketCapCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D62E2091A3920087DF80 /* MarketCapCoin.swift */; };
 		4577D63D2091A3920087DF80 /* CryptoCompareCoinListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D62F2091A3920087DF80 /* CryptoCompareCoinListResult.swift */; };
 		4577D63E2091A3920087DF80 /* ExchangeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4577D6302091A3920087DF80 /* ExchangeList.swift */; };
@@ -136,6 +138,8 @@
 		1A092E3020A42D1E00FB71C0 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1A092E3120A42D1E00FB71C0 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
+		2BCF5C3320A966B3002131BF /* NewsRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRealm.swift; sourceTree = "<group>"; };
+		2BCF5C3520A97185002131BF /* SaveStructToRealmObjectsInNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveStructToRealmObjectsInNews.swift; sourceTree = "<group>"; };
 		4577D62E2091A3920087DF80 /* MarketCapCoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCapCoin.swift; sourceTree = "<group>"; };
 		4577D62F2091A3920087DF80 /* CryptoCompareCoinListResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareCoinListResult.swift; sourceTree = "<group>"; };
 		4577D6302091A3920087DF80 /* ExchangeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeList.swift; sourceTree = "<group>"; };
@@ -301,6 +305,8 @@
 				1A092E1D20A42D1E00FB71C0 /* Genuine.swift */,
 				1A092E1E20A42D1E00FB71C0 /* News.swift */,
 				1A092E1F20A42D1E00FB71C0 /* Video.swift */,
+				2BCF5C3320A966B3002131BF /* NewsRealm.swift */,
+				2BCF5C3520A97185002131BF /* SaveStructToRealmObjectsInNews.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -640,6 +646,7 @@
 				576FA91120995164005B6406 /* TransactionsHistory.swift in Sources */,
 				1A092E4120A42D1E00FB71C0 /* NewsMenuBar.swift in Sources */,
 				04E4F01A209B19A700A2D0BF /* NewsFlashViewController.swift in Sources */,
+				2BCF5C3620A97185002131BF /* SaveStructToRealmObjectsInNews.swift in Sources */,
 				576FA8EA2091E5AC005B6406 /* TransDateCell.swift in Sources */,
 				576FA8EC2091E5D8005B6406 /* TransTimeCell.swift in Sources */,
 				4577D63C2091A3920087DF80 /* MarketCapCoin.swift in Sources */,
@@ -663,6 +670,7 @@
 				576FA8E22091E154005B6406 /* TransCoinMarketCell.swift in Sources */,
 				04E4F020209B19BB00A2D0BF /* TimelineTableViewCell.swift in Sources */,
 				04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */,
+				2BCF5C3420A966B3002131BF /* NewsRealm.swift in Sources */,
 				57510E1A20A130DC00E7A7D9 /* GetDataResult.swift in Sources */,
 				1A092E3520A42D1E00FB71C0 /* VideoDetailViewController.swift in Sources */,
 				576FA8E82091E53F005B6406 /* TransNumberCell.swift in Sources */,
