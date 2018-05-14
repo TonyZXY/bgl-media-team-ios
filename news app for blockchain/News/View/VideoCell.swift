@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class VideoCell: BaseCell {
     weak var homeViewController: HomeViewController?
@@ -16,16 +17,13 @@ class VideoCell: BaseCell {
             titleLabel.text = video?.title
             timeLabel.text = video?.publishedTime
             authorLabel.text = video?.author
-//            print(video?.url)
-            imageView.image = #imageLiteral(resourceName: "loading")
-            viimage = ImageLoader.instance.loadImage(imageURL: (video?.imageURL)!)
+            print(video?.imageURL)
+            if video?.imageURL != nil {
+                loadImage(imageView: imageView, urlString: (video?.imageURL)!)
+            }
         }
     }
-    var viimage: UIImage?{
-        didSet{
-            imageView.image = viimage
-        }
-    }
+    
     
     let view: UIView = {
         let view = UIView()

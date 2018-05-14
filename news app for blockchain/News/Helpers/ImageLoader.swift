@@ -14,20 +14,19 @@ class ImageLoader: NSObject {
     
     var imageCache = NSCache<AnyObject, AnyObject>()
     
-    func loadImage(imageURL:String) -> UIImage{
+    func loadImages(imageURL:String) -> UIImage{
         var image:UIImage? = nil
-        let url = URL(string: imageURL)
-        if let imageFromCache = imageCache.object(forKey: imageURL as AnyObject) as? UIImage{
-            image = imageFromCache
-        }else{
-            do{
-                image = try UIImage(data: Data(contentsOf: url!))!
-            }catch let err{
-                print(err)
+            let url = URL(string: imageURL)
+            if let imageFromCache = self.imageCache.object(forKey: imageURL as AnyObject) as? UIImage{
+                image = imageFromCache
+            }else{
+                do{
+                    image = try UIImage(data: Data(contentsOf: url!))!
+                }catch let err{
+                    print(err)
+                }
+                self.imageCache.setObject(image!, forKey: imageURL as AnyObject)
             }
-            imageCache.setObject(image!, forKey: imageURL as AnyObject)
-        }
-        
         return image!
     }
 }
