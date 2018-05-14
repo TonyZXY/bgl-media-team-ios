@@ -31,6 +31,7 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
         setupView()
         getCoinWatchList()
         marketSortPickerView.sortPickerViewDelegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: NSNotification.Name(rawValue: "updateWatchInWatchList"), object: nil)
     }
     
     //排序按钮
@@ -134,7 +135,7 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
         coinList.reloadData()
     }
     
-    func reloadDataAfterUpdateWatchList() {
+    @objc func reloadDataAfterUpdateWatchList() {
         print("reload data")
         getCoinWatchList()
         if let sortOption = sortOption {

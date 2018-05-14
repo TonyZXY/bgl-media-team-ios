@@ -48,6 +48,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         setupView()
         setSortbutton()
         sortdoneclick()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
         
         refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
     }
@@ -401,7 +402,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         }
     }
     
-    func reloadDataAfterUpdateWatchList() {
+    @objc func reloadDataAfterUpdateWatchList() {
         coinList.reloadData()
     }
 }

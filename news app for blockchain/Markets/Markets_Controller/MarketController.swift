@@ -129,6 +129,12 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
             fatalError("init(coder:) has not been implemented")
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updateWatchInWatchList"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
+    }
 }
 
 

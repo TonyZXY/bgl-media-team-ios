@@ -115,8 +115,10 @@ class MarketsCoinTableViewCell:UITableViewCell{
         realm.beginWrite()
         realm.delete(watchList[0])
         try! realm.commitWrite()
-        updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
-        removeWatchInMarketsCellDelegate?.reloadDataAfterUpdateWatchList?()
+//        updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateWatchInWatchList"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
+//        removeWatchInMarketsCellDelegate?.reloadDataAfterUpdateWatchList?()
     }
     
     var priceChange: Double?

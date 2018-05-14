@@ -154,6 +154,7 @@ class MarketCollectionViewCell:UICollectionViewCell{
         }
         try! realm.commitWrite()
         
-        updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
+//        updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateWatchInWatchList"), object: nil)
     }
 }
