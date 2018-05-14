@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Genuine :  Decodable {
+struct Genuine :  Decodable {
     var _id: String?
     var title: String?
     var genuineDescription: String?
@@ -18,5 +18,4 @@ class Genuine :  Decodable {
     var publishedTime: String?
     var author: String?
     var genuineTag: String?
-    
 }

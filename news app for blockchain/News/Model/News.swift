@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class News: Decodable {
+struct News: Decodable {
     var _id: String?
     var title: String?
     var newsDescription: String?

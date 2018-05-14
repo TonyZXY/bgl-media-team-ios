@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Video: Decodable {
+struct Video: Decodable {
     var _id: String?
     var title: String?
     var videoDescription: String?
