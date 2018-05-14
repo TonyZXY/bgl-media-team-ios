@@ -55,6 +55,14 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return cv
     }()
     
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
+    }()
+    
     override func setupViews() {
         super.setupViews()
         fetchData()
@@ -80,6 +88,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
+        cellListView.addSubview(self.refresher)
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: line)
         
@@ -150,6 +159,12 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             homeViewController!.navigationController?.pushViewController(newsViewController, animated: true)
             }
         }
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        fetchData()
+        print("start refreshing")
+        self.refresher.endRefreshing()
     }
     
     func fetchData() {
