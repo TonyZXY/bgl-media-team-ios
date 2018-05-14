@@ -17,9 +17,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     }// This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
     weak var homeViewController: HomeViewController?
 
-    // REVIEW: no need to store as property if it's only being used in one func -Johnny Lin
-    var videoDetailViewController: VideoDetailViewController = VideoDetailViewController()
-    var genuineDetailViewController: GenuineDetailViewController = GenuineDetailViewController()
     
     var newsArrayList:[Genuine] = Array<Genuine>()
     var videoArrayList:[Video] = Array<Video>()
@@ -173,10 +170,12 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
             position = indexPath.item
         }else{
             if(position==1){
+                let videoDetailViewController = VideoDetailViewController()
                 videoDetailViewController.video = videoArrayList[indexPath.item]
                 homeViewController!.navigationController?.pushViewController(videoDetailViewController, animated: true)
             }else{
                 if(indexPath.item != 0){
+                    let genuineDetailViewController = GenuineDetailViewController()
                     genuineDetailViewController.genuineContent = newsArrayList[indexPath.item - 1]
                     homeViewController?.navigationController?.pushViewController(genuineDetailViewController, animated: true)
                 }

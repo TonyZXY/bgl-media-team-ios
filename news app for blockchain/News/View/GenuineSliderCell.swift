@@ -34,8 +34,13 @@ class GenuineSliderCell: BaseCell {
         return vi
     }()
     
+    let imageContainer: UIView = {
+        let iv = UIView()
+        return iv
+    }()
+    
     func setupRootView(){
-        addSubview(view)
+        contentView.addSubview(view)
         addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: view)
         addConstraintsWithFormat(format: "V:|-2-[v0]-2-|", views: view)
     }
@@ -55,9 +60,13 @@ class GenuineSliderCell: BaseCell {
     }()
     
     func setupSubViews(){
-        view.addSubview(image)
-        addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: image)
-        addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: image)
+        view.addSubview(imageContainer)
+        imageContainer.addSubview(image)
+        imageContainer.clipsToBounds = true
+        addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: imageContainer)
+        addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: imageContainer)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: image)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: image)
         image.addSubview(textView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: textView)
         addConstraintsWithFormat(format: "V:|-100-[v0]|", views: textView)

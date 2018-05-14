@@ -15,7 +15,9 @@ class VideoCell: BaseCell {
     var video:Video? {
         didSet{
             titleLabel.text = video?.title
-            timeLabel.text = String().timeFormatter(timeString: (video?.publishedTime)!)
+            if let string = video?.publishedTime{
+                timeLabel.text = string.timeFormatter()
+            }
             authorLabel.text = video?.author
             if video?.imageURL != nil {
                 imageView.setImage(urlString: (video?.imageURL)!)
@@ -31,6 +33,12 @@ class VideoCell: BaseCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+    
+    let imageContainer: UIView = {
+        let iv = UIView()
         return iv
     }()
     
@@ -74,15 +82,19 @@ class VideoCell: BaseCell {
     }
     
     func setupSubViews(){
-        view.addSubview(imageView)
+        view.addSubview(imageContainer)
+        imageContainer.clipsToBounds = true
+        imageContainer.addSubview(imageView)
         view.addSubview(titleLabel)
         view.addSubview(timeLabel)
         view.addSubview(authorLabel)
         let height = (frame.width-30) * 9/16
+        addConstraintsWithFormat(format: "H:|[v0]|", views: imageView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: imageView)
         addConstraintsWithFormat(format: "H:|-10-[v0(90)]", views: authorLabel,timeLabel)
-        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: imageView)
+        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: imageContainer)
         addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: titleLabel)
-        addConstraintsWithFormat(format: "V:|-10-[v0(\(height))]-5-[v1(25)]-5-[v2(15)]", views: imageView,titleLabel,authorLabel)
+        addConstraintsWithFormat(format: "V:|-10-[v0(\(height))]-5-[v1(25)]-5-[v2(15)]", views: imageContainer,titleLabel,authorLabel)
         
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 5))
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 15))

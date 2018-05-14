@@ -15,8 +15,7 @@ class NewsDetailViewController: UIViewController {
             setupContent()
         }
     }
-        
-    var string = String()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +31,9 @@ class NewsDetailViewController: UIViewController {
     
     func setupContent(){
         titleView.text = newsContent?.title
-        timeLabel.text = String().timeFormatter(timeString: (newsContent?.publishedTime)!)
+        if let string = newsContent?.publishedTime {
+            timeLabel.text = string.timeFormatter()
+        }
         authorLabel.text = newsContent?.author
         textView.text = newsContent?.detail
         newsImageView.setImage(urlString: (newsContent?.imageURL)!)

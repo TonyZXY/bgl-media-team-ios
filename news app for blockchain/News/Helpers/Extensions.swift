@@ -34,11 +34,11 @@ extension UIImageView {
 }
 
 extension String {
-    func timeFormatter(timeString: String) -> String {
+    func timeFormatter() -> String {
         let time: String
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        let date = dateFormatter.date(from: timeString)
+        let date = dateFormatter.date(from: self)
         let dateToString = DateFormatter()
         dateToString.dateFormat = "EEEE, dd MMMM yyyy HH:mm"
         dateToString.locale = Locale(identifier: "en_AU")

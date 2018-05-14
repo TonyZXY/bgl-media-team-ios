@@ -29,6 +29,7 @@ class GenuineCell: BaseCell {
     
     let newsImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -57,6 +58,11 @@ class GenuineCell: BaseCell {
         return text
     }()
     
+    let imageContainer: UIView = {
+        let iv = UIView()
+        return iv
+    }()
+    
     override func setupViews(){
         addSubview(view)
         // REVIEW: in a separate method -Johnny Lin
@@ -64,13 +70,17 @@ class GenuineCell: BaseCell {
         addConstraintsWithFormat(format: "V:|-1-[v0]-1-|", views: view)
         view.layer.cornerRadius = 15
         view.layer.masksToBounds = true
-        view.addSubview(newsImage)
+        view.addSubview(imageContainer)
+        imageContainer.addSubview(newsImage)
+        imageContainer.clipsToBounds = true
         view.addSubview(titleLabel)
         view.addSubview(subtitleTextView)
         view.addSubview(authorText)
         view.backgroundColor = ThemeColor().walletCellcolor()
-        addConstraintsWithFormat(format: "H:|-16-[v0(135)]-8-[v1]-16-|",    views: newsImage,titleLabel)
-        addConstraintsWithFormat(format: "V:|-16-[v0]-16-|",                views: newsImage)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: newsImage)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: newsImage)
+        addConstraintsWithFormat(format: "H:|-16-[v0(135)]-8-[v1]-16-|",    views: imageContainer,titleLabel)
+        addConstraintsWithFormat(format: "V:|-16-[v0]-16-|",                views: imageContainer)
         addConstraintsWithFormat(format: "V:|-13-[v0]",                     views: titleLabel)
         
         

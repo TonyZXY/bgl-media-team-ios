@@ -16,8 +16,6 @@ class GenuineDetailViewController: UIViewController {
         }
     }
     
-    var string = String()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRootView()
@@ -34,7 +32,10 @@ class GenuineDetailViewController: UIViewController {
         titleView.text = genuineContent?.title
         newsImageView.setImage(urlString: (genuineContent?.imageURL)!)
         // REVIEW: should use time string it self, something like (genuineContent?.publishedTime)!.formattedString() -Johnny Lin
-        timeLabel.text = String().timeFormatter(timeString: (genuineContent?.publishedTime)!)
+//        timeLabel.text =
+        if let string = genuineContent?.publishedTime {
+            timeLabel.text = string.timeFormatter()
+        }
         authorLabel.text = genuineContent?.author
         textView.text = genuineContent?.detail
     }
