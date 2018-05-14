@@ -8,35 +8,19 @@
 
 import UIKit
 import Alamofire
-import RealmSwift
+import Realm
 
 class APIService: NSObject {
     static let shardInstance = APIService()
     
-    let realm = try! Realm()
-    
-    
-    
-    func fetchLocalNews(completion: @escaping (Results<News>) -> ()){
+    func fetchLocalNews(completion: @escaping ([News]) -> ()){
         //国内
         Alamofire.request("http://10.10.6.111:3000/api/getNewsLocaleOnly?localeTag=%E5%9B%BD%E5%86%85", method: .get).validate().responseJSON { response in
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
                     // to be implement realm action
-                    self.realm.beginWrite()
-                    for news in newsList {
-                        if self.realm.object(ofType: News.self, forPrimaryKey: news._id) == nil{
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime])
-                        } else {
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime], update: true)
-                        }
-                    }
-                    try! self.realm.commitWrite()
-                    let tag = "国内"
-                    let newsListToView = try! self.realm.objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("localeTag == %@",tag)
-                    print(newsListToView.count)
-                    completion(newsListToView)
+                    completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
                 }
@@ -44,26 +28,14 @@ class APIService: NSObject {
         }
     }
     
-    func fetchInternationalNews(completion: @escaping (Results<News>) -> ()){
+    func fetchInternationalNews(completion: @escaping ([News]) -> ()){
         //国际
         Alamofire.request("http://10.10.6.111:3000/api/getNewsLocaleOnly?localeTag=%E5%9B%BD%E9%99%85").responseJSON { response in
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
-                    self.realm.beginWrite()
-                    for news in newsList {
-                        if self.realm.object(ofType: News.self, forPrimaryKey: news._id) == nil{
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime])
-                        } else {
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime], update: true)
-                        }
-                    }
-                    try! self.realm.commitWrite()
-                    
-                    let tag = "国际"
-                    let newsListToView = try! self.realm.objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("localeTag == %@",tag)
                     // to be implement realm action
-                    completion(newsListToView)
+                    completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
                 }
@@ -71,26 +43,14 @@ class APIService: NSObject {
         }
     }
     
-    func fetchNewsContentTypeOne(completion: @escaping (Results<News>) -> ()){
-        //深度
+    func fetchNewsContentTypeOne(completion: @escaping ([News]) -> ()){
+        //时事
         Alamofire.request("http://10.10.6.111:3000/api/getNewsContentOnly?contentTag=%E6%B7%B1%E5%BA%A6").responseJSON { response in
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
-                    self.realm.beginWrite()
-                    for news in newsList {
-                        if self.realm.object(ofType: News.self, forPrimaryKey: news._id) == nil{
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime])
-                        } else {
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime], update: true)
-                        }
-                    }
-                    try! self.realm.commitWrite()
-                    
-                    let tag = "深度"
-                    let newsListToView = try! self.realm.objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("contentTag == %@",tag)
                     // to be implement realm action
-                    completion(newsListToView)
+                    completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
                 }
@@ -98,26 +58,14 @@ class APIService: NSObject {
         }
     }
     
-    func fetchNewsContentTypeTwo(completion: @escaping (Results<News>) -> ()){
-        //趋势
+    func fetchNewsContentTypeTwo(completion: @escaping ([News]) -> ()){
+        //消息
         Alamofire.request("http://10.10.6.111:3000/api/getNewsContentOnly?contentTag=%E8%B6%8B%E5%8A%BF").responseJSON { response in
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
-                    self.realm.beginWrite()
-                    for news in newsList {
-                        if self.realm.object(ofType: News.self, forPrimaryKey: news._id) == nil{
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime])
-                        } else {
-                            self.realm.create(News.self, value: [news._id,news.author,news.contentTag,news.detail,news.imageURL,news.localeTag,news.newsDescription,news.publishedTime], update: true)
-                        }
-                    }
-                    try! self.realm.commitWrite()
-                    
-                    let tag = "趋势"
-                    let newsListToView = try! self.realm.objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("contentTag == %@",tag)
                     // to be implement realm action
-                    completion(newsListToView)
+                    completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
                 }
