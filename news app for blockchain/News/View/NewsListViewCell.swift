@@ -36,7 +36,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     let line: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray
-//        view.backgroundColor = ThemeColor().themeColor()
+//      view.backgroundColor = ThemeColor().themeColor()
         return view
     }()
     
@@ -48,6 +48,15 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         cv.dataSource = self
         cv.delegate = self
         return cv
+    }()
+    
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
+        //refreshControl.addTarget(self, action: #selector(self.fetchData(d:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
     }()
     
     override func setupViews() {
@@ -62,6 +71,8 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         selectionView.reloadData() // REVIEW: no need to call it here as it's loaded on start-Johnny Lin
         let selectedIndexPath = IndexPath(item: 0, section: 0)
         selectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition:.left)
+        //cellListView.addSubview(self.refresher)
+        
     }
     
     func setupRootView(){
@@ -75,6 +86,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
+        cellListView.addSubview(self.refresher)
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: line)
         
@@ -161,6 +173,13 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
 //            self.collectionView.reloadData()
 //        }
 //    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        //getNews()
+        fetchData(d: newsArrayList.count)
+        print("start refreshing")
+        self.refresher.endRefreshing()
+    }
     
     func fetchData(d:Int) {
         if(d == 0){

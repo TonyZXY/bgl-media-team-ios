@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import Realm
+import RealmSwift
 
 class APIService: NSObject {
     static let shardInstance = APIService()

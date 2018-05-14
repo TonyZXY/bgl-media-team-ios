@@ -15,7 +15,8 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
             fetchData()
             cellListView.reloadData()
         }
-    }// This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
+    }
+    // This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
     weak var homeViewController: HomeViewController?
     
     var videoDetailViewController: VideoDetailViewController = VideoDetailViewController()
@@ -59,6 +60,15 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         return cv
     }()
     
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
+        //refreshControl.addTarget(self, action: #selector(self.fetchData(d:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
+    }()
+    
     override func setupViews() {
         super.setupViews()
         position = 0
@@ -85,6 +95,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
+        cellListView.addSubview(self.refresher)
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: line)
         addConstraintsWithFormat(format: "H:|-5-[v0]|", views: selectionView)
@@ -186,6 +197,14 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
             }
         }
     }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        //getNews()
+        fetchData()
+        print("start refreshing")
+        self.refresher.endRefreshing()
+    }
+    
     
     func fetchData() {
         if(position == 0){

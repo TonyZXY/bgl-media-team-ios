@@ -8,7 +8,7 @@
 
 import UIKit
 // REVIEW: class name perhaps can be BGLNewsHomeViewController -Johnny Lin
-class HomeViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+class HomeViewController: UIViewController,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout{
     // REVIEW: use specific id instead of general id and it should be stored in ListViewCell
     // For instance something like static let CellIdentifier = "NewsListCell"  -Johnny Lin
     let cellId = "cellId"
@@ -29,8 +29,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         titleLabel.textColor = UIColor.white
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         navigationItem.titleView = titleLabel
-        
-        
         setupView()
         
     }
@@ -122,7 +120,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
     
     func scrollToMenuIndex(menuIndex: Int){
         let indexPath = IndexPath(item: menuIndex, section: 0)
