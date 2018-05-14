@@ -9,14 +9,17 @@
 import UIKit
 import RealmSwift
 
-class Genuine :  Decodable {
-    var _id: String?
-    var title: String?
-    var genuineDescription: String?
-    var imageURL: String?
-    var detail: String?
-    var publishedTime: String?
-    var author: String?
-    var genuineTag: String?
+class Genuine : Object, Decodable {
+    @objc dynamic var _id: String? = ""
+    @objc dynamic var title: String? = ""
+    @objc dynamic var genuineDescription: String? = ""
+    @objc dynamic var imageURL: String? = ""
+    @objc dynamic var detail: String? = ""
+    @objc dynamic var publishedTime: String? = ""
+    @objc dynamic var author: String? = ""
+    @objc dynamic var genuineTag: String? = ""
     
+    override class func primaryKey() -> String {
+        return "_id"
+    }
 }
