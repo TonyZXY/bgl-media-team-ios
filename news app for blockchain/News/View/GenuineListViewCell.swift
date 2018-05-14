@@ -13,7 +13,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     var position:Int = 0 {
         didSet{
             fetchData()
-            cellListView.reloadData()
         }
     }// This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
     weak var homeViewController: HomeViewController?
@@ -44,8 +43,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     let line:UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray
-//        view.backgroundColor = ThemeColor().themeColor()
-
         return view
     }()
     

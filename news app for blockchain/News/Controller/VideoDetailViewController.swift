@@ -52,7 +52,7 @@ class VideoDetailViewController: UIViewController {
         scrollView.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: descriptionLabel)
         
         
-        scrollView.addConstraintsWithFormat(format: "V:|-5-[v0(\(height))]-8-[v1(52)]-8-[v2(15)]-8-[v3(15)]-16-[v4]-10-|", views: videoplayer,titleLabel,timeLabel,authorLabel,descriptionLabel)
+        scrollView.addConstraintsWithFormat(format: "V:|[v0(\(height))]-8-[v1(52)]-8-[v2(15)]-8-[v3(15)]-16-[v4]-16-|", views: videoplayer,titleLabel,timeLabel,authorLabel,descriptionLabel)
     }
     
     func setupContent(){

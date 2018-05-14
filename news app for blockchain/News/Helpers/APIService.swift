@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Realm
 
 class APIService: NSObject {
     static let shardInstance = APIService()
@@ -16,9 +17,9 @@ class APIService: NSObject {
         //国内
         Alamofire.request("http://10.10.6.111:3000/api/getNewsLocaleOnly?localeTag=%E5%9B%BD%E5%86%85", method: .get).validate().responseJSON { response in
             if let data = response.data {
-                print(data)
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -31,9 +32,9 @@ class APIService: NSObject {
         //国际
         Alamofire.request("http://10.10.6.111:3000/api/getNewsLocaleOnly?localeTag=%E5%9B%BD%E9%99%85").responseJSON { response in
             if let data = response.data {
-                print(data)
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -46,9 +47,9 @@ class APIService: NSObject {
         //时事
         Alamofire.request("http://10.10.6.111:3000/api/getNewsContentOnly?contentTag=%E6%B7%B1%E5%BA%A6").responseJSON { response in
             if let data = response.data {
-                print(data)
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -61,9 +62,9 @@ class APIService: NSObject {
         //消息
         Alamofire.request("http://10.10.6.111:3000/api/getNewsContentOnly?contentTag=%E8%B6%8B%E5%8A%BF").responseJSON { response in
             if let data = response.data {
-                print(data)
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -77,6 +78,7 @@ class APIService: NSObject {
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([News].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -92,6 +94,7 @@ class APIService: NSObject {
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([Genuine].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -106,6 +109,7 @@ class APIService: NSObject {
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([Genuine].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -120,6 +124,7 @@ class APIService: NSObject {
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([Genuine].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -133,6 +138,7 @@ class APIService: NSObject {
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([Genuine].self, from: data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)
@@ -146,7 +152,7 @@ class APIService: NSObject {
             if let data = response.data {
                 do{
                     let newsList = try JSONDecoder().decode([Video].self, from: data)
-                    print(data)
+                    // to be implement realm action
                     completion(newsList)
                 } catch let jsonErr{
                     print(jsonErr)

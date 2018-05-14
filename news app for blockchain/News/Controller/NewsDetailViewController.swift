@@ -41,13 +41,11 @@ class NewsDetailViewController: UIViewController {
     lazy var rootView:UIScrollView = {
         let vi = UIScrollView()
         vi.backgroundColor = ThemeColor().themeColor()
-        //        vi.backgroundColor = UIColor.green
         return vi
     }()
     
     let titleView: UILabel = {
         let tv = UILabel()
-        //        tv.backgroundColor = UIColor.blue
         tv.font = tv.font.withSize(20)
         tv.numberOfLines = 0
         tv.textColor = UIColor.white
@@ -64,7 +62,6 @@ class NewsDetailViewController: UIViewController {
     
     let timeLabel: UILabel = {
         let tv = UILabel()
-        //        tv.backgroundColor = UIColor.blue
         tv.font = tv.font.withSize(10)
         tv.textAlignment = .left
         tv.textColor = UIColor.white
@@ -73,7 +70,6 @@ class NewsDetailViewController: UIViewController {
     
     let authorLabel: UILabel = {
         let tv = UILabel()
-        //        tv.backgroundColor = UIColor.blue
         tv.textColor = UIColor.white
         tv.textAlignment = .left
         tv.font = tv.font.withSize(10)
@@ -90,10 +86,6 @@ class NewsDetailViewController: UIViewController {
     
     func setupRootView(){
         view.addSubview(rootView)
-//        print(view.frame.width)
-        //        rootView.contentSize = CGSize(width: view.frame.width, height: 4000)
-        //        view.addConstraintsWithFormat(format: "H:|[v0]|", views: rootView)
-        //        view.addConstraintsWithFormat(format: "V:|[v0]|", views: rootView)
         rootView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         rootView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         rootView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
@@ -112,7 +104,7 @@ class NewsDetailViewController: UIViewController {
         rootView.addConstraintsWithFormat(format: "H:|-16-[v0]", views: authorLabel)
         rootView.addConstraintsWithFormat(format: "H:|-16-[v0(\(view.frame.width - 32))]-16-|", views: newsImageView)
         rootView.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: textView)
-        rootView.addConstraintsWithFormat(format: "V:|-16-[v0(52)]-8-[v1(15)]-8-[v2(15)]-16-[v3(250)]-16-[v4]|", views: titleView,timeLabel,authorLabel,newsImageView,textView)
+        rootView.addConstraintsWithFormat(format: "V:|-16-[v0(52)]-8-[v1(15)]-8-[v2(15)]-16-[v3(250)]-16-[v4]-16-|", views: titleView,timeLabel,authorLabel,newsImageView,textView)
         
     }
 }

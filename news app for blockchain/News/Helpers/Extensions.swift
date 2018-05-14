@@ -26,21 +26,10 @@ extension UIView {
     }
 }
 
-extension String {
-    func formatDate(date: String) -> String{
-        let formatter = DateFormatter()
-        
-        // Format 1
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        let parsedDate = formatter.date(from: date)
-//            print(parsedDate)
-        return "\(parsedDate!)"
-    }
-}
-
 extension UIImageView {
     func setImage(urlString: String) {
-        self.kf.setImage(with: URL(string: urlString))
+//        self.kf.setImage(with: URL(string: urlString))
+        self.kf.setImage(with: URL(string: urlString), placeholder: UIImage(named: "loading"))
     }
 }
 

@@ -36,7 +36,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     let line: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.gray
-//        view.backgroundColor = ThemeColor().themeColor()
         return view
     }()
     
@@ -99,7 +98,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //  var cell:UICollectionViewCell
         if collectionView == self.cellListView{
             if indexPath.item == 0{
                 let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! NewsSliderViewCell
@@ -112,7 +110,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
                 return cell3
             }else{
                 let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-//                cell2.titleLabel.text = newsArrayList[indexPath.item-1].title
                 cell2.news = newsArrayList[indexPath.item - 1]
                 return cell2
             }
@@ -121,7 +118,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             cell1.textLabel.text = selectionOptionOne[indexPath.item]
             return cell1
         }
-        //        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -144,23 +140,11 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             fetchData(d: indexPath.item)
         }else{
             if(indexPath.item != 0){
-//            print("List \(homeViewController!.navigationController)")
-//            newsViewController.newsContent = ??
             newsViewController.newsContent = newsArrayList[indexPath.item-1]
             homeViewController!.navigationController?.pushViewController(newsViewController, animated: true)
             }
-            // This area calls News Detail View
-            //            let newsLauncher = NewsLauncher()
-            //            newsLauncher.showNewsDetail(str: "123")
         }
     }
-    
-//    @objc func getData(){
-//        APIService.shardInstance.fetchNews { (newsArrayList:[News]) in
-//            self.newsArrayList = newsArrayList
-//            self.collectionView.reloadData()
-//        }
-//    }
     
     func fetchData(d:Int) {
         if(d == 0){

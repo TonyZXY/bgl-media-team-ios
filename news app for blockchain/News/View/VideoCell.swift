@@ -17,7 +17,6 @@ class VideoCell: BaseCell {
             titleLabel.text = video?.title
             timeLabel.text = String().timeFormatter(timeString: (video?.publishedTime)!)
             authorLabel.text = video?.author
-//            print(video?.imageURL)
             if video?.imageURL != nil {
                 imageView.setImage(urlString: (video?.imageURL)!)
             }

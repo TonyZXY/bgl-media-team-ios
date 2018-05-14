@@ -12,8 +12,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
     // REVIEW: use specific id instead of general id and it should be stored in ListViewCell
     // For instance something like static let CellIdentifier = "NewsListCell"  -Johnny Lin
     let cellId = "cellId"
-    
-    let newsDetail: NewsDetailViewController = NewsDetailViewController()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +21,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         navigationController?.navigationBar.backgroundColor = ThemeColor().themeColor()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //        print("Home \(navigationController)")
         // REVIEW: Can be in separate methods, such as registerCells -Johnny Lin
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: view.frame.height))
         titleLabel.text = "Blockchain Global"

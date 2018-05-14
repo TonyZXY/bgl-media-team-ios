@@ -29,7 +29,6 @@ class GenuineCell: BaseCell {
     
     let newsImage: UIImageView = {
         let imageView = UIImageView()
-//        imageView.backgroundColor = UIColor.blue
         return imageView
     }()
     
@@ -38,13 +37,11 @@ class GenuineCell: BaseCell {
         label.font = label.font.withSize(14)
         label.numberOfLines = 2
         label.textColor = UIColor.white
-//        label.backgroundColor = UIColor.blue
         return label
     }()
     
     let subtitleTextView: UILabel = {
         let textView = UILabel()
-//        textView.backgroundColor = UIColor.green
         textView.textColor = UIColor.lightGray
         textView.font = textView.font.withSize(12)
         textView.numberOfLines = 2
@@ -54,7 +51,6 @@ class GenuineCell: BaseCell {
     
     let authorText: UILabel = {
         let text = UILabel()
-//        text.backgroundColor = UIColor.green
         text.textColor = UIColor.lightGray
         text.font = UIFont.systemFont(ofSize: 10)
         text.translatesAutoresizingMaskIntoConstraints = false
