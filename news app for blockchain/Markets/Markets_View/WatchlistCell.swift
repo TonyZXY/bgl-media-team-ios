@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, SortPickerViewDelegate, UpdateWatchDelegate {
+class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, SortPickerViewDelegate {
     
     var marketSortPickerView = MarketSortPickerView()
     var sortitems = ["按字母排序","按最高价排序"]
@@ -21,8 +21,6 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
     var tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self)
     
     var filterDateSelection: Int?
-    
-    weak var removeWatchInMarketsCellDelegate: UpdateWatchDelegate?
     
     var sortOption: Int?
     
@@ -107,8 +105,6 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
 
         cell.priceChange = [object.percent_change_7d, object.percent_change_24h, object.percent_change_1h][filterDateSelection ?? 0]
         cell.object = object
-        cell.updateWatchInWatchListDelegate = self
-        cell.removeWatchInMarketsCellDelegate = removeWatchInMarketsCellDelegate
         
         return cell
     }
@@ -136,7 +132,6 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
     }
     
     @objc func reloadDataAfterUpdateWatchList() {
-        print("reload data")
         getCoinWatchList()
         if let sortOption = sortOption {
             if sortOption == 0 {
@@ -172,9 +167,3 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":marketSortPickerView]))
     }
 }
-
-
-@objc protocol UpdateWatchDelegate: class {
-    @objc optional func reloadDataAfterUpdateWatchList()
-}
-

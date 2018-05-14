@@ -12,9 +12,6 @@ import RealmSwift
 class MarketsCoinTableViewCell:UITableViewCell{
     var color = ThemeColor()
     
-    weak var updateWatchInWatchListDelegate: UpdateWatchDelegate?
-    weak var removeWatchInMarketsCellDelegate: UpdateWatchDelegate?
-    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupviews()
@@ -115,10 +112,8 @@ class MarketsCoinTableViewCell:UITableViewCell{
         realm.beginWrite()
         realm.delete(watchList[0])
         try! realm.commitWrite()
-//        updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateWatchInWatchList"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
-//        removeWatchInMarketsCellDelegate?.reloadDataAfterUpdateWatchList?()
     }
     
     var priceChange: Double?
@@ -131,7 +126,6 @@ class MarketsCoinTableViewCell:UITableViewCell{
             coinNumber.text = "AUD $" + "\(roundedPrice)"
             coinChange.text = "\(priceChange ?? 0.0)"
             
-//            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
             coinImage.coinImageSetter(coinName: object!.symbol)
             
             guard let percentChange = priceChange else { return }

@@ -18,9 +18,7 @@ class MarketCollectionViewCell:UICollectionViewCell{
     }
     
     var priceChange: Double?
-    
-    weak var updateWatchInWatchListDelegate: UpdateWatchDelegate?
-    
+        
     var object: TickerDataRealm? {
         didSet {
             var roundedPrice = object?.price ?? 0.0
@@ -154,7 +152,6 @@ class MarketCollectionViewCell:UICollectionViewCell{
         }
         try! realm.commitWrite()
         
-//        updateWatchInWatchListDelegate?.reloadDataAfterUpdateWatchList?()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateWatchInWatchList"), object: nil)
     }
 }

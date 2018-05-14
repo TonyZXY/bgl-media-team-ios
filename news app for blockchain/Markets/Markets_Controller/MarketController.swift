@@ -26,16 +26,6 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: menuitems[indexPath.row], for: indexPath)
         
-        if indexPath.row == 1 {
-            if let watchListCell = cell as? WatchList {
-                watchListCell.removeWatchInMarketsCellDelegate = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? MarketsCell
-                if let marketsCell = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as? MarketsCell {
-                    marketsCell.updateWatchInWatchListDelegate = watchListCell
-                }
-                return watchListCell
-            }
-        }
-        
         return cell
     }
     

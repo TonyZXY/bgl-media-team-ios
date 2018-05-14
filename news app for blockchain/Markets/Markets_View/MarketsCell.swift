@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UpdateWatchDelegate {
+class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIPickerViewDelegate, UIPickerViewDataSource, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     var color = ThemeColor()
     var sortItems = ["按字母排序","按最高价排序"]
@@ -38,9 +38,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     var isSearching = false
     
     lazy var filteredCoinList = try! Realm().objects(TickerDataRealm.self)
-    
-    weak var updateWatchInWatchListDelegate: UpdateWatchDelegate?
-        
+            
     override init(frame: CGRect) {
         super.init(frame: frame)
         refreshData()
@@ -215,7 +213,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             }
             cell.priceChange = [object.percent_change_7d, object.percent_change_24h, object.percent_change_1h][filterDateSelection ?? 0]
             cell.object = object
-            cell.updateWatchInWatchListDelegate = updateWatchInWatchListDelegate
             
             return cell
         } else{
