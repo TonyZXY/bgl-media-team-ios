@@ -38,11 +38,11 @@ extension String {
     }
 }
 
-//extension UIImageView {
-//    func setImage(urlString: String) {
-//        self.kf.setImage(with: <#T##Resource?#>)
-//    }
-//}
+extension UIImageView {
+    func setImage(urlString: String) {
+        self.kf.setImage(with: URL(string: urlString))
+    }
+}
 
 
 public extension UIDevice {

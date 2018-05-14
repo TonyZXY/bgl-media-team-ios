@@ -32,7 +32,7 @@ class GenuineDetailViewController: UIViewController {
     
     func setupContent(){
         titleView.text = genuineContent?.title
-        newsImageView.image = ImageLoader.instance.loadImage(imageURL: (genuineContent?.imageURL)!)
+        newsImageView.setImage(urlString: (genuineContent?.imageURL)!)
         timeLabel.text = genuineContent?.publishedTime
         authorLabel.text = genuineContent?.author
         textView.text = genuineContent?.detail

@@ -14,7 +14,7 @@ class NewsSliderCell: BaseCell {
         didSet{
             textView.text = newsContent?.title
             if(newsContent != nil){
-                image.image = ImageLoader.instance.loadImage(imageURL: (newsContent?.imageURL)!)
+                image.setImage(urlString: (newsContent?.imageURL)!)
             }
         }
     }

@@ -15,7 +15,9 @@ class NewsCell: BaseCell {
     var news:News? {
         didSet{
             titleLabel.text = news?.title
-            newsImage.image = ImageLoader.instance.loadImage(imageURL: (news?.imageURL)!)
+            if news?.imageURL != nil{
+                newsImage.setImage(urlString: (news?.imageURL)!)
+            }
             subtitleTextView.text = news?.newsDescription
             authorText.text = news?.author
         }

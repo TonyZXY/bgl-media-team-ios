@@ -14,7 +14,9 @@ class GenuineCell: BaseCell {
     var genuine:Genuine? {
         didSet{
             titleLabel.text = genuine?.title
-            newsImage.image = ImageLoader.instance.loadImage(imageURL: (genuine?.imageURL)!)
+            if genuine?.imageURL != nil {
+                newsImage.setImage(urlString: (genuine?.imageURL)!)
+            }
             subtitleTextView.text = genuine?.genuineDescription
             authorText.text = genuine?.author
         }

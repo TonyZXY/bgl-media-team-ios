@@ -17,9 +17,9 @@ class VideoCell: BaseCell {
             titleLabel.text = video?.title
             timeLabel.text = video?.publishedTime
             authorLabel.text = video?.author
-            print(video?.imageURL)
+//            print(video?.imageURL)
             if video?.imageURL != nil {
-                loadImage(imageView: imageView, urlString: (video?.imageURL)!)
+                imageView.setImage(urlString: (video?.imageURL)!)
             }
         }
     }
