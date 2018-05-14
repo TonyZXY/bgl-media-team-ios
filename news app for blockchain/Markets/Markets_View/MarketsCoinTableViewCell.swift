@@ -129,7 +129,8 @@ class MarketsCoinTableViewCell:UITableViewCell{
             coinNumber.text = "AUD $" + "\(roundedPrice)"
             coinChange.text = "\(priceChange ?? 0.0)"
             
-            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
+//            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
+            coinImage.coinImageSetter(coinName: object!.symbol)
             
             guard let percentChange = priceChange else { return }
             if percentChange > 0.0 {

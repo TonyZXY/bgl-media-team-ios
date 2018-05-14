@@ -37,7 +37,8 @@ class MarketCollectionViewCell:UICollectionViewCell{
                 coinChange.textColor = .red
             }
             
-            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
+//            coinImageSetter(coinImage: coinImage, coinName: object!.symbol)
+            coinImage.coinImageSetter(coinName: object!.symbol)
             
             let watchList = try! Realm().objects(CoinsInWatchListRealm.self).filter("symbol = %@", object!.symbol)
             if watchList.count == 1 {
