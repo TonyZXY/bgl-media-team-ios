@@ -9,41 +9,73 @@
 import UIKit
 import RealmSwift
 
-var coinNameSelect:String = ""
-var coinAbbNameSelect:String = ""
-var exchangesNameSelect:String = ""
-var tradingPairsNameSelect:String = ""
-var tradingPairsAll = [String]()
-var tradingPrice = ""
-var transactionExpense:String = ""
-
-class TransactionsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout{
+class TransactionsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout,TransactionFrom,UITextFieldDelegate{
+    
+    let newTransaction = AllTransactions()
     var cells = ["CoinTypeCell","CoinMarketCell","TradePairsCell","PriceCell","NumberCell","DateCell","TimeCell","ExpensesCell","AdditionalCell"]
-    var selectedindex = 0
     var color = ThemeColor()
-    var theme:ThemeColor!
     var transaction:String = "Buy"
-    var prices:String = "kk"
     let cryptoCompareClient = CryptoCompareClient()
     let realm = try! Realm()
-    var transactionItem = [String]()
+    var priceCurrency:Float = 0.0
+    var transcationData = TransactionFormData()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = color.themeColor()
         setupView()
-        tabBarController?.tabBar.isHidden = true
-        let titleLabel = UILabel()
-        titleLabel.text = "Blockchain Global"
-        titleLabel.textColor = UIColor.white
-        navigationItem.titleView = titleLabel
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
-            self.transactionTableView.reloadData()
             self.loadPrice()
+            self.transactionTableView.reloadData()
         }
+    }
+    
+    @objc func addTransaction(){
+        newTransaction.totalPrice = Float(newTransaction.amount) * newTransaction.singlePrice
+        if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0" && String(newTransaction.singlePrice) != "0"{
+            transactionButton.setTitle("Loading...", for: .normal)
+            
+            GetDataResult().getCurrencyApi(from: newTransaction.tradingPairsName, to: "USD", price: newTransaction.singlePrice){success,price in
+            if success{
+                self.newTransaction.usdSinglePrice = price
+                print("thread\(Thread.current)")
+                DispatchQueue.main.async {
+                self.writeToRealm()
+                   self.navigationController?.popViewController(animated: true)
+                }
+            } else{
+                print("fail")
+            }
+        }
+            
+        GetDataResult().getCurrencyApi(from: newTransaction.tradingPairsName, to: "AUD", price: newTransaction.singlePrice){success,price in
+            if success{
+                self.newTransaction.audSinglePrice = price
+                
+                DispatchQueue.main.async {
+                    self.writeToRealm()
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } else{
+                print("fail")
+            }
+        }
+//        transactionButton.setTitle("Loading...", for: .normal)
+        }
+    }
+    
+    func writeToRealm(){
+        //Write to Transaction Model to realm
+        
+            realm.beginWrite()
+            realm.create(AllTransactions.self, value: ["Buy",newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
+            try! realm.commitWrite()
+        
+        
     }
     
     lazy var transactionTableView:UITableView = {
@@ -69,41 +101,8 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         button.setTitle("Add Transaction", for: .normal)
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = color.riseColor()
-        button.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
         return button
     }()
-    
-    @objc func addTransaction(){
-       
-        
-        let newTransaction = Wallet()
-        let index = IndexPath(row: 0, section: 0)
-        let coinName = (transactionTableView.cellForRow(at: index) as! TransCoinTypeCell).coin.text!
-        newTransaction.coinName = coinName
-        let index1 = IndexPath(row: 1, section: 0)
-        let marketName = (transactionTableView.cellForRow(at: index1) as! TransCoinMarketCell).market.text!
-        newTransaction.exchangName = marketName
-        newTransaction.priceChange = ""
-        newTransaction.coinAbbName = coinAbbNameSelect
-        newTransaction.tradingPairsName = tradingPairsNameSelect
-        let index2 = IndexPath(row: 4, section: 0)
-        let amount = Int((transactionTableView.cellForRow(at: index2) as! TransNumberCell).number.text!)!
-        newTransaction.coinAmount = amount
-        let index3 = IndexPath(row: 3, section: 0)
-        let single = Float((transactionTableView.cellForRow(at: index3) as! TransPriceCell).price.text!)!
-        newTransaction.singlePrice = single
-        newTransaction.totalPrice = Float(amount) * single
-        
-        realm.beginWrite()
-        if realm.object(ofType: Wallet.self, forPrimaryKey: newTransaction.coinName) == nil {
-            realm.create(Wallet.self, value: [newTransaction.coinName, newTransaction.exchangName, newTransaction.priceChange, newTransaction.coinAbbName, newTransaction.tradingPairsName, newTransaction.coinAmount,newTransaction.totalPrice,newTransaction.singlePrice])
-        } else {
-            realm.create(Wallet.self, value: [newTransaction.coinName, newTransaction.exchangName, newTransaction.priceChange, newTransaction.coinAbbName, newTransaction.tradingPairsName, newTransaction.coinAmount,newTransaction.totalPrice,newTransaction.singlePrice], update: true)
-        }
-        try! realm.commitWrite()
-        
-        navigationController?.popViewController(animated: true)
-    }
     
     lazy var buy:UIButton = {
         var button = UIButton(type: .system)
@@ -148,6 +147,14 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func setupView(){
+        view.backgroundColor = color.themeColor()
+        let titleLabel = UILabel()
+        titleLabel.text = "Blockchain Global"
+        titleLabel.textColor = UIColor.white
+        navigationItem.titleView = titleLabel
+        
+        transactionTableView.keyboardDismissMode = .onDrag
+        
         navigationController?.navigationBar.barTintColor =  color.themeColor()
         navigationController?.navigationBar.isTranslucent = false
         view.addSubview(transactionButton)
@@ -158,7 +165,7 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         sell.translatesAutoresizingMaskIntoConstraints = false
         transactionTableView.translatesAutoresizingMaskIntoConstraints = false
         transactionButton.translatesAutoresizingMaskIntoConstraints = false
-        
+        transactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]-10-[v1(==v0)]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v0(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
@@ -169,6 +176,10 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v3]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v2]-0-[v3(80)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        
+        let tableVC = UITableViewController.init(style: .plain)
+        tableVC.tableView = self.transactionTableView
+        self.addChildViewController(tableVC)
     }
     
     
@@ -185,30 +196,32 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[0], for: indexPath) as! TransCoinTypeCell
-            cell.backgroundColor = color.themeColor()
-            cell.coin.text = coinNameSelect
+            cell.coin.text = newTransaction.coinName
             return cell
         }else if indexPath.row == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[1], for: indexPath) as! TransCoinMarketCell
             cell.backgroundColor = color.themeColor()
-            cell.market.text = exchangesNameSelect
+            cell.market.text = newTransaction.exchangName
             return cell
         } else if indexPath.row == 2{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[2], for: indexPath) as! TransTradePairsCell
-            cell.backgroundColor = color.themeColor()
-            if tradingPairsNameSelect == ""{
+            if newTransaction.tradingPairsName == ""{
                 cell.trade.text = ""
             } else {
-                cell.trade.text = coinAbbNameSelect + "/" + tradingPairsNameSelect
+                if newTransaction.tradingPairsName != ""{
+                    cell.trade.text = newTransaction.coinAbbName + "/" + newTransaction.tradingPairsName
+                }
             }
             return cell
         }else if indexPath.row == 3{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[3], for: indexPath) as! TransPriceCell
             if transaction == "Buy"{
-                cell.priceLabel.text = "买入价格"
+                cell.priceLabel.text = "买入价格" + " " + newTransaction.tradingPairsName
             } else if transaction == "Sell"{
-                cell.priceLabel.text = "卖出价格"
+                cell.priceLabel.text = "卖出价格" + " " + newTransaction.tradingPairsName
             }
+            cell.price.tag = indexPath.row
+            cell.price.delegate = self
             return cell
         } else if indexPath.row == 4{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[4], for: indexPath) as! TransNumberCell
@@ -217,6 +230,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             } else if transaction == "Sell"{
                 cell.numberLabel.text = "出售数量"
             }
+            cell.number.tag = indexPath.row
+            cell.number.delegate = self
+            cell.number.clearsOnBeginEditing = true
             return cell
         } else if indexPath.row == 5{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[5], for: indexPath) as! TransDateCell
@@ -225,6 +241,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             } else if transaction == "Sell"{
                 cell.dateLabel.text = "出售日期"
             }
+            cell.date.tag = indexPath.row
+            textFieldDidEndEditing(cell.date)
+            cell.date.delegate = self
             return cell
         } else if indexPath.row == 6{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[6], for: indexPath) as! TransTimeCell
@@ -233,46 +252,134 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             } else if transaction == "Sell"{
                 cell.timeLabel.text = "出售时间"
             }
+            cell.time.tag = indexPath.row
+            textFieldDidEndEditing(cell.time)
+            cell.time.delegate = self
             return cell
         } else if indexPath.row == 7{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[7], for: indexPath) as! TransExpensesCell
-            cell.backgroundColor = color.themeColor()
-            cell.changeText(input: tradingPairsAll)
+            cell.changeText(first: transcationData.tradingPairsFirst,second:transcationData.tradingPairsSecond)
+            cell.expenses.tag = indexPath.row
+            cell.expenses.delegate = self
             return cell
-        }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: cells[indexPath.row], for: indexPath)
-            cell.backgroundColor = color.themeColor()
+        }else if indexPath.row == 8{
+            let cell = tableView.dequeueReusableCell(withIdentifier: cells[8], for: indexPath) as! TransAdditionalCell
+            cell.additional.tag = indexPath.row
+            cell.additional.delegate = self
             return cell
+        }else {
+            return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
             let searchdetail = SearchCoinController()
+            searchdetail.delegate = self
             navigationController?.pushViewController(searchdetail, animated: true)
         } else if indexPath.row == 1{
             let searchdetail = SearchExchangesController()
+            searchdetail.delegate = self
             navigationController?.pushViewController(searchdetail, animated: true)
         } else if indexPath.row == 2{
             let searchdetail = SearchTradingPairController()
+            searchdetail.delegate = self
             navigationController?.pushViewController(searchdetail, animated: true)
         }
     }
     
     func loadPrice(){
-        if coinNameSelect != "" && exchangesNameSelect != "" && tradingPairsNameSelect != ""{
-            cryptoCompareClient.getTradePrice(from: coinAbbNameSelect, to: tradingPairsNameSelect, exchange: exchangesNameSelect){ result in
+        if newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != ""{
+            cryptoCompareClient.getTradePrice(from: newTransaction.coinAbbName, to: newTransaction.tradingPairsName, exchange: newTransaction.exchangName){ result in
                 switch result{
                 case .success(let resultData):
                     for(_, value) in resultData!{
                         let index = IndexPath(row: 3, section: 0)
                         let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
                         cell.price.text = String(value)
+                        self.textFieldDidEndEditing(cell.price)
+                        print("success")
                     }
                 case .failure(let error):
                     print("the error \(error.localizedDescription)")
                 }
             }
+        } else{
+            newTransaction.singlePrice = 0
         }
     }
+    
+    func getExchangeName() -> String {
+        return newTransaction.exchangName
+    }
+    
+    func getCoinName() -> String {
+        return newTransaction.coinAbbName
+    }
+    
+    
+    func setTradingPairsFirstType(firstCoinType: [String]) {
+        transcationData.tradingPairsFirst = firstCoinType
+    }
+    
+    func setTradingPairsSecondType(secondCoinType: [String]) {
+        transcationData.tradingPairsSecond = secondCoinType
+    }
+    
+    func setCoinName(name: String) {
+        newTransaction.coinName = name
+    }
+    
+    func setCoinAbbName(abbName: String) {
+        newTransaction.coinAbbName = abbName
+    }
+    
+    func setExchangesName(exchangeName: String) {
+        newTransaction.exchangName = exchangeName
+    }
+    
+    func setTradingPairsName(tradingPairsName: String) {
+        newTransaction.tradingPairsName = tradingPairsName
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField.tag == 3{
+            if textField.text == "" || textField.text == nil{
+                textField.text = "0"
+            }
+            
+            newTransaction.singlePrice = Float(textField.text!)!
+        }
+        if textField.tag == 4{
+            if textField.text == "" || textField.text == nil{
+                textField.text = "0"
+            }
+            newTransaction.amount = Int(textField.text!)!
+            self.newTransaction.usdTotalPrice = newTransaction.usdSinglePrice * Float(self.newTransaction.amount)
+            self.newTransaction.audTotalPrice = newTransaction.audSinglePrice * Float(self.newTransaction.amount)
+        }
+        if textField.tag == 5{
+            newTransaction.date = textField.text!
+        }
+        if textField.tag == 6{
+            newTransaction.time = textField.text!
+        }
+        if textField.tag == 7{
+            newTransaction.expenses = textField.text!
+        }
+        if textField.tag == 8{
+            newTransaction.additional = textField.text!
+        }
+    }
+    
+    //    func textFieldDidBeginEditing(_ textField: UITextField) {
+    //        print(textField.tag)
+    //        if textField.tag == 3{
+    //            priceTextField = textField.text!
+    //            print(self.priceTextField + "/2")
+    //        }
+    //        if textField.tag == 4{
+    //            amountTextField = textField.text!
+    //        }
+    //    }
 }

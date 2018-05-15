@@ -14,10 +14,45 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
     var color = ThemeColor()
     var allTradingPairs = [String]()
     let getDataResults = GetDataResult()
+    var delegate:TransactionFrom?
+    var selectValues:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         getTradingPairsList()
         setupView()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return allTradingPairs.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = allTradingPairs[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let table:UITableViewCell = searchResult.cellForRow(at: indexPath)!
+        delegate?.setTradingPairsSecondType(secondCoinType: [])
+        var allPairs = [String]()
+        allPairs.append((table.textLabel?.text)!)
+        allPairs.append("%"+(table.textLabel?.text)!)
+        delegate?.setTradingPairsName(tradingPairsName: (table.textLabel?.text)!)
+        delegate?.setTradingPairsSecondType(secondCoinType: allPairs)
+//        loadPrice(selectTradingPairs: (table.textLabel?.text)!)
+//        print(selectValues)
+//        delegate?.setPrice(price: selectValues)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func getTradingPairsList()->Void{
+        let data = getDataResults.getTradingCoinList(market: (delegate?.getExchangeName())!,coin:(delegate?.getCoinName())!)
+        if data != []{
+            for pairs in data{
+                self.allTradingPairs.append(pairs)
+            }
+        }
     }
     
     lazy var searchResult:UITableView = {
@@ -35,38 +70,28 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
         view.addSubview(searchResult)
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchResult]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchResult]))
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allTradingPairs.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = allTradingPairs[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let table:UITableViewCell = searchResult.cellForRow(at: indexPath)!
-        tradingPairsNameSelect = (table.textLabel?.text)!
         
-        tradingPairsAll.removeAll()
-        tradingPairsAll.append(coinNameSelect)
-        tradingPairsAll.append("%"+coinNameSelect)
-        tradingPairsAll.append(tradingPairsNameSelect)
-        tradingPairsAll.append("%"+tradingPairsNameSelect)
-        print(tradingPairsAll)
-        navigationController?.popViewController(animated: true)
+        let tableVC = UITableViewController.init(style: .plain)
+        tableVC.tableView = self.searchResult
+        self.addChildViewController(tableVC)
     }
     
-    
-    func getTradingPairsList()->Void{
-        let data = getDataResults.getTradingCoinList(market: exchangesNameSelect,coin:coinAbbNameSelect)
-        if data != []{
-            for pairs in data{
-                self.allTradingPairs.append(pairs)
-            }
-        }
-    }
+//    func loadPrice(selectTradingPairs:String){
+//        let selectValue:String = ""
+//        cryptoCompareClient.getTradePrice(from: (delegate?.getCoinName())!, to: selectTradingPairs, exchange: delegate?.getExchangeName()){ result in
+//                switch result{
+//                case .success(let resultData):
+//                    for result in resultData!{
+//                        self.selectValues = String(result.value)
+//                        print(self.selectValues)
+//                    }
+//                case .failure(let error):
+//                    print("the error \(error.localizedDescription)")
+//                }
+//            }
+//        } else{
+//            selectValue = ""
+//            return selectValue
+//        }
+//    }
 }
