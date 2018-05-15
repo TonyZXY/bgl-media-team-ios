@@ -24,7 +24,7 @@ final class NewsRealm: Object {
     }
 }
 
-extension News: Persistable {
+extension News: PersistableNews {
    public init(managedObject: NewsRealm) {
         _id = managedObject._id
         title = managedObject.title

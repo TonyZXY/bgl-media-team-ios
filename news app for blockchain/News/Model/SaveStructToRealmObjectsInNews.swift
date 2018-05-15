@@ -27,11 +27,18 @@ public final class ContainerNews {
     internal init(realm: Realm) {
         self.realm = realm
     }
-    public func write(_ block: (WriteTransaction) throws -> Void)
+    public func write(_ block: (WriteTransactionNews) throws -> Void)
         throws {
-            let transaction = WriteTransaction(realm: realm)
+            let transaction = WriteTransactionNews(realm: realm)
             try realm.write {
                 try block(transaction)
             }
     }
+    
+}
+
+public protocol PersistableNews {
+    associatedtype ManagedObject: RealmSwift.Object
+    init(managedObject: ManagedObject)
+    func managedObject() -> ManagedObject
 }
