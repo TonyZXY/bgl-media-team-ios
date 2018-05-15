@@ -22,7 +22,7 @@ public struct Timeline {
     
     public var (frontColor, backColor) = (UIColor.black, UIColor.black)
     
-    internal var (start, middle, end) = (CGPoint(x: 0, y: 0), CGPoint(x: 0, y: 0), CGPoint(x: 0, y: 0))
+    internal var (start, end) = (CGPoint(x: 0, y: 0), CGPoint(x: 0, y: 0))
     
 //    internal var leftMargin: CGFloat = 60.0
     internal var leftMargin: CGFloat = 10.0
@@ -42,8 +42,7 @@ public struct Timeline {
     }
     
     public func draw(view: UIView) {
-        draw(view: view, from: start, to: middle, color: frontColor)
-        draw(view: view, from: middle, to: end, color: backColor)
+        draw(view: view, from: start, to: end, color: backColor)
     }
     
     fileprivate func draw(view: UIView, from: CGPoint, to: CGPoint, color: UIColor) {

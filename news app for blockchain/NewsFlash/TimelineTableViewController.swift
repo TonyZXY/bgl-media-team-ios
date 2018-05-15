@@ -56,13 +56,12 @@ class TimelineTableViewController: UITableViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
         
-        cell.timelinePoint = TimelinePoint(diameter: CGFloat(16.0), color: UIColor.green, filled: false)
-        cell.timelinePointInside = TimelinePoint(diameter: CGFloat(4.0), color: UIColor.green, filled: true, insidePoint: true)
-        cell.timeline.frontColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
+        let bglGreen = #colorLiteral(red: 0.5019607843, green: 0.8588235294, blue: 0.7176470588, alpha: 1)
+        cell.timelinePoint = TimelinePoint(diameter: CGFloat(16.0), color: bglGreen, filled: false)
+        cell.timelinePointInside = TimelinePoint(diameter: CGFloat(4.0), color: bglGreen, filled: true, insidePoint: true)
         cell.timeline.backColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         cell.titleLabel.text = dateFormatter.string(from: object.dateTime)
         cell.descriptionLabel.text = object.contents
-        cell.bubbleColor = UIColor.clear
         
         return cell
     }
@@ -96,7 +95,7 @@ class TimelineTableViewController: UITableViewController {
         if let collection = json["articles"].array {
             for item in collection {
                 let date = dateFormatter.date(from: item["publishedAt"].string!)
-                let id = item["id"].int!
+                let id = "\(item["id"].int!)"
                 if realm.object(ofType: NewsFlash.self, forPrimaryKey: id) == nil {
                     realm.create(NewsFlash.self, value: [id, date!, item["description"].string!])
                 } else {

@@ -8,4 +8,6 @@ target 'news app for blockchain' do
     pod 'SwiftyJSON'
     pod 'Alamofire'
     pod 'RxJSON'
+    pod 'Kingfisher', '~> 4.0'
+    pod 'YouTubePlayer'
 end
