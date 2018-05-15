@@ -9,14 +9,18 @@
 import UIKit
 import RealmSwift
 
-struct News: Decodable {
-    let _id: String?
-    let title: String?
-    let newsDescription: String?
-    let imageURL: String?
-    let detail: String?
-    let publishedTime: String?
-    let author: String?
-    let localeTag: String?
-    let contentTag: String?
+class News: Object {
+    @objc dynamic var _id: String? = ""
+    @objc dynamic var title: String? = ""
+    @objc dynamic var newsDescription: String? = ""
+    @objc dynamic var imageURL: String? = ""
+    @objc dynamic var detail: String? = ""
+    @objc dynamic var publishedTime: String? = ""
+    @objc dynamic var author: String? = ""
+    @objc dynamic var localeTag: String? = ""
+    @objc dynamic var contentTag: String? = ""
+    
+    override class func primaryKey() -> String {
+        return "_id"
+    }
 }

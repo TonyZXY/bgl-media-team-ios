@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
@@ -19,8 +20,8 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     weak var homeViewController: HomeViewController?
 
     
-    var newsArrayList:[Genuine] = Array<Genuine>()
-    var videoArrayList:[Video] = Array<Video>()
+    var newsArrayList:Results<Genuine>?
+    var videoArrayList:Results<Video>?
     
     let view:UIView = {
         let vi = UIView()
@@ -106,9 +107,17 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         var numberOfItem: Int
         if collectionView == self.cellListView{
             if (position != 1){
-            numberOfItem = newsArrayList.count + 1
+                if(newsArrayList != nil){
+                    numberOfItem = (newsArrayList?.count)! + 1
+                }else{
+                    numberOfItem = 0
+                }
             } else {
-                numberOfItem = videoArrayList.count
+                if(videoArrayList != nil){
+                    numberOfItem = (videoArrayList?.count)!
+                }else{
+                    numberOfItem = 0
+                }
             }
         }else{
             numberOfItem = 4
@@ -124,14 +133,14 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
                 if indexPath.item == 0{
                     let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! GenuineSliderViewCell
                     cell3.homeViewController = self.homeViewController
-                    if(newsArrayList.count != 0){
-                        cell3.newsArrayList = Array(newsArrayList[0...2])
+                    if(newsArrayList?.count != 0){
+                        cell3.newsArrayList = Array(newsArrayList![0...2])
                     }
                     return cell3
                 }else{
                     let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "genuineCell", for: indexPath) as! GenuineCell
-                    if newsArrayList.count != 0 {
-                        cell2.genuine = newsArrayList[indexPath.item-1]
+                    if newsArrayList?.count != 0 {
+                        cell2.genuine = newsArrayList?[indexPath.item-1]
                     }
                     return cell2
                 }
@@ -142,8 +151,8 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
             }
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as! VideoCell
-            if videoArrayList.count != 0 {
-                cell.video = videoArrayList[indexPath.item]
+            if videoArrayList?.count != 0 {
+                cell.video = videoArrayList?[indexPath.item]
             }
             return cell
             
@@ -181,12 +190,12 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         }else{
             if(position==1){
                 let videoDetailViewController = VideoDetailViewController()
-                videoDetailViewController.video = videoArrayList[indexPath.item]
+                videoDetailViewController.video = videoArrayList?[indexPath.item]
                 homeViewController!.navigationController?.pushViewController(videoDetailViewController, animated: true)
             }else{
                 if(indexPath.item != 0){
                     let genuineDetailViewController = GenuineDetailViewController()
-                    genuineDetailViewController.genuineContent = newsArrayList[indexPath.item - 1]
+                    genuineDetailViewController.genuineContent = newsArrayList?[indexPath.item - 1]
                     homeViewController?.navigationController?.pushViewController(genuineDetailViewController, animated: true)
                 }
             }
@@ -202,22 +211,22 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     func fetchData() {
         if(position == 0){
-            APIService.shardInstance.fetchGenuineContentTypeOne { (newsArrayList:[Genuine]) in
+            APIService.shardInstance.fetchGenuineContentTypeOne { (newsArrayList:Results<Genuine>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else if(position==1){
-            APIService.shardInstance.fetchVideo { (videoArray:[Video]) in
+            APIService.shardInstance.fetchVideo { (videoArray:Results<Video>) in
                 self.videoArrayList = videoArray
                 self.cellListView.reloadData()
             }
         }else if(position==2){
-            APIService.shardInstance.fetchGenuineContentTypeTwo { (newsArrayList:[Genuine]) in
+            APIService.shardInstance.fetchGenuineContentTypeTwo { (newsArrayList:Results<Genuine>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else {
-            APIService.shardInstance.fetchGenuineContentTypeThree { (newsArrayList:[Genuine]) in
+            APIService.shardInstance.fetchGenuineContentTypeThree { (newsArrayList:Results<Genuine>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }

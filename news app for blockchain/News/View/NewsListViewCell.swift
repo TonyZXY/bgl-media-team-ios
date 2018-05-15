@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
@@ -20,7 +21,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     let newsViewController: NewsDetailViewController = NewsDetailViewController()
     
-    var newsArrayList:[News] = Array<News>()
+    var newsArrayList:Results<News>?
     
     let view: UIView = {
         let vi = UIView()
@@ -105,7 +106,11 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var numberOfItem: Int
         if collectionView == self.cellListView{
-            numberOfItem = newsArrayList.count + 1
+            if newsArrayList != nil {
+                numberOfItem = (newsArrayList?.count)! + 1
+            }else{
+                numberOfItem = 0
+            }
         }else{
             numberOfItem = 4
         }
@@ -117,15 +122,15 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             if indexPath.item == 0{
                 let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! NewsSliderViewCell
                 cell3.homeViewController = self.homeViewController
-                if(newsArrayList.count != 0){
+                if(newsArrayList?.count != 0){
                     // implemented data load
-                    cell3.newsArrayList = Array(newsArrayList[0...2])
+                    cell3.newsArrayList = Array(newsArrayList![0...2])
                 }
                 
                 return cell3
             }else{
                 let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-                cell2.news = newsArrayList[indexPath.item - 1]
+                cell2.news = newsArrayList?[indexPath.item - 1]
                 return cell2
             }
         }else{
@@ -155,7 +160,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             position = indexPath.item
         }else{
             if(indexPath.item != 0){
-            newsViewController.newsContent = newsArrayList[indexPath.item-1]
+                newsViewController.newsContent = newsArrayList?[indexPath.item-1]
             homeViewController!.navigationController?.pushViewController(newsViewController, animated: true)
             }
         }
@@ -169,22 +174,22 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     func fetchData() {
         if(position == 0){
-            APIService.shardInstance.fetchLocalNews { (newsArrayList:[News]) in
+            APIService.shardInstance.fetchLocalNews { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else if(position == 1){
-            APIService.shardInstance.fetchInternationalNews { (newsArrayList:[News]) in
+            APIService.shardInstance.fetchInternationalNews { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else if (position == 2){
-            APIService.shardInstance.fetchNewsContentTypeOne { (newsArrayList:[News]) in
+            APIService.shardInstance.fetchNewsContentTypeOne { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else{
-            APIService.shardInstance.fetchNewsContentTypeTwo { (newsArrayList:[News]) in
+            APIService.shardInstance.fetchNewsContentTypeTwo { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }

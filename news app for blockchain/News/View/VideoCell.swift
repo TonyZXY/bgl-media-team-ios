@@ -15,9 +15,7 @@ class VideoCell: BaseCell {
     var video:Video? {
         didSet{
             titleLabel.text = video?.title
-            if let string = video?.publishedTime{
-                timeLabel.text = string.timeFormatter()
-            }
+            timeLabel.text = video?.publishedTime
             authorLabel.text = video?.author
             if video?.imageURL != nil {
                 imageView.setImage(urlString: (video?.imageURL)!)

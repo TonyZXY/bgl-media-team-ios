@@ -61,9 +61,7 @@ class VideoDetailViewController: UIViewController {
         descriptionLabel.text = video?.videoDescription
         authorLabel.text = video?.author
         titleLabel.text = video?.title
-        if let string = video?.publishedTime {
-            timeLabel.text = string.timeFormatter()
-        }
+        timeLabel.text = video?.publishedTime
     }
     
     let scrollView: UIScrollView = {

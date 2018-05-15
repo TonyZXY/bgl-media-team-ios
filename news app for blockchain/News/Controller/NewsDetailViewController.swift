@@ -31,9 +31,7 @@ class NewsDetailViewController: UIViewController {
     
     func setupContent(){
         titleView.text = newsContent?.title
-        if let string = newsContent?.publishedTime {
-            timeLabel.text = string.timeFormatter()
-        }
+        timeLabel.text = newsContent?.publishedTime
         authorLabel.text = newsContent?.author
         textView.text = newsContent?.detail
         newsImageView.setImage(urlString: (newsContent?.imageURL)!)
@@ -58,6 +56,7 @@ class NewsDetailViewController: UIViewController {
     let newsImageView: UIImageView = {
         let im = UIImageView()
         im.backgroundColor = UIColor.blue
+        im.contentMode = .scaleAspectFill
         return im
     }()
     
@@ -85,6 +84,12 @@ class NewsDetailViewController: UIViewController {
         return tv
     }()
     
+    let imageContainer: UIView = {
+        let iv = UIView()
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
     func setupRootView(){
         view.addSubview(rootView)
         rootView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -98,14 +103,17 @@ class NewsDetailViewController: UIViewController {
         rootView.addSubview(titleView)
         rootView.addSubview(timeLabel)
         rootView.addSubview(authorLabel)
-        rootView.addSubview(newsImageView)
+        rootView.addSubview(imageContainer)
+        imageContainer.addSubview(newsImageView)
         rootView.addSubview(textView)
+        rootView.addConstraintsWithFormat(format: "H:|[v0]|", views: newsImageView)
+        rootView.addConstraintsWithFormat(format: "V:|[v0]|", views: newsImageView)
         rootView.addConstraintsWithFormat(format: "H:|-16-[v0]-30-|", views: titleView)
         rootView.addConstraintsWithFormat(format: "H:|-16-[v0]", views: timeLabel)
         rootView.addConstraintsWithFormat(format: "H:|-16-[v0]", views: authorLabel)
-        rootView.addConstraintsWithFormat(format: "H:|-16-[v0(\(view.frame.width - 32))]-16-|", views: newsImageView)
+        rootView.addConstraintsWithFormat(format: "H:|-16-[v0(\(view.frame.width - 32))]-16-|", views: imageContainer)
         rootView.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: textView)
-        rootView.addConstraintsWithFormat(format: "V:|-16-[v0(52)]-8-[v1(15)]-8-[v2(15)]-16-[v3(250)]-16-[v4]-16-|", views: titleView,timeLabel,authorLabel,newsImageView,textView)
+        rootView.addConstraintsWithFormat(format: "V:|-16-[v0(52)]-8-[v1(15)]-8-[v2(15)]-16-[v3(250)]-16-[v4]-16-|", views: titleView,timeLabel,authorLabel,imageContainer,textView)
         
     }
 }
