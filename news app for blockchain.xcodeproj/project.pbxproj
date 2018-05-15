@@ -25,6 +25,14 @@
 		041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */; };
 		045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */; };
 		045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */; };
+		0469638720AAB20F00459EC8 /* DefaultCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469637E20AAB20E00459EC8 /* DefaultCurrencyViewController.swift */; };
+		0469638820AAB20F00459EC8 /* defCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469637F20AAB20E00459EC8 /* defCurrency.swift */; };
+		0469638920AAB20F00459EC8 /* WebDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638120AAB20E00459EC8 /* WebDetailViewController.swift */; };
+		0469638A20AAB20F00459EC8 /* WebMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638220AAB20E00459EC8 /* WebMainViewController.swift */; };
+		0469638B20AAB20F00459EC8 /* MoreOptionMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638320AAB20E00459EC8 /* MoreOptionMainViewController.swift */; };
+		0469638C20AAB20F00459EC8 /* defDisplayOpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638420AAB20E00459EC8 /* defDisplayOpt.swift */; };
+		0469638D20AAB20F00459EC8 /* OtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638520AAB20E00459EC8 /* OtherDetailViewController.swift */; };
+		0469638E20AAB20F00459EC8 /* OtherOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638620AAB20E00459EC8 /* OtherOptionViewController.swift */; };
 		0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479A03C20A16584004A0433 /* GlobalDataRealm.swift */; };
 		04BDD41820A42A87009D8A0A /* GenuineSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */; };
 		04BDD41A20A42A9C009D8A0A /* NewsSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */; };
@@ -115,6 +123,14 @@
 		041F40E2207EDD49008DCA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageSetter.swift; sourceTree = "<group>"; };
 		045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInWatchListRealm.swift; sourceTree = "<group>"; };
+		0469637E20AAB20E00459EC8 /* DefaultCurrencyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCurrencyViewController.swift; sourceTree = "<group>"; };
+		0469637F20AAB20E00459EC8 /* defCurrency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = defCurrency.swift; sourceTree = "<group>"; };
+		0469638120AAB20E00459EC8 /* WebDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDetailViewController.swift; sourceTree = "<group>"; };
+		0469638220AAB20E00459EC8 /* WebMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebMainViewController.swift; sourceTree = "<group>"; };
+		0469638320AAB20E00459EC8 /* MoreOptionMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreOptionMainViewController.swift; sourceTree = "<group>"; };
+		0469638420AAB20E00459EC8 /* defDisplayOpt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = defDisplayOpt.swift; sourceTree = "<group>"; };
+		0469638520AAB20E00459EC8 /* OtherDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherDetailViewController.swift; sourceTree = "<group>"; };
+		0469638620AAB20E00459EC8 /* OtherOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherOptionViewController.swift; sourceTree = "<group>"; };
 		0479A03C20A16584004A0433 /* GlobalDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataRealm.swift; sourceTree = "<group>"; };
 		04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenuineSliderViewCell.swift; sourceTree = "<group>"; };
 		04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsSliderViewCell.swift; sourceTree = "<group>"; };
@@ -258,6 +274,7 @@
 				04E4F013209AFB9900A2D0BF /* Supporting Files */,
 				04E4F01B209B19BB00A2D0BF /* Timeline */,
 				04E4F014209B19A700A2D0BF /* NewsFlash */,
+				0469637C20AAB20E00459EC8 /* MoreOptions */,
 				041F40E2207EDD49008DCA69 /* Info.plist */,
 				041F40D7207EDD48008DCA69 /* Main.storyboard */,
 			);
@@ -292,6 +309,37 @@
 				04BDD42120A42AE6009D8A0A /* NewsSliderCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0469637C20AAB20E00459EC8 /* MoreOptions */ = {
+			isa = PBXGroup;
+			children = (
+				0469637D20AAB20E00459EC8 /* DefaultCurrency */,
+				0469638020AAB20E00459EC8 /* BGLCommunity */,
+				0469638320AAB20E00459EC8 /* MoreOptionMainViewController.swift */,
+				0469638420AAB20E00459EC8 /* defDisplayOpt.swift */,
+				0469638520AAB20E00459EC8 /* OtherDetailViewController.swift */,
+				0469638620AAB20E00459EC8 /* OtherOptionViewController.swift */,
+			);
+			path = MoreOptions;
+			sourceTree = "<group>";
+		};
+		0469637D20AAB20E00459EC8 /* DefaultCurrency */ = {
+			isa = PBXGroup;
+			children = (
+				0469637E20AAB20E00459EC8 /* DefaultCurrencyViewController.swift */,
+				0469637F20AAB20E00459EC8 /* defCurrency.swift */,
+			);
+			path = DefaultCurrency;
+			sourceTree = "<group>";
+		};
+		0469638020AAB20E00459EC8 /* BGLCommunity */ = {
+			isa = PBXGroup;
+			children = (
+				0469638120AAB20E00459EC8 /* WebDetailViewController.swift */,
+				0469638220AAB20E00459EC8 /* WebMainViewController.swift */,
+			);
+			path = BGLCommunity;
 			sourceTree = "<group>";
 		};
 		0479A03B20A16555004A0433 /* Markets_Model */ = {
@@ -612,9 +660,12 @@
 				4577D6412091A3920087DF80 /* APIErrors.swift in Sources */,
 				4577D63E2091A3920087DF80 /* ExchangeList.swift in Sources */,
 				0419422C20A42FB1006B26C6 /* News.swift in Sources */,
+				0469638920AAB20F00459EC8 /* WebDetailViewController.swift in Sources */,
+				0469638820AAB20F00459EC8 /* defCurrency.swift in Sources */,
 				0419422620A42F7E006B26C6 /* VideoDetailViewController.swift in Sources */,
 				04BDD42A20A42B16009D8A0A /* NewsMenuBar.swift in Sources */,
 				576FA90720976509005B6406 /* MarketsCoinTableViewCell.swift in Sources */,
+				0469638B20AAB20F00459EC8 /* MoreOptionMainViewController.swift in Sources */,
 				576FA8DE2091DB67005B6406 /* TransExpensesCell.swift in Sources */,
 				04BDD42620A42AFE009D8A0A /* GenuineCell.swift in Sources */,
 				5701A904209BC66B00A216C4 /* SearchTradingPairController.swift in Sources */,
@@ -661,19 +712,24 @@
 				4577D6482091A3920087DF80 /* Endpoint.swift in Sources */,
 				57510E13209FBA4000E7A7D9 /* WalletAll.swift in Sources */,
 				57510E1C20A13EBA00E7A7D9 /* CoinTypeTableViewCell.swift in Sources */,
+				0469638720AAB20F00459EC8 /* DefaultCurrencyViewController.swift in Sources */,
 				57C394DD209F212C0052137C /* WalletsCell.swift in Sources */,
 				04BDD41E20A42AB6009D8A0A /* NewsCell.swift in Sources */,
 				576FA8E22091E154005B6406 /* TransCoinMarketCell.swift in Sources */,
 				0419422B20A42FB1006B26C6 /* Genuine.swift in Sources */,
 				04E4F020209B19BB00A2D0BF /* TimelineTableViewCell.swift in Sources */,
+				0469638C20AAB20F00459EC8 /* defDisplayOpt.swift in Sources */,
 				04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */,
 				57510E1A20A130DC00E7A7D9 /* GetDataResult.swift in Sources */,
 				576FA8E82091E53F005B6406 /* TransNumberCell.swift in Sources */,
+				0469638A20AAB20F00459EC8 /* WebMainViewController.swift in Sources */,
 				5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */,
 				576FA8E42091E1F2005B6406 /* TransPriceCell.swift in Sources */,
 				576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */,
+				0469638D20AAB20F00459EC8 /* OtherDetailViewController.swift in Sources */,
 				0419423520A43080006B26C6 /* Extensions.swift in Sources */,
 				041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */,
+				0469638E20AAB20F00459EC8 /* OtherOptionViewController.swift in Sources */,
 				04BDD42820A42B0A009D8A0A /* GenuineSliderCell.swift in Sources */,
 				0419423620A43080006B26C6 /* BaseCell.swift in Sources */,
 				04BDD42020A42AC1009D8A0A /* VideoCell.swift in Sources */,
