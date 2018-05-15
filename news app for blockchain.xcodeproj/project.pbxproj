@@ -8,23 +8,37 @@
 
 /* Begin PBXBuildFile section */
 		041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F40D3207EDD48008DCA69 /* AppDelegate.swift */; };
-		041F40D6207EDD48008DCA69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F40D5207EDD48008DCA69 /* ViewController.swift */; };
+		041F40D6207EDD48008DCA69 /* MoreOptionMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041F40D5207EDD48008DCA69 /* MoreOptionMainViewController.swift */; };
 		041F40D9207EDD48008DCA69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40D7207EDD48008DCA69 /* Main.storyboard */; };
 		041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 041F40DA207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld */; };
 		041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DD207EDD49008DCA69 /* Assets.xcassets */; };
 		041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */; };
+		2B1A1B3320A9F93000387535 /* WebMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B3220A9F93000387535 /* WebMainViewController.swift */; };
+		2B1A1B3920AA0D1A00387535 /* WebDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B3820AA0D1A00387535 /* WebDetailViewController.swift */; };
+		2B1A1B3B20AA65AF00387535 /* DefaultCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B3A20AA65AF00387535 /* DefaultCurrencyViewController.swift */; };
+		2B1A1B3D20AA681500387535 /* defCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B3C20AA681500387535 /* defCurrency.swift */; };
+		2B1A1B3F20AA7BAA00387535 /* OtherOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B3E20AA7BAA00387535 /* OtherOptionViewController.swift */; };
+		2B1A1B4120AA7D5900387535 /* OtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B4020AA7D5900387535 /* OtherDetailViewController.swift */; };
+		2B1A1B4320AA7FD800387535 /* defDisplayOpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B4220AA7FD800387535 /* defDisplayOpt.swift */; };
 		FAC17EFFA9174369FA91CAE4 /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		041F40D0207EDD48008DCA69 /* news app for blockchain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "news app for blockchain.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		041F40D3207EDD48008DCA69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		041F40D5207EDD48008DCA69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		041F40D5207EDD48008DCA69 /* MoreOptionMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionMainViewController.swift; sourceTree = "<group>"; };
 		041F40D8207EDD48008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		041F40DB207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = news_app_for_blockchain.xcdatamodel; sourceTree = "<group>"; };
 		041F40DD207EDD49008DCA69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		041F40E0207EDD49008DCA69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		041F40E2207EDD49008DCA69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B1A1B3220A9F93000387535 /* WebMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMainViewController.swift; sourceTree = "<group>"; };
+		2B1A1B3820AA0D1A00387535 /* WebDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebDetailViewController.swift; sourceTree = "<group>"; };
+		2B1A1B3A20AA65AF00387535 /* DefaultCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCurrencyViewController.swift; sourceTree = "<group>"; };
+		2B1A1B3C20AA681500387535 /* defCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defCurrency.swift; sourceTree = "<group>"; };
+		2B1A1B3E20AA7BAA00387535 /* OtherOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherOptionViewController.swift; sourceTree = "<group>"; };
+		2B1A1B4020AA7D5900387535 /* OtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherDetailViewController.swift; sourceTree = "<group>"; };
+		2B1A1B4220AA7FD800387535 /* defDisplayOpt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defDisplayOpt.swift; sourceTree = "<group>"; };
 		AF335468AB7AE16EB4646891 /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
 		B5C51F49BD9D7EBC19255EF6 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,8 +77,14 @@
 		041F40D2207EDD48008DCA69 /* news app for blockchain */ = {
 			isa = PBXGroup;
 			children = (
+				2B1A1B2F20A9EF8A00387535 /* OtherOptions */,
+				2B1A1B2E20A9EF7E00387535 /* NotificationOptions */,
+				2B1A1B2D20A9EF7300387535 /* ViewOptions */,
+				2B1A1B2C20A9EF6600387535 /* DefaultCurrency */,
+				2B1A1B2B20A9EF5100387535 /* BGLCommunity */,
+				2B1A1B2A20A9EF3A00387535 /* AboutUs */,
 				041F40D3207EDD48008DCA69 /* AppDelegate.swift */,
-				041F40D5207EDD48008DCA69 /* ViewController.swift */,
+				041F40D5207EDD48008DCA69 /* MoreOptionMainViewController.swift */,
 				041F40D7207EDD48008DCA69 /* Main.storyboard */,
 				041F40DD207EDD49008DCA69 /* Assets.xcassets */,
 				041F40DF207EDD49008DCA69 /* LaunchScreen.storyboard */,
@@ -80,6 +100,55 @@
 				D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2B1A1B2A20A9EF3A00387535 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
+		2B1A1B2B20A9EF5100387535 /* BGLCommunity */ = {
+			isa = PBXGroup;
+			children = (
+				2B1A1B3220A9F93000387535 /* WebMainViewController.swift */,
+				2B1A1B3820AA0D1A00387535 /* WebDetailViewController.swift */,
+			);
+			path = BGLCommunity;
+			sourceTree = "<group>";
+		};
+		2B1A1B2C20A9EF6600387535 /* DefaultCurrency */ = {
+			isa = PBXGroup;
+			children = (
+				2B1A1B3A20AA65AF00387535 /* DefaultCurrencyViewController.swift */,
+				2B1A1B3C20AA681500387535 /* defCurrency.swift */,
+			);
+			path = DefaultCurrency;
+			sourceTree = "<group>";
+		};
+		2B1A1B2D20A9EF7300387535 /* ViewOptions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewOptions;
+			sourceTree = "<group>";
+		};
+		2B1A1B2E20A9EF7E00387535 /* NotificationOptions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NotificationOptions;
+			sourceTree = "<group>";
+		};
+		2B1A1B2F20A9EF8A00387535 /* OtherOptions */ = {
+			isa = PBXGroup;
+			children = (
+				2B1A1B3E20AA7BAA00387535 /* OtherOptionViewController.swift */,
+				2B1A1B4020AA7D5900387535 /* OtherDetailViewController.swift */,
+				2B1A1B4220AA7FD800387535 /* defDisplayOpt.swift */,
+			);
+			path = OtherOptions;
 			sourceTree = "<group>";
 		};
 		897F039D03BB793D6A335682 /* Pods */ = {
@@ -167,17 +236,23 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxJSON/RxJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -209,8 +284,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1A1B4120AA7D5900387535 /* OtherDetailViewController.swift in Sources */,
+				2B1A1B3D20AA681500387535 /* defCurrency.swift in Sources */,
+				2B1A1B4320AA7FD800387535 /* defDisplayOpt.swift in Sources */,
+				2B1A1B3320A9F93000387535 /* WebMainViewController.swift in Sources */,
+				2B1A1B3B20AA65AF00387535 /* DefaultCurrencyViewController.swift in Sources */,
 				041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */,
-				041F40D6207EDD48008DCA69 /* ViewController.swift in Sources */,
+				2B1A1B3F20AA7BAA00387535 /* OtherOptionViewController.swift in Sources */,
+				041F40D6207EDD48008DCA69 /* MoreOptionMainViewController.swift in Sources */,
+				2B1A1B3920AA0D1A00387535 /* WebDetailViewController.swift in Sources */,
 				041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,7 +441,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -375,7 +460,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 37MSAELA6E;
 				INFOPLIST_FILE = "news app for blockchain/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "BGL.news-app-for-blockchain";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
