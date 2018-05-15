@@ -21,6 +21,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         navigationController?.navigationBar.backgroundColor = ThemeColor().themeColor()
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.tintColor = .white
         // REVIEW: Can be in separate methods, such as registerCells -Johnny Lin
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0, height: view.frame.height))
         titleLabel.text = "Blockchain Global"
