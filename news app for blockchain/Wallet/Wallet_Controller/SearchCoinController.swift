@@ -12,48 +12,80 @@ import RealmSwift
 class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate{
     var tableViews = UITableView()
     var isSearching = false
-    var filteringdata = [String]()
-    var filteringdata1 = [String:String]()
-    var filterName = [String]()
-    var filterNameAbb = [String]()
-    var coinNameItem = [String]()
-    var coinAbbItem = [String]()
-    var coinAllAbb = [String]()
-    var coinAllName = [String]()
-    var coinDetail = [String:String]()
     let cryptoCompareClient = CryptoCompareClient()
     var color = ThemeColor()
     let realm = try! Realm()
+    var allCoinObject = [CryptoCompareCoinsRealm]()
+    weak var delegate:TransactionFrom?
+    var filterObject = [CryptoCompareCoinsRealm]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+        searchBar.becomeFirstResponder()
+        searchBar.returnKeyType = UIReturnKeyType.done
+        
+//        let filterName = "coinAbbName = '" + (delegate?.getCoinName())! + "' "
+//        if delegate?.getCoinName() != ""{
+//            let result = try! Realm().objects(CryptoCompareCoinsRealm.self).filter(filterName)
+//            for n in result {
+//                allCoinObject.append(n)
+//            }
+//        } else {
+//            let result = try! Realm().objects(CryptoCompareCoinsRealm.self)
+//            for n in result {
+//                allCoinObject.append(n)
+//            }
+//        }
+
+        let result = try! Realm().objects(CryptoCompareCoinsRealm.self)
+        for n in result {
+            allCoinObject.append(n)
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearching {
-            return filteringdata1.count
+            return filterObject.count
         }
-        return coinNameItem.count
+        return allCoinObject.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "coins", for: indexPath) as! CoinTypeTableViewCell
         if isSearching{
-            cell.coinName.text = filterName[indexPath.row]
-            cell.coinNameAbb.text = filterNameAbb[indexPath.row]
+            cell.coinName.text = filterObject[indexPath.row].CoinName
+            cell.coinNameAbb.text = filterObject[indexPath.row].Name
+            cell.coinImage.coinImageSetter(coinName: filterObject[indexPath.row].Name, width: 30, height: 30, fontSize: 5)
         } else {
-            cell.coinName.text = coinAllName[indexPath.row]
-            cell.coinNameAbb.text = coinAllAbb[indexPath.row]
+            cell.coinName.text = allCoinObject[indexPath.row].CoinName
+            cell.coinNameAbb.text = allCoinObject[indexPath.row].Name
+            cell.coinImage.coinImageSetter(coinName: allCoinObject[indexPath.row].Name, width: 30, height: 30, fontSize: 5)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let table:CoinTypeTableViewCell = searchResult.cellForRow(at: indexPath) as! CoinTypeTableViewCell
-        coinNameSelect = table.coinName.text!
-        coinAbbNameSelect = table.coinNameAbb.text!
-        tradingPairsAll.removeAll()
-        tradingPairsAll.append(coinAbbNameSelect)
-        tradingPairsAll.append("%"+coinAbbNameSelect)
+        delegate?.setCoinName(name: table.coinName.text!)
+        delegate?.setCoinAbbName(abbName: table.coinNameAbb.text!)
+        delegate?.setTradingPairsName(tradingPairsName: "")
+        delegate?.setTradingPairsFirstType(firstCoinType: [])
+        delegate?.setTradingPairsSecondType(secondCoinType: [])
+        delegate?.setExchangesName(exchangeName: "")
+        var allPairs = [String]()
+        allPairs.append(table.coinNameAbb.text!)
+        allPairs.append("%"+table.coinNameAbb.text!)
+        delegate?.setTradingPairsFirstType(firstCoinType: allPairs)
         navigationController?.popViewController(animated: true)
     }
-    
-    
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text == nil || searchBar.text == ""{
@@ -63,30 +95,14 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         } else{
             isSearching = true
             //            filteringdata = coinNameItem.filter{coinName in return coinName.lowercased().contains(searchBar.text!.lowercased())}
-            filteringdata1 = coinDetail.filter{ haha in return haha.value.lowercased().contains(searchBar.text!.lowercased())}
-            filterName = [String]()
-            filterNameAbb = [String]()
-            filterName.append(contentsOf: filteringdata1.values)
-            filterNameAbb.append(contentsOf: filteringdata1.keys)
+            var result = [String]()
+            for n in allCoinObject{
+                result.append(n.Name)
+            }
+            filterObject = allCoinObject.filter({(mod) -> Bool in return mod.CoinName.lowercased().contains(searchBar.text!.lowercased())})
             searchResult.reloadData()
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupView()
-        
-        let result = try! Realm().objects(CryptoCompareCoinsRealm.self)
-        for n in result {
-            self.coinDetail[n.Name] = n.CoinName
-            self.coinAllAbb.append(n.Name)
-            self.coinAllName.append(n.CoinName)
-        }
-        DispatchQueue.main.async {
-            self.searchResult.reloadData()
-        }
-    }
-    
     
     lazy var searchBar:UISearchBar={
         var searchBar = UISearchBar()
@@ -116,10 +132,12 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar]))
-        
-        
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v1]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":searchResult]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-[v1]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":searchResult]))
+        
+        let tableVC = UITableViewController.init(style: .plain)
+        tableVC.tableView = self.searchResult
+        self.addChildViewController(tableVC)
     }
     
 }

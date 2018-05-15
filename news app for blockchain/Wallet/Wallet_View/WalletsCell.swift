@@ -1,5 +1,5 @@
 //
-//  WalletsCell.swift
+//  WalletListsCell.swift
 //  news app for blockchain
 //
 //  Created by Bruce Feng on 4/5/18.
@@ -73,6 +73,7 @@ class WalletsCell:UITableViewCell{
     
     let coinImage: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "navigation_arrow.png"))
+        imageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         imageView.clipsToBounds = true
         imageView.contentMode = UIViewContentMode.scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +82,6 @@ class WalletsCell:UITableViewCell{
     
     var coinName:UILabel = {
         var label = UILabel()
-        label.text = "Bitcoin"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -89,7 +89,7 @@ class WalletsCell:UITableViewCell{
     
     var profitChange:UILabel = {
         var label = UILabel()
-        label.text = "-16.3%"
+        label.text = "--"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -97,7 +97,6 @@ class WalletsCell:UITableViewCell{
     
     var coinAmount:UILabel = {
         var label = UILabel()
-        label.text = "10BTC"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -105,7 +104,7 @@ class WalletsCell:UITableViewCell{
     
     var coinTotalPrice:UILabel = {
         var label = UILabel()
-        label.text = "($1,2678)"
+        label.text = "(--)"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -113,13 +112,13 @@ class WalletsCell:UITableViewCell{
     
     var coinSinglePrice:UILabel = {
         var label = UILabel()
-        label.text = "12,6780"
+        label.text = "--"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    func checkRiseandfall(risefallnumber: String) {
+    func checkRiseandfallPercent(risefallnumber: String) {
         if risefallnumber.prefix(1) == "-" {
             // lost with red
             profitChange.textColor = color.fallColor()
@@ -132,6 +131,22 @@ class WalletsCell:UITableViewCell{
             //Profit with green
             profitChange.textColor = color.riseColor()
             profitChange.text = "▲ " + "+" + risefallnumber + "%"
+        }
+    }
+
+    func checkRiseandfallNumber(risefallnumber: String) {
+        if risefallnumber.prefix(1) == "-" {
+            // lost with red
+            profitChange.textColor = color.fallColor()
+            profitChange.text = "▼ " + risefallnumber
+        } else if risefallnumber == "0.00"{
+            // Not any change with white
+            profitChange.text = "--"
+            profitChange.textColor = UIColor.white
+        } else {
+            //Profit with green
+            profitChange.textColor = color.riseColor()
+            profitChange.text = "▲ " + "+" + risefallnumber
         }
     }
     
