@@ -16,7 +16,6 @@
 		0419422B20A42FB1006B26C6 /* Genuine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419422820A42FB0006B26C6 /* Genuine.swift */; };
 		0419422C20A42FB1006B26C6 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419422920A42FB0006B26C6 /* News.swift */; };
 		0419422D20A42FB1006B26C6 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419422A20A42FB0006B26C6 /* Video.swift */; };
-		0419423320A43080006B26C6 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419422F20A43080006B26C6 /* ImageLoader.swift */; };
 		0419423420A43080006B26C6 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419423020A43080006B26C6 /* APIService.swift */; };
 		0419423520A43080006B26C6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419423120A43080006B26C6 /* Extensions.swift */; };
 		0419423620A43080006B26C6 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0419423220A43080006B26C6 /* BaseCell.swift */; };
@@ -105,7 +104,6 @@
 		0419422820A42FB0006B26C6 /* Genuine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genuine.swift; sourceTree = "<group>"; };
 		0419422920A42FB0006B26C6 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		0419422A20A42FB0006B26C6 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
-		0419422F20A43080006B26C6 /* ImageLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		0419423020A43080006B26C6 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		0419423120A43080006B26C6 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0419423220A43080006B26C6 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -225,7 +223,6 @@
 		0419422E20A43080006B26C6 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				0419422F20A43080006B26C6 /* ImageLoader.swift */,
 				0419423020A43080006B26C6 /* APIService.swift */,
 				0419423120A43080006B26C6 /* Extensions.swift */,
 				0419423220A43080006B26C6 /* BaseCell.swift */,
@@ -661,7 +658,6 @@
 				576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */,
 				4577D63D2091A3920087DF80 /* CryptoCompareCoinListResult.swift in Sources */,
 				04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */,
-				0419423320A43080006B26C6 /* ImageLoader.swift in Sources */,
 				4577D6482091A3920087DF80 /* Endpoint.swift in Sources */,
 				57510E13209FBA4000E7A7D9 /* WalletAll.swift in Sources */,
 				57510E1C20A13EBA00E7A7D9 /* CoinTypeTableViewCell.swift in Sources */,

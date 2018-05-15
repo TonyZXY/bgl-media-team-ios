@@ -14,7 +14,7 @@ class NewsSliderCell: BaseCell {
         didSet{
             textView.text = newsContent?.title
             if(newsContent != nil){
-                image.image = ImageLoader.instance.loadImage(imageURL: (newsContent?.imageURL)!)
+                image.setImage(urlString: (newsContent?.imageURL)!)
             }
         }
     }
@@ -34,6 +34,11 @@ class NewsSliderCell: BaseCell {
         return vi
     }()
     
+    let imageContainer: UIView = {
+        let iv = UIView()
+        return iv
+    }()
+    
     func setupRootView(){
         addSubview(view)
         addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: view)
@@ -42,23 +47,28 @@ class NewsSliderCell: BaseCell {
     
     let image:UIImageView = {
         let iv = UIImageView()
+        iv.contentMode = .scaleAspectFill
         return iv
     }()
     
     let textView:UILabel = {
         let tv = UILabel()
-        tv.backgroundColor = UIColor(white: 0.5, alpha: 0.5)
+        tv.backgroundColor = UIColor(white: 0.2, alpha: 0.8)
         tv.textColor = UIColor.white
         return tv
     }()
     
     func setupSubViews(){
-        view.addSubview(image)
-        addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: image)
-        addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: image)
+        view.addSubview(imageContainer)
+        imageContainer.addSubview(image)
+        imageContainer.clipsToBounds = true
+        addConstraintsWithFormat(format: "H:|[v0]|", views: image)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: image)
+        addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: imageContainer)
+        addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: imageContainer)
         image.addSubview(textView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: textView)
-        addConstraintsWithFormat(format: "V:|-100-[v0]|", views: textView)
+        addConstraintsWithFormat(format: "V:|-95-[v0]|", views: textView)
     }
     
     

@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
+    
+    var position:Int = 0 {
+        didSet{
+            fetchData()
+        }
+    }
     
     weak var homeViewController: HomeViewController?
     
     let newsViewController: NewsDetailViewController = NewsDetailViewController()
     
-    var newsArrayList:[News] = Array<News>()
+    var newsArrayList:Results<News>?
     
     let view: UIView = {
         let vi = UIView()
@@ -33,6 +40,12 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return cv
     }()
     
+    let line: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.gray
+        return view
+    }()
+    
     lazy var cellListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -43,9 +56,17 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return cv
     }()
     
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
+    }()
+    
     override func setupViews() {
         super.setupViews()
-        fetchData(d: 0)
+        fetchData()
         setupRootView()
         setupSubViews()
         // REVIEW: put in a separate method - registerCells -Johnny Lin
@@ -65,13 +86,16 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     }
     
     func setupSubViews(){
-        
+        view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
+        cellListView.addSubview(self.refresher)
+        
+        addConstraintsWithFormat(format: "H:|[v0]|", views: line)
         
         addConstraintsWithFormat(format: "H:|-5-[v0]|", views: selectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: cellListView)
-        addConstraintsWithFormat(format: "V:|-5-[v0(30)]", views: selectionView)
+        addConstraintsWithFormat(format: "V:|[v0(1)]-5-[v1(30)]", views: line,selectionView)
         
         
         
@@ -82,7 +106,11 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var numberOfItem: Int
         if collectionView == self.cellListView{
-            numberOfItem = newsArrayList.count + 1
+            if newsArrayList != nil {
+                numberOfItem = (newsArrayList?.count)! + 1
+            }else{
+                numberOfItem = 0
+            }
         }else{
             numberOfItem = 4
         }
@@ -90,21 +118,19 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        //  var cell:UICollectionViewCell
         if collectionView == self.cellListView{
             if indexPath.item == 0{
                 let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! NewsSliderViewCell
                 cell3.homeViewController = self.homeViewController
-                if(newsArrayList.count != 0){
+                if(newsArrayList?.count != 0){
                     // implemented data load
-                    cell3.newsArrayList = Array(newsArrayList[0...2])
+                    cell3.newsArrayList = Array(newsArrayList![0...2])
                 }
                 
                 return cell3
             }else{
                 let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
-//                cell2.titleLabel.text = newsArrayList[indexPath.item-1].title
-                cell2.news = newsArrayList[indexPath.item - 1]
+                cell2.news = newsArrayList?[indexPath.item - 1]
                 return cell2
             }
         }else{
@@ -112,7 +138,6 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             cell1.textLabel.text = selectionOptionOne[indexPath.item]
             return cell1
         }
-        //        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -132,45 +157,39 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == selectionView){
-            fetchData(d: indexPath.item)
+            position = indexPath.item
         }else{
             if(indexPath.item != 0){
-//            print("List \(homeViewController!.navigationController)")
-//            newsViewController.newsContent = ??
-            newsViewController.newsContent = newsArrayList[indexPath.item-1]
+                newsViewController.newsContent = newsArrayList?[indexPath.item-1]
             homeViewController!.navigationController?.pushViewController(newsViewController, animated: true)
             }
-            // This area calls News Detail View
-            //            let newsLauncher = NewsLauncher()
-            //            newsLauncher.showNewsDetail(str: "123")
         }
     }
     
-//    @objc func getData(){
-//        APIService.shardInstance.fetchNews { (newsArrayList:[News]) in
-//            self.newsArrayList = newsArrayList
-//            self.collectionView.reloadData()
-//        }
-//    }
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        fetchData()
+        print("start refreshing")
+        self.refresher.endRefreshing()
+    }
     
-    func fetchData(d:Int) {
-        if(d == 0){
-            APIService.shardInstance.fetchLocalNews { (newsArrayList:[News]) in
+    func fetchData() {
+        if(position == 0){
+            APIService.shardInstance.fetchLocalNews { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
-        }else if(d==1){
-            APIService.shardInstance.fetchInternationalNews { (newsArrayList:[News]) in
+        }else if(position == 1){
+            APIService.shardInstance.fetchInternationalNews { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
-        }else if (d==2){
-            APIService.shardInstance.fetchNewsContentTypeOne { (newsArrayList:[News]) in
+        }else if (position == 2){
+            APIService.shardInstance.fetchNewsContentTypeOne { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else{
-            APIService.shardInstance.fetchNewsContentTypeTwo { (newsArrayList:[News]) in
+            APIService.shardInstance.fetchNewsContentTypeTwo { (newsArrayList:Results<News>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }

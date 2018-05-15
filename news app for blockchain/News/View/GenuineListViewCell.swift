@@ -7,22 +7,21 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
     var position:Int = 0 {
         didSet{
             fetchData()
-            cellListView.reloadData()
         }
-    }// This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
+    }
+    // This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
     weak var homeViewController: HomeViewController?
+
     
-    var videoDetailViewController: VideoDetailViewController = VideoDetailViewController()
-    var genuineDetailViewController: GenuineDetailViewController = GenuineDetailViewController()
-    
-    var newsArrayList:[Genuine] = Array<Genuine>()
-    var videoArrayList:[Video] = Array<Video>()
+    var newsArrayList:Results<Genuine>?
+    var videoArrayList:Results<Video>?
     
     let view:UIView = {
         let vi = UIView()
@@ -41,6 +40,12 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         return cv
     }()
     
+    let line:UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.gray
+        return view
+    }()
+    
     lazy var cellListView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -49,6 +54,14 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         cv.dataSource = self
         cv.delegate = self
         return cv
+    }()
+    
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.white
+        
+        return refreshControl
     }()
     
     override func setupViews() {
@@ -74,12 +87,15 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     func setupSubViews(){
         
+        view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
+        cellListView.addSubview(self.refresher)
         
+        addConstraintsWithFormat(format: "H:|[v0]|", views: line)
         addConstraintsWithFormat(format: "H:|-5-[v0]|", views: selectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: cellListView)
-        addConstraintsWithFormat(format: "V:|-5-[v0(30)]", views: selectionView)
+        addConstraintsWithFormat(format: "V:|[v0(1)]-5-[v1(30)]", views: line,selectionView)
         
         
         
@@ -91,9 +107,17 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         var numberOfItem: Int
         if collectionView == self.cellListView{
             if (position != 1){
-            numberOfItem = newsArrayList.count + 1
+                if(newsArrayList != nil){
+                    numberOfItem = (newsArrayList?.count)! + 1
+                }else{
+                    numberOfItem = 0
+                }
             } else {
-                numberOfItem = videoArrayList.count
+                if(videoArrayList != nil){
+                    numberOfItem = (videoArrayList?.count)!
+                }else{
+                    numberOfItem = 0
+                }
             }
         }else{
             numberOfItem = 4
@@ -109,14 +133,14 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
                 if indexPath.item == 0{
                     let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! GenuineSliderViewCell
                     cell3.homeViewController = self.homeViewController
-                    if(newsArrayList.count != 0){
-                        cell3.newsArrayList = Array(newsArrayList[0...2])
+                    if(newsArrayList?.count != 0){
+                        cell3.newsArrayList = Array(newsArrayList![0...2])
                     }
                     return cell3
                 }else{
                     let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "genuineCell", for: indexPath) as! GenuineCell
-                    if newsArrayList.count != 0 {
-                        cell2.genuine = newsArrayList[indexPath.item-1]
+                    if newsArrayList?.count != 0 {
+                        cell2.genuine = newsArrayList?[indexPath.item-1]
                     }
                     return cell2
                 }
@@ -127,8 +151,8 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
             }
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as! VideoCell
-            if videoArrayList.count != 0 {
-                cell.video = videoArrayList[indexPath.item]
+            if videoArrayList?.count != 0 {
+                cell.video = videoArrayList?[indexPath.item]
             }
             return cell
             
@@ -163,38 +187,46 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         if(collectionView == selectionView){
             fetchData()
             position = indexPath.item
-            cellListView.reloadData()
         }else{
             if(position==1){
-                videoDetailViewController.video = videoArrayList[indexPath.item]
+                let videoDetailViewController = VideoDetailViewController()
+                videoDetailViewController.video = videoArrayList?[indexPath.item]
                 homeViewController!.navigationController?.pushViewController(videoDetailViewController, animated: true)
             }else{
                 if(indexPath.item != 0){
-                    genuineDetailViewController.genuineContent = newsArrayList[indexPath.item - 1]
+                    let genuineDetailViewController = GenuineDetailViewController()
+                    genuineDetailViewController.genuineContent = newsArrayList?[indexPath.item - 1]
                     homeViewController?.navigationController?.pushViewController(genuineDetailViewController, animated: true)
                 }
             }
         }
     }
     
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        fetchData()
+        print("start refreshing")
+        self.refresher.endRefreshing()
+    }
+    
+    
     func fetchData() {
         if(position == 0){
-            APIService.shardInstance.fetchGenuineContentTypeOne { (newsArrayList:[Genuine]) in
+            APIService.shardInstance.fetchGenuineContentTypeOne { (newsArrayList:Results<Genuine>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else if(position==1){
-            APIService.shardInstance.fetchVideo { (videoArray:[Video]) in
+            APIService.shardInstance.fetchVideo { (videoArray:Results<Video>) in
                 self.videoArrayList = videoArray
                 self.cellListView.reloadData()
             }
         }else if(position==2){
-            APIService.shardInstance.fetchGenuineContentTypeTwo { (newsArrayList:[Genuine]) in
+            APIService.shardInstance.fetchGenuineContentTypeTwo { (newsArrayList:Results<Genuine>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }
         }else {
-            APIService.shardInstance.fetchGenuineContentTypeThree { (newsArrayList:[Genuine]) in
+            APIService.shardInstance.fetchGenuineContentTypeThree { (newsArrayList:Results<Genuine>) in
                 self.newsArrayList = newsArrayList
                 self.cellListView.reloadData()
             }

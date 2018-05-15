@@ -15,7 +15,6 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
     
     var newsArrayList:[News]? {
         didSet{
-//          print("01234")
             sliderView.reloadData()
         }
     }
@@ -53,6 +52,12 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
         pc.currentPageIndicatorTintColor = .white
         pc.pageIndicatorTintColor = .gray
         return pc
+    }()
+    
+    let line: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.lightGray
+        return view
     }()
     
     
@@ -93,9 +98,6 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newsViewController.newsContent = newsArrayList?[indexPath.item]
         homeViewController?.navigationController?.pushViewController(newsViewController, animated: true)
-        // This area calls News Detail View
-//        let newsLauncher = NewsLauncher()
-//        newsLauncher.showNewsDetail(str:"123")
     }
     
 }

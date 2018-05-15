@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class VideoCell: BaseCell {
     weak var homeViewController: HomeViewController?
@@ -16,8 +17,12 @@ class VideoCell: BaseCell {
             titleLabel.text = video?.title
             timeLabel.text = video?.publishedTime
             authorLabel.text = video?.author
+            if video?.imageURL != nil {
+                imageView.setImage(urlString: (video?.imageURL)!)
+            }
         }
     }
+    
     
     let view: UIView = {
         let view = UIView()
@@ -26,15 +31,19 @@ class VideoCell: BaseCell {
     
     let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = UIColor.blue   
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
+    
+    let imageContainer: UIView = {
+        let iv = UIView()
         return iv
     }()
     
     let titleLabel: UILabel = {
         let tl = UILabel()
         tl.textAlignment = .left
-        tl.font = tl.font.withSize(20)
-        tl.text = "测试标题"
+        tl.font = tl.font.withSize(15)
         tl.textColor = UIColor.white
         return tl
     }()
@@ -71,19 +80,23 @@ class VideoCell: BaseCell {
     }
     
     func setupSubViews(){
-        view.addSubview(imageView)
+        view.addSubview(imageContainer)
+        imageContainer.clipsToBounds = true
+        imageContainer.addSubview(imageView)
         view.addSubview(titleLabel)
         view.addSubview(timeLabel)
         view.addSubview(authorLabel)
         let height = (frame.width-30) * 9/16
+        addConstraintsWithFormat(format: "H:|[v0]|", views: imageView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: imageView)
         addConstraintsWithFormat(format: "H:|-10-[v0(90)]", views: authorLabel,timeLabel)
-        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: imageView)
+        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: imageContainer)
         addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: titleLabel)
-        addConstraintsWithFormat(format: "V:|-10-[v0(\(height))]-5-[v1(25)]-5-[v2(15)]", views: imageView,titleLabel,authorLabel)
+        addConstraintsWithFormat(format: "V:|-10-[v0(\(height))]-5-[v1(25)]-5-[v2(15)]", views: imageContainer,titleLabel,authorLabel)
         
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 5))
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 15))
         addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .left, relatedBy: .equal, toItem: authorLabel, attribute: .right, multiplier: 1, constant: 5))
-        addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: 150))
+        addConstraint(NSLayoutConstraint(item: timeLabel, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 0, constant: 200))
     }
 }

@@ -26,15 +26,24 @@ extension UIView {
     }
 }
 
+extension UIImageView {
+    func setImage(urlString: String) {
+//        self.kf.setImage(with: URL(string: urlString))
+        self.kf.setImage(with: URL(string: urlString), placeholder: UIImage(named: "loading"))
+    }
+}
+
 extension String {
-    func formatDate(date: String) -> String{
-        let formatter = DateFormatter()
-        
-        // Format 1
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        let parsedDate = formatter.date(from: date)
-//            print(parsedDate)
-        return "\(parsedDate!)"
+    func timeFormatter() -> String {
+        let time: String
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        let date = dateFormatter.date(from: self)
+        let dateToString = DateFormatter()
+        dateToString.dateFormat = "EEEE, dd MMMM yyyy HH:mm"
+        dateToString.locale = Locale(identifier: "en_AU")
+        time = dateToString.string(from: date!)
+        return time
     }
 }
 
