@@ -72,7 +72,7 @@ class TimelineTableViewController: UITableViewController {
     }
     
     private func getNews() {
-        Alamofire.request("http://0.0.0.0:8000/test1.json", method: .get).validate().responseJSON { response in
+        Alamofire.request("http://10.10.6.111:3000/api/flash", method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
@@ -90,16 +90,17 @@ class TimelineTableViewController: UITableViewController {
     
     private func JSONtoData(json: JSON) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
+//        dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         realm.beginWrite()
-        if let collection = json["articles"].array {
+        if let collection = json.array {
             for item in collection {
-                let date = dateFormatter.date(from: item["publishedAt"].string!)
-                let id = "\(item["id"].int!)"
+                let date = dateFormatter.date(from: item["publishedTime"].string!)
+                let id = "\(item["_id"].string!)"
                 if realm.object(ofType: NewsFlash.self, forPrimaryKey: id) == nil {
-                    realm.create(NewsFlash.self, value: [id, date!, item["description"].string!])
+                    realm.create(NewsFlash.self, value: [id, date!, item["shortMassage"].string!])
                 } else {
-                    realm.create(NewsFlash.self, value: [id, date!, item["description"].string!], update: true)
+                    realm.create(NewsFlash.self, value: [id, date!, item["shortMassage"].string!], update: true)
                 }
             }
         }
