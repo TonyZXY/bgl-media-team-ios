@@ -27,6 +27,11 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         super.viewDidLoad()
         setupView()
         SetDataResult().writeJsonExchange()
+//        DispatchQueue.main.async {
+            GetDataResult().getCoinList()
+//        }
+    
+        
 //        print(allResult)
     }
     
@@ -118,19 +123,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     }
     
     @objc func changetotransaction(){
-        cryptoCompareClient.getCoinList(){result in
-            switch result{
-            case .success(let resultData):
-                guard let coinList = resultData?.Data else {return}
-                for (_,value) in coinList{
-                    try! self.container.write { transaction in
-                        transaction.add(value, update: true)
-                    }
-                }
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
-            }
-        }
         let transaction = TransactionsController()
         self.navigationController?.pushViewController(transaction, animated: true)
     }
@@ -375,6 +367,8 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             totalChange.text = "▲ " + "+" + risefallnumber
         }
     }
+    
+    
 }
 
 
