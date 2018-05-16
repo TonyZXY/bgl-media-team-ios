@@ -27,7 +27,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         super.viewDidLoad()
         setupView()
         SetDataResult().writeJsonExchange()
-        print(allResult)
+//        print(allResult)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +111,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             self.totalPrice = 0
             self.totalProfit = 0
             self.totalNumber.text = self.priceType + "$" + "0"
-            self.checkRiseandfallNumber(risefallnumber: "0.00")
+            self.checkRiseandfallNumber(risefallnumber: "0.0")
             self.walletResults = self.setWalletData()
             tableView.reloadData()
         }
@@ -365,7 +365,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             // lost with red
             totalChange.textColor = color.fallColor()
             totalChange.text = "▼ " + risefallnumber
-        } else if risefallnumber == "0.00"{
+        } else if risefallnumber == "0.0"{
             // Not any change with white
             totalChange.text = "--"
             totalChange.textColor = UIColor.white
