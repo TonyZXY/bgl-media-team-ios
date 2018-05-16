@@ -62,20 +62,20 @@
 		046963E520AAC8B400459EC8 /* CryptoCompareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963DC20AAC8B300459EC8 /* CryptoCompareClient.swift */; };
 		046963E620AAC8B400459EC8 /* MarketCapClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963DD20AAC8B300459EC8 /* MarketCapClient.swift */; };
 		046963E720AAC8B400459EC8 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963DE20AAC8B400459EC8 /* APIClient.swift */; };
-		046963F820AAC8DE00459EC8 /* TransNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963E920AAC8DD00459EC8 /* TransNumberCell.swift */; };
-		046963F920AAC8DE00459EC8 /* TransExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963EA20AAC8DD00459EC8 /* TransExpensesCell.swift */; };
-		046963FA20AAC8DE00459EC8 /* TransTradePairsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963EB20AAC8DD00459EC8 /* TransTradePairsCell.swift */; };
-		046963FB20AAC8DE00459EC8 /* TransCoinMarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963EC20AAC8DD00459EC8 /* TransCoinMarketCell.swift */; };
-		046963FC20AAC8DE00459EC8 /* TransDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963ED20AAC8DD00459EC8 /* TransDateCell.swift */; };
-		046963FD20AAC8DE00459EC8 /* TransCoinTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963EE20AAC8DD00459EC8 /* TransCoinTypeCell.swift */; };
-		046963FE20AAC8DE00459EC8 /* TransTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963EF20AAC8DD00459EC8 /* TransTimeCell.swift */; };
-		046963FF20AAC8DE00459EC8 /* TransPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963F020AAC8DD00459EC8 /* TransPriceCell.swift */; };
-		0469640020AAC8DE00459EC8 /* TransAdditionalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963F120AAC8DD00459EC8 /* TransAdditionalCell.swift */; };
-		0469640120AAC8DE00459EC8 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963F320AAC8DD00459EC8 /* HistoryTableViewCell.swift */; };
-		0469640220AAC8DE00459EC8 /* HistoryLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963F420AAC8DD00459EC8 /* HistoryLine.swift */; };
-		0469640320AAC8DE00459EC8 /* HistoryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963F520AAC8DD00459EC8 /* HistoryPoint.swift */; };
 		0469640420AAC8DE00459EC8 /* CoinTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963F620AAC8DD00459EC8 /* CoinTypeTableViewCell.swift */; };
 		0469640520AAC8DE00459EC8 /* WalletsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963F720AAC8DD00459EC8 /* WalletsCell.swift */; };
+		0469641620ABB87200459EC8 /* TransNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469640920ABB87200459EC8 /* TransNumberCell.swift */; };
+		0469641720ABB87200459EC8 /* TransExpensesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469640A20ABB87200459EC8 /* TransExpensesCell.swift */; };
+		0469641820ABB87200459EC8 /* TransTradePairsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469640B20ABB87200459EC8 /* TransTradePairsCell.swift */; };
+		0469641920ABB87200459EC8 /* TransCoinMarketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469640C20ABB87200459EC8 /* TransCoinMarketCell.swift */; };
+		0469641A20ABB87200459EC8 /* TransDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469640D20ABB87200459EC8 /* TransDateCell.swift */; };
+		0469641B20ABB87200459EC8 /* TransCoinTypeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469640E20ABB87200459EC8 /* TransCoinTypeCell.swift */; };
+		0469641C20ABB87200459EC8 /* TransTimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469640F20ABB87200459EC8 /* TransTimeCell.swift */; };
+		0469641D20ABB87200459EC8 /* TransPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641020ABB87200459EC8 /* TransPriceCell.swift */; };
+		0469641E20ABB87200459EC8 /* TransAdditionalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641120ABB87200459EC8 /* TransAdditionalCell.swift */; };
+		0469641F20ABB87200459EC8 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641320ABB87200459EC8 /* HistoryTableViewCell.swift */; };
+		0469642020ABB87200459EC8 /* HistoryLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641420ABB87200459EC8 /* HistoryLine.swift */; };
+		0469642120ABB87200459EC8 /* HistoryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641520ABB87200459EC8 /* HistoryPoint.swift */; };
 		0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479A03C20A16584004A0433 /* GlobalDataRealm.swift */; };
 		04BDD41820A42A87009D8A0A /* GenuineSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */; };
 		04BDD41A20A42A9C009D8A0A /* NewsSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */; };
@@ -168,20 +168,20 @@
 		046963DC20AAC8B300459EC8 /* CryptoCompareClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareClient.swift; sourceTree = "<group>"; };
 		046963DD20AAC8B300459EC8 /* MarketCapClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketCapClient.swift; sourceTree = "<group>"; };
 		046963DE20AAC8B400459EC8 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		046963E920AAC8DD00459EC8 /* TransNumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransNumberCell.swift; sourceTree = "<group>"; };
-		046963EA20AAC8DD00459EC8 /* TransExpensesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransExpensesCell.swift; sourceTree = "<group>"; };
-		046963EB20AAC8DD00459EC8 /* TransTradePairsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransTradePairsCell.swift; sourceTree = "<group>"; };
-		046963EC20AAC8DD00459EC8 /* TransCoinMarketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransCoinMarketCell.swift; sourceTree = "<group>"; };
-		046963ED20AAC8DD00459EC8 /* TransDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransDateCell.swift; sourceTree = "<group>"; };
-		046963EE20AAC8DD00459EC8 /* TransCoinTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransCoinTypeCell.swift; sourceTree = "<group>"; };
-		046963EF20AAC8DD00459EC8 /* TransTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransTimeCell.swift; sourceTree = "<group>"; };
-		046963F020AAC8DD00459EC8 /* TransPriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransPriceCell.swift; sourceTree = "<group>"; };
-		046963F120AAC8DD00459EC8 /* TransAdditionalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransAdditionalCell.swift; sourceTree = "<group>"; };
-		046963F320AAC8DD00459EC8 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
-		046963F420AAC8DD00459EC8 /* HistoryLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryLine.swift; sourceTree = "<group>"; };
-		046963F520AAC8DD00459EC8 /* HistoryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPoint.swift; sourceTree = "<group>"; };
 		046963F620AAC8DD00459EC8 /* CoinTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinTypeTableViewCell.swift; sourceTree = "<group>"; };
 		046963F720AAC8DD00459EC8 /* WalletsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletsCell.swift; sourceTree = "<group>"; };
+		0469640920ABB87200459EC8 /* TransNumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransNumberCell.swift; sourceTree = "<group>"; };
+		0469640A20ABB87200459EC8 /* TransExpensesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransExpensesCell.swift; sourceTree = "<group>"; };
+		0469640B20ABB87200459EC8 /* TransTradePairsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransTradePairsCell.swift; sourceTree = "<group>"; };
+		0469640C20ABB87200459EC8 /* TransCoinMarketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransCoinMarketCell.swift; sourceTree = "<group>"; };
+		0469640D20ABB87200459EC8 /* TransDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransDateCell.swift; sourceTree = "<group>"; };
+		0469640E20ABB87200459EC8 /* TransCoinTypeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransCoinTypeCell.swift; sourceTree = "<group>"; };
+		0469640F20ABB87200459EC8 /* TransTimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransTimeCell.swift; sourceTree = "<group>"; };
+		0469641020ABB87200459EC8 /* TransPriceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransPriceCell.swift; sourceTree = "<group>"; };
+		0469641120ABB87200459EC8 /* TransAdditionalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransAdditionalCell.swift; sourceTree = "<group>"; };
+		0469641320ABB87200459EC8 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		0469641420ABB87200459EC8 /* HistoryLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryLine.swift; sourceTree = "<group>"; };
+		0469641520ABB87200459EC8 /* HistoryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPoint.swift; sourceTree = "<group>"; };
 		0479A03C20A16584004A0433 /* GlobalDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataRealm.swift; sourceTree = "<group>"; };
 		04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenuineSliderViewCell.swift; sourceTree = "<group>"; };
 		04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsSliderViewCell.swift; sourceTree = "<group>"; };
@@ -358,32 +358,30 @@
 			path = BGLCommunity;
 			sourceTree = "<group>";
 		};
-		046963E820AAC8DD00459EC8 /* TransactionFromCell */ = {
+		0469640820ABB87200459EC8 /* TransactionFromCell */ = {
 			isa = PBXGroup;
 			children = (
-				046963E920AAC8DD00459EC8 /* TransNumberCell.swift */,
-				046963EA20AAC8DD00459EC8 /* TransExpensesCell.swift */,
-				046963EB20AAC8DD00459EC8 /* TransTradePairsCell.swift */,
-				046963EC20AAC8DD00459EC8 /* TransCoinMarketCell.swift */,
-				046963ED20AAC8DD00459EC8 /* TransDateCell.swift */,
-				046963EE20AAC8DD00459EC8 /* TransCoinTypeCell.swift */,
-				046963EF20AAC8DD00459EC8 /* TransTimeCell.swift */,
-				046963F020AAC8DD00459EC8 /* TransPriceCell.swift */,
-				046963F120AAC8DD00459EC8 /* TransAdditionalCell.swift */,
+				0469640920ABB87200459EC8 /* TransNumberCell.swift */,
+				0469640A20ABB87200459EC8 /* TransExpensesCell.swift */,
+				0469640B20ABB87200459EC8 /* TransTradePairsCell.swift */,
+				0469640C20ABB87200459EC8 /* TransCoinMarketCell.swift */,
+				0469640D20ABB87200459EC8 /* TransDateCell.swift */,
+				0469640E20ABB87200459EC8 /* TransCoinTypeCell.swift */,
+				0469640F20ABB87200459EC8 /* TransTimeCell.swift */,
+				0469641020ABB87200459EC8 /* TransPriceCell.swift */,
+				0469641120ABB87200459EC8 /* TransAdditionalCell.swift */,
 			);
-			name = TransactionFromCell;
-			path = "../../../../../Downloads/bgl-media-team-ios/news app for blockchain/Wallet/Wallet_View/TransactionFromCell";
+			path = TransactionFromCell;
 			sourceTree = "<group>";
 		};
-		046963F220AAC8DD00459EC8 /* TransactionHistory */ = {
+		0469641220ABB87200459EC8 /* TransactionHistory */ = {
 			isa = PBXGroup;
 			children = (
-				046963F320AAC8DD00459EC8 /* HistoryTableViewCell.swift */,
-				046963F420AAC8DD00459EC8 /* HistoryLine.swift */,
-				046963F520AAC8DD00459EC8 /* HistoryPoint.swift */,
+				0469641320ABB87200459EC8 /* HistoryTableViewCell.swift */,
+				0469641420ABB87200459EC8 /* HistoryLine.swift */,
+				0469641520ABB87200459EC8 /* HistoryPoint.swift */,
 			);
-			name = TransactionHistory;
-			path = "../../../../../Downloads/bgl-media-team-ios/news app for blockchain/Wallet/Wallet_View/TransactionHistory";
+			path = TransactionHistory;
 			sourceTree = "<group>";
 		};
 		0479A03B20A16555004A0433 /* Markets_Model */ = {
@@ -486,9 +484,9 @@
 		576FA8DA2091AD27005B6406 /* Wallet_View */ = {
 			isa = PBXGroup;
 			children = (
+				0469640820ABB87200459EC8 /* TransactionFromCell */,
+				0469641220ABB87200459EC8 /* TransactionHistory */,
 				046963F620AAC8DD00459EC8 /* CoinTypeTableViewCell.swift */,
-				046963E820AAC8DD00459EC8 /* TransactionFromCell */,
-				046963F220AAC8DD00459EC8 /* TransactionHistory */,
 				046963F720AAC8DD00459EC8 /* WalletsCell.swift */,
 			);
 			path = Wallet_View;
@@ -691,17 +689,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				046963C120AAC86B00459EC8 /* ExchangeList.swift in Sources */,
+				0469641720ABB87200459EC8 /* TransExpensesCell.swift in Sources */,
 				04E4F021209B19BB00A2D0BF /* Timeline.swift in Sources */,
-				0469640120AAC8DE00459EC8 /* HistoryTableViewCell.swift in Sources */,
 				046963D120AAC89200459EC8 /* SearchTradingPairController.swift in Sources */,
 				046963B820AAC86B00459EC8 /* GetDataResult.swift in Sources */,
 				046963CE20AAC89200459EC8 /* TransactionsController.swift in Sources */,
 				0419422C20A42FB1006B26C6 /* News.swift in Sources */,
 				046963D320AAC89200459EC8 /* SearchExchangesController.swift in Sources */,
 				0469638920AAB20F00459EC8 /* WebDetailViewController.swift in Sources */,
-				0469640320AAC8DE00459EC8 /* HistoryPoint.swift in Sources */,
 				0469638820AAB20F00459EC8 /* defCurrency.swift in Sources */,
-				0469640220AAC8DE00459EC8 /* HistoryLine.swift in Sources */,
 				0419422620A42F7E006B26C6 /* VideoDetailViewController.swift in Sources */,
 				046963CF20AAC89200459EC8 /* CaculationFunction.swift in Sources */,
 				046963BC20AAC86B00459EC8 /* AllTransactions.swift in Sources */,
@@ -709,8 +705,10 @@
 				046963C020AAC86B00459EC8 /* CryptoCompareCoinsRealm.swift in Sources */,
 				576FA90720976509005B6406 /* MarketsCoinTableViewCell.swift in Sources */,
 				0469638B20AAB20F00459EC8 /* MoreOptionMainViewController.swift in Sources */,
+				0469641B20ABB87200459EC8 /* TransCoinTypeCell.swift in Sources */,
 				04BDD42620A42AFE009D8A0A /* GenuineCell.swift in Sources */,
 				0419422420A42F7E006B26C6 /* HomeViewController.swift in Sources */,
+				0469641820ABB87200459EC8 /* TransTradePairsCell.swift in Sources */,
 				045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */,
 				04BDD42420A42AF3009D8A0A /* NewsMenuCell.swift in Sources */,
 				0419422320A42F7E006B26C6 /* NewsDetailViewController.swift in Sources */,
@@ -721,7 +719,6 @@
 				0419423420A43080006B26C6 /* APIService.swift in Sources */,
 				046963D220AAC89200459EC8 /* TestTransaction.temp_caseinsensitive_rename.swift in Sources */,
 				0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */,
-				046963FF20AAC8DE00459EC8 /* TransPriceCell.swift in Sources */,
 				576FA8FB2095DA82005B6406 /* MarketController.swift in Sources */,
 				0419422D20A42FB1006B26C6 /* Video.swift in Sources */,
 				04BDD41A20A42A9C009D8A0A /* NewsSliderViewCell.swift in Sources */,
@@ -730,38 +727,41 @@
 				04E4F01A209B19A700A2D0BF /* NewsFlashViewController.swift in Sources */,
 				04BDD42E20A42B33009D8A0A /* SelectionViewCell.swift in Sources */,
 				04BDD41C20A42AA9009D8A0A /* GenuineListViewCell.swift in Sources */,
+				0469641F20ABB87200459EC8 /* HistoryTableViewCell.swift in Sources */,
 				046963D420AAC89200459EC8 /* SearchCoinController.swift in Sources */,
 				04BDD42C20A42B21009D8A0A /* NewsListViewCell.swift in Sources */,
 				576FA8F92095D89F005B6406 /* MenuBar.swift in Sources */,
 				046963C320AAC86B00459EC8 /* MarketCapCoin.swift in Sources */,
 				046963E520AAC8B400459EC8 /* CryptoCompareClient.swift in Sources */,
+				0469641D20ABB87200459EC8 /* TransPriceCell.swift in Sources */,
 				576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */,
 				04BDD42220A42AE6009D8A0A /* NewsSliderCell.swift in Sources */,
+				0469642020ABB87200459EC8 /* HistoryLine.swift in Sources */,
 				576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */,
 				04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */,
+				0469641620ABB87200459EC8 /* TransNumberCell.swift in Sources */,
 				046963BE20AAC86B00459EC8 /* TransactionsHistory.swift in Sources */,
 				0469638720AAB20F00459EC8 /* DefaultCurrencyViewController.swift in Sources */,
 				04BDD41E20A42AB6009D8A0A /* NewsCell.swift in Sources */,
 				046963C220AAC86B00459EC8 /* SetDataResult.swift in Sources */,
+				0469641A20ABB87200459EC8 /* TransDateCell.swift in Sources */,
 				046963E020AAC8B400459EC8 /* Endpoint.swift in Sources */,
+				0469641C20ABB87200459EC8 /* TransTimeCell.swift in Sources */,
+				0469641920ABB87200459EC8 /* TransCoinMarketCell.swift in Sources */,
 				0419422B20A42FB1006B26C6 /* Genuine.swift in Sources */,
 				04E4F020209B19BB00A2D0BF /* TimelineTableViewCell.swift in Sources */,
 				046963BD20AAC86B00459EC8 /* CryptoCompareCoin.swift in Sources */,
 				046963E720AAC8B400459EC8 /* APIClient.swift in Sources */,
-				046963FE20AAC8DE00459EC8 /* TransTimeCell.swift in Sources */,
-				046963F920AAC8DE00459EC8 /* TransExpensesCell.swift in Sources */,
-				046963FB20AAC8DE00459EC8 /* TransCoinMarketCell.swift in Sources */,
-				046963F820AAC8DE00459EC8 /* TransNumberCell.swift in Sources */,
-				046963FC20AAC8DE00459EC8 /* TransDateCell.swift in Sources */,
 				0469638C20AAB20F00459EC8 /* defDisplayOpt.swift in Sources */,
 				04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */,
-				0469640020AAC8DE00459EC8 /* TransAdditionalCell.swift in Sources */,
 				046963BA20AAC86B00459EC8 /* SaveStructToRealmObjects.swift in Sources */,
+				0469641E20ABB87200459EC8 /* TransAdditionalCell.swift in Sources */,
 				046963B920AAC86B00459EC8 /* WalletDetail.swift in Sources */,
 				0469638A20AAB20F00459EC8 /* WebMainViewController.swift in Sources */,
 				5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */,
 				576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */,
 				0469638D20AAB20F00459EC8 /* OtherDetailViewController.swift in Sources */,
+				0469642120ABB87200459EC8 /* HistoryPoint.swift in Sources */,
 				046963E620AAC8B400459EC8 /* MarketCapClient.swift in Sources */,
 				0469640420AAC8DE00459EC8 /* CoinTypeTableViewCell.swift in Sources */,
 				0419423520A43080006B26C6 /* Extensions.swift in Sources */,
@@ -771,8 +771,6 @@
 				04BDD42820A42B0A009D8A0A /* GenuineSliderCell.swift in Sources */,
 				0419423620A43080006B26C6 /* BaseCell.swift in Sources */,
 				046963D020AAC89200459EC8 /* WalletController.swift in Sources */,
-				046963FD20AAC8DE00459EC8 /* TransCoinTypeCell.swift in Sources */,
-				046963FA20AAC8DE00459EC8 /* TransTradePairsCell.swift in Sources */,
 				04BDD42020A42AC1009D8A0A /* VideoCell.swift in Sources */,
 				576FA9002096ACD1005B6406 /* MarketsCell.swift in Sources */,
 				046963D520AAC89200459EC8 /* TransactionFormData.swift in Sources */,
