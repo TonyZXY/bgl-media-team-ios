@@ -105,6 +105,7 @@
 		576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA9082097D41A005B6406 /* WatchlistCell.swift */; };
 		576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90A20980201005B6406 /* MarketFilterCollectionView.swift */; };
 		576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90C20980641005B6406 /* MarketSortPickerView.swift */; };
+		57D9A43F20AC05F600344BB1 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9A43E20AC05F600344BB1 /* MemoryData.swift */; };
 		F0A477DC98285AF7CF6AD1CC /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
@@ -210,6 +211,7 @@
 		576FA9082097D41A005B6406 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
 		576FA90A20980201005B6406 /* MarketFilterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketFilterCollectionView.swift; sourceTree = "<group>"; };
 		576FA90C20980641005B6406 /* MarketSortPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSortPickerView.swift; sourceTree = "<group>"; };
+		57D9A43E20AC05F600344BB1 /* MemoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
 		E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B5A1DB09E3F04A1F83FF22 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -435,6 +437,7 @@
 				046963AE20AAC86900459EC8 /* SaveStructToRealmObjects.swift */,
 				046963B620AAC86A00459EC8 /* SetDataResult.swift */,
 				0469642220ABBC3800459EC8 /* WalletDetail.swift */,
+				57D9A43E20AC05F600344BB1 /* MemoryData.swift */,
 			);
 			path = Wallet_Models;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				04BDD42420A42AF3009D8A0A /* NewsMenuCell.swift in Sources */,
 				0419422320A42F7E006B26C6 /* NewsDetailViewController.swift in Sources */,
 				045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */,
+				57D9A43F20AC05F600344BB1 /* MemoryData.swift in Sources */,
 				576FA8F42092E670005B6406 /* AppImage.swift in Sources */,
 				046963DF20AAC8B400459EC8 /* APIErrors.swift in Sources */,
 				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
