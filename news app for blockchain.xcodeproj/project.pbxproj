@@ -33,7 +33,6 @@
 		0469638D20AAB20F00459EC8 /* OtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638520AAB20E00459EC8 /* OtherDetailViewController.swift */; };
 		0469638E20AAB20F00459EC8 /* OtherOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469638620AAB20E00459EC8 /* OtherOptionViewController.swift */; };
 		046963B820AAC86B00459EC8 /* GetDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963AC20AAC86800459EC8 /* GetDataResult.swift */; };
-		046963B920AAC86B00459EC8 /* WalletDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963AD20AAC86900459EC8 /* WalletDetail.swift */; };
 		046963BA20AAC86B00459EC8 /* SaveStructToRealmObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963AE20AAC86900459EC8 /* SaveStructToRealmObjects.swift */; };
 		046963BB20AAC86B00459EC8 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963AF20AAC86900459EC8 /* Exchange.swift */; };
 		046963BC20AAC86B00459EC8 /* AllTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963B020AAC86900459EC8 /* AllTransactions.swift */; };
@@ -76,6 +75,7 @@
 		0469641F20ABB87200459EC8 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641320ABB87200459EC8 /* HistoryTableViewCell.swift */; };
 		0469642020ABB87200459EC8 /* HistoryLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641420ABB87200459EC8 /* HistoryLine.swift */; };
 		0469642120ABB87200459EC8 /* HistoryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641520ABB87200459EC8 /* HistoryPoint.swift */; };
+		0469642320ABBC3800459EC8 /* WalletDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469642220ABBC3800459EC8 /* WalletDetail.swift */; };
 		0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479A03C20A16584004A0433 /* GlobalDataRealm.swift */; };
 		04BDD41820A42A87009D8A0A /* GenuineSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */; };
 		04BDD41A20A42A9C009D8A0A /* NewsSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */; };
@@ -139,7 +139,6 @@
 		0469638520AAB20E00459EC8 /* OtherDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherDetailViewController.swift; sourceTree = "<group>"; };
 		0469638620AAB20E00459EC8 /* OtherOptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherOptionViewController.swift; sourceTree = "<group>"; };
 		046963AC20AAC86800459EC8 /* GetDataResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDataResult.swift; sourceTree = "<group>"; };
-		046963AD20AAC86900459EC8 /* WalletDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WalletDetail.swift; path = "../../../../../Downloads/bgl-media-team-ios/news app for blockchain/Wallet/Wallet_Models/WalletDetail.swift"; sourceTree = "<group>"; };
 		046963AE20AAC86900459EC8 /* SaveStructToRealmObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveStructToRealmObjects.swift; sourceTree = "<group>"; };
 		046963AF20AAC86900459EC8 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		046963B020AAC86900459EC8 /* AllTransactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTransactions.swift; sourceTree = "<group>"; };
@@ -182,6 +181,7 @@
 		0469641320ABB87200459EC8 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		0469641420ABB87200459EC8 /* HistoryLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryLine.swift; sourceTree = "<group>"; };
 		0469641520ABB87200459EC8 /* HistoryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPoint.swift; sourceTree = "<group>"; };
+		0469642220ABBC3800459EC8 /* WalletDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDetail.swift; sourceTree = "<group>"; };
 		0479A03C20A16584004A0433 /* GlobalDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataRealm.swift; sourceTree = "<group>"; };
 		04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenuineSliderViewCell.swift; sourceTree = "<group>"; };
 		04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsSliderViewCell.swift; sourceTree = "<group>"; };
@@ -439,7 +439,7 @@
 				046963AE20AAC86900459EC8 /* SaveStructToRealmObjects.swift */,
 				046963B620AAC86A00459EC8 /* SetDataResult.swift */,
 				046963B220AAC86A00459EC8 /* TransactionsHistory.swift */,
-				046963AD20AAC86900459EC8 /* WalletDetail.swift */,
+				0469642220ABBC3800459EC8 /* WalletDetail.swift */,
 			);
 			path = Wallet_Models;
 			sourceTree = "<group>";
@@ -699,6 +699,7 @@
 				0469638920AAB20F00459EC8 /* WebDetailViewController.swift in Sources */,
 				0469638820AAB20F00459EC8 /* defCurrency.swift in Sources */,
 				0419422620A42F7E006B26C6 /* VideoDetailViewController.swift in Sources */,
+				0469642320ABBC3800459EC8 /* WalletDetail.swift in Sources */,
 				046963CF20AAC89200459EC8 /* CaculationFunction.swift in Sources */,
 				046963BC20AAC86B00459EC8 /* AllTransactions.swift in Sources */,
 				04BDD42A20A42B16009D8A0A /* NewsMenuBar.swift in Sources */,
@@ -756,7 +757,6 @@
 				04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */,
 				046963BA20AAC86B00459EC8 /* SaveStructToRealmObjects.swift in Sources */,
 				0469641E20ABB87200459EC8 /* TransAdditionalCell.swift in Sources */,
-				046963B920AAC86B00459EC8 /* WalletDetail.swift in Sources */,
 				0469638A20AAB20F00459EC8 /* WebMainViewController.swift in Sources */,
 				5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */,
 				576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */,
