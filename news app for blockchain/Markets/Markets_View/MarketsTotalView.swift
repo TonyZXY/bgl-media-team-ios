@@ -32,34 +32,22 @@ class MarketsTotalView:UICollectionViewCell{
         return number
     }()
     
-    let change:UILabel={
-        var change = UILabel()
-        change.text = "1%"
-        change.sizeToFit()
-        change.textColor = UIColor.white
-        return change
-    }()
     
     func setupView(){
         addSubview(totalFunds)
         addSubview(number)
-        addSubview(change)
         
         totalFunds.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-10-[v1]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":totalFunds,"v1":number]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-15-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":totalFunds,"v1":number]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":totalFunds]))
         addConstraint(NSLayoutConstraint(item: totalFunds, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         
+        
         number.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":number]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-15-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":number]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":number]))
         addConstraint(NSLayoutConstraint(item: number, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: number, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
         
-        change.translatesAutoresizingMaskIntoConstraints = false
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":change,"v1":number]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":change]))
-        addConstraint(NSLayoutConstraint(item: change, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {
