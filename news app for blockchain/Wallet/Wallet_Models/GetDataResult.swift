@@ -21,10 +21,28 @@ struct CurrencyPairs:Decodable{
 }
 
 class GetDataResult{
-    
+    let cryptoCompareClient = CryptoCompareClient()
+    let container = try! Container()
     typealias tradingCoin = [String]
     typealias chooseCoin = [String:tradingCoin]
     typealias exchangeChoose = [String:chooseCoin]
+    
+    func getCoinList(){
+        cryptoCompareClient.getCoinList(){result in
+            switch result{
+            case .success(let resultData):
+                guard let coinList = resultData?.Data else {return}
+                for (_,value) in coinList{
+                    try! self.container.write { transaction in
+                        transaction.add(value, update: true)
+                    }
+                }
+            case .failure(let error):
+                print("the error \(error.localizedDescription)")
+            }
+        }
+    }
+    
     
     func getExchangeList()->exchangeChoose{
         var jsonData = exchangeChoose()
