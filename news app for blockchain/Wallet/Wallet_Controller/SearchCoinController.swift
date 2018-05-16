@@ -24,20 +24,6 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         setupView()
         searchBar.becomeFirstResponder()
         searchBar.returnKeyType = UIReturnKeyType.done
-        
-//        let filterName = "coinAbbName = '" + (delegate?.getCoinName())! + "' "
-//        if delegate?.getCoinName() != ""{
-//            let result = try! Realm().objects(CryptoCompareCoinsRealm.self).filter(filterName)
-//            for n in result {
-//                allCoinObject.append(n)
-//            }
-//        } else {
-//            let result = try! Realm().objects(CryptoCompareCoinsRealm.self)
-//            for n in result {
-//                allCoinObject.append(n)
-//            }
-//        }
-
         let result = try! Realm().objects(CryptoCompareCoinsRealm.self)
         for n in result {
             allCoinObject.append(n)

@@ -36,45 +36,47 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     
     @objc func addTransaction(){
         newTransaction.totalPrice = Float(newTransaction.amount) * newTransaction.singlePrice
+        newTransaction.status = transaction
         if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0" && String(newTransaction.singlePrice) != "0"{
+            
             transactionButton.setTitle("Loading...", for: .normal)
             
-            GetDataResult().getCurrencyApi(from: newTransaction.tradingPairsName, to: "USD", price: newTransaction.singlePrice){success,price in
-            if success{
-                self.newTransaction.usdSinglePrice = price
-                print("thread\(Thread.current)")
-                DispatchQueue.main.async {
-                self.writeToRealm()
-                   self.navigationController?.popViewController(animated: true)
+            let serialQueue = DispatchQueue(label: "SCGCD")
+            serialQueue.sync {
+                GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "USD", price: self.newTransaction.singlePrice){success,price in
+                    if success{
+                        self.newTransaction.usdSinglePrice = price
+                        self.newTransaction.usdTotalPrice = self.newTransaction.usdSinglePrice * Float(self.newTransaction.amount)
+                    } else{
+                        print("fail")
+                    }
+                    
                 }
-            } else{
-                print("fail")
             }
-        }
             
-        GetDataResult().getCurrencyApi(from: newTransaction.tradingPairsName, to: "AUD", price: newTransaction.singlePrice){success,price in
-            if success{
-                self.newTransaction.audSinglePrice = price
-                
-                DispatchQueue.main.async {
-                    self.writeToRealm()
-                    self.navigationController?.popViewController(animated: true)
+            serialQueue.sync {
+                GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "AUD", price: self.newTransaction.singlePrice){success,price in
+                    if success{
+                        self.newTransaction.audSinglePrice = price
+                        self.newTransaction.audTotalPrice = self.newTransaction.audSinglePrice * Float(self.newTransaction.amount)
+                        DispatchQueue.main.sync{
+                            self.writeToRealm()
+                        }
+                        
+                    } else{
+                        print("fail")
+                    }
                 }
-            } else{
-                print("fail")
             }
-        }
-//        transactionButton.setTitle("Loading...", for: .normal)
         }
     }
     
     func writeToRealm(){
         //Write to Transaction Model to realm
-        
-            realm.beginWrite()
-            realm.create(AllTransactions.self, value: ["Buy",newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
-            try! realm.commitWrite()
-        
+        realm.beginWrite()
+        realm.create(AllTransactions.self, value: ["Buy",newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
+        try! realm.commitWrite()
+        self.navigationController?.popViewController(animated: true)
         
     }
     
@@ -298,7 +300,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                         let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
                         cell.price.text = String(value)
                         self.textFieldDidEndEditing(cell.price)
-                        print("success")
                     }
                 case .failure(let error):
                     print("the error \(error.localizedDescription)")

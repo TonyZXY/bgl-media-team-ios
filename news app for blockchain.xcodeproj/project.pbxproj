@@ -37,7 +37,6 @@
 		046963BB20AAC86B00459EC8 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963AF20AAC86900459EC8 /* Exchange.swift */; };
 		046963BC20AAC86B00459EC8 /* AllTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963B020AAC86900459EC8 /* AllTransactions.swift */; };
 		046963BD20AAC86B00459EC8 /* CryptoCompareCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963B120AAC86900459EC8 /* CryptoCompareCoin.swift */; };
-		046963BE20AAC86B00459EC8 /* TransactionsHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963B220AAC86A00459EC8 /* TransactionsHistory.swift */; };
 		046963BF20AAC86B00459EC8 /* CryptoCompareCoinListResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963B320AAC86A00459EC8 /* CryptoCompareCoinListResult.swift */; };
 		046963C020AAC86B00459EC8 /* CryptoCompareCoinsRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963B420AAC86A00459EC8 /* CryptoCompareCoinsRealm.swift */; };
 		046963C120AAC86B00459EC8 /* ExchangeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963B520AAC86A00459EC8 /* ExchangeList.swift */; };
@@ -48,7 +47,6 @@
 		046963CF20AAC89200459EC8 /* CaculationFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963C620AAC89100459EC8 /* CaculationFunction.swift */; };
 		046963D020AAC89200459EC8 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963C720AAC89100459EC8 /* WalletController.swift */; };
 		046963D120AAC89200459EC8 /* SearchTradingPairController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963C820AAC89100459EC8 /* SearchTradingPairController.swift */; };
-		046963D220AAC89200459EC8 /* TestTransaction.temp_caseinsensitive_rename.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963C920AAC89100459EC8 /* TestTransaction.temp_caseinsensitive_rename.swift */; };
 		046963D320AAC89200459EC8 /* SearchExchangesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963CA20AAC89200459EC8 /* SearchExchangesController.swift */; };
 		046963D420AAC89200459EC8 /* SearchCoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963CB20AAC89200459EC8 /* SearchCoinController.swift */; };
 		046963D520AAC89200459EC8 /* TransactionFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963CC20AAC89200459EC8 /* TransactionFormData.swift */; };
@@ -143,7 +141,6 @@
 		046963AF20AAC86900459EC8 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		046963B020AAC86900459EC8 /* AllTransactions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllTransactions.swift; sourceTree = "<group>"; };
 		046963B120AAC86900459EC8 /* CryptoCompareCoin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareCoin.swift; sourceTree = "<group>"; };
-		046963B220AAC86A00459EC8 /* TransactionsHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionsHistory.swift; sourceTree = "<group>"; };
 		046963B320AAC86A00459EC8 /* CryptoCompareCoinListResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareCoinListResult.swift; sourceTree = "<group>"; };
 		046963B420AAC86A00459EC8 /* CryptoCompareCoinsRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoCompareCoinsRealm.swift; sourceTree = "<group>"; };
 		046963B520AAC86A00459EC8 /* ExchangeList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeList.swift; sourceTree = "<group>"; };
@@ -154,7 +151,6 @@
 		046963C620AAC89100459EC8 /* CaculationFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaculationFunction.swift; sourceTree = "<group>"; };
 		046963C720AAC89100459EC8 /* WalletController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
 		046963C820AAC89100459EC8 /* SearchTradingPairController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTradingPairController.swift; sourceTree = "<group>"; };
-		046963C920AAC89100459EC8 /* TestTransaction.temp_caseinsensitive_rename.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestTransaction.temp_caseinsensitive_rename.swift; sourceTree = "<group>"; };
 		046963CA20AAC89200459EC8 /* SearchExchangesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchExchangesController.swift; sourceTree = "<group>"; };
 		046963CB20AAC89200459EC8 /* SearchCoinController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchCoinController.swift; sourceTree = "<group>"; };
 		046963CC20AAC89200459EC8 /* TransactionFormData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionFormData.swift; sourceTree = "<group>"; };
@@ -438,7 +434,6 @@
 				046963B720AAC86A00459EC8 /* MarketCapCoin.swift */,
 				046963AE20AAC86900459EC8 /* SaveStructToRealmObjects.swift */,
 				046963B620AAC86A00459EC8 /* SetDataResult.swift */,
-				046963B220AAC86A00459EC8 /* TransactionsHistory.swift */,
 				0469642220ABBC3800459EC8 /* WalletDetail.swift */,
 			);
 			path = Wallet_Models;
@@ -509,7 +504,6 @@
 				046963CB20AAC89200459EC8 /* SearchCoinController.swift */,
 				046963CA20AAC89200459EC8 /* SearchExchangesController.swift */,
 				046963C820AAC89100459EC8 /* SearchTradingPairController.swift */,
-				046963C920AAC89100459EC8 /* TestTransaction.temp_caseinsensitive_rename.swift */,
 				046963CC20AAC89200459EC8 /* TransactionFormData.swift */,
 				046963C420AAC89000459EC8 /* TransactionFrom.swift */,
 				046963C520AAC89100459EC8 /* TransactionsController.swift */,
@@ -718,7 +712,6 @@
 				046963DF20AAC8B400459EC8 /* APIErrors.swift in Sources */,
 				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
 				0419423420A43080006B26C6 /* APIService.swift in Sources */,
-				046963D220AAC89200459EC8 /* TestTransaction.temp_caseinsensitive_rename.swift in Sources */,
 				0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */,
 				576FA8FB2095DA82005B6406 /* MarketController.swift in Sources */,
 				0419422D20A42FB1006B26C6 /* Video.swift in Sources */,
@@ -741,7 +734,6 @@
 				576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */,
 				04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */,
 				0469641620ABB87200459EC8 /* TransNumberCell.swift in Sources */,
-				046963BE20AAC86B00459EC8 /* TransactionsHistory.swift in Sources */,
 				0469638720AAB20F00459EC8 /* DefaultCurrencyViewController.swift in Sources */,
 				04BDD41E20A42AB6009D8A0A /* NewsCell.swift in Sources */,
 				046963C220AAC86B00459EC8 /* SetDataResult.swift in Sources */,
