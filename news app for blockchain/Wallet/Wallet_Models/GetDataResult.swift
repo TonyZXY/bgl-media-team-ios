@@ -103,7 +103,6 @@ class GetDataResult{
                     for n in json{
                         transferPrice = Float(n.value) * price
                     }
-                    print(transferPrice)
                     completion(true,transferPrice)
                 } catch let jsonErr{
                     print("Error serializing json:",jsonErr)
@@ -136,7 +135,6 @@ class GetDataResult{
                     let json = try JSONDecoder().decode([String:Double].self, from: data)
                     for n in json{
                         transferAUDs = Float(n.value) * price
-                        print("get success1")
                     }
                 } catch let jsonErr{
                     print("Error serializing json:",jsonErr)
@@ -153,7 +151,6 @@ class GetDataResult{
                     let json = try JSONDecoder().decode([String:Double].self, from: data)
                     for n in json{
                         transferUSDs = Float(n.value) * price
-                        print("get success2")
                     }
                 } catch let jsonErr{
                     print("Error serializing json:",jsonErr)
@@ -165,7 +162,6 @@ class GetDataResult{
         
         queue.sync {
             completion(true,transferAUDs,transferUSDs)
-            print("get success3")
         }
     }
     

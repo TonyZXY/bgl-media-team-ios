@@ -52,7 +52,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                     }
                     
                 }
-                print(Thread.current)
             }
             
             serialQueue.sync {
@@ -61,7 +60,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                         self.newTransaction.audSinglePrice = price
                         self.newTransaction.audTotalPrice = self.newTransaction.audSinglePrice * Float(self.newTransaction.amount)
                         DispatchQueue.main.sync{
-                            print("number 2")
                             self.writeToRealm()
                         }
                         
@@ -69,7 +67,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                         print("fail")
                     }
                 }
-                print(Thread.current)
             }
         }
     }
@@ -303,7 +300,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                         let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
                         cell.price.text = String(value)
                         self.textFieldDidEndEditing(cell.price)
-                        print("success")
                     }
                 case .failure(let error):
                     print("the error \(error.localizedDescription)")
