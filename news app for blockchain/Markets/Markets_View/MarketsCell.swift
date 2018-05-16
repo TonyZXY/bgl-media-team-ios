@@ -88,6 +88,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         searchBar.barTintColor = color.themeColor()
         searchBar.tintColor = color.themeColor()
         searchBar.backgroundColor = color.themeColor()
+        searchBar.returnKeyType = .done
         return searchBar
     }()
     
@@ -401,6 +402,10 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     
     @objc func reloadDataAfterUpdateWatchList() {
         coinList.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 
