@@ -88,6 +88,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         searchBar.barTintColor = color.themeColor()
         searchBar.tintColor = color.themeColor()
         searchBar.backgroundColor = color.themeColor()
+        searchBar.returnKeyType = .done
         return searchBar
     }()
     
@@ -113,7 +114,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         totalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         totalCollectionView.register(MarketsTotalView.self, forCellWithReuseIdentifier: "CellId")
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[v0]-5-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":totalCollectionView]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v0(150)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":totalCollectionView]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v0(80)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":totalCollectionView]))
         
         //排序按钮
         sortCoin.translatesAutoresizingMaskIntoConstraints = false
@@ -181,7 +182,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
                 } else {
                     cell.number.text = "--"
                 }
-                cell.change.text = "1%"
             } else if indexPath.row == 1 {
                 cell.totalFunds.text = "24小时交易量"
                 if let total_volume_24h = globalData?.total_volume_24h {
@@ -189,7 +189,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
                 } else {
                     cell.number.text = "--"
                 }
-                cell.change.text = "2%"
             } else if indexPath.row == 2 {
                 cell.totalFunds.text = "BTC占比"
                 if let bitcoin_percentage_of_market_cap = globalData?.bitcoin_percentage_of_market_cap {
@@ -197,7 +196,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
                 } else {
                     cell.number.text = "--"
                 }
-                cell.change.text = "3%"
             }
             cell.totalFunds.textColor = UIColor.white
             return cell
@@ -401,6 +399,10 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     
     @objc func reloadDataAfterUpdateWatchList() {
         coinList.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 

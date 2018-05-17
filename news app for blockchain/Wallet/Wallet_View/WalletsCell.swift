@@ -16,6 +16,7 @@ class WalletsCell:UITableViewCell{
     }
 
     func setupView(){
+        self.selectionStyle = .none
         addSubview(walletView)
         walletView.addSubview(coinImage)
         walletView.addSubview(coinName)
