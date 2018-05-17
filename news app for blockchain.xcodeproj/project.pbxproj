@@ -75,6 +75,7 @@
 		0469642120ABB87200459EC8 /* HistoryPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469641520ABB87200459EC8 /* HistoryPoint.swift */; };
 		0469642320ABBC3800459EC8 /* WalletDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0469642220ABBC3800459EC8 /* WalletDetail.swift */; };
 		0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0479A03C20A16584004A0433 /* GlobalDataRealm.swift */; };
+		04B982BC20AD06500020A6A8 /* CancelTouchKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B982BB20AD06500020A6A8 /* CancelTouchKeyboard.swift */; };
 		04BDD41820A42A87009D8A0A /* GenuineSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */; };
 		04BDD41A20A42A9C009D8A0A /* NewsSliderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */; };
 		04BDD41C20A42AA9009D8A0A /* GenuineListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BDD41B20A42AA9009D8A0A /* GenuineListViewCell.swift */; };
@@ -180,6 +181,7 @@
 		0469641520ABB87200459EC8 /* HistoryPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryPoint.swift; sourceTree = "<group>"; };
 		0469642220ABBC3800459EC8 /* WalletDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDetail.swift; sourceTree = "<group>"; };
 		0479A03C20A16584004A0433 /* GlobalDataRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalDataRealm.swift; sourceTree = "<group>"; };
+		04B982BB20AD06500020A6A8 /* CancelTouchKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTouchKeyboard.swift; sourceTree = "<group>"; };
 		04BDD41720A42A87009D8A0A /* GenuineSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenuineSliderViewCell.swift; sourceTree = "<group>"; };
 		04BDD41920A42A9C009D8A0A /* NewsSliderViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsSliderViewCell.swift; sourceTree = "<group>"; };
 		04BDD41B20A42AA9009D8A0A /* GenuineListViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenuineListViewCell.swift; sourceTree = "<group>"; };
@@ -392,6 +394,14 @@
 			path = Markets_Model;
 			sourceTree = "<group>";
 		};
+		04B982BA20AD06390020A6A8 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				04B982BB20AD06500020A6A8 /* CancelTouchKeyboard.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		04E4F013209AFB9900A2D0BF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,6 +482,7 @@
 		57510E1E20A13F6D00E7A7D9 /* Markets */ = {
 			isa = PBXGroup;
 			children = (
+				04B982BA20AD06390020A6A8 /* Helpers */,
 				0479A03B20A16555004A0433 /* Markets_Model */,
 				576FA9012096ACEA005B6406 /* Markets_Controller */,
 				576FA8FC2096A004005B6406 /* Markets_View */,
@@ -717,6 +728,7 @@
 				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
 				0419423420A43080006B26C6 /* APIService.swift in Sources */,
 				0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */,
+				04B982BC20AD06500020A6A8 /* CancelTouchKeyboard.swift in Sources */,
 				576FA8FB2095DA82005B6406 /* MarketController.swift in Sources */,
 				0419422D20A42FB1006B26C6 /* Video.swift in Sources */,
 				04BDD41A20A42A9C009D8A0A /* NewsSliderViewCell.swift in Sources */,
