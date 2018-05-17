@@ -30,9 +30,8 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
 //        DispatchQueue.main.async {
             GetDataResult().getCoinList()
 //        }
-    
         
-//        print(allResult)
+        print(allResult)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,8 +86,16 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                                     } else if self.displayType == "Number"{
                                         cell.checkRiseandfallNumber(risefallnumber: String(profit))
                                     }
-                                    self.totalNumber.text = self.priceType + "$" + String(self.totalPrice)
+//                                    self.totalNumber.text = self.priceType + "$" + String(self.totalPrice)
+//                                    self.totalNumber.text = String(self.totalPrice)
+                                    
+                                    let cellValue:String = String(format:"%.1f", Double(self.totalPrice))
+                                    self.totalNumber.text = self.priceType + "$"  + cellValue
                                     self.checkRiseandfallNumber(risefallnumber: String(self.totalProfit))
+                                    
+                                    
+                                    
+                                    
                                 }
                                 
                             } else{
@@ -368,6 +375,36 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
     }
     
+    
+    func getDoubleFrom(textField: UILabel) -> Float
+    {
+        var doubleValue : Float = 0.0
+        
+        if let val = textField.text
+        {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            let finalNumber = numberFormatter.number(from: val)
+            doubleValue = Float((finalNumber?.doubleValue)!);
+        }
+        
+        return doubleValue
+    }
+    
+    
+//    func getStringFrom(double doubleVal: Double) -> String
+//    {
+//        var stringValue : String = "0.00"
+//
+//        let formatter = NumberFormatter()
+//        formatter.usesSignificantDigits = true;
+//        formatter.maximumSignificantDigits = 100
+//        formatter.groupingSeparator = "";
+//        formatter.numberStyle = .decimal
+//        stringValue = formatter.stringFromNumber(Nsnumber(doubleVal))!;
+//
+//        return stringValue
+//    }
     
 }
 

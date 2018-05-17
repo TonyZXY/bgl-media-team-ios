@@ -437,6 +437,8 @@
 				046963AE20AAC86900459EC8 /* SaveStructToRealmObjects.swift */,
 				046963B620AAC86A00459EC8 /* SetDataResult.swift */,
 				0469642220ABBC3800459EC8 /* WalletDetail.swift */,
+				046963C420AAC89000459EC8 /* TransactionFrom.swift */,
+				046963CC20AAC89200459EC8 /* TransactionFormData.swift */,
 				57D9A43E20AC05F600344BB1 /* MemoryData.swift */,
 			);
 			path = Wallet_Models;
@@ -507,8 +509,6 @@
 				046963CB20AAC89200459EC8 /* SearchCoinController.swift */,
 				046963CA20AAC89200459EC8 /* SearchExchangesController.swift */,
 				046963C820AAC89100459EC8 /* SearchTradingPairController.swift */,
-				046963CC20AAC89200459EC8 /* TransactionFormData.swift */,
-				046963C420AAC89000459EC8 /* TransactionFrom.swift */,
 				046963C520AAC89100459EC8 /* TransactionsController.swift */,
 				046963C720AAC89100459EC8 /* WalletController.swift */,
 			);
