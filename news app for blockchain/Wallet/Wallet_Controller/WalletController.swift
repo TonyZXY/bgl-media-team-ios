@@ -86,11 +86,8 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                                     } else if self.displayType == "Number"{
                                         cell.checkRiseandfallNumber(risefallnumber: String(profit))
                                     }
-//                                    self.totalNumber.text = self.priceType + "$" + String(self.totalPrice)
-//                                    self.totalNumber.text = String(self.totalPrice)
-                                    
-                                    let cellValue:String = String(format:"%.1f", Double(self.totalPrice))
-                                    self.totalNumber.text = self.priceType + "$"  + cellValue
+                                    let cellValue:String = String(format:"%.1f",Double(self.totalPrice))
+                                    self.totalNumber.text = self.priceType + "$" + cellValue
                                     self.checkRiseandfallNumber(risefallnumber: String(self.totalProfit))
                                     
                                     

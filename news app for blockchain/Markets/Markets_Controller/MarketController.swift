@@ -54,6 +54,8 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         titleLabel.text = "Blockchain Global"
         titleLabel.textColor = UIColor.white
         navigationItem.titleView = titleLabel
+        
+        cancelTouchKeyboard()
     }
     
     lazy var menuBar: MenuBar = {

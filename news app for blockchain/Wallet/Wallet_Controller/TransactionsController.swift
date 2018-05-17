@@ -74,7 +74,7 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     func writeToRealm(){
         //Write to Transaction Model to realm
         realm.beginWrite()
-        realm.create(AllTransactions.self, value: ["Buy",newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
+        realm.create(AllTransactions.self, value: [newTransaction.status,newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
         try! realm.commitWrite()
         self.navigationController?.popViewController(animated: true)
         
