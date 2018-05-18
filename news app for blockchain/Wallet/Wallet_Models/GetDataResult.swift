@@ -74,13 +74,14 @@ class GetDataResult{
                 print("Error serializing json:",jsonErr)
             }
         }
+       
         return jsonData
     }
     
-    typealias StringCompletion = (_ success: Bool, _ float: Float) -> Void
+    typealias StringCompletion = (_ success: Bool, _ Double: Double) -> Void
     
-    func getCurrencyApi(from:String,to:String,price:Float,completion: @escaping StringCompletion){
-        var transferPrice:Float = 0
+    func getCurrencyApi(from:String,to:String,price:Double,completion: @escaping StringCompletion){
+        var transferPrice:Double = 0
         let baseUrl = "https://free.currencyconverterapi.com/api/v5/convert?q="
         let currencyPairs = from + "_" + to
         let urlString = baseUrl + currencyPairs
@@ -91,7 +92,7 @@ class GetDataResult{
             do{
                 let json = try JSONDecoder().decode(Currency.self, from: data)
                 if json.query["count"] != 0 && json.query["count"] != nil{
-                    let currency = Float((json.results[currencyPairs]?.val)!)
+                    let currency = Double((json.results[currencyPairs]?.val)!)
                     transferPrice = currency * price
                     completion(true,transferPrice)
                 }
@@ -104,8 +105,8 @@ class GetDataResult{
     }
     
     
-    func getCryptoCurrencyApi(from:String,to:String,price:Float,completion: @escaping StringCompletion){
-        var transferPrice:Float = 0
+    func getCryptoCurrencyApi(from:String,to:String,price:Double,completion: @escaping StringCompletion){
+        var transferPrice:Double = 0
         let baseUrl = "https://min-api.cryptocompare.com/data/price?"
         let currencyPairs = "fsym="+from + "&" + "tsyms=" + to
         let urlString = baseUrl + currencyPairs
@@ -119,7 +120,7 @@ class GetDataResult{
                 do{
                     let json = try JSONDecoder().decode([String:Double].self, from: data)
                     for n in json{
-                        transferPrice = Float(n.value) * price
+                        transferPrice = Double(n.value) * price
                     }
                     completion(true,transferPrice)
                 } catch let jsonErr{
@@ -131,12 +132,12 @@ class GetDataResult{
         }
     }
     
-    typealias StringCompletion1 = (_ success: Bool, _ float: Float, _ float2:Float) -> Void
+    typealias StringCompletion1 = (_ success: Bool, _ double: Double, _ double:Double) -> Void
     
-    func getCryptoCurrencyApis(from:String,toAUD:String,toUSD:String,price:Float,completion: @escaping StringCompletion1){
+    func getCryptoCurrencyApis(from:String,toAUD:String,toUSD:String,price:Double,completion: @escaping StringCompletion1){
         
-        var transferAUDs:Float = 0
-        var transferUSDs:Float = 0
+        var transferAUDs:Double = 0
+        var transferUSDs:Double = 0
         let baseUrl = "https://min-api.cryptocompare.com/data/price?"
         let currencyAUD = "fsym="+from + "&" + "tsyms=" + toAUD
         let currencyUSD = "fsym="+from + "&" + "tsyms=" + toAUD
@@ -152,7 +153,7 @@ class GetDataResult{
                 do{
                     let json = try JSONDecoder().decode([String:Double].self, from: data)
                     for n in json{
-                        transferAUDs = Float(n.value) * price
+                        transferAUDs = Double(n.value) * price
                     }
                 } catch let jsonErr{
                     print("Error serializing json:",jsonErr)
@@ -168,7 +169,7 @@ class GetDataResult{
                 do{
                     let json = try JSONDecoder().decode([String:Double].self, from: data)
                     for n in json{
-                        transferUSDs = Float(n.value) * price
+                        transferUSDs = Double(n.value) * price
                     }
                 } catch let jsonErr{
                     print("Error serializing json:",jsonErr)

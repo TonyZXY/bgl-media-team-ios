@@ -24,10 +24,19 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         setupView()
         searchBar.becomeFirstResponder()
         searchBar.returnKeyType = UIReturnKeyType.done
+        
+        
         let result = try! Realm().objects(CryptoCompareCoinsRealm.self)
-        for n in result {
-            allCoinObject.append(n)
+        let data = GetDataResult().getExchangeList()
+        let exactMarket = data[(delegate?.getExchangeName())!]
+        for coin in result {
+            let filterCoin = exactMarket?.filter{(name,_) in return name == coin.Name}
+            if filterCoin?.count != 0{
+                allCoinObject.append(coin)
+            }
         }
+        
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -35,6 +44,22 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     override func viewWillAppear(_ animated: Bool) {
+    }
+    
+    func getExchangeList(market:String)->Void{
+        
+        
+//        for (key,value) in data{
+//            if delegate?.getCoinName() != ""{
+//                let hah = value.filter{name in return name.key == delegate?.getCoinName()}
+//                if hah.count != 0{
+//                    self.allExchanges.append(key)
+//                }
+//            }
+//            else {
+//                self.allExchanges.append(key)
+//            }
+//        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -65,7 +90,6 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         delegate?.setTradingPairsName(tradingPairsName: "")
         delegate?.setTradingPairsFirstType(firstCoinType: [])
         delegate?.setTradingPairsSecondType(secondCoinType: [])
-        delegate?.setExchangesName(exchangeName: "")
         var allPairs = [String]()
         allPairs.append(table.coinNameAbb.text!)
         allPairs.append("%"+table.coinNameAbb.text!)
@@ -125,5 +149,23 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         tableVC.tableView = self.searchResult
         self.addChildViewController(tableVC)
     }
+    
+    func hehe(){
+        cryptoCompareClient.getCoinList(){result in
+            switch result{
+            case .success(let resultData):
+                guard let coinList = resultData?.Data else {return}
+                for (key,value) in coinList{
+                    print(key, value.FullName ?? "")
+                }
+                
+                print(coinList.count)
+            case .failure(let error):
+                print("the error \(error.localizedDescription)")
+                
+            }
+        }
+    }
+    
     
 }

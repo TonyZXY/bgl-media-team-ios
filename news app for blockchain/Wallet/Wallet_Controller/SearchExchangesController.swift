@@ -26,6 +26,8 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
         searchBar.returnKeyType = UIReturnKeyType.done
         
         
+        
+        
         DispatchQueue.main.async {
             self.searchResult.reloadData()
         }
@@ -58,8 +60,16 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
     
     func getExchangeList()->Void{
         let data = getDataResult.getExchangeList()
-        for (key,_) in data{
-            self.allExchanges.append(key)
+        for (key,value) in data{
+            if delegate?.getCoinName() != ""{
+                let exactMarket = value.filter{name in return name.key == delegate?.getCoinName()}
+                if exactMarket.count != 0{
+                    self.allExchanges.append(key)
+                }
+            }
+            else {
+                self.allExchanges.append(key)
+            }
         }
     }
     
