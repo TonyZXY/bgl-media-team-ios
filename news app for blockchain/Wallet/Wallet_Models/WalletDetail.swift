@@ -11,23 +11,23 @@ import Foundation
 class WalletDetail {
     var coinName:String = ""
     var coinAbbName:String = ""
-    var coinAmount:Int = 0
-    var TransactionPrice:Float = 0
-    var TotalPrice:Float = 0
-    var SinglePrice:Float = 0
-    var riseFall:Float = 0
+    var coinAmount:Double = 0
+    var TransactionPrice:Double = 0
+    var TotalPrice:Double = 0
+    var SinglePrice:Double = 0
+    var riseFall:Double = 0
     var percent:String = "0"
     var tradingPairsName:String = ""
     var exchangeName:String = ""
     var logoUrl:String = ""
-    var currentSinglePrice:Float = 0
-    var currentTotalPrice:Float = 0
-    var riseFallPrice:Float = 0
-    var riseFallPercent:Float = 0
+    var currentSinglePrice:Double = 0
+    var currentTotalPrice:Double = 0
+    var riseFallPrice:Double = 0
+    var riseFallPercent:Double = 0
 }
 
 class CaculateResult {
-    var single:Float = 0
-    var total:Float = 0
-    var profit:Float = 0
+    var single:Double = 0
+    var total:Double = 0
+    var profit:Double = 0
 }
