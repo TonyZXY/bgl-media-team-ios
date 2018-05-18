@@ -97,6 +97,7 @@
 		04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */; };
 		1AF2BE2D20AE997800323D6A /* NewsDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */; };
 		5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701A8FD209B6C3F00A216C4 /* MarketCollectionViewCell.swift */; };
+		57462D8F20AD695F0086F59D /* ScientificMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57462D8E20AD695F0086F59D /* ScientificMethod.swift */; };
 		576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F02092DA5C005B6406 /* ThemeColor.swift */; };
 		576FA8F42092E670005B6406 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F32092E670005B6406 /* AppImage.swift */; };
 		576FA8F92095D89F005B6406 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F82095D89F005B6406 /* MenuBar.swift */; };
@@ -107,7 +108,7 @@
 		576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA9082097D41A005B6406 /* WatchlistCell.swift */; };
 		576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90A20980201005B6406 /* MarketFilterCollectionView.swift */; };
 		576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA90C20980641005B6406 /* MarketSortPickerView.swift */; };
-		57D9A43F20AC05F600344BB1 /* MemoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9A43E20AC05F600344BB1 /* MemoryData.swift */; };
+		57D9A43F20AC05F600344BB1 /* MemoryWalletData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9A43E20AC05F600344BB1 /* MemoryWalletData.swift */; };
 		F0A477DC98285AF7CF6AD1CC /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,7 @@
 		1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailWebViewController.swift; sourceTree = "<group>"; };
 		2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
 		5701A8FD209B6C3F00A216C4 /* MarketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCollectionViewCell.swift; sourceTree = "<group>"; };
+		57462D8E20AD695F0086F59D /* ScientificMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientificMethod.swift; sourceTree = "<group>"; };
 		576FA8F02092DA5C005B6406 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		576FA8F32092E670005B6406 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		576FA8F82095D89F005B6406 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -215,7 +217,7 @@
 		576FA9082097D41A005B6406 /* WatchlistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCell.swift; sourceTree = "<group>"; };
 		576FA90A20980201005B6406 /* MarketFilterCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketFilterCollectionView.swift; sourceTree = "<group>"; };
 		576FA90C20980641005B6406 /* MarketSortPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSortPickerView.swift; sourceTree = "<group>"; };
-		57D9A43E20AC05F600344BB1 /* MemoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryData.swift; sourceTree = "<group>"; };
+		57D9A43E20AC05F600344BB1 /* MemoryWalletData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryWalletData.swift; sourceTree = "<group>"; };
 		E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2B5A1DB09E3F04A1F83FF22 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -401,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				04B982BB20AD06500020A6A8 /* CancelTouchKeyboard.swift */,
+				046963D920AAC8B200459EC8 /* TickerDataFetcherV2.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -450,7 +453,9 @@
 				046963AE20AAC86900459EC8 /* SaveStructToRealmObjects.swift */,
 				046963B620AAC86A00459EC8 /* SetDataResult.swift */,
 				0469642220ABBC3800459EC8 /* WalletDetail.swift */,
-				57D9A43E20AC05F600344BB1 /* MemoryData.swift */,
+				046963C420AAC89000459EC8 /* TransactionFrom.swift */,
+				046963CC20AAC89200459EC8 /* TransactionFormData.swift */,
+				57D9A43E20AC05F600344BB1 /* MemoryWalletData.swift */,
 			);
 			path = Wallet_Models;
 			sourceTree = "<group>";
@@ -466,7 +471,6 @@
 				046963DD20AAC8B300459EC8 /* MarketCapClient.swift */,
 				046963D820AAC8B200459EC8 /* MarketCapEndpoint.swift */,
 				046963DA20AAC8B200459EC8 /* README.md */,
-				046963D920AAC8B200459EC8 /* TickerDataFetcherV2.swift */,
 			);
 			path = Wallet_Networking;
 			sourceTree = "<group>";
@@ -521,10 +525,9 @@
 				046963CB20AAC89200459EC8 /* SearchCoinController.swift */,
 				046963CA20AAC89200459EC8 /* SearchExchangesController.swift */,
 				046963C820AAC89100459EC8 /* SearchTradingPairController.swift */,
-				046963CC20AAC89200459EC8 /* TransactionFormData.swift */,
-				046963C420AAC89000459EC8 /* TransactionFrom.swift */,
 				046963C520AAC89100459EC8 /* TransactionsController.swift */,
 				046963C720AAC89100459EC8 /* WalletController.swift */,
+				57462D8E20AD695F0086F59D /* ScientificMethod.swift */,
 			);
 			path = Wallet_Controller;
 			sourceTree = "<group>";
@@ -725,7 +728,7 @@
 				04BDD42420A42AF3009D8A0A /* NewsMenuCell.swift in Sources */,
 				0419422320A42F7E006B26C6 /* NewsDetailViewController.swift in Sources */,
 				045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */,
-				57D9A43F20AC05F600344BB1 /* MemoryData.swift in Sources */,
+				57D9A43F20AC05F600344BB1 /* MemoryWalletData.swift in Sources */,
 				576FA8F42092E670005B6406 /* AppImage.swift in Sources */,
 				046963DF20AAC8B400459EC8 /* APIErrors.swift in Sources */,
 				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
@@ -782,6 +785,7 @@
 				04BDD42820A42B0A009D8A0A /* GenuineSliderCell.swift in Sources */,
 				0419423620A43080006B26C6 /* BaseCell.swift in Sources */,
 				046963D020AAC89200459EC8 /* WalletController.swift in Sources */,
+				57462D8F20AD695F0086F59D /* ScientificMethod.swift in Sources */,
 				04BDD42020A42AC1009D8A0A /* VideoCell.swift in Sources */,
 				576FA9002096ACD1005B6406 /* MarketsCell.swift in Sources */,
 				046963D520AAC89200459EC8 /* TransactionFormData.swift in Sources */,

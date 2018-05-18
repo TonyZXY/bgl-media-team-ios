@@ -20,29 +20,35 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     var walletResults = [WalletDetail]()
     var displayType:String = "Percent"
     let priceType:String = "AUD"
-    var totalPrice:Float = 0
-    var totalProfit:Float = 0
+    var totalPrice:Double = 0
+    var totalProfit:Double = 0
+    var refreshTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         SetDataResult().writeJsonExchange()
-//        DispatchQueue.main.async {
-            GetDataResult().getCoinList()
-//        }
+        refreshData()
+        GetDataResult().getCoinList()
+        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+        print(allResult)
+    }
     
+    @objc func refreshData() {
+        self.totalPrice = 0
+        self.totalProfit = 0
+        self.walletResults = self.setWalletData()
+        self.walletList.reloadData()
         
-//        print(allResult)
+    }
+    
+    @objc func reloadWalletData() {
+        refreshData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-        DispatchQueue.main.async {
-            self.totalPrice = 0
-            self.totalProfit = 0
-            self.walletResults = self.setWalletData()
-            self.walletList.reloadData()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadWalletData), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,13 +65,12 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             switch result{
             case .success(let resultData):
                 for results in resultData!{
-                    let single = Float(results.value)
+                    let single = Double(results.value)
                     
                     if self.priceType == "USD"{
                         GetDataResult().getCryptoCurrencyApi(from: object.tradingPairsName, to: "USD", price: single){success,price in
                             if success{
                                 //                                single = price
-                                
                             } else{
                                 print("fail")
                             }
@@ -74,24 +79,22 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                         GetDataResult().getCryptoCurrencyApi(from: object.tradingPairsName, to: "AUD", price: single){success,price in
                             if success{
                                 DispatchQueue.main.async {
-                                    cell.coinSinglePrice.text = String(price)
-                                    let total = Float(price) * Float(object.coinAmount)
-                                    cell.coinTotalPrice.text = "("+String(total)+")"
+                                    cell.coinSinglePrice.text =  self.caculateScientificMethod(number: price)
+                                    let total = Double(price) * Double(object.coinAmount)
+                                    cell.coinTotalPrice.text = "("+self.caculateScientificMethod(number: total)+")"
                                     //                                    cell.profitChange.text = String(total - object.TransactionPrice)
-                                    let profit:Float = total - object.TransactionPrice
+                                    let profit:Double = total - object.TransactionPrice
                                     self.totalProfit = self.totalProfit + profit
                                     self.totalPrice = self.totalPrice + total
-                                    let percentProfit:Float = ((total - object.TransactionPrice) / object.TransactionPrice) * 100
+                                    let percentProfit:Double = ((total - object.TransactionPrice) / object.TransactionPrice) * 100
                                     if self.displayType == "Percent"{
-                                        cell.checkRiseandfallPercent(risefallnumber: String(format: "%.2f", percentProfit))
+                                        cell.checkRiseandfallPercent(risefallnumber: self.caculateScientificMethod(number: percentProfit))
                                     } else if self.displayType == "Number"{
-                                        cell.checkRiseandfallNumber(risefallnumber: String(profit))
+                                        cell.checkRiseandfallNumber(risefallnumber: self.caculateScientificMethod(number: profit))
                                     }
-                                    let cellValue:String = String(format:"%.1f",Double(self.totalPrice))
-                                    self.totalNumber.text = self.priceType + "$" + cellValue
-                                    self.checkRiseandfallNumber(risefallnumber: String(self.totalProfit))
+                                    self.totalNumber.text = self.priceType + "$" + self.caculateScientificMethod(number: self.totalPrice)
+                                    self.checkRiseandfallNumber(risefallnumber: self.caculateScientificMethod(number: self.totalProfit))
                                 }
-                                
                             } else{
                                 print("fail")
                             }
@@ -114,12 +117,9 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             try! realm.write {
                 realm.delete(statusItem)
             }
-            self.totalPrice = 0
-            self.totalProfit = 0
             self.totalNumber.text = self.priceType + "$" + "0"
             self.checkRiseandfallNumber(risefallnumber: "0.0")
-            self.walletResults = self.setWalletData()
-            tableView.reloadData()
+            refreshData()
         }
     }
     
@@ -136,9 +136,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.totalPrice = 0
-        self.totalProfit = 0
-        self.walletList.reloadData()
+        refreshData()
         self.refresher.endRefreshing()
     }
     
@@ -309,9 +307,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         filterButtonNumber.backgroundColor = UIColor.white
         filterButtonPercent.setTitleColor(UIColor.white, for: .normal)
         filterButtonPercent.backgroundColor = ThemeColor().walletCellcolor()
-        self.totalProfit = 0
-        self.totalPrice = 0
-        self.walletList.reloadData()
+        refreshData()
     }
     
     @objc func setUpPercent(){
@@ -320,9 +316,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         filterButtonPercent.backgroundColor = UIColor.white
         filterButtonNumber.setTitleColor(UIColor.white, for: .normal)
         filterButtonNumber.backgroundColor = ThemeColor().walletCellcolor()
-        self.totalProfit = 0
-        self.totalPrice = 0
-        self.walletList.reloadData()
+        refreshData()
     }
     
     var addTransactionButton:UIButton = {
@@ -358,7 +352,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             // lost with red
             totalChange.textColor = color.fallColor()
             totalChange.text = "▼ " + risefallnumber
-        } else if risefallnumber == "0.0"{
+        } else if risefallnumber == "0.00000000"{
             // Not any change with white
             totalChange.text = "--"
             totalChange.textColor = UIColor.white
@@ -369,6 +363,36 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
     }
     
+    
+    func getDoubleFrom(textField: UILabel) -> Double
+    {
+        var doubleValue : Double = 0.0
+        
+        if let val = textField.text
+        {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = NumberFormatter.Style.decimal
+            let finalNumber = numberFormatter.number(from: val)
+            doubleValue = Double((finalNumber?.doubleValue)!);
+        }
+        
+        return doubleValue
+    }
+    
+    
+//    func getStringFrom(double doubleVal: Double) -> String
+//    {
+//        var stringValue : String = "0.00"
+//
+//        let formatter = NumberFormatter()
+//        formatter.usesSignificantDigits = true;
+//        formatter.maximumSignificantDigits = 100
+//        formatter.groupingSeparator = "";
+//        formatter.numberStyle = .decimal
+//        stringValue = formatter.stringFromNumber(Nsnumber(doubleVal))!;
+//
+//        return stringValue
+//    }
     
 }
 

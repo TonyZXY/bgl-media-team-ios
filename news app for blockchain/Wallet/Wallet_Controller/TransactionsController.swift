@@ -17,12 +17,13 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     var transaction:String = "Buy"
     let cryptoCompareClient = CryptoCompareClient()
     let realm = try! Realm()
-    var priceCurrency:Float = 0.0
+    var priceCurrency:Double = 0.0
     var transcationData = TransactionFormData()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+        
         
     }
     
@@ -34,38 +35,36 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+    }
+    
+    
     @objc func addTransaction(){
-        newTransaction.totalPrice = Float(newTransaction.amount) * newTransaction.singlePrice
+        newTransaction.totalPrice = Double(newTransaction.amount) * newTransaction.singlePrice
         newTransaction.status = transaction
-        if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0" && String(newTransaction.singlePrice) != "0"{
-            
+        if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0.0" && String(newTransaction.singlePrice) != "0.0"{
             transactionButton.setTitle("Loading...", for: .normal)
-            
-            let serialQueue = DispatchQueue(label: "SCGCD")
-            serialQueue.sync {
-                GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "USD", price: self.newTransaction.singlePrice){success,price in
-                    if success{
-                        self.newTransaction.usdSinglePrice = price
-                        self.newTransaction.usdTotalPrice = self.newTransaction.usdSinglePrice * Float(self.newTransaction.amount)
-                    } else{
-                        print("fail")
+            GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "USD", price: self.newTransaction.singlePrice){success,price in
+                if success{
+                    self.newTransaction.usdSinglePrice = price
+                    self.newTransaction.usdTotalPrice = self.newTransaction.usdSinglePrice * Double(self.newTransaction.amount)
+                } else{
+                    print("fail")
+                }
+                
+            }
+            GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "AUD", price: self.newTransaction.singlePrice){success,price in
+                if success{
+                    self.newTransaction.audSinglePrice = price
+                    self.newTransaction.audTotalPrice = self.newTransaction.audSinglePrice * Double(self.newTransaction.amount)
+                    DispatchQueue.main.sync{
+                        self.writeToRealm()
                     }
                     
-                }
-            }
-            
-            serialQueue.sync {
-                GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "AUD", price: self.newTransaction.singlePrice){success,price in
-                    if success{
-                        self.newTransaction.audSinglePrice = price
-                        self.newTransaction.audTotalPrice = self.newTransaction.audSinglePrice * Float(self.newTransaction.amount)
-                        DispatchQueue.main.sync{
-                            self.writeToRealm()
-                        }
-                        
-                    } else{
-                        print("fail")
-                    }
+                } else{
+                    print("fail")
                 }
             }
         }
@@ -76,6 +75,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         realm.beginWrite()
         realm.create(AllTransactions.self, value: [newTransaction.status,newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
         try! realm.commitWrite()
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+        
         self.navigationController?.popViewController(animated: true)
         
     }
@@ -223,6 +225,8 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                 cell.priceLabel.text = "卖出价格" + " " + newTransaction.tradingPairsName
             }
             cell.price.tag = indexPath.row
+            cell.priceType.tag = 10
+            cell.priceType.delegate = self
             cell.price.delegate = self
             return cell
         } else if indexPath.row == 4{
@@ -291,16 +295,20 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadPrice(){
+        var readData:Double = 0
         if newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != ""{
-            cryptoCompareClient.getTradePrice(from: newTransaction.coinAbbName, to: newTransaction.tradingPairsName, exchange: newTransaction.exchangName){ result in
+            cryptoCompareClient.getTradePrice(from: newTransaction.coinAbbName, to: newTransaction.tradingPairsName, exchange: newTransaction.exchangName){
+                result in
                 switch result{
                 case .success(let resultData):
                     for(_, value) in resultData!{
-                        let index = IndexPath(row: 3, section: 0)
-                        let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
-                        cell.price.text = String(value)
-                        self.textFieldDidEndEditing(cell.price)
+                        readData = value
                     }
+                    let index = IndexPath(row: 3, section: 0)
+                    let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
+                    cell.price.text = self.caculateScientificMethod(number: readData)
+                    self.newTransaction.singlePrice = Double(String(readData))!
+                //                                        self.textFieldDidEndEditing(cell.price)
                 case .failure(let error):
                     print("the error \(error.localizedDescription)")
                 }
@@ -308,6 +316,13 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         } else{
             newTransaction.singlePrice = 0
         }
+//        let index = IndexPath(row: 3, section: 0)
+//        let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
+//        if cell.priceType.text == "总额" {
+//            cell.price.text = String(newTransaction.singlePrice * newTransaction.amount)
+//        } else{
+//            cell.price.text = String(newTransaction.singlePrice)
+//        }
     }
     
     func getExchangeName() -> String {
@@ -348,16 +363,15 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             if textField.text == "" || textField.text == nil{
                 textField.text = "0"
             }
-            
-            newTransaction.singlePrice = Float(textField.text!)!
+            newTransaction.singlePrice = Double(textField.text!)!
         }
         if textField.tag == 4{
             if textField.text == "" || textField.text == nil{
                 textField.text = "0"
             }
-            newTransaction.amount = Int(textField.text!)!
-            self.newTransaction.usdTotalPrice = newTransaction.usdSinglePrice * Float(self.newTransaction.amount)
-            self.newTransaction.audTotalPrice = newTransaction.audSinglePrice * Float(self.newTransaction.amount)
+            newTransaction.amount = Double(textField.text!)!
+            self.newTransaction.usdTotalPrice = newTransaction.usdSinglePrice * Double(self.newTransaction.amount)
+            self.newTransaction.audTotalPrice = newTransaction.audSinglePrice * Double(self.newTransaction.amount)
         }
         if textField.tag == 5{
             newTransaction.date = textField.text!
@@ -371,6 +385,15 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         if textField.tag == 8{
             newTransaction.additional = textField.text!
         }
+//        if textField.tag == 10{
+//            if textField.text == "单价"{
+//            let index = IndexPath(row: 3, section: 0)
+//            let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
+//                cell.price.text = String(Double(newTransaction.singlePrice)! * Double(newTransaction.amount))
+//            }else if textField.text == "总额"{
+//
+//            }
+//        }
     }
     
     //    func textFieldDidBeginEditing(_ textField: UITextField) {
