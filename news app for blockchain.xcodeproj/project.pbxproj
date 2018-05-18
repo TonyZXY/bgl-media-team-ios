@@ -398,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				04B982BB20AD06500020A6A8 /* CancelTouchKeyboard.swift */,
+				046963D920AAC8B200459EC8 /* TickerDataFetcherV2.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -463,7 +464,6 @@
 				046963DD20AAC8B300459EC8 /* MarketCapClient.swift */,
 				046963D820AAC8B200459EC8 /* MarketCapEndpoint.swift */,
 				046963DA20AAC8B200459EC8 /* README.md */,
-				046963D920AAC8B200459EC8 /* TickerDataFetcherV2.swift */,
 			);
 			path = Wallet_Networking;
 			sourceTree = "<group>";
