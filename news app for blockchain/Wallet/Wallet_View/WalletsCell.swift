@@ -124,7 +124,7 @@ class WalletsCell:UITableViewCell{
             // lost with red
             profitChange.textColor = color.fallColor()
             profitChange.text = "▼ " + risefallnumber + "%"
-        } else if risefallnumber == "0.00"{
+        } else if risefallnumber == "0.00000000"{
             // Not any change with white
             profitChange.text = "--"
             profitChange.textColor = UIColor.white
@@ -140,7 +140,7 @@ class WalletsCell:UITableViewCell{
             // lost with red
             profitChange.textColor = color.fallColor()
             profitChange.text = "▼ " + risefallnumber
-        } else if risefallnumber == "0.0"{
+        } else if risefallnumber == "0.00000000"{
             // Not any change with white
             profitChange.text = "--"
             profitChange.textColor = UIColor.white

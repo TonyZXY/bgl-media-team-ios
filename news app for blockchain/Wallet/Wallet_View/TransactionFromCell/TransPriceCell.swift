@@ -128,8 +128,8 @@ class TransPriceCell:UITableViewCell, UIPickerViewDataSource, UIPickerViewDelega
     
     @objc func pricetypedoneclick(){
         let row = pickerview.selectedRow(inComponent: 0)
-//        priceType.text = items[row] + "  ▼"
-        priceType.text = items[row]
+        priceType.text = items[row] + "  ▼"
+//        priceType.text = items[row]
         self.endEditing(true)
     }
     

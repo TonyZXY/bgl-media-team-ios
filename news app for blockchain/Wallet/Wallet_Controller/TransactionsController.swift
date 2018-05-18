@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class TransactionsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout,TransactionFrom,UITextFieldDelegate,UIPickerViewDelegate{
+class TransactionsController: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegateFlowLayout,TransactionFrom,UITextFieldDelegate{
     
     let newTransaction = AllTransactions()
     var cells = ["CoinTypeCell","CoinMarketCell","TradePairsCell","PriceCell","NumberCell","DateCell","TimeCell","ExpensesCell","AdditionalCell"]
@@ -23,6 +23,8 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         super.viewDidLoad()
         setupView()
         
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,13 +35,13 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print(row)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
     }
     
+    
     @objc func addTransaction(){
-        print(newTransaction.singlePrice)
-        print(newTransaction.amount)
         newTransaction.totalPrice = Double(newTransaction.amount) * newTransaction.singlePrice
         newTransaction.status = transaction
         if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0.0" && String(newTransaction.singlePrice) != "0.0"{
@@ -73,6 +75,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         realm.beginWrite()
         realm.create(AllTransactions.self, value: [newTransaction.status,newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
         try! realm.commitWrite()
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+        
         self.navigationController?.popViewController(animated: true)
         
     }
