@@ -22,26 +22,33 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     let priceType:String = "AUD"
     var totalPrice:Double = 0
     var totalProfit:Double = 0
+    var refreshTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         SetDataResult().writeJsonExchange()
-//        DispatchQueue.main.async {
-            GetDataResult().getCoinList()
-//        }
-        
+        refreshData()
+        GetDataResult().getCoinList()
+        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
         print(allResult)
+    }
+    
+    @objc func refreshData() {
+        self.totalPrice = 0
+        self.totalProfit = 0
+        self.walletResults = self.setWalletData()
+        self.walletList.reloadData()
+        
+    }
+    
+    @objc func reloadWalletData() {
+        refreshData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-        DispatchQueue.main.async {
-            self.totalPrice = 0
-            self.totalProfit = 0
-            self.walletResults = self.setWalletData()
-            self.walletList.reloadData()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadWalletData), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,7 +71,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                         GetDataResult().getCryptoCurrencyApi(from: object.tradingPairsName, to: "USD", price: single){success,price in
                             if success{
                                 //                                single = price
-                                
                             } else{
                                 print("fail")
                             }
@@ -111,12 +117,9 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             try! realm.write {
                 realm.delete(statusItem)
             }
-            self.totalPrice = 0
-            self.totalProfit = 0
             self.totalNumber.text = self.priceType + "$" + "0"
             self.checkRiseandfallNumber(risefallnumber: "0.0")
-            self.walletResults = self.setWalletData()
-            tableView.reloadData()
+            refreshData()
         }
     }
     
@@ -133,9 +136,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.totalPrice = 0
-        self.totalProfit = 0
-        self.walletList.reloadData()
+        refreshData()
         self.refresher.endRefreshing()
     }
     
@@ -306,9 +307,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         filterButtonNumber.backgroundColor = UIColor.white
         filterButtonPercent.setTitleColor(UIColor.white, for: .normal)
         filterButtonPercent.backgroundColor = ThemeColor().walletCellcolor()
-        self.totalProfit = 0
-        self.totalPrice = 0
-        self.walletList.reloadData()
+        refreshData()
     }
     
     @objc func setUpPercent(){
@@ -317,9 +316,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         filterButtonPercent.backgroundColor = UIColor.white
         filterButtonNumber.setTitleColor(UIColor.white, for: .normal)
         filterButtonNumber.backgroundColor = ThemeColor().walletCellcolor()
-        self.totalProfit = 0
-        self.totalPrice = 0
-        self.walletList.reloadData()
+        refreshData()
     }
     
     var addTransactionButton:UIButton = {
@@ -355,7 +352,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             // lost with red
             totalChange.textColor = color.fallColor()
             totalChange.text = "▼ " + risefallnumber
-        } else if risefallnumber == "0.0"{
+        } else if risefallnumber == "0.00000000"{
             // Not any change with white
             totalChange.text = "--"
             totalChange.textColor = UIColor.white
