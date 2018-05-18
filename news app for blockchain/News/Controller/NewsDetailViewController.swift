@@ -33,7 +33,6 @@ class NewsDetailViewController: UIViewController {
         titleView.text = newsContent?.title
         timeLabel.text = newsContent?.publishedTime
         authorLabel.text = newsContent?.author
-        textView.text = newsContent?.detail
         newsImageView.setImage(urlString: (newsContent?.imageURL)!)
     }
     

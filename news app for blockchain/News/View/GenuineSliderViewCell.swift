@@ -12,7 +12,7 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
     
     weak var homeViewController:HomeViewController?
     // REVIEW: no need to store the details view controller as property  -Johnny Lin
-    let genuineDetailViewController: GenuineDetailViewController = GenuineDetailViewController()
+    let genuineDetailViewController = NewsDetailWebViewController()
     
     var newsArrayList:[Genuine]? {
         didSet{
@@ -91,7 +91,7 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        genuineDetailViewController.genuineContent = newsArrayList?[indexPath.item]
+        genuineDetailViewController.news = (newsArrayList?[indexPath.item].title,newsArrayList?[indexPath.item].url) as? (title: String, url: String)
         homeViewController?.navigationController?.pushViewController(genuineDetailViewController, animated: true)
     }
 }

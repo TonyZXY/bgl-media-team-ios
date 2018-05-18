@@ -18,7 +18,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     }
     // This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
     weak var homeViewController: HomeViewController?
-
+    
     
     var newsArrayList:Results<Genuine>?
     var videoArrayList:Results<Video>?
@@ -194,8 +194,8 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
                 homeViewController!.navigationController?.pushViewController(videoDetailViewController, animated: true)
             }else{
                 if(indexPath.item != 0){
-                    let genuineDetailViewController = GenuineDetailViewController()
-                    genuineDetailViewController.genuineContent = newsArrayList?[indexPath.item - 1]
+                    let genuineDetailViewController = NewsDetailWebViewController()
+                    genuineDetailViewController.news = (newsArrayList?[indexPath.item - 1].title,newsArrayList?[indexPath.item - 1].url) as? (title: String, url: String)
                     homeViewController?.navigationController?.pushViewController(genuineDetailViewController, animated: true)
                 }
             }
@@ -210,28 +210,16 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     
     func fetchData() {
-        if(position == 0){
-            APIService.shardInstance.fetchGenuineContentTypeOne { (newsArrayList:Results<Genuine>) in
-                self.newsArrayList = newsArrayList
+        if(position != 1){
+            APIService.shardInstance.fetchGenuineData(contentType: selectionOtherTwo[position], currentNumber: 0) { (gens:Results<Genuine>) in
+                self.newsArrayList = gens
                 self.cellListView.reloadData()
             }
-        }else if(position==1){
-            APIService.shardInstance.fetchVideo { (videoArray:Results<Video>) in
-                self.videoArrayList = videoArray
-                self.cellListView.reloadData()
-            }
-        }else if(position==2){
-            APIService.shardInstance.fetchGenuineContentTypeTwo { (newsArrayList:Results<Genuine>) in
-                self.newsArrayList = newsArrayList
-                self.cellListView.reloadData()
-            }
-        }else {
-            APIService.shardInstance.fetchGenuineContentTypeThree { (newsArrayList:Results<Genuine>) in
-                self.newsArrayList = newsArrayList
+        } else {
+            APIService.shardInstance.fetchVideoData(currentNumber: 0) { (video:Results<Video>) in
+                self.videoArrayList = video
                 self.cellListView.reloadData()
             }
         }
-        
     }
-    
 }

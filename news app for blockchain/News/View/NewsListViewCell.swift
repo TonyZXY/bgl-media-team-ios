@@ -19,7 +19,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     weak var homeViewController: HomeViewController?
     
-    let newsViewController: NewsDetailViewController = NewsDetailViewController()
+    let newsController = NewsDetailWebViewController()
     
     var newsArrayList:Results<News>?
     
@@ -160,8 +160,8 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             position = indexPath.item
         }else{
             if(indexPath.item != 0){
-                newsViewController.newsContent = newsArrayList?[indexPath.item-1]
-            homeViewController!.navigationController?.pushViewController(newsViewController, animated: true)
+                newsController.news = (newsArrayList?[indexPath.item].title,newsArrayList?[indexPath.item].url) as? (title: String, url: String)
+                homeViewController?.navigationController?.pushViewController(newsController, animated: true)
             }
         }
     }
@@ -173,26 +173,9 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     }
     
     func fetchData() {
-        if(position == 0){
-            APIService.shardInstance.fetchLocalNews { (newsArrayList:Results<News>) in
-                self.newsArrayList = newsArrayList
-                self.cellListView.reloadData()
-            }
-        }else if(position == 1){
-            APIService.shardInstance.fetchInternationalNews { (newsArrayList:Results<News>) in
-                self.newsArrayList = newsArrayList
-                self.cellListView.reloadData()
-            }
-        }else if (position == 2){
-            APIService.shardInstance.fetchNewsContentTypeOne { (newsArrayList:Results<News>) in
-                self.newsArrayList = newsArrayList
-                self.cellListView.reloadData()
-            }
-        }else{
-            APIService.shardInstance.fetchNewsContentTypeTwo { (newsArrayList:Results<News>) in
-                self.newsArrayList = newsArrayList
-                self.cellListView.reloadData()
-            }
+        APIService.shardInstance.fetchNewsData(contentType: selectionOptionOne[position], currentNumber: 0) { (news:Results<News>) in
+            self.newsArrayList = news
+            self.cellListView.reloadData()
         }
     }
     

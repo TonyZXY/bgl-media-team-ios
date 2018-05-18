@@ -95,6 +95,7 @@
 		04E4F021209B19BB00A2D0BF /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01D209B19BB00A2D0BF /* Timeline.swift */; };
 		04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */; };
 		04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */; };
+		1AF2BE2D20AE997800323D6A /* NewsDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */; };
 		5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701A8FD209B6C3F00A216C4 /* MarketCollectionViewCell.swift */; };
 		576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F02092DA5C005B6406 /* ThemeColor.swift */; };
 		576FA8F42092E670005B6406 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F32092E670005B6406 /* AppImage.swift */; };
@@ -201,6 +202,7 @@
 		04E4F01D209B19BB00A2D0BF /* Timeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timeline.swift; sourceTree = "<group>"; };
 		04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelinePoint.swift; sourceTree = "<group>"; };
 		04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
+		1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailWebViewController.swift; sourceTree = "<group>"; };
 		2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
 		5701A8FD209B6C3F00A216C4 /* MarketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCollectionViewCell.swift; sourceTree = "<group>"; };
 		576FA8F02092DA5C005B6406 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				0419421F20A42F7E006B26C6 /* NewsDetailViewController.swift */,
+				1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */,
 				0419422020A42F7E006B26C6 /* HomeViewController.swift */,
 				0419422120A42F7E006B26C6 /* GenuineDetailViewController.swift */,
 				0419422220A42F7E006B26C6 /* VideoDetailViewController.swift */,
@@ -318,9 +321,9 @@
 				04BDD41F20A42AC1009D8A0A /* VideoCell.swift */,
 				04BDD42520A42AFE009D8A0A /* GenuineCell.swift */,
 				04BDD42720A42B09009D8A0A /* GenuineSliderCell.swift */,
+				04BDD42B20A42B21009D8A0A /* NewsListViewCell.swift */,
 				04BDD42D20A42B32009D8A0A /* SelectionViewCell.swift */,
 				04BDD42920A42B16009D8A0A /* NewsMenuBar.swift */,
-				04BDD42B20A42B21009D8A0A /* NewsListViewCell.swift */,
 				04BDD42320A42AF3009D8A0A /* NewsMenuCell.swift */,
 				04BDD42120A42AE6009D8A0A /* NewsSliderCell.swift */,
 			);
@@ -787,6 +790,7 @@
 				576FA903209733ED005B6406 /* MarketsTotalView.swift in Sources */,
 				046963CD20AAC89200459EC8 /* TransactionFrom.swift in Sources */,
 				041519B420A283C70031D98F /* TickerDataRealm.swift in Sources */,
+				1AF2BE2D20AE997800323D6A /* NewsDetailWebViewController.swift in Sources */,
 				046963BB20AAC86B00459EC8 /* Exchange.swift in Sources */,
 				046963E220AAC8B400459EC8 /* TickerDataFetcherV2.swift in Sources */,
 				0419422520A42F7E006B26C6 /* GenuineDetailViewController.swift in Sources */,

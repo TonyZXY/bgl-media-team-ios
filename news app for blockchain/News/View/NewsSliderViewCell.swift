@@ -11,7 +11,7 @@ import UIKit
 class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
     weak var homeViewController:HomeViewController?
-    let newsViewController: NewsDetailViewController = NewsDetailViewController()
+    let newsViewController = NewsDetailWebViewController()
     
     var newsArrayList:[News]? {
         didSet{
@@ -96,7 +96,7 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        newsViewController.newsContent = newsArrayList?[indexPath.item]
+        newsViewController.news = (newsArrayList?[indexPath.item].title,newsArrayList?[indexPath.item].url) as? (title: String, url: String)
         homeViewController?.navigationController?.pushViewController(newsViewController, animated: true)
     }
     
