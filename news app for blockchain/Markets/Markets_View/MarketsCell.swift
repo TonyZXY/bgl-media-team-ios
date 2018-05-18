@@ -25,8 +25,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     
     let currency = "AUD $"
     
-    var coinListRealmObjects = try! Realm().objects(CryptoCompareCoinsRealm.self)
-    
     var tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self)
     
     var filterDateSelection: Int?
@@ -38,17 +36,20 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     var isSearching = false
     
     lazy var filteredCoinList = try! Realm().objects(TickerDataRealm.self)
+    
+    let tickerDataFetcher = TickerDataFetcherV2()
             
     override init(frame: CGRect) {
         super.init(frame: frame)
-        refreshData()
-        getCoinList()
         setupView()
         setSortbutton()
         sortdoneclick()
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
+        refreshGlobalData()
         
-        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: .updateCoinDataInMarketsView, object: nil)
+        
+        refreshTimer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(refreshGlobalData), userInfo: nil, repeats: true)
     }
     
     //总额view
@@ -160,11 +161,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
                     return 0
                 }
             }
-            if tickerDataRealmObjects.count >= numberOfCoinWillDisplay {
-                return numberOfCoinWillDisplay
-            } else {
-                return tickerDataRealmObjects.count
-            }
+            return tickerDataRealmObjects.count
         }else {
             return 0
         }
@@ -313,55 +310,38 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         coinList.reloadData()
     }
     
-    @objc func refreshData() {
+    @objc func refreshGlobalData() {
         let marketCapClient = MarketCapClient()
         
-        marketCapClient.getGlobalCap(convert: "AUD"){ result in
-            switch result{
-            case .success(let resultData):
-                guard let globalCap = resultData else {return}
-                
-                let bitcoin_percentage_of_market_cap = String(globalCap["bitcoin_percentage_of_market_cap"]!!)
-                let total_market_cap_aud = String((globalCap["total_market_cap_aud"]!! / 10000000.0).rounded() / 100.0)
-                let total_24h_volume_aud = String((globalCap["total_24h_volume_aud"]!! / 10000000.0).rounded() / 100.0)
-                
-                self.realm.beginWrite()
-                self.realm.create(GlobalDataRealm.self, value: [bitcoin_percentage_of_market_cap, total_market_cap_aud, total_24h_volume_aud, "0"], update: true)
-                try! self.realm.commitWrite()
-                
-                self.globalData = try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
-                
-                self.totalCollectionView.reloadData()
-                
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
+        DispatchQueue.global(qos: .userInitiated).async {
+            marketCapClient.getGlobalCap(convert: "AUD"){ result in
+                switch result{
+                case .success(let resultData):
+                    guard let globalCap = resultData else {return}
+                    
+                    let bitcoin_percentage_of_market_cap = String(globalCap["bitcoin_percentage_of_market_cap"]!!)
+                    let total_market_cap_aud = String((globalCap["total_market_cap_aud"]!! / 10000000.0).rounded() / 100.0)
+                    let total_24h_volume_aud = String((globalCap["total_24h_volume_aud"]!! / 10000000.0).rounded() / 100.0)
+                    
+                    self.realm.beginWrite()
+                    self.realm.create(GlobalDataRealm.self, value: [bitcoin_percentage_of_market_cap, total_market_cap_aud, total_24h_volume_aud, "0"], update: true)
+                    try! self.realm.commitWrite()
+                    
+                    self.globalData = try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
+                    
+                    DispatchQueue.main.async {
+                        self.totalCollectionView.reloadData()
+                    }
+                    
+                case .failure(let error):
+                    print("the error \(error.localizedDescription)")
+                }
             }
         }
         
         let tickerDataFetcher = TickerDataFetcherV2()
-        tickerDataFetcher.getTickerData(start: numberOfCoinWillDisplay - 10, completionHandler:
-            {_ in
-                self.coinList.reloadData()
-        })
-    }
-    
-    func getCoinList() {
-        let cryptoCompareClient = CryptoCompareClient()
-        let container = try! Container()
-        
-        cryptoCompareClient.getCoinList(){result in
-            switch result{
-            case .success(let resultData):
-                guard let coinList = resultData?.Data else {return}
-                for (_, value) in coinList{
-                    try! container.write { transaction in
-                        transaction.add(value, update: true)
-                    }
-                }
-                self.coinListRealmObjects = try! Realm().objects(CryptoCompareCoinsRealm.self)
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
-            }
+        tickerDataFetcher.getCoinList() {
+            tickerDataFetcher.getAllData()
         }
     }
     
@@ -369,19 +349,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         if collectionView == filterDate {
             filterDateSelection = indexPath.row
             coinList.reloadData()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if collectionView == coinList {
-            if indexPath.row == numberOfCoinWillDisplay - 1 && numberOfCoinWillDisplay <= tickerDataRealmObjects.count {  //numberofitem count
-                numberOfCoinWillDisplay += 10
-                let tickerDataFetcher = TickerDataFetcherV2()
-                tickerDataFetcher.getTickerData(start: numberOfCoinWillDisplay - 9, completionHandler: {_ in
-                    self.numberOfCoinWillDisplay = self.tickerDataRealmObjects.count
-                    collectionView.reloadData()
-                })
-            }
         }
     }
     
