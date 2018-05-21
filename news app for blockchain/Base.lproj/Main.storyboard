@@ -58,7 +58,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="谢谢你的支持" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1c-Am-mYF">
-                                                <rect key="frame" x="120" y="976" width="135" height="24"/>
+                                                <rect key="frame" x="120" y="976" width="122.5" height="24"/>
                                                 <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -76,7 +76,7 @@
                                             <constraint firstItem="8Op-1j-4zE" firstAttribute="top" secondItem="cVo-lW-p8o" secondAttribute="bottom" constant="10" id="Q2c-cB-nCS"/>
                                             <constraint firstAttribute="trailing" secondItem="cVo-lW-p8o" secondAttribute="trailing" constant="25" id="Qif-Z4-Ove"/>
                                             <constraint firstItem="cTN-rX-EFe" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="20" id="Rsb-SI-v5a"/>
-                                            <constraint firstAttribute="trailing" secondItem="l1c-Am-mYF" secondAttribute="trailing" constant="120" id="UxT-Ej-G7E"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l1c-Am-mYF" secondAttribute="trailing" id="UxT-Ej-G7E"/>
                                             <constraint firstItem="8Op-1j-4zE" firstAttribute="top" secondItem="cVo-lW-p8o" secondAttribute="bottom" constant="10" id="YMO-dj-zbU"/>
                                             <constraint firstAttribute="bottom" secondItem="l1c-Am-mYF" secondAttribute="bottom" constant="100" id="lN6-xi-Ytn"/>
                                             <constraint firstItem="cVo-lW-p8o" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="25" id="tx2-io-8pO"/>

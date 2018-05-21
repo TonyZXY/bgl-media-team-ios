@@ -47,8 +47,6 @@ class OtherDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let str1 = data[indexPath.row]
-        //print(str1)
-        //let realm = try! Realm()
         print(realm.configuration.fileURL ?? "")
         
         let newDisplayPage = defDisplayOpt()

@@ -58,8 +58,6 @@ class DefaultCurrencyViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let str = data[indexPath.row]
-        //print(str)
-        //let realm = try! Realm()
         print(realm.configuration.fileURL ?? "")
         
         let newDC = defCurrency()
