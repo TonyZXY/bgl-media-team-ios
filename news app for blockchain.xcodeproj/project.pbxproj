@@ -20,6 +20,9 @@
 		2B1A1B3F20AA7BAA00387535 /* OtherOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B3E20AA7BAA00387535 /* OtherOptionViewController.swift */; };
 		2B1A1B4120AA7D5900387535 /* OtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B4020AA7D5900387535 /* OtherDetailViewController.swift */; };
 		2B1A1B4320AA7FD800387535 /* defDisplayOpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B1A1B4220AA7FD800387535 /* defDisplayOpt.swift */; };
+		2BC763B920B27B0D0010E1A8 /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC763B820B27B0D0010E1A8 /* AboutUsViewController.swift */; };
+		2BC763BB20B281BA0010E1A8 /* ViewOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC763BA20B281BA0010E1A8 /* ViewOptionsViewController.swift */; };
+		2BC763BD20B281F60010E1A8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BC763BC20B281F60010E1A8 /* NotificationViewController.swift */; };
 		FAC17EFFA9174369FA91CAE4 /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +42,9 @@
 		2B1A1B3E20AA7BAA00387535 /* OtherOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherOptionViewController.swift; sourceTree = "<group>"; };
 		2B1A1B4020AA7D5900387535 /* OtherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherDetailViewController.swift; sourceTree = "<group>"; };
 		2B1A1B4220AA7FD800387535 /* defDisplayOpt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = defDisplayOpt.swift; sourceTree = "<group>"; };
+		2BC763B820B27B0D0010E1A8 /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
+		2BC763BA20B281BA0010E1A8 /* ViewOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOptionsViewController.swift; sourceTree = "<group>"; };
+		2BC763BC20B281F60010E1A8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		AF335468AB7AE16EB4646891 /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
 		B5C51F49BD9D7EBC19255EF6 /* Pods-news app for blockchain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FA77B53A667AF4297A6706 /* Pods_news_app_for_blockchain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_news_app_for_blockchain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +105,7 @@
 		2B1A1B2A20A9EF3A00387535 /* AboutUs */ = {
 			isa = PBXGroup;
 			children = (
+				2BC763B820B27B0D0010E1A8 /* AboutUsViewController.swift */,
 			);
 			path = AboutUs;
 			sourceTree = "<group>";
@@ -124,6 +131,7 @@
 		2B1A1B2D20A9EF7300387535 /* ViewOptions */ = {
 			isa = PBXGroup;
 			children = (
+				2BC763BA20B281BA0010E1A8 /* ViewOptionsViewController.swift */,
 			);
 			path = ViewOptions;
 			sourceTree = "<group>";
@@ -131,6 +139,7 @@
 		2B1A1B2E20A9EF7E00387535 /* NotificationOptions */ = {
 			isa = PBXGroup;
 			children = (
+				2BC763BC20B281F60010E1A8 /* NotificationViewController.swift */,
 			);
 			path = NotificationOptions;
 			sourceTree = "<group>";
@@ -292,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BC763BB20B281BA0010E1A8 /* ViewOptionsViewController.swift in Sources */,
 				2B1A1B4120AA7D5900387535 /* OtherDetailViewController.swift in Sources */,
 				2B1A1B3D20AA681500387535 /* defCurrency.swift in Sources */,
 				2B1A1B4320AA7FD800387535 /* defDisplayOpt.swift in Sources */,
@@ -300,7 +310,9 @@
 				041F40DC207EDD48008DCA69 /* news_app_for_blockchain.xcdatamodeld in Sources */,
 				2B1A1B3F20AA7BAA00387535 /* OtherOptionViewController.swift in Sources */,
 				041F40D6207EDD48008DCA69 /* MoreOptionMainViewController.swift in Sources */,
+				2BC763BD20B281F60010E1A8 /* NotificationViewController.swift in Sources */,
 				2B1A1B3920AA0D1A00387535 /* WebDetailViewController.swift in Sources */,
+				2BC763B920B27B0D0010E1A8 /* AboutUsViewController.swift in Sources */,
 				041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

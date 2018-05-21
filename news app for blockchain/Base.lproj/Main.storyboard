@@ -26,97 +26,79 @@
             </objects>
             <point key="canvasLocation" x="-754" y="-90"/>
         </scene>
-        <!--View Controller-->
+        <!--About Us View Controller-->
         <scene sceneID="dtk-Qj-c8e">
             <objects>
-                <viewController id="8NI-Tu-NTJ" sceneMemberID="viewController">
+                <viewController id="8NI-Tu-NTJ" customClass="AboutUsViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1up-SL-o79">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pun-xy-xE3">
-                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                <color key="barTintColor" red="0.21176470589999999" green="0.22352941179999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" red="0.0" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="关于我们" id="tWl-N8-F7C"/>
-                                </items>
-                            </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Saz-BI-ow3">
-                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eil-8S-Ckd">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1100"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bcg_new_white01" translatesAutoresizingMaskIntoConstraints="NO" id="cVo-lW-p8o">
-                                                <rect key="frame" x="21" y="12" width="333" height="151"/>
+                                                <rect key="frame" x="25" y="15" width="325" height="155"/>
                                                 <color key="backgroundColor" red="0.21176470588235294" green="0.22352941176470587" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="151" id="o2r-QA-50Q"/>
-                                                </constraints>
                                             </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blockchain Global 简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Op-1j-4zE">
+                                                <rect key="frame" x="20" y="180" width="176" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="40" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTN-rX-EFe">
-                                                <rect key="frame" x="20" y="207" width="335" height="595"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="595" id="pEf-gi-LM5"/>
-                                                </constraints>
-                                                <string key="text">Blockchain Global is a leading multi-national enterprise in blockchain technology commercialisation and investment. It plays a vital role in international blockchain audit and network infrastructure services. Blockchain Global operates ACX.io, the biggest blockchain asset exchange platform in Australia. Meanwhile, it provides technical support to eight other exchange platforms overseas, including the operation of NEM Foundation Exchange, the world’s sixth biggest encrypto currency exchange platform with a market capitalisation of 2.5 trillion US dollars. AAAAA Blockchain Global is a leading multi-national enterprise in blockchain technology commercialisation and investment. It plays a vital role in international blockchain audit and network infrastructure services. Blockchain Global operates ACX.io, the biggest blockchain asset exchange platform in Australia. Meanwhile, it provides technical support to eight other exchange platforms overseas, including the operation of NEM Foundation Exchange, the world’s sixth biggest encrypto currency exchange platform with a market capitalisation of 2.5 trillion US dollars.</string>
+                                                <rect key="frame" x="20" y="211" width="335" height="507.5"/>
+                                                <mutableString key="text">Blockchain Global is a leading multi-national enterprise in blockchain technology commercialisation and investment. It plays a vital role in international blockchain audit and network infrastructure services. Blockchain Global operates ACX.io, the biggest blockchain asset exchange platform in Australia. Meanwhile, it provides technical support to eight other exchange platforms overseas, including the operation of NEM Foundation Exchange, the world’s sixth biggest encrypto currency exchange platform with a market capitalisation of 2.5 trillion US dollars. AAAAA Blockchain Global是Blockshine位于澳洲的母公司。作为一家全球领先的跨国企业，公司致力于区块链技术商业化和投资。已经投资并孵化了超过60家区块链技术初创公司和项目，累计投资额超过2亿美金。控股多家纳斯达克及ASX上市公司，专注于传统上市公司与区块链技术之结合，其中旗下控股公司DigitalX（ASX：DCC）为全球首家区块链上市企业。在全球已布局澳大利亚，美国，马来西亚，中国，瑞士。</mutableString>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="谢谢你的支持" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1c-Am-mYF">
-                                                <rect key="frame" x="120" y="976" width="122.5" height="24"/>
+                                                <rect key="frame" x="120" y="976" width="135" height="24"/>
                                                 <color key="backgroundColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blockchain Global 简介" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Op-1j-4zE">
-                                                <rect key="frame" x="20" y="178" width="176" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.0" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.21176470588235294" green="0.22352941176470587" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstItem="8Op-1j-4zE" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="20" id="03n-jn-U9U"/>
-                                            <constraint firstItem="cTN-rX-EFe" firstAttribute="top" secondItem="8Op-1j-4zE" secondAttribute="bottom" constant="8" id="0Qi-Hl-4ZT"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="l1c-Am-mYF" secondAttribute="trailing" id="Ch2-DR-ypT"/>
-                                            <constraint firstAttribute="trailing" secondItem="cTN-rX-EFe" secondAttribute="trailing" constant="20" id="FW6-SY-SpB"/>
-                                            <constraint firstAttribute="height" constant="1100" id="FaG-DR-gVG"/>
-                                            <constraint firstAttribute="trailing" secondItem="cVo-lW-p8o" secondAttribute="trailing" constant="21" id="JBt-7a-dxX"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Op-1j-4zE" secondAttribute="trailing" constant="20" symbolic="YES" id="Mav-vO-gHV"/>
-                                            <constraint firstItem="8Op-1j-4zE" firstAttribute="top" secondItem="cVo-lW-p8o" secondAttribute="bottom" constant="15" id="caQ-Ie-IrK"/>
-                                            <constraint firstItem="cVo-lW-p8o" firstAttribute="top" secondItem="Eil-8S-Ckd" secondAttribute="top" constant="12" id="gJF-Z8-Mwk"/>
-                                            <constraint firstItem="cVo-lW-p8o" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="21" id="n7r-Km-Xq4"/>
-                                            <constraint firstItem="cTN-rX-EFe" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="20" id="nZh-wd-Ylp"/>
-                                            <constraint firstAttribute="bottom" secondItem="l1c-Am-mYF" secondAttribute="bottom" constant="100" id="tx4-Wc-45x"/>
-                                            <constraint firstItem="l1c-Am-mYF" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="120" id="x5S-yA-3vV"/>
+                                            <constraint firstItem="cVo-lW-p8o" firstAttribute="top" secondItem="Eil-8S-Ckd" secondAttribute="top" constant="15" id="1ww-a3-v1t"/>
+                                            <constraint firstAttribute="height" constant="1100" id="6P0-9K-mzJ"/>
+                                            <constraint firstItem="8Op-1j-4zE" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="20" id="7F3-QG-M7E"/>
+                                            <constraint firstAttribute="trailing" secondItem="cTN-rX-EFe" secondAttribute="trailing" constant="20" id="M76-jk-hVU"/>
+                                            <constraint firstItem="l1c-Am-mYF" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="120" id="Mfb-uS-CeQ"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8Op-1j-4zE" secondAttribute="trailing" id="Pf7-ad-pcs"/>
+                                            <constraint firstItem="8Op-1j-4zE" firstAttribute="top" secondItem="cVo-lW-p8o" secondAttribute="bottom" constant="10" id="Q2c-cB-nCS"/>
+                                            <constraint firstAttribute="trailing" secondItem="cVo-lW-p8o" secondAttribute="trailing" constant="25" id="Qif-Z4-Ove"/>
+                                            <constraint firstItem="cTN-rX-EFe" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="20" id="Rsb-SI-v5a"/>
+                                            <constraint firstAttribute="trailing" secondItem="l1c-Am-mYF" secondAttribute="trailing" constant="120" id="UxT-Ej-G7E"/>
+                                            <constraint firstItem="8Op-1j-4zE" firstAttribute="top" secondItem="cVo-lW-p8o" secondAttribute="bottom" constant="10" id="YMO-dj-zbU"/>
+                                            <constraint firstAttribute="bottom" secondItem="l1c-Am-mYF" secondAttribute="bottom" constant="100" id="lN6-xi-Ytn"/>
+                                            <constraint firstItem="cVo-lW-p8o" firstAttribute="leading" secondItem="Eil-8S-Ckd" secondAttribute="leading" constant="25" id="tx2-io-8pO"/>
+                                            <constraint firstItem="cTN-rX-EFe" firstAttribute="top" secondItem="8Op-1j-4zE" secondAttribute="bottom" constant="10" id="zfl-wY-UJK"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Eil-8S-Ckd" firstAttribute="leading" secondItem="Saz-BI-ow3" secondAttribute="leading" id="7gG-cq-8l8"/>
-                                    <constraint firstAttribute="bottom" secondItem="Eil-8S-Ckd" secondAttribute="bottom" id="Lab-uR-b7k"/>
-                                    <constraint firstAttribute="trailing" secondItem="Eil-8S-Ckd" secondAttribute="trailing" id="MGk-lC-YOy"/>
-                                    <constraint firstItem="Eil-8S-Ckd" firstAttribute="top" secondItem="Saz-BI-ow3" secondAttribute="top" id="gzX-iR-Z0K"/>
+                                    <constraint firstItem="Eil-8S-Ckd" firstAttribute="top" secondItem="Saz-BI-ow3" secondAttribute="top" id="52f-Ro-bag"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eil-8S-Ckd" secondAttribute="trailing" id="DPv-H9-b1U"/>
+                                    <constraint firstAttribute="bottom" secondItem="Eil-8S-Ckd" secondAttribute="bottom" id="XNq-Fz-rCM"/>
+                                    <constraint firstItem="Eil-8S-Ckd" firstAttribute="centerX" secondItem="Saz-BI-ow3" secondAttribute="centerX" id="nxC-IT-8an"/>
+                                    <constraint firstItem="Eil-8S-Ckd" firstAttribute="leading" secondItem="Saz-BI-ow3" secondAttribute="leading" id="yh6-Ec-0Ql"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="pun-xy-xE3" firstAttribute="leading" secondItem="X4e-P7-ghE" secondAttribute="leading" id="3Tj-cd-JPX"/>
-                            <constraint firstItem="Saz-BI-ow3" firstAttribute="trailing" secondItem="X4e-P7-ghE" secondAttribute="trailing" id="GOJ-KL-6hA"/>
-                            <constraint firstItem="pun-xy-xE3" firstAttribute="top" secondItem="X4e-P7-ghE" secondAttribute="top" id="Ris-HN-Ath"/>
-                            <constraint firstItem="Eil-8S-Ckd" firstAttribute="width" secondItem="1up-SL-o79" secondAttribute="width" id="htR-Tw-UGf"/>
-                            <constraint firstItem="pun-xy-xE3" firstAttribute="trailing" secondItem="X4e-P7-ghE" secondAttribute="trailing" id="sSh-AD-ubF"/>
-                            <constraint firstItem="Saz-BI-ow3" firstAttribute="top" secondItem="pun-xy-xE3" secondAttribute="bottom" id="t1s-Jb-Uef"/>
-                            <constraint firstItem="Saz-BI-ow3" firstAttribute="leading" secondItem="X4e-P7-ghE" secondAttribute="leading" id="wZH-lr-hW8"/>
-                            <constraint firstItem="Saz-BI-ow3" firstAttribute="bottom" secondItem="X4e-P7-ghE" secondAttribute="bottom" id="y2F-tI-HLU"/>
+                            <constraint firstAttribute="bottom" secondItem="Saz-BI-ow3" secondAttribute="bottom" id="7Ff-rG-OK8"/>
+                            <constraint firstItem="Saz-BI-ow3" firstAttribute="trailing" secondItem="X4e-P7-ghE" secondAttribute="trailing" id="7zF-GW-MYx"/>
+                            <constraint firstItem="Saz-BI-ow3" firstAttribute="leading" secondItem="X4e-P7-ghE" secondAttribute="leading" id="MOA-hs-bzc"/>
+                            <constraint firstItem="Saz-BI-ow3" firstAttribute="top" secondItem="X4e-P7-ghE" secondAttribute="top" id="UAz-gv-G9V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="X4e-P7-ghE"/>
                     </view>
@@ -175,10 +157,10 @@
             </objects>
             <point key="canvasLocation" x="-5042.3999999999996" y="2500.2998500749627"/>
         </scene>
-        <!--View Controller-->
+        <!--View Options View Controller-->
         <scene sceneID="PM5-w8-mAU">
             <objects>
-                <viewController id="p6g-Ud-zFY" sceneMemberID="viewController">
+                <viewController id="p6g-Ud-zFY" customClass="ViewOptionsViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SN2-Pr-1gT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,10 +187,10 @@
             </objects>
             <point key="canvasLocation" x="-4132" y="2654.1229385307347"/>
         </scene>
-        <!--View Controller-->
+        <!--Notification View Controller-->
         <scene sceneID="ZLW-JB-ztv">
             <objects>
-                <viewController id="c1A-A3-dLb" sceneMemberID="viewController">
+                <viewController id="c1A-A3-dLb" customClass="NotificationViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RFS-My-c4I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
