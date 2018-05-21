@@ -13,13 +13,19 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     var position:Int = 0 {
         didSet{
+            fetchOfflineData()
             fetchData()
         }
     }
     // This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
     weak var homeViewController: HomeViewController?
     
-    
+    //current to be 5
+    var numberOfItemsToDisplay:Int = 5 {
+        didSet{
+            print(numberOfItemsToDisplay)
+        }
+    }
     var newsArrayList:Results<Genuine>?
     var videoArrayList:Results<Video>?
     
@@ -28,7 +34,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         return vi
     }()
     
-    var selectionOtherTwo:[String] = ["原创文章","原创视频","币圈百科","实时分析"]
+    var selectionOtherTwo:[String] = ["原创文章","原创视频","百科","分析"]
     
     lazy var selectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -108,13 +114,22 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         if collectionView == self.cellListView{
             if (position != 1){
                 if(newsArrayList != nil){
-                    numberOfItem = (newsArrayList?.count)! + 1
+                    if (newsArrayList?.count)! > numberOfItemsToDisplay {
+                        numberOfItem = numberOfItemsToDisplay + 1
+                    }else{
+                        numberOfItem = (newsArrayList?.count)! + 1
+                    }
                 }else{
                     numberOfItem = 0
                 }
             } else {
                 if(videoArrayList != nil){
-                    numberOfItem = (videoArrayList?.count)!
+                    if (videoArrayList?.count)! > numberOfItemsToDisplay {
+                        numberOfItem = numberOfItemsToDisplay
+                    }else{
+                        numberOfItem = (videoArrayList?.count)!
+                        numberOfItemsToDisplay = numberOfItem
+                    }
                 }else{
                     numberOfItem = 0
                 }
@@ -185,7 +200,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == selectionView){
-            fetchData()
             position = indexPath.item
         }else{
             if(position==1){
@@ -202,6 +216,18 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == cellListView {
+            if indexPath.item == numberOfItemsToDisplay - 1 && numberOfItemsToDisplay <= (newsArrayList?.count)! {
+                numberOfItemsToDisplay += 1
+                fetchData(skip: (newsArrayList?.count)!)
+//                if numberOfItemsToDisplay > (newsArrayList?.count)! {
+//                    numberOfItemsToDisplay = (newsArrayList?.count)!
+//                }
+            }
+        }
+    }
+    
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         fetchData()
         print("start refreshing")
@@ -212,6 +238,35 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     func fetchData() {
         if(position != 1){
             APIService.shardInstance.fetchGenuineData(contentType: selectionOtherTwo[position], currentNumber: 0) { (gens:Results<Genuine>) in
+                self.newsArrayList = gens
+                self.cellListView.reloadData()
+            }
+        } else {
+            APIService.shardInstance.fetchVideoData(currentNumber: 0) { (video:Results<Video>) in
+                self.videoArrayList = video
+                self.cellListView.reloadData()
+            }
+        }
+    }
+    
+    func fetchOfflineData(){
+        if(position != 1){
+            APIService.shardInstance.fetchGenuineOffline(contentType: selectionOtherTwo[position]) { (gen:Results<Genuine>) in
+                self.newsArrayList = gen
+                self.cellListView.reloadData()
+            }
+        } else {
+            APIService.shardInstance.fetchVideoOffline {(video:Results<Video>) in
+                self.videoArrayList = video
+                self.cellListView.reloadData()
+            }
+        }
+    }
+    
+    func fetchData(skip: Int) {
+        print("fired")
+        if(position != 1){
+            APIService.shardInstance.fetchGenuineData(contentType: selectionOtherTwo[position], currentNumber: skip) { (gens:Results<Genuine>) in
                 self.newsArrayList = gens
                 self.cellListView.reloadData()
             }

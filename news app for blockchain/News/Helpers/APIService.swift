@@ -28,7 +28,35 @@ class APIService: NSObject {
     let newsLocaleQuery = "localeTag"
     let newsContentQuery = "contentTag"
     let genuineQuery = "genuineTag"
+
+    func fetchNewsOffline(contentType:String,completion: @escaping (Results<News>) -> ()){
+        switch contentType {
+        case "国内", "国际":
+            DispatchQueue.main.async {
+                let result = try! Realm().objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("\(self.newsLocaleQuery) = %@",contentType)
+                completion(result)
+            }
+        default:
+            DispatchQueue.main.async {
+                let result = try! Realm().objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("\(self.newsContentQuery) = %@",contentType)
+                completion(result)
+            }
+        }
+    }
     
+    func fetchGenuineOffline(contentType:String,completion: @escaping (Results<Genuine>) -> ()){
+        DispatchQueue.main.async {
+            let result = try! Realm().objects(Genuine.self).sorted(byKeyPath: "_id", ascending: false).filter("\(self.genuineQuery) = %@",contentType)
+            completion(result)
+        }
+    }
+    
+    func fetchVideoOffline(completion: @escaping (Results<Video>) -> ()){
+        DispatchQueue.main.async {
+            let result = try! Realm().objects(Video.self).sorted(byKeyPath: "_id", ascending: false)
+            completion(result)
+        }
+    }
     
     func fetchNewsData(contentType: String,currentNumber:Int,completion: @escaping (Results<News>) -> ()) {
         switch contentType {

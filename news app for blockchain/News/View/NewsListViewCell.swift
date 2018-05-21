@@ -13,6 +13,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     var position:Int = 0 {
         didSet{
+            fetchOfflineData()
             fetchData()
         }
     }
@@ -66,6 +67,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     override func setupViews() {
         super.setupViews()
+        fetchOfflineData()
         fetchData()
         setupRootView()
         setupSubViews()
@@ -160,7 +162,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             position = indexPath.item
         }else{
             if(indexPath.item != 0){
-                newsController.news = (newsArrayList?[indexPath.item].title,newsArrayList?[indexPath.item].url) as? (title: String, url: String)
+                newsController.news = (newsArrayList?[indexPath.item - 1].title,newsArrayList?[indexPath.item - 1].url) as? (title: String, url: String)
                 homeViewController?.navigationController?.pushViewController(newsController, animated: true)
             }
         }
@@ -174,6 +176,13 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     func fetchData() {
         APIService.shardInstance.fetchNewsData(contentType: selectionOptionOne[position], currentNumber: 0) { (news:Results<News>) in
+            self.newsArrayList = news
+            self.cellListView.reloadData()
+        }
+    }
+    
+    func fetchOfflineData(){
+        APIService.shardInstance.fetchNewsOffline(contentType: selectionOptionOne[position]) { (news:Results<News>) in
             self.newsArrayList = news
             self.cellListView.reloadData()
         }
