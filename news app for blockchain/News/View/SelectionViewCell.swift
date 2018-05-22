@@ -21,7 +21,7 @@ class SelectionViewCell: BaseCell {
         return view
     }()
     
-    
+    // constraints of the view
     func setupRootView(){
         addSubview(view)
         

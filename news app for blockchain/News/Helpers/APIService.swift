@@ -29,6 +29,7 @@ class APIService: NSObject {
     let newsContentQuery = "contentTag"
     let genuineQuery = "genuineTag"
 
+    // fetch Offline News data (from database)
     func fetchNewsOffline(contentType:String,completion: @escaping (Results<News>) -> ()){
         switch contentType {
         case "国内", "国际":
@@ -44,6 +45,7 @@ class APIService: NSObject {
         }
     }
     
+    // fetch Offline Genuine data (from database)
     func fetchGenuineOffline(contentType:String,completion: @escaping (Results<Genuine>) -> ()){
         DispatchQueue.main.async {
             let result = try! Realm().objects(Genuine.self).sorted(byKeyPath: "_id", ascending: false).filter("\(self.genuineQuery) = %@",contentType)
@@ -51,6 +53,7 @@ class APIService: NSObject {
         }
     }
     
+    // fetch Offine Video data (from database)
     func fetchVideoOffline(completion: @escaping (Results<Video>) -> ()){
         DispatchQueue.main.async {
             let result = try! Realm().objects(Video.self).sorted(byKeyPath: "_id", ascending: false)
@@ -58,8 +61,9 @@ class APIService: NSObject {
         }
     }
     
+    // Fetch News data from API
     func fetchNewsData(contentType: String,currentNumber:Int,completion: @escaping (Results<News>) -> ()) {
-        switch contentType {
+        switch contentType { // switch locale tag
         case "国内", "国际":
             let url = URL(string:urlString + localNews)
             let para = [newsLocaleQuery:contentType,"skip":currentNumber] as [String : Any]
@@ -67,8 +71,8 @@ class APIService: NSObject {
                 switch responsein.result{
                 case .success(let value):
                     let json = JSON(value)
-                    self.decodeNewsJSON(json: json)
-                    DispatchQueue.main.async {
+                    self.decodeNewsJSON(json: json) // sent to RealmSwift to store into database
+                    DispatchQueue.main.async { // get data from database
                         let result = try! Realm().objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("\(self.newsLocaleQuery) = %@",contentType)
                         completion(result)
                     }
@@ -76,15 +80,15 @@ class APIService: NSObject {
                     print(error)
                 }
             }
-        default:
+        default: // if content tag
             let url = URL(string: urlString + contentNews)
             let para = [newsContentQuery:contentNews,"skip":currentNumber] as [String:Any]
             Alamofire.request(url!, parameters: para).responseJSON { (responsion) in
                 switch responsion.result{
                 case .success(let value):
                     let json = JSON(value)
-                    self.decodeNewsJSON(json: json)
-                    DispatchQueue.main.async {
+                    self.decodeNewsJSON(json: json) // send to database
+                    DispatchQueue.main.async { // get data form database
                         let result = try! Realm().objects(News.self).sorted(byKeyPath: "_id", ascending: false).filter("\(self.newsContentQuery) = %@",contentType)
                         completion(result)
                     }
@@ -95,6 +99,7 @@ class APIService: NSObject {
         }
     }
     
+    // get Genuine data from API
     func fetchGenuineData(contentType: String, currentNumber: Int, completion: @escaping (Results<Genuine>) -> ()){
         let url = URL(string: urlString + contentGenuine)
         let para = [genuineQuery:contentType,"skip": currentNumber] as [String : Any]
@@ -102,8 +107,8 @@ class APIService: NSObject {
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
-                self.decodeGenuineJSON(json: json)
-                DispatchQueue.main.async {
+                self.decodeGenuineJSON(json: json) // store data into database
+                DispatchQueue.main.async { // get data from database
                     let result = try! Realm().objects(Genuine.self).sorted(byKeyPath: "_id", ascending: false).filter("\(self.genuineQuery) = %@",contentType)
                     completion(result)
                 }
@@ -113,6 +118,7 @@ class APIService: NSObject {
         }
     }
     
+    // get Video data from API
     func fetchVideoData(currentNumber:Int,completion: @escaping (Results<Video>) -> ()){
         let url = URL(string: urlString + video)
         let para = ["skip":currentNumber] as [String: Any]
@@ -120,8 +126,8 @@ class APIService: NSObject {
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
-                self.decodeVideoJSON(json: json)
-                DispatchQueue.main.async {
+                self.decodeVideoJSON(json: json) // store data into database
+                DispatchQueue.main.async { // get data from database
                     let result = try! Realm().objects(Video.self).sorted(byKeyPath: "_id", ascending: false)
                     completion(result)
                 }
@@ -131,9 +137,9 @@ class APIService: NSObject {
         }
     }
     
+    // get video data ( may be not in used)
     func fetchVideo(completion: @escaping (Results<Video>) -> ()){
         Alamofire.request("http://10.10.6.111:3000/api/videos").responseJSON { response in
-            
             switch response.result{
             case .success(let value):
                 let json = JSON(value)
@@ -148,7 +154,7 @@ class APIService: NSObject {
         }
     }
     
-    
+    // decode JSON and store into database
     func decodeNewsJSON(json: JSON){
         realm.beginWrite()
         if let collection = json.array{

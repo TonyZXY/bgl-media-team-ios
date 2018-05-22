@@ -11,6 +11,7 @@ import RealmSwift
 
 class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout {
     
+    // tabbar position, change when tab the bar, refresh page data when changed
     var position:Int = 0 {
         didSet{
             numberOfItemsToDisplay = 7
@@ -19,6 +20,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         }
     }
     
+    // display 7 items when launch the page
     var numberOfItemsToDisplay: Int = 7 {
         didSet{
             print(numberOfItemsToDisplay)
@@ -36,6 +38,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return vi
     }()
     
+    // the selection options (can be change into automaticly fetch from database)
     var selectionOptionOne:[String] = ["国内","国际","深度","趋势"]
     
     lazy var selectionView: UICollectionView = {
@@ -72,6 +75,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return refreshControl
     }()
     
+    // set up views
     override func setupViews() {
         super.setupViews()
         fetchOfflineData()
@@ -94,6 +98,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         view.backgroundColor = ThemeColor().themeColor()
     }
     
+    // constraints of the view
     func setupSubViews(){
         view.addSubview(line)
         view.addSubview(selectionView)
@@ -112,11 +117,12 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         cellListView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    // number of the items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var numberOfItem: Int
-        if collectionView == self.cellListView{
-            if newsArrayList != nil {
-                if (newsArrayList?.count)! > numberOfItemsToDisplay{
+        if collectionView == self.cellListView{ // if not tabbar
+            if newsArrayList != nil { // if have news list
+                if (newsArrayList?.count)! > numberOfItemsToDisplay{ // check number of items
                     numberOfItem = numberOfItemsToDisplay + 1
                 }else{
                     numberOfItem = (newsArrayList?.count)! + 1
@@ -124,35 +130,36 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
             }else{
                 numberOfItem = 0
             }
-        }else{
+        }else{ // if tabbar view
             numberOfItem = 4
         }
         return numberOfItem
     }
     
+    // cell of the item
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == self.cellListView{
-            if indexPath.item == 0{
+        if collectionView == self.cellListView{ // if not tabbar
+            if indexPath.item == 0{ // if slider cell
                 let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! NewsSliderViewCell
                 cell3.homeViewController = self.homeViewController
                 if(newsArrayList?.count != 0){
                     // implemented data load
                     cell3.newsArrayList = Array(newsArrayList![0...2])
                 }
-                
                 return cell3
-            }else{
+            }else{ // list view
                 let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "newsCell", for: indexPath) as! NewsCell
                 cell2.news = newsArrayList?[indexPath.item - 1]
                 return cell2
             }
-        }else{
+        }else{ // tabbar cell
             let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "selectionCell", for: indexPath) as! SelectionViewCell
             cell1.textLabel.text = selectionOptionOne[indexPath.item]
             return cell1
         }
     }
     
+    // size of all cells
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size:CGSize
         if collectionView == self.cellListView{
@@ -167,7 +174,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         return size
     }
     
-    
+    // click action
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == selectionView){
             position = indexPath.item
@@ -179,6 +186,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         }
     }
     
+    // load moew data
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if collectionView == cellListView {
             if indexPath.item == numberOfItemsToDisplay - 1 && numberOfItemsToDisplay <= (newsArrayList?.count)! {
@@ -188,6 +196,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         }
     }
     
+    // refresh data
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         numberOfItemsToDisplay = 7
         fetchData()
@@ -195,6 +204,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         self.refresher.endRefreshing()
     }
     
+    // fetch data without arguement
     func fetchData() {
         APIService.shardInstance.fetchNewsData(contentType: selectionOptionOne[position], currentNumber: 0) { (news:Results<News>) in
             self.newsArrayList = news
@@ -202,6 +212,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         }
     }
     
+    // fetch offline data
     func fetchOfflineData(){
         APIService.shardInstance.fetchNewsOffline(contentType: selectionOptionOne[position]) { (news:Results<News>) in
             self.newsArrayList = news
@@ -209,6 +220,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         }
     }
     
+    // fetch data with arguement, used when load more data 
     func fetchData(skip: Int) {
         APIService.shardInstance.fetchNewsData(contentType: selectionOptionOne[position], currentNumber: skip) { (news:Results<News>) in
             self.newsArrayList = news

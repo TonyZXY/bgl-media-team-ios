@@ -13,6 +13,7 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
     weak var homeViewController:HomeViewController?
     let newsViewController = NewsDetailWebViewController()
     
+    // reload data when any method edit this value
     var newsArrayList:[News]? {
         didSet{
             sliderView.reloadData()
@@ -29,6 +30,7 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
         return view
     }()
     
+    // slider collectionview configure
     lazy var sliderView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -60,7 +62,7 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
         return view
     }()
     
-    
+    // constraints
     func setupRootView(){
         addSubview(rootView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: rootView)
@@ -95,6 +97,7 @@ class NewsSliderViewCell: BaseCell ,UICollectionViewDataSource,UICollectionViewD
         pageControl.currentPage = Int(x/rootView.frame.width)
     }
     
+    // push view controller
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         newsViewController.news = (newsArrayList?[indexPath.item].title,newsArrayList?[indexPath.item].url) as? (title: String, url: String)
         homeViewController?.navigationController?.pushViewController(newsViewController, animated: true)

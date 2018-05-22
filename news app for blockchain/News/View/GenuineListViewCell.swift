@@ -11,6 +11,7 @@ import RealmSwift
 
 class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
+    // this var represent the tabbar at the top, change by set the position into other value, and will set content at same time
     var position:Int = 0 {
         didSet{
             numberOfItemsToDisplay = 7
@@ -19,14 +20,18 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         }
     }
     // This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
+    
+    
     weak var homeViewController: HomeViewController?
     
-    //current to be 5
+    //current to be 7, display 7 items when page launch
     var numberOfItemsToDisplay:Int = 7 {
         didSet{
             print(numberOfItemsToDisplay)
         }
     }
+    
+    // the list that contain the data which used in this page
     var newsArrayList:Results<Genuine>?
     var videoArrayList:Results<Video>?
     
@@ -35,6 +40,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         return vi
     }()
     
+    // tabbar value
     var selectionOtherTwo:[String] = ["原创文章","原创视频","百科","分析"]
     
     lazy var selectionView: UICollectionView = {
@@ -71,6 +77,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         return refreshControl
     }()
     
+    // set up views when launch the screen
     override func setupViews() {
         super.setupViews()
         fetchOfflineData()
@@ -93,6 +100,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         view.backgroundColor = ThemeColor().themeColor()
     }
     
+    // constrains of the view
     func setupSubViews(){
         
         view.addSubview(line)
@@ -111,12 +119,13 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         cellListView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
+    // set up item number of the collectionview
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var numberOfItem: Int
-        if collectionView == self.cellListView{
-            if (position != 1){
-                if(newsArrayList != nil){
-                    if (newsArrayList?.count)! > numberOfItemsToDisplay {
+        if collectionView == self.cellListView{ // if it the list blow
+            if (position != 1){ // if not video list
+                if(newsArrayList != nil){ // prevent crash
+                    if (newsArrayList?.count)! > numberOfItemsToDisplay { // check the number of the list
                         numberOfItem = numberOfItemsToDisplay + 1
                     }else{
                         numberOfItem = (newsArrayList?.count)! + 1
@@ -124,9 +133,9 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
                 }else{
                     numberOfItem = 0
                 }
-            } else {
-                if(videoArrayList != nil){
-                    if (videoArrayList?.count)! > numberOfItemsToDisplay {
+            } else { // if video list
+                if(videoArrayList != nil){ // prevent crash
+                    if (videoArrayList?.count)! > numberOfItemsToDisplay { // check number of item in the list
                         numberOfItem = numberOfItemsToDisplay
                     }else{
                         numberOfItem = (videoArrayList?.count)!
@@ -135,47 +144,47 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
                     numberOfItem = 0
                 }
             }
-        }else{
+        }else{ // if it is tabbar
             numberOfItem = 4
         }
         return numberOfItem
     }
     
     
-    
+    // items in the collectionview
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if(position != 1){
-            if collectionView == self.cellListView{
-                if indexPath.item == 0{
+        // if not selection list
+        if collectionView == self.cellListView {
+            if (position != 1){ // if not video list
+                if indexPath.item == 0 { // if slider cell
                     let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "sliderCell", for: indexPath) as! GenuineSliderViewCell
                     cell3.homeViewController = self.homeViewController
                     if(newsArrayList?.count != 0){
                         cell3.newsArrayList = Array(newsArrayList![0...2])
                     }
                     return cell3
-                }else{
+                }else{ // other cells
                     let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "genuineCell", for: indexPath) as! GenuineCell
                     if newsArrayList?.count != 0 {
                         cell2.genuine = newsArrayList?[indexPath.item-1]
                     }
                     return cell2
                 }
-            }else{
-                let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "selectionCell", for: indexPath) as! SelectionViewCell
-                cell1.textLabel.text = selectionOtherTwo[indexPath.item]
-                return cell1
+            }else{ // video cells
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as! VideoCell
+                if videoArrayList?.count != 0 {
+                    cell.video = videoArrayList?[indexPath.item]
+                }
+                return cell
             }
-        }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "videoCell", for: indexPath) as! VideoCell
-            if videoArrayList?.count != 0 {
-                cell.video = videoArrayList?[indexPath.item]
-            }
-            return cell
-            
+        }else{ // selection list
+            let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "selectionCell", for: indexPath) as! SelectionViewCell
+            cell1.textLabel.text = selectionOtherTwo[indexPath.item]
+            return cell1
         }
     }
     
-    
+    // size of every cells
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size:CGSize
         if position == 1{
@@ -199,6 +208,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         return size
     }
     
+    // click actions
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if(collectionView == selectionView){
             position = indexPath.item
@@ -217,6 +227,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
+    // load more data
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if collectionView == cellListView {
             if indexPath.item == numberOfItemsToDisplay - 1 && numberOfItemsToDisplay <= (newsArrayList?.count)! {
@@ -226,6 +237,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
+    // refresh
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         numberOfItemsToDisplay = 7
         fetchData()
@@ -234,6 +246,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     }
     
     
+    // load data online whit no arguement
     func fetchData() {
         if(position != 1){
             APIService.shardInstance.fetchGenuineData(contentType: selectionOtherTwo[position], currentNumber: 0) { (gens:Results<Genuine>) in
@@ -248,6 +261,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
+    // load data from database
     func fetchOfflineData(){
         if(position != 1){
             APIService.shardInstance.fetchGenuineOffline(contentType: selectionOtherTwo[position]) { (gen:Results<Genuine>) in
@@ -262,6 +276,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
+    // load data when load more data (with arguement)
     func fetchData(skip: Int) {
         print("fired")
         if(position != 1){

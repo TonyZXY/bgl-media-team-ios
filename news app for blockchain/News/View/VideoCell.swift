@@ -12,6 +12,7 @@ import Kingfisher
 class VideoCell: BaseCell {
     weak var homeViewController: HomeViewController?
     
+    // set up content
     var video:Video? {
         didSet{
             titleLabel.text = video?.title
@@ -79,6 +80,7 @@ class VideoCell: BaseCell {
         view.layer.masksToBounds = true
     }
     
+    // constraints of the view
     func setupSubViews(){
         view.addSubview(imageContainer)
         imageContainer.clipsToBounds = true

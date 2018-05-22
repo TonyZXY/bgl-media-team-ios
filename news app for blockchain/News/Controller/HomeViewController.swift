@@ -13,7 +13,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
     // For instance something like static let CellIdentifier = "NewsListCell"  -Johnny Lin
     let cellId = "cellId"
 
-    
+    // set up view
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
@@ -57,6 +57,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         return cv
     }()
     
+    // constraints of the view
     func setupView(){
         view.addSubview(menuBar)
         view.addSubview(selectView)
@@ -83,7 +84,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
     }
     
     
-    
+    // two cell represent NEWS and GENUINE
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
     }
@@ -98,6 +99,7 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         return 2
     }
     
+    // two cells 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (indexPath.item == 1) {
             let genuinePageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "genuineCell", for: indexPath) as! GenuineListViewCell

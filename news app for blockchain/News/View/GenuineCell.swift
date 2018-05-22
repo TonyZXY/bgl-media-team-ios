@@ -11,6 +11,7 @@ import UIKit
 class GenuineCell: BaseCell {
     weak var homeViewController: HomeViewController!
     
+    // set up content
     var genuine:Genuine? {
         didSet{
             titleLabel.text = genuine?.title
@@ -65,6 +66,11 @@ class GenuineCell: BaseCell {
     
     override func setupViews(){
         addSubview(view)
+        setupView()
+    }
+    
+    // constraints of the view
+    func setupView(){
         // REVIEW: in a separate method -Johnny Lin
         addConstraintsWithFormat(format: "H:|-4-[v0]-4-|", views: view)
         addConstraintsWithFormat(format: "V:|-1-[v0]-1-|", views: view)
@@ -95,6 +101,5 @@ class GenuineCell: BaseCell {
         addConstraint(NSLayoutConstraint(item: authorText, attribute: .right, relatedBy: .equal, toItem: subtitleTextView, attribute: .right, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: authorText, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: self, attribute: .width, multiplier: 0, constant: 40))
         addConstraint(NSLayoutConstraint(item: authorText, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 10))
-        
     }
 }

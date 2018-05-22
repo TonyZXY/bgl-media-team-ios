@@ -11,13 +11,15 @@ import YouTubePlayer
 
 
 class VideoDetailViewController: UIViewController {
+    
+    // set up contents
     var video: Video?{
         didSet{
             setupContent()
         }
     }
     
-    
+    // launch view
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,6 +39,7 @@ class VideoDetailViewController: UIViewController {
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
+    // constraints of the view
     func setupSubViews(){
         scrollView.addSubview(videoplayer)
         let height = view.frame.width * 9 / 16
@@ -55,6 +58,7 @@ class VideoDetailViewController: UIViewController {
         scrollView.addConstraintsWithFormat(format: "V:|[v0(\(height))]-8-[v1(52)]-8-[v2(15)]-8-[v3(15)]-16-[v4]-16-|", views: videoplayer,titleLabel,timeLabel,authorLabel,descriptionLabel)
     }
     
+    // set up content
     func setupContent(){
         let vurl = URL(string: (video?.url)!)
         videoplayer.loadVideoURL(vurl!)
@@ -71,6 +75,7 @@ class VideoDetailViewController: UIViewController {
         return sc
     }()
     
+    // YouTube Player
     let videoplayer: YouTubePlayerView = {
         let player = YouTubePlayerView()
         //        player.backgroundColor = UIColor.black

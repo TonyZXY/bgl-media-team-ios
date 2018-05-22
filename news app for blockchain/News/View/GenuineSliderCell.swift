@@ -10,6 +10,7 @@ import UIKit
 
 class GenuineSliderCell: BaseCell {
     
+    // set up content
     var newsContent: Genuine? {
         didSet{
             textView.text = newsContent?.title
@@ -59,6 +60,7 @@ class GenuineSliderCell: BaseCell {
         return tv
     }()
     
+    // constraints 
     func setupSubViews(){
         view.addSubview(imageContainer)
         imageContainer.addSubview(image)

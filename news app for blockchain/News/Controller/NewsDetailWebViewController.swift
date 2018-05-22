@@ -11,6 +11,7 @@ import WebKit
 
 class NewsDetailWebViewController: UIViewController,WKNavigationDelegate {
     
+    // set up content of the view
     var news:(title:String,url:String)?{
         didSet{
             let urlRequest: URLRequest = URLRequest(url: URL(string: news!.url)!)

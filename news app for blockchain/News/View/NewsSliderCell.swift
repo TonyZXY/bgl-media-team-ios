@@ -10,6 +10,7 @@ import UIKit
 
 class NewsSliderCell: BaseCell {
     
+    // set up content
     var newsContent: News? {
         didSet{
             textView.text = newsContent?.title
@@ -19,6 +20,7 @@ class NewsSliderCell: BaseCell {
         }
     }
     
+    // setup views
     override func setupViews() {
         super.setupViews()
         setupRootView()
@@ -58,6 +60,7 @@ class NewsSliderCell: BaseCell {
         return tv
     }()
     
+    // constraints of the view
     func setupSubViews(){
         view.addSubview(imageContainer)
         imageContainer.addSubview(image)

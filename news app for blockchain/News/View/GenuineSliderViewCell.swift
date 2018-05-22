@@ -14,6 +14,7 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
     // REVIEW: no need to store the details view controller as property  -Johnny Lin
     let genuineDetailViewController = NewsDetailWebViewController()
     
+    // reload data when any thing set the Genuine List
     var newsArrayList:[Genuine]? {
         didSet{
             sliderView.reloadData()
@@ -30,6 +31,7 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
         return view
     }()
     
+    // slider View configuration
     lazy var sliderView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -46,6 +48,7 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
         return cv
     }()
     
+    // page control
     let pageControl: UIPageControl = {
         let pc = UIPageControl()
         pc.currentPage = 0
@@ -55,7 +58,7 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
         return pc
     }()
     
-    
+    // conststaints of the slider view
     func setupRootView(){
         addSubview(rootView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: rootView)
@@ -90,6 +93,7 @@ class GenuineSliderViewCell: BaseCell,UICollectionViewDataSource,UICollectionVie
         pageControl.currentPage = Int(x/rootView.frame.width)
     }
     
+    // click action (push view controller)
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         genuineDetailViewController.news = (newsArrayList?[indexPath.item].title,newsArrayList?[indexPath.item].url) as? (title: String, url: String)
         homeViewController?.navigationController?.pushViewController(genuineDetailViewController, animated: true)
