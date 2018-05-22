@@ -34,16 +34,38 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         print(allResult)
     }
     
+    
+    
     @objc func refreshData() {
-        self.totalPrice = 0
-        self.totalProfit = 0
-        self.walletResults = self.setWalletData()
-        self.walletList.reloadData()
-        
+        getnumber{(success,respone,error) in
+            if success {
+                print(self.totalPrice)
+                print(self.totalProfit)
+                self.totalNumber.text = self.priceType + "$" + self.caculateScientificMethod(number: self.totalPrice)
+                self.checkRiseandfallNumber(risefallnumber: self.caculateScientificMethod(number: self.totalProfit))
+                self.totalPrice = 0
+                self.totalProfit = 0
+            } else if let error = error {
+                print(error)
+            }
+        }
     }
     
     @objc func reloadWalletData() {
         refreshData()
+    }
+    
+    func getnumber(completion:(Bool,Any?,Error?)->Void){
+        
+        let queue = DispatchQueue(label: "oi")
+        
+        queue.sync {
+        self.walletResults = self.setWalletData()
+        self.walletList.reloadData()
+        }
+        queue.sync {
+        completion(true,"Good",nil)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +104,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                                     cell.coinSinglePrice.text =  self.caculateScientificMethod(number: price)
                                     let total = Double(price) * Double(object.coinAmount)
                                     cell.coinTotalPrice.text = "("+self.caculateScientificMethod(number: total)+")"
-                                    //                                    cell.profitChange.text = String(total - object.TransactionPrice)
                                     let profit:Double = total - object.TransactionPrice
                                     self.totalProfit = self.totalProfit + profit
                                     self.totalPrice = self.totalPrice + total
@@ -92,8 +113,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                                     } else if self.displayType == "Number"{
                                         cell.checkRiseandfallNumber(risefallnumber: self.caculateScientificMethod(number: profit))
                                     }
-                                    self.totalNumber.text = self.priceType + "$" + self.caculateScientificMethod(number: self.totalPrice)
-                                    self.checkRiseandfallNumber(risefallnumber: self.caculateScientificMethod(number: self.totalProfit))
                                 }
                             } else{
                                 print("fail")
@@ -107,6 +126,11 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
          cell.coinImage.coinImageSetter(coinName: object.coinAbbName, width: 30, height: 30, fontSize: 5)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailPage = DetailController()
+        navigationController?.pushViewController(detailPage, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
