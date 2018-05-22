@@ -78,7 +78,6 @@ class VideoDetailViewController: UIViewController {
     // YouTube Player
     let videoplayer: YouTubePlayerView = {
         let player = YouTubePlayerView()
-        //        player.backgroundColor = UIColor.black
         player.translatesAutoresizingMaskIntoConstraints = false
         return player
     }()

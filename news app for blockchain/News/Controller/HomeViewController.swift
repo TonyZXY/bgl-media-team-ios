@@ -72,7 +72,6 @@ class HomeViewController: UIViewController,UICollectionViewDataSource,UICollecti
         
         
         
-        selectView.backgroundColor = UIColor.white
         selectView.register(NewsListViewCell.self, forCellWithReuseIdentifier: cellId)
         selectView.register(GenuineListViewCell.self, forCellWithReuseIdentifier: "genuineCell")
         selectView.dataSource = self
