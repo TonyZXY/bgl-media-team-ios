@@ -12,19 +12,19 @@ class SelectionViewCell: BaseCell {
     override func setupViews() {
         super.setupViews()
         setupRootView()
-        
+
     }
-    
+
     lazy var view: UIView = {
         var view = UIView()
-        
+
         return view
     }()
-    
+
     // constraints of the view
-    func setupRootView(){
+    func setupRootView() {
         addSubview(view)
-        
+
         addConstraintsWithFormat(format: "H:|[v0]|", views: view)
         addConstraintsWithFormat(format: "V:|[v0]|", views: view)
         view.backgroundColor = ThemeColor().themeColor()
@@ -35,21 +35,21 @@ class SelectionViewCell: BaseCell {
         addConstraintsWithFormat(format: "H:|[v0]|", views: textLabel)
         addConstraintsWithFormat(format: "V:|-3-[v0]-3-|", views: textLabel)
     }
-    
+
     override var isHighlighted: Bool {
-        didSet{
+        didSet {
             textLabel.textColor = isHighlighted ? UIColor.gray : UIColor.rgb(red: 103, green: 179, blue: 183)
             textLabel.backgroundColor = isHighlighted ? UIColor.rgb(red: 228, green: 228, blue: 228) : UIColor.darkGray
         }
     }
-    
+
     override var isSelected: Bool {
-        didSet{
+        didSet {
             textLabel.textColor = isSelected ? UIColor.gray : UIColor.rgb(red: 103, green: 179, blue: 183)
             textLabel.backgroundColor = isSelected ? UIColor.rgb(red: 228, green: 228, blue: 228) : UIColor.darkGray
         }
     }
-    
+
     lazy var textLabel: UILabel = {
         var tx = UILabel()
         tx.backgroundColor = .darkGray

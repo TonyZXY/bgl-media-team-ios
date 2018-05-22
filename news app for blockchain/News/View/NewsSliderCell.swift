@@ -9,17 +9,17 @@
 import UIKit
 
 class NewsSliderCell: BaseCell {
-    
+
     // set up content
     var newsContent: News? {
-        didSet{
+        didSet {
             textView.text = newsContent?.title
-            if(newsContent != nil){
+            if (newsContent != nil) {
                 image.setImage(urlString: (newsContent?.imageURL)!)
             }
         }
     }
-    
+
     // setup views
     override func setupViews() {
         super.setupViews()
@@ -27,7 +27,7 @@ class NewsSliderCell: BaseCell {
         setupSubViews()
         backgroundColor = ThemeColor().themeColor()
     }
-    
+
     let view: UIView = {
         let vi = UIView()
         vi.backgroundColor = ThemeColor().walletCellcolor()
@@ -35,33 +35,33 @@ class NewsSliderCell: BaseCell {
         vi.layer.masksToBounds = true
         return vi
     }()
-    
+
     let imageContainer: UIView = {
         let iv = UIView()
         return iv
     }()
-    
-    func setupRootView(){
+
+    func setupRootView() {
         addSubview(view)
         addConstraintsWithFormat(format: "H:|-3-[v0]-3-|", views: view)
         addConstraintsWithFormat(format: "V:|-2-[v0]-2-|", views: view)
     }
-    
-    let image:UIImageView = {
+
+    let image: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         return iv
     }()
-    
-    let textView:UILabel = {
+
+    let textView: UILabel = {
         let tv = UILabel()
         tv.backgroundColor = UIColor(white: 0.2, alpha: 0.8)
         tv.textColor = UIColor.white
         return tv
     }()
-    
+
     // constraints of the view
-    func setupSubViews(){
+    func setupSubViews() {
         view.addSubview(imageContainer)
         imageContainer.addSubview(image)
         imageContainer.clipsToBounds = true
@@ -73,6 +73,6 @@ class NewsSliderCell: BaseCell {
         addConstraintsWithFormat(format: "H:|[v0]|", views: textView)
         addConstraintsWithFormat(format: "V:|-95-[v0]|", views: textView)
     }
-    
-    
+
+
 }

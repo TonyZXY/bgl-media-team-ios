@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class Genuine : Object {
+class Genuine: Object {
     @objc dynamic var _id: String? = ""
     @objc dynamic var title: String? = ""
     @objc dynamic var genuineDescription: String? = ""
@@ -18,7 +18,7 @@ class Genuine : Object {
     @objc dynamic var publishedTime: String? = ""
     @objc dynamic var author: String? = ""
     @objc dynamic var genuineTag: String? = ""
-    
+
     override class func primaryKey() -> String {
         return "_id"
     }
