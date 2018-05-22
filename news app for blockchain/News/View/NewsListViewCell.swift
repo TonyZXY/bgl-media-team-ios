@@ -13,8 +13,15 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     var position:Int = 0 {
         didSet{
+            numberOfItemsToDisplay = 7
             fetchOfflineData()
             fetchData()
+        }
+    }
+    
+    var numberOfItemsToDisplay: Int = 7 {
+        didSet{
+            print(numberOfItemsToDisplay)
         }
     }
     
@@ -109,7 +116,11 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         var numberOfItem: Int
         if collectionView == self.cellListView{
             if newsArrayList != nil {
-                numberOfItem = (newsArrayList?.count)! + 1
+                if (newsArrayList?.count)! > numberOfItemsToDisplay{
+                    numberOfItem = numberOfItemsToDisplay + 1
+                }else{
+                    numberOfItem = (newsArrayList?.count)! + 1
+                }
             }else{
                 numberOfItem = 0
             }
@@ -168,7 +179,17 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if collectionView == cellListView {
+            if indexPath.item == numberOfItemsToDisplay - 1 && numberOfItemsToDisplay <= (newsArrayList?.count)! {
+                numberOfItemsToDisplay += 5
+                fetchData(skip: (newsArrayList?.count)!)
+            }
+        }
+    }
+    
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        numberOfItemsToDisplay = 7
         fetchData()
         print("start refreshing")
         self.refresher.endRefreshing()
@@ -183,6 +204,13 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     
     func fetchOfflineData(){
         APIService.shardInstance.fetchNewsOffline(contentType: selectionOptionOne[position]) { (news:Results<News>) in
+            self.newsArrayList = news
+            self.cellListView.reloadData()
+        }
+    }
+    
+    func fetchData(skip: Int) {
+        APIService.shardInstance.fetchNewsData(contentType: selectionOptionOne[position], currentNumber: skip) { (news:Results<News>) in
             self.newsArrayList = news
             self.cellListView.reloadData()
         }

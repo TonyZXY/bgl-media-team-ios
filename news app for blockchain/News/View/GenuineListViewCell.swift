@@ -13,6 +13,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     var position:Int = 0 {
         didSet{
+            numberOfItemsToDisplay = 7
             fetchOfflineData()
             fetchData()
         }
@@ -21,7 +22,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     weak var homeViewController: HomeViewController?
     
     //current to be 5
-    var numberOfItemsToDisplay:Int = 5 {
+    var numberOfItemsToDisplay:Int = 7 {
         didSet{
             print(numberOfItemsToDisplay)
         }
@@ -72,7 +73,8 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     override func setupViews() {
         super.setupViews()
-        position = 0
+        fetchOfflineData()
+        fetchData()
         setupRootView()
         setupSubViews()
         cellListView.register(GenuineCell.self, forCellWithReuseIdentifier: "genuineCell")
@@ -128,7 +130,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
                         numberOfItem = numberOfItemsToDisplay
                     }else{
                         numberOfItem = (videoArrayList?.count)!
-                        numberOfItemsToDisplay = numberOfItem
                     }
                 }else{
                     numberOfItem = 0
@@ -219,16 +220,14 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if collectionView == cellListView {
             if indexPath.item == numberOfItemsToDisplay - 1 && numberOfItemsToDisplay <= (newsArrayList?.count)! {
-                numberOfItemsToDisplay += 1
+                numberOfItemsToDisplay += 5
                 fetchData(skip: (newsArrayList?.count)!)
-//                if numberOfItemsToDisplay > (newsArrayList?.count)! {
-//                    numberOfItemsToDisplay = (newsArrayList?.count)!
-//                }
             }
         }
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        numberOfItemsToDisplay = 7
         fetchData()
         print("start refreshing")
         self.refresher.endRefreshing()
