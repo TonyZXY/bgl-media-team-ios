@@ -10,7 +10,7 @@ import UIKit
 
 class NewsCell: BaseCell {
 
-    weak var homeViewController: HomeViewController!
+    weak var homeViewController: NewsHomeViewController!
 
     // set content of the cell
     var news: News? {

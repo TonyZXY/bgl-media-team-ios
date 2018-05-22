@@ -9,7 +9,7 @@
 import UIKit
 
 // REVIEW: class name perhaps can be BGLNewsHomeViewController -Johnny Lin
-class HomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class NewsHomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     // REVIEW: use specific id instead of general id and it should be stored in ListViewCell
     // For instance something like static let CellIdentifier = "NewsListCell"  -Johnny Lin
     let cellId = "cellId"

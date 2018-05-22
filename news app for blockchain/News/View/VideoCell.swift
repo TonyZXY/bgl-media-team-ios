@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 class VideoCell: BaseCell {
-    weak var homeViewController: HomeViewController?
+    weak var homeViewController: NewsHomeViewController?
 
     // set up content
     var video: Video? {

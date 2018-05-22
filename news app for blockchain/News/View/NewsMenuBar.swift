@@ -10,7 +10,7 @@ import UIKit
 
 class NewsMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    var homeController: HomeViewController?// REVIEW: should be a delegate -Johnny Lin
+    var homeController: NewsHomeViewController?// REVIEW: should be a delegate -Johnny Lin
 
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

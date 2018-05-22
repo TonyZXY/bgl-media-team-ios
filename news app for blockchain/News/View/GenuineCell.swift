@@ -9,7 +9,7 @@
 import UIKit
 
 class GenuineCell: BaseCell {
-    weak var homeViewController: HomeViewController!
+    weak var homeViewController: NewsHomeViewController!
 
     // set up content
     var genuine: Genuine? {

@@ -10,7 +10,7 @@ import UIKit
 
 class NewsSliderViewCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    weak var homeViewController: HomeViewController?
+    weak var homeViewController: NewsHomeViewController?
     let newsViewController = NewsDetailWebViewController()
 
     // reload data when any method edit this value

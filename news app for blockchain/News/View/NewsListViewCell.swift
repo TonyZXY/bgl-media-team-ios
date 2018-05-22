@@ -23,7 +23,7 @@ class NewsListViewCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
     // display 7 items when launch the page
     var numberOfItemsToDisplay: Int = 7
 
-    weak var homeViewController: HomeViewController?
+    weak var homeViewController: NewsHomeViewController?
 
     let newsController = NewsDetailWebViewController()
 

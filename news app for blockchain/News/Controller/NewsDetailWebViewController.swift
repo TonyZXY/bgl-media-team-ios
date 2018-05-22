@@ -27,6 +27,7 @@ class NewsDetailWebViewController: UIViewController, WKNavigationDelegate {
         setupViews()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleShare))
+        tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -65,20 +66,5 @@ class NewsDetailWebViewController: UIViewController, WKNavigationDelegate {
         return view
     }()
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 
 }

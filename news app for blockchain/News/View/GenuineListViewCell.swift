@@ -22,7 +22,7 @@ class GenuineListViewCell: BaseCell, UICollectionViewDelegate, UICollectionViewD
     // This int represent the position of Selection Bar -- Use to distingush VIDEO cell with NEWS CELL
 
 
-    weak var homeViewController: HomeViewController?
+    weak var homeViewController: NewsHomeViewController?
 
     //current to be 7, display 7 items when page launch
     var numberOfItemsToDisplay: Int = 7

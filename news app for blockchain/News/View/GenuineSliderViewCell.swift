@@ -10,7 +10,7 @@ import UIKit
 
 class GenuineSliderViewCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-    weak var homeViewController: HomeViewController?
+    weak var homeViewController: NewsHomeViewController?
     // REVIEW: no need to store the details view controller as property  -Johnny Lin
     let genuineDetailViewController = NewsDetailWebViewController()
 
