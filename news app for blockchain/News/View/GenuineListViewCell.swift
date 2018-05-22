@@ -25,11 +25,7 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     weak var homeViewController: HomeViewController?
     
     //current to be 7, display 7 items when page launch
-    var numberOfItemsToDisplay:Int = 7 {
-        didSet{
-            print(numberOfItemsToDisplay)
-        }
-    }
+    var numberOfItemsToDisplay:Int = 7
     
     // the list that contain the data which used in this page
     var newsArrayList:Results<Genuine>?
@@ -278,7 +274,6 @@ class GenuineListViewCell: BaseCell,UICollectionViewDelegate,UICollectionViewDat
     
     // load data when load more data (with arguement)
     func fetchData(skip: Int) {
-        print("fired")
         if(position != 1){
             APIService.shardInstance.fetchGenuineData(contentType: selectionOtherTwo[position], currentNumber: skip) { (gens:Results<Genuine>) in
                 self.newsArrayList = gens

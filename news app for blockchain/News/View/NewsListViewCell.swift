@@ -21,11 +21,7 @@ class NewsListViewCell: BaseCell,UICollectionViewDataSource,UICollectionViewDele
     }
     
     // display 7 items when launch the page
-    var numberOfItemsToDisplay: Int = 7 {
-        didSet{
-            print(numberOfItemsToDisplay)
-        }
-    }
+    var numberOfItemsToDisplay: Int = 7 
     
     weak var homeViewController: HomeViewController?
     
