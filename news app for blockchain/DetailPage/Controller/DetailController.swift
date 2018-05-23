@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+class DetailController: UIViewController{
     var menuitems = ["General","Transactions","Alerts"]
     var coinDetail = CoinDetailData()
     override func viewDidLoad() {
@@ -20,19 +20,19 @@ class DetailController: UIViewController,UICollectionViewDelegate,UICollectionVi
         self.tabBarController?.tabBar.isHidden = true
     }    
     
-    func addChildViewController(childViewControllers:UIViewController,cell:UICollectionViewCell){
+    func addChildViewControllers(childViewControllers:UIViewController,views:UIView){
         addChildViewController(childViewControllers)
-        cell.contentView.addSubview(childViewControllers.view)
-        childViewControllers.view.frame = view.bounds
+        views.addSubview(childViewControllers.view)
+        childViewControllers.view.frame = views.bounds
         childViewControllers.view.autoresizingMask = [.flexibleWidth,.flexibleHeight]
         childViewControllers.didMove(toParentViewController: self)
         
         //Constraints
         childViewControllers.view.translatesAutoresizingMaskIntoConstraints = false
-        childViewControllers.view.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
-        childViewControllers.view.leftAnchor.constraint(equalTo: cell.leftAnchor).isActive = true
-        childViewControllers.view.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
-        childViewControllers.view.heightAnchor.constraint(equalTo: cell.heightAnchor).isActive = true
+        childViewControllers.view.topAnchor.constraint(equalTo: views.topAnchor).isActive = true
+        childViewControllers.view.leftAnchor.constraint(equalTo: views.leftAnchor).isActive = true
+        childViewControllers.view.widthAnchor.constraint(equalTo: views.widthAnchor).isActive = true
+        childViewControllers.view.heightAnchor.constraint(equalTo: views.heightAnchor).isActive = true
     }
     
     func setUpView(){
@@ -42,7 +42,6 @@ class DetailController: UIViewController,UICollectionViewDelegate,UICollectionVi
         view.addSubview(allLossView)
         view.addSubview(mainView)
         
-        
         //AllLossView Constraint
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":allLossView]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(30)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":allLossView]))
@@ -51,101 +50,24 @@ class DetailController: UIViewController,UICollectionViewDelegate,UICollectionVi
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v1]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":allLossView,"v1":mainView]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-0-[v1(80)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":allLossView,"v1":mainView]))
         
-        
-        //Menu Bar
-        view.addSubview(menuBar)
-        menuBar.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v2]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v1":mainView,"v2":menuBar]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-0-[v2(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v1":mainView,"v2":menuBar]))
-        
-        //CollectionView
-        view.addSubview(collectionviews)
-        collectionviews.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "containterController")
-        collectionviews.translatesAutoresizingMaskIntoConstraints = false
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":collectionviews,"v1":menuBar]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-0-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":collectionviews,"v1":menuBar]))
-        collectionviews.backgroundColor = ThemeColor().themeColor()
-        
-    }
-    
-    func scrollToMenuIndex(menuIndex: Int){
-        let indexPath = NSIndexPath(item: menuIndex, section: 0)
-        collectionviews.scrollToItem(at: indexPath as IndexPath, at: [], animated: true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "containterController", for: indexPath)
-        if indexPath.row == 0{
-            addChildViewController(childViewControllers: gerneralController,cell:cell)
-            return cell
-        } else if indexPath.row == 1{
-            addChildViewController(childViewControllers: transactionHistoryController,cell:cell)
-            return cell
-        } else if indexPath.row == 2{
-            addChildViewController(childViewControllers: alertController,cell:cell)
-            return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "containterController", for: indexPath)
-            return cell
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-    }
-    
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        menuBar.horizontalBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x/3
-    }
-    
-    func  scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = targetContentOffset.pointee.x / view.frame.width
-        let indexpath = NSIndexPath(item: Int(index), section: 0)
-        menuBar.collectionView.selectItem(at: indexpath as IndexPath, animated: true, scrollPosition:[])
-    }
-    
-    lazy var menuBar: DetailMenuBar = {
-        let mb = DetailMenuBar()
-        mb.detailController = self
-        return mb
-    }()
-    
-    lazy var collectionviews: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 0
-        let collectionview = UICollectionView(frame: .zero, collectionViewLayout:layout)
-        collectionview.isPagingEnabled = true
-        collectionview.delegate = self
-        collectionview.dataSource = self
-        return collectionview
-    }()
+        view.addSubview(coinDetailView)
+        //coinDetailPage
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinDetailView,"v1":mainView]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-0-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinDetailView,"v1":mainView]))
+        addChildViewControllers(childViewControllers: CoinDetailController(), views: coinDetailView)
 
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    lazy var gerneralController:GerneralController = {
-        var general = GerneralController()
-        return general
+    var coinDetailView:UIView = {
+        var view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
-    
-    lazy var transactionHistoryController:TransactionsHistoryController = {
-        var transaction = TransactionsHistoryController()
-        return transaction
-    }()
-    
-    lazy var alertController:AlertController = {
-        var alert = AlertController()
-        return alert
-    }()
-    
     
     func getCoinData(CoinName:String){
 //        coinDetail.coinName = "k"

@@ -12,7 +12,7 @@ class DetailMenuBar:UIView,UICollectionViewDelegate,UICollectionViewDataSource,U
     var color = ThemeColor()
     var menuitems = ["详细","交易","提醒"]
     
-    var detailController:DetailController?
+    var detailController:CoinDetailController?
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
