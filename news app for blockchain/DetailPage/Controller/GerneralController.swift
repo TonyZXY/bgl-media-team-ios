@@ -12,7 +12,6 @@ class GerneralController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("GerneralController")
         setUpView()
     }
     
