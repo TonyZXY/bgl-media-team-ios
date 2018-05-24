@@ -8,6 +8,7 @@
 
 import UIKit
 import YouTubePlayer
+import WebKit
 
 
 class VideoDetailViewController: UIViewController {
@@ -50,6 +51,9 @@ class VideoDetailViewController: UIViewController {
         let height = view.frame.width * 9 / 16
         scrollView.addConstraintsWithFormat(format: "H:|[v0(\(view.frame.width))]|", views: videoplayer)
 
+//        scrollView.addSubview(youkuVideoPlayer)
+//        scrollView.addConstraintsWithFormat(format: "H:|[v0(\(view.frame.width))]|", views: youkuVideoPlayer)
+        
         scrollView.addSubview(titleLabel)
         scrollView.addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: titleLabel)
         scrollView.addSubview(timeLabel)
@@ -61,17 +65,31 @@ class VideoDetailViewController: UIViewController {
 
 
         scrollView.addConstraintsWithFormat(format: "V:|[v0(\(height))]-8-[v1(52)]-8-[v2(15)]-8-[v3(15)]-16-[v4]-16-|", views: videoplayer, titleLabel, timeLabel, authorLabel, descriptionLabel)
+//        scrollView.addConstraintsWithFormat(format: "V:|[v0(\(height))]-8-[v1(52)]-8-[v2(15)]-8-[v3(15)]-16-[v4]-16-|", views: youkuVideoPlayer, titleLabel, timeLabel, authorLabel, descriptionLabel)
     }
 
+    
     // set up content
     func setupContent() {
         let vurl = URL(string: (video?.url)!)
         videoplayer.loadVideoURL(vurl!)
+//        let url = "https://www.youtube.com/embed/9ooYYRLdg_g"
+//        let urlString = video?.url!
+//        if !(urlString?.contains("embed"))!{
+//
+//        }
+//        let html = "<iframe height='\(self.view.frame.width * 9 / 16 * 3)' width='\(self.view.frame.width * 3)' src='\(url)' frameborder='0' allowfullscreen></iframe>"
+//        youkuVideoPlayer.loadHTMLString(html, baseURL: nil)
         descriptionLabel.text = video?.videoDescription
         authorLabel.text = video?.author
         titleLabel.text = video?.title
         timeLabel.text = video?.publishedTime
     }
+    
+//    lazy var youkuVideoPlayer : FullScreenWKWebView = {
+//        let webview = FullScreenWKWebView()
+//        return webview
+//    }()
 
     let scrollView: UIScrollView = {
         let sc = UIScrollView()
@@ -80,7 +98,7 @@ class VideoDetailViewController: UIViewController {
         return sc
     }()
 
-    // YouTube Player
+    //     YouTube Player
     let videoplayer: YouTubePlayerView = {
         let player = YouTubePlayerView()
         player.translatesAutoresizingMaskIntoConstraints = false
@@ -122,4 +140,10 @@ class VideoDetailViewController: UIViewController {
         lab.textAlignment = .left
         return lab
     }()
+}
+
+class FullScreenWKWebView: WKWebView {
+    override var safeAreaInsets: UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
 }
