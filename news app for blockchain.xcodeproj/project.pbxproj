@@ -152,20 +152,20 @@
 				2B1A1B2C20A9EF6600387535 /* DefaultCurrency */,
 				2B1A1B2D20A9EF7300387535 /* ViewOptions */,
 				2B1A1B2E20A9EF7E00387535 /* NotificationOptions */,
-				2B900E1A20AAAFEC004AF000 /* New Group */,
-				2B1A1B4220AA7FD800387535 /* defDisplayOpt.swift */,
+				2B900E1A20AAAFEC004AF000 /* OtherOptions */,
 				041F40D5207EDD48008DCA69 /* MoreOptionMainViewController.swift */,
-				2B1A1B3E20AA7BAA00387535 /* OtherOptionViewController.swift */,
-				2B1A1B4020AA7D5900387535 /* OtherDetailViewController.swift */,
 			);
 			path = MoreOptions;
 			sourceTree = "<group>";
 		};
-		2B900E1A20AAAFEC004AF000 /* New Group */ = {
+		2B900E1A20AAAFEC004AF000 /* OtherOptions */ = {
 			isa = PBXGroup;
 			children = (
+				2B1A1B4220AA7FD800387535 /* defDisplayOpt.swift */,
+				2B1A1B4020AA7D5900387535 /* OtherDetailViewController.swift */,
+				2B1A1B3E20AA7BAA00387535 /* OtherOptionViewController.swift */,
 			);
-			path = "New Group";
+			path = OtherOptions;
 			sourceTree = "<group>";
 		};
 		897F039D03BB793D6A335682 /* Pods */ = {
