@@ -10,8 +10,6 @@ import Foundation
 import SwiftyJSON
 import RealmSwift
 
-typealias CompletionHandler = (() -> Void)?
-
 class TickerDataFetcherV2 {
     static var starts = 1
     static var num_cryptocurrencies = 1623

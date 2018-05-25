@@ -33,6 +33,18 @@
 		042B2A2820B7F702005A7D0B /* ViewOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1C20B7F702005A7D0B /* ViewOptionsViewController.swift */; };
 		042B2A2920B7F702005A7D0B /* MoreOptionMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1D20B7F702005A7D0B /* MoreOptionMainViewController.swift */; };
 		042B2A2A20B7F702005A7D0B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1F20B7F702005A7D0B /* NotificationViewController.swift */; };
+		042B2AD720B7FFCE005A7D0B /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AC720B7FFCE005A7D0B /* CandleStickChartViewController.swift */; };
+		042B2AD820B7FFCE005A7D0B /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AC820B7FFCE005A7D0B /* DefaultViewController.swift */; };
+		042B2AD920B7FFCE005A7D0B /* HistoricalDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACA20B7FFCE005A7D0B /* HistoricalDataStruct.swift */; };
+		042B2ADA20B7FFCE005A7D0B /* Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACB20B7FFCE005A7D0B /* Params.swift */; };
+		042B2ADB20B7FFCE005A7D0B /* CandleStickChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACD20B7FFCE005A7D0B /* CandleStickChart.swift */; };
+		042B2ADC20B7FFCE005A7D0B /* YAxisLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACE20B7FFCE005A7D0B /* YAxisLabelView.swift */; };
+		042B2ADD20B7FFCE005A7D0B /* CandleStick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACF20B7FFCE005A7D0B /* CandleStick.swift */; };
+		042B2ADE20B7FFCE005A7D0B /* IntervalBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD020B7FFCE005A7D0B /* IntervalBarCollectionViewCell.swift */; };
+		042B2ADF20B7FFCE005A7D0B /* XAxisLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD120B7FFCE005A7D0B /* XAxisLabelView.swift */; };
+		042B2AE020B7FFCE005A7D0B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD220B7FFCE005A7D0B /* ContainerView.swift */; };
+		042B2AE120B7FFCE005A7D0B /* FetchHistoricalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD420B7FFCE005A7D0B /* FetchHistoricalData.swift */; };
+		042B2AE220B7FFCE005A7D0B /* DateTimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD520B7FFCE005A7D0B /* DateTimeConverter.swift */; };
 		045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */; };
 		045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */; };
 		046963B820AAC86B00459EC8 /* GetDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963AC20AAC86800459EC8 /* GetDataResult.swift */; };
@@ -143,6 +155,18 @@
 		042B2A1C20B7F702005A7D0B /* ViewOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewOptionsViewController.swift; sourceTree = "<group>"; };
 		042B2A1D20B7F702005A7D0B /* MoreOptionMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreOptionMainViewController.swift; sourceTree = "<group>"; };
 		042B2A1F20B7F702005A7D0B /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		042B2AC720B7FFCE005A7D0B /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
+		042B2AC820B7FFCE005A7D0B /* DefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
+		042B2ACA20B7FFCE005A7D0B /* HistoricalDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalDataStruct.swift; sourceTree = "<group>"; };
+		042B2ACB20B7FFCE005A7D0B /* Params.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Params.swift; sourceTree = "<group>"; };
+		042B2ACD20B7FFCE005A7D0B /* CandleStickChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStickChart.swift; sourceTree = "<group>"; };
+		042B2ACE20B7FFCE005A7D0B /* YAxisLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YAxisLabelView.swift; sourceTree = "<group>"; };
+		042B2ACF20B7FFCE005A7D0B /* CandleStick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStick.swift; sourceTree = "<group>"; };
+		042B2AD020B7FFCE005A7D0B /* IntervalBarCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		042B2AD120B7FFCE005A7D0B /* XAxisLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XAxisLabelView.swift; sourceTree = "<group>"; };
+		042B2AD220B7FFCE005A7D0B /* ContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerView.swift; sourceTree = "<group>"; };
+		042B2AD420B7FFCE005A7D0B /* FetchHistoricalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchHistoricalData.swift; sourceTree = "<group>"; };
+		042B2AD520B7FFCE005A7D0B /* DateTimeConverter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTimeConverter.swift; sourceTree = "<group>"; };
 		045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageSetter.swift; sourceTree = "<group>"; };
 		045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsInWatchListRealm.swift; sourceTree = "<group>"; };
 		046963AC20AAC86800459EC8 /* GetDataResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDataResult.swift; sourceTree = "<group>"; };
@@ -291,11 +315,12 @@
 		041F40D2207EDD48008DCA69 /* news app for blockchain */ = {
 			isa = PBXGroup;
 			children = (
+				04E4F013209AFB9900A2D0BF /* Supporting Files */,
+				042B2AC520B7FFCE005A7D0B /* DetailCandleStickChart */,
 				045BF2BF20A4252D00796F2E /* News */,
 				57510E1D20A13F2B00E7A7D9 /* Wallet */,
 				57510E1E20A13F6D00E7A7D9 /* Markets */,
 				576FA8F22092E47E005B6406 /* UI_Tools */,
-				04E4F013209AFB9900A2D0BF /* Supporting Files */,
 				04E4F01B209B19BB00A2D0BF /* Timeline */,
 				04E4F014209B19A700A2D0BF /* NewsFlash */,
 				042B2A0E20B7F702005A7D0B /* MoreOptions */,
@@ -369,6 +394,57 @@
 				042B2A1F20B7F702005A7D0B /* NotificationViewController.swift */,
 			);
 			path = NotificationOptions;
+			sourceTree = "<group>";
+		};
+		042B2AC520B7FFCE005A7D0B /* DetailCandleStickChart */ = {
+			isa = PBXGroup;
+			children = (
+				042B2AC620B7FFCE005A7D0B /* Controller */,
+				042B2AC920B7FFCE005A7D0B /* Model */,
+				042B2ACC20B7FFCE005A7D0B /* View */,
+				042B2AD320B7FFCE005A7D0B /* Helper */,
+			);
+			path = DetailCandleStickChart;
+			sourceTree = "<group>";
+		};
+		042B2AC620B7FFCE005A7D0B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				042B2AC720B7FFCE005A7D0B /* CandleStickChartViewController.swift */,
+				042B2AC820B7FFCE005A7D0B /* DefaultViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		042B2AC920B7FFCE005A7D0B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				042B2ACA20B7FFCE005A7D0B /* HistoricalDataStruct.swift */,
+				042B2ACB20B7FFCE005A7D0B /* Params.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		042B2ACC20B7FFCE005A7D0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				042B2ACD20B7FFCE005A7D0B /* CandleStickChart.swift */,
+				042B2ACE20B7FFCE005A7D0B /* YAxisLabelView.swift */,
+				042B2ACF20B7FFCE005A7D0B /* CandleStick.swift */,
+				042B2AD020B7FFCE005A7D0B /* IntervalBarCollectionViewCell.swift */,
+				042B2AD120B7FFCE005A7D0B /* XAxisLabelView.swift */,
+				042B2AD220B7FFCE005A7D0B /* ContainerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		042B2AD320B7FFCE005A7D0B /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				042B2AD420B7FFCE005A7D0B /* FetchHistoricalData.swift */,
+				042B2AD520B7FFCE005A7D0B /* DateTimeConverter.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		045BF2BF20A4252D00796F2E /* News */ = {
@@ -741,6 +817,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				046963C120AAC86B00459EC8 /* ExchangeList.swift in Sources */,
+				042B2AE020B7FFCE005A7D0B /* ContainerView.swift in Sources */,
 				0469641720ABB87200459EC8 /* TransExpensesCell.swift in Sources */,
 				04E4F021209B19BB00A2D0BF /* Timeline.swift in Sources */,
 				046963D120AAC89200459EC8 /* SearchTradingPairController.swift in Sources */,
@@ -751,6 +828,7 @@
 				0419422620A42F7E006B26C6 /* VideoDetailViewController.swift in Sources */,
 				0469642320ABBC3800459EC8 /* WalletDetail.swift in Sources */,
 				046963CF20AAC89200459EC8 /* CaculationFunction.swift in Sources */,
+				042B2ADA20B7FFCE005A7D0B /* Params.swift in Sources */,
 				046963BC20AAC86B00459EC8 /* AllTransactions.swift in Sources */,
 				04BDD42A20A42B16009D8A0A /* NewsMenuBar.swift in Sources */,
 				046963C020AAC86B00459EC8 /* CryptoCompareCoinsRealm.swift in Sources */,
@@ -771,6 +849,7 @@
 				046963DF20AAC8B400459EC8 /* APIErrors.swift in Sources */,
 				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
 				0419423420A43080006B26C6 /* APIService.swift in Sources */,
+				042B2ADC20B7FFCE005A7D0B /* YAxisLabelView.swift in Sources */,
 				0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */,
 				04B982BC20AD06500020A6A8 /* CancelTouchKeyboard.swift in Sources */,
 				576FA8FB2095DA82005B6406 /* MarketController.swift in Sources */,
@@ -790,6 +869,7 @@
 				046963E520AAC8B400459EC8 /* CryptoCompareClient.swift in Sources */,
 				0469641D20ABB87200459EC8 /* TransPriceCell.swift in Sources */,
 				576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */,
+				042B2AD720B7FFCE005A7D0B /* CandleStickChartViewController.swift in Sources */,
 				04BDD42220A42AE6009D8A0A /* NewsSliderCell.swift in Sources */,
 				0469642020ABB87200459EC8 /* HistoryLine.swift in Sources */,
 				576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */,
@@ -800,6 +880,7 @@
 				0469641A20ABB87200459EC8 /* TransDateCell.swift in Sources */,
 				046963E020AAC8B400459EC8 /* Endpoint.swift in Sources */,
 				042B2A2020B7F702005A7D0B /* AboutUsViewController.swift in Sources */,
+				042B2AE120B7FFCE005A7D0B /* FetchHistoricalData.swift in Sources */,
 				042B2A2420B7F702005A7D0B /* OtherDetailViewController.swift in Sources */,
 				042B2A2820B7F702005A7D0B /* ViewOptionsViewController.swift in Sources */,
 				0469641C20ABB87200459EC8 /* TransTimeCell.swift in Sources */,
@@ -809,6 +890,7 @@
 				042B2A2920B7F702005A7D0B /* MoreOptionMainViewController.swift in Sources */,
 				046963BD20AAC86B00459EC8 /* CryptoCompareCoin.swift in Sources */,
 				046963E720AAC8B400459EC8 /* APIClient.swift in Sources */,
+				042B2ADE20B7FFCE005A7D0B /* IntervalBarCollectionViewCell.swift in Sources */,
 				04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */,
 				046963BA20AAC86B00459EC8 /* SaveStructToRealmObjects.swift in Sources */,
 				0469641E20ABB87200459EC8 /* TransAdditionalCell.swift in Sources */,
@@ -816,6 +898,7 @@
 				576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */,
 				0469642120ABB87200459EC8 /* HistoryPoint.swift in Sources */,
 				046963E620AAC8B400459EC8 /* MarketCapClient.swift in Sources */,
+				042B2ADD20B7FFCE005A7D0B /* CandleStick.swift in Sources */,
 				0469640420AAC8DE00459EC8 /* CoinTypeTableViewCell.swift in Sources */,
 				042B2A2220B7F702005A7D0B /* defCurrency.swift in Sources */,
 				0419423520A43080006B26C6 /* Extensions.swift in Sources */,
@@ -824,7 +907,10 @@
 				042B2A2120B7F702005A7D0B /* DefaultCurrencyViewController.swift in Sources */,
 				04BDD42820A42B0A009D8A0A /* GenuineSliderCell.swift in Sources */,
 				0419423620A43080006B26C6 /* BaseCell.swift in Sources */,
+				042B2AD820B7FFCE005A7D0B /* DefaultViewController.swift in Sources */,
 				046963D020AAC89200459EC8 /* WalletController.swift in Sources */,
+				042B2ADF20B7FFCE005A7D0B /* XAxisLabelView.swift in Sources */,
+				042B2ADB20B7FFCE005A7D0B /* CandleStickChart.swift in Sources */,
 				57462D8F20AD695F0086F59D /* ScientificMethod.swift in Sources */,
 				04BDD42020A42AC1009D8A0A /* VideoCell.swift in Sources */,
 				576FA9002096ACD1005B6406 /* MarketsCell.swift in Sources */,
@@ -835,7 +921,9 @@
 				576FA903209733ED005B6406 /* MarketsTotalView.swift in Sources */,
 				046963CD20AAC89200459EC8 /* TransactionFrom.swift in Sources */,
 				041519B420A283C70031D98F /* TickerDataRealm.swift in Sources */,
+				042B2AE220B7FFCE005A7D0B /* DateTimeConverter.swift in Sources */,
 				046963BB20AAC86B00459EC8 /* Exchange.swift in Sources */,
+				042B2AD920B7FFCE005A7D0B /* HistoricalDataStruct.swift in Sources */,
 				046963E220AAC8B400459EC8 /* TickerDataFetcherV2.swift in Sources */,
 				0419422520A42F7E006B26C6 /* GenuineDetailViewController.swift in Sources */,
 				04BDD41820A42A87009D8A0A /* GenuineSliderViewCell.swift in Sources */,
