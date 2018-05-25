@@ -9,8 +9,30 @@
 import UIKit
 
 class MarketController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = color.themeColor()
+        setupMenuBar()
+        setupColleectionView()
+        let titleLabel = UILabel()
+        titleLabel.text = "Blockchain Global"
+        titleLabel.textColor = UIColor.white
+        navigationItem.titleView = titleLabel
+        
+        cancelTouchKeyboard()
+        
+        let tickerDataFetcher = TickerDataFetcherV2()
+        tickerDataFetcher.getCoinList() {
+            tickerDataFetcher.getAllTickerData()
+        }
+    }
+    
     var color = ThemeColor()
     var menuitems = ["Markets","Watchlists"]
+    
+    private var coinListUpdateObserver: NSObjectProtocol?
     
     func scrollToMenuIndex(menuIndex: Int){
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
@@ -42,20 +64,6 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         let index = targetContentOffset.pointee.x / view.frame.width
         let indexpath = NSIndexPath(item: Int(index), section: 0)
         menuBar.collectionView.selectItem(at: indexpath as IndexPath, animated: true, scrollPosition:[])
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barTintColor = color.themeColor()
-        setupMenuBar()
-        setupColleectionView()
-        let titleLabel = UILabel()
-        titleLabel.text = "Blockchain Global"
-        titleLabel.textColor = UIColor.white
-        navigationItem.titleView = titleLabel
-        
-        cancelTouchKeyboard()
     }
     
     lazy var menuBar: MenuBar = {
