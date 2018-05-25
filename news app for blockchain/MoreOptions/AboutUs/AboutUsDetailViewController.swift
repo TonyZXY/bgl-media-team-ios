@@ -1,15 +1,14 @@
 //
-//  DefaultCurrencyViewController.swift
+//  AboutUsDetailViewController.swift
 //  news app for blockchain
 //
-//  Created by Rock on 15/5/18.
+//  Created by Rock on 25/5/18.
 //  Copyright © 2018 Sheng Li. All rights reserved.
 //
 
 import UIKit
-import RealmSwift
 
-class DefaultCurrencyViewController: UIViewController {
+class AboutUsDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +30,19 @@ class DefaultCurrencyViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        view.addSubview(rootView)
+    //        rootView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+    //        rootView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    //        rootView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+    //        rootView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    //
+    //        rootView.addSubview(label)
+    //        view.addConstraintsWithFormat(format: "H:|-100-[v0]", views: label)
+    //        view.addConstraintsWithFormat(format: "V:|-100-[v0]", views: label)
+    //    }
+    //
     let rootView: UIView = {
         let vi = UIView()
         vi.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +52,7 @@ class DefaultCurrencyViewController: UIViewController {
     
     let label: UILabel = {
         let la = UILabel()
-        la.text = "This is the default currency main menu"
+        la.text = "This is about us detail view page"
         la.textAlignment = .center
         return la
     }()
@@ -57,3 +69,4 @@ class DefaultCurrencyViewController: UIViewController {
      */
     
 }
+

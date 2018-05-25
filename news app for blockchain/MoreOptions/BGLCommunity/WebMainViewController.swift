@@ -8,47 +8,21 @@
 
 import UIKit
 
-class WebMainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
-    
-    @IBOutlet weak var webTableView: UITableView!
-    let data = ["Weibo","Wechat","Twitter","Facebook","Youtube"]
+class WebMainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        view.addSubview(rootView)
+        rootView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        rootView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        rootView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        rootView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        webTableView.dataSource = self
-        webTableView.delegate = self
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = webTableView.dequeueReusableCell(withIdentifier: "webtbCell", for: indexPath) as UITableViewCell
-        cell.textLabel?.text = data[indexPath.row]
-        cell.textLabel?.textColor = #colorLiteral(red: 0.3294117647, green: 0.7019607843, blue: 0.6901960784, alpha: 0.8015839041)
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view:UIView, forSection: Int) {
-        if let headerTitle = view as? UITableViewHeaderFooterView {
-            headerTitle.textLabel?.textColor = #colorLiteral(red: 0.2605174184, green: 0.2605243921, blue: 0.260520637, alpha: 0.8411279966)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = webTableView.indexPathForSelectedRow
-        let str = data[indexPath!.row]
-        let vc = segue.destination as? WebDetailViewController
-        vc?.str = str
-
+        rootView.addSubview(label)
+        view.addConstraintsWithFormat(format: "H:|-100-[v0]", views: label)
+        view.addConstraintsWithFormat(format: "V:|-100-[v0]", views: label)
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,15 +30,30 @@ class WebMainViewController: UIViewController, UITableViewDataSource, UITableVie
         // Dispose of any resources that can be recreated.
     }
     
-
+    let rootView: UIView = {
+        let vi = UIView()
+        vi.translatesAutoresizingMaskIntoConstraints = false
+        vi.backgroundColor = .white
+        return vi
+    }()
+    
+    let label: UILabel = {
+        let la = UILabel()
+        la.text = "This is the community webview main menu"
+        la.textAlignment = .center
+        return la
+    }()
+    
+    
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

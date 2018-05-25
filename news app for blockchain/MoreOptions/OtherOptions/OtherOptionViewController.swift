@@ -1,5 +1,5 @@
 //
-//  DefaultCurrencyViewController.swift
+//  OtherOptionViewController.swift
 //  news app for blockchain
 //
 //  Created by Rock on 15/5/18.
@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import RealmSwift
 
-class DefaultCurrencyViewController: UIViewController {
+class OtherOptionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +39,7 @@ class DefaultCurrencyViewController: UIViewController {
     
     let label: UILabel = {
         let la = UILabel()
-        la.text = "This is the default currency main menu"
+        la.text = "This is the default display menu"
         la.textAlignment = .center
         return la
     }()
