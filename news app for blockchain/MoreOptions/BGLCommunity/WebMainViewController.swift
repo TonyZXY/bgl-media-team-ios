@@ -20,6 +20,12 @@ class WebMainViewController: UIViewController, UITableViewDataSource, UITableVie
         
         webTableView.dataSource = self
         webTableView.delegate = self
+        let label01 = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 50))
+        label01.textAlignment = .center
+        label01.textColor = UIColor.white
+        label01.text = "Blockchain Global社区"
+        self.navigationItem.titleView = label01
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

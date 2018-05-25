@@ -20,6 +20,11 @@ class OtherOptionViewController: UIViewController, UITableViewDataSource, UITabl
         // Do any additional setup after loading the view.
         otherTableView.dataSource = self
         otherTableView.delegate = self
+        let label13 = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 50))
+        label13.textAlignment = .center
+        label13.textColor = UIColor.white
+        label13.text = "其他选项"
+        self.navigationItem.titleView = label13
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

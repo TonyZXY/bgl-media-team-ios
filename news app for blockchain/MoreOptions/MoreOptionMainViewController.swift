@@ -12,13 +12,10 @@ class MoreOptionMainViewController: UIViewController, UITableViewDataSource, UIT
     
     let sections = ["关于我们","应用设置选项"] // Two Sections' names
     let items = [
-        ["关于Blockchain Global","BGL社区"], //About us list items
+        ["关于Blockchain Global","Blockchain Global社区"], //About us list items
         ["默认法定货币","应用通知选项","界面显示选项","其他选项"] // other app settings
     ]
     let segueIdentities  = ["aboutUs","bglCommu","defaultCurrency","notifiOption","viewOption","otherOption"]
-
-    
-    //@IBOutlet weak var tableView00: UITableView!
 
     @IBOutlet weak var tableView00: UITableView!
     override func viewDidLoad() {
@@ -26,6 +23,12 @@ class MoreOptionMainViewController: UIViewController, UITableViewDataSource, UIT
         // Do any additional setup after loading the view, typically from a nib.
         tableView00.delegate = self
         tableView00.dataSource = self
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 50))
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.text = "Blockchain Global"
+        self.navigationItem.titleView = label
+        
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -55,17 +58,14 @@ class MoreOptionMainViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let secnum = indexPath
-        //let secnum1 = indexPath.row
-        //print(secnum1)
-        //let secname = sections[indexPath.row]
         
         // select view segues accoding to indexPath values
         if ((secnum == [0,0]) || (secnum == [0,1])) {
             performSegue(withIdentifier: segueIdentities[indexPath.row], sender: self)
-            print(segueIdentities[indexPath.row])
+            //print(segueIdentities[indexPath.row])
         } else {
             performSegue(withIdentifier: segueIdentities[(indexPath.row+2)], sender: self)
-            print(segueIdentities[(indexPath.row+2)])
+            //print(segueIdentities[(indexPath.row+2)])
         }
     }
     
