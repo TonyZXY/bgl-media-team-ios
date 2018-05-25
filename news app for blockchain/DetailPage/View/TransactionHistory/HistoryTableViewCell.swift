@@ -12,8 +12,10 @@ open class HistoryTableViewCell: UITableViewCell {
     
 
     @IBOutlet weak open var historyView: UIView!
-    @IBOutlet weak open var dateLabel: UILabel!
     
+    
+   
+    //Buy table view cell xib
     @IBOutlet weak var SinglePrice: UILabel!
     @IBOutlet weak var SinglePriceResult: UILabel!
     @IBOutlet weak var tradingPairs: UILabel!
@@ -26,17 +28,31 @@ open class HistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var worthResult: UILabel!
     @IBOutlet weak var delta: UILabel!
     @IBOutlet weak var deltaResult: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var buyDeleteButton: UIButton!
+    @IBOutlet weak var buyMarket: UILabel!
     
     
+    
+    //Sell table view Cell xib
+    @IBOutlet weak var sellPrice: UILabel!
+    @IBOutlet weak var sellPriceResult: UILabel!
+    @IBOutlet weak var sellTradingPairs: UILabel!
+    @IBOutlet weak var sellTradingPairResult: UILabel!
+    @IBOutlet weak var sellProceedsResult: UILabel!
+    @IBOutlet weak var sellProceeds: UILabel!
+    @IBOutlet weak var sellAmountResult: UILabel!
+    @IBOutlet weak var sellAmount: UILabel!
+    @IBOutlet weak var sellDateLabel: UILabel!
+    @IBOutlet weak var sellDeleteButton: UIButton!
+    @IBOutlet weak var sellMarket: UILabel!
     open var timelinePoint = HistoryPoint()
     open var timeline = HistoryLine()
     
     open var labelPoint:UILabel = {
         var label = UILabel()
-        label.text = "B"
         label.layer.borderWidth = 0
         label.layer.cornerRadius = 15
-        label.layer.backgroundColor = UIColor.green.cgColor
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,23 +65,27 @@ open class HistoryTableViewCell: UITableViewCell {
         setUpTheme()
     }
     
+    
     override open func draw(_ rect: CGRect) {
         timelinePoint.position = CGPoint(x: timeline.leftMargin + timeline.width / 2, y: timelinePoint.lineWidth)
         timeline.start = CGPoint(x: timeline.leftMargin + timeline.width / 2 + 15, y: timelinePoint.lineWidth + 30)
         timeline.end = CGPoint(x: timeline.start.x, y: self.bounds.size.height)
+        timeline.backColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
         timeline.draw(view: self.contentView)
     }
     
     func setUpTheme(){
         historyView.backgroundColor = ThemeColor().walletCellcolor()
+        
     }
     
     func setUpLabelPoint(){
         addSubview(labelPoint)
+        
         NSLayoutConstraint(item: labelPoint, attribute: .leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: timeline.leftMargin + timeline.width / 2).isActive = true
         NSLayoutConstraint(item: labelPoint, attribute: .top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: timelinePoint.lineWidth).isActive = true
         NSLayoutConstraint(item: labelPoint, attribute: .height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 30).isActive = true
          NSLayoutConstraint(item: labelPoint, attribute: .width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 30).isActive = true
+        
     }
-    
 }

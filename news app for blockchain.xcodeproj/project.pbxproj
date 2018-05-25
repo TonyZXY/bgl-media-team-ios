@@ -101,6 +101,8 @@
 		570B036120B134780014DF8E /* AllLossView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B036020B134780014DF8E /* AllLossView.swift */; };
 		570B036420B229C50014DF8E /* DetailMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B036320B229C50014DF8E /* DetailMenuBar.swift */; };
 		570B036E20B28A8A0014DF8E /* GerneralController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B036D20B28A8A0014DF8E /* GerneralController.swift */; };
+		573FB47620B6460B007CE1E5 /* MarketTradingPairs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573FB47520B6460B007CE1E5 /* MarketTradingPairs.swift */; };
+		573FB47920B65C02007CE1E5 /* NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573FB47820B65C02007CE1E5 /* NotificationName.swift */; };
 		57462D8F20AD695F0086F59D /* ScientificMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57462D8E20AD695F0086F59D /* ScientificMethod.swift */; };
 		576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F02092DA5C005B6406 /* ThemeColor.swift */; };
 		576FA8F42092E670005B6406 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576FA8F32092E670005B6406 /* AppImage.swift */; };
@@ -115,7 +117,9 @@
 		57CE547720B4D1AF0095FCB6 /* GloabalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CE547620B4D1AF0095FCB6 /* GloabalController.swift */; };
 		57CE547920B4D7BA0095FCB6 /* CoinDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CE547820B4D7BA0095FCB6 /* CoinDetailController.swift */; };
 		57CF55F820B3E87800614071 /* CoinDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CF55F720B3E87800614071 /* CoinDetailData.swift */; };
-		57D9A43F20AC05F600344BB1 /* MemoryWalletData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57D9A43E20AC05F600344BB1 /* MemoryWalletData.swift */; };
+		57DDC9CA20B68F58002F868F /* SellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57DDC9C820B68F58002F868F /* SellTableViewCell.xib */; };
+		57DDC9CD20B7712C002F868F /* MarketSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9CC20B7712C002F868F /* MarketSelectController.swift */; };
+		57DDC9CF20B7A8CE002F868F /* ChangeRiseFallColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9CE20B7A8CE002F868F /* ChangeRiseFallColor.swift */; };
 		57E162F320B298D6005A8D3B /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F220B298D6005A8D3B /* GeneralView.swift */; };
 		57E162F520B2A0F9005A8D3B /* TransactionsHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F420B2A0F9005A8D3B /* TransactionsHistoryController.swift */; };
 		57E162F720B2A1E3005A8D3B /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F620B2A1E3005A8D3B /* AlertController.swift */; };
@@ -221,6 +225,8 @@
 		570B036020B134780014DF8E /* AllLossView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLossView.swift; sourceTree = "<group>"; };
 		570B036320B229C50014DF8E /* DetailMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMenuBar.swift; sourceTree = "<group>"; };
 		570B036D20B28A8A0014DF8E /* GerneralController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GerneralController.swift; sourceTree = "<group>"; };
+		573FB47520B6460B007CE1E5 /* MarketTradingPairs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketTradingPairs.swift; sourceTree = "<group>"; };
+		573FB47820B65C02007CE1E5 /* NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationName.swift; sourceTree = "<group>"; };
 		57462D8E20AD695F0086F59D /* ScientificMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScientificMethod.swift; sourceTree = "<group>"; };
 		576FA8F02092DA5C005B6406 /* ThemeColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColor.swift; sourceTree = "<group>"; };
 		576FA8F32092E670005B6406 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
@@ -235,7 +241,9 @@
 		57CE547620B4D1AF0095FCB6 /* GloabalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GloabalController.swift; sourceTree = "<group>"; };
 		57CE547820B4D7BA0095FCB6 /* CoinDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailController.swift; sourceTree = "<group>"; };
 		57CF55F720B3E87800614071 /* CoinDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailData.swift; sourceTree = "<group>"; };
-		57D9A43E20AC05F600344BB1 /* MemoryWalletData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryWalletData.swift; sourceTree = "<group>"; };
+		57DDC9C820B68F58002F868F /* SellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellTableViewCell.xib; sourceTree = "<group>"; };
+		57DDC9CC20B7712C002F868F /* MarketSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSelectController.swift; sourceTree = "<group>"; };
+		57DDC9CE20B7A8CE002F868F /* ChangeRiseFallColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRiseFallColor.swift; sourceTree = "<group>"; };
 		57E162F220B298D6005A8D3B /* GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralView.swift; sourceTree = "<group>"; };
 		57E162F420B2A0F9005A8D3B /* TransactionsHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHistoryController.swift; sourceTree = "<group>"; };
 		57E162F620B2A1E3005A8D3B /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -408,6 +416,7 @@
 				0469641420ABB87200459EC8 /* HistoryLine.swift */,
 				0469641520ABB87200459EC8 /* HistoryPoint.swift */,
 				57E162FF20B2ACA0005A8D3B /* TimeHistoryTableViewCell.xib */,
+				57DDC9C820B68F58002F868F /* SellTableViewCell.xib */,
 			);
 			path = TransactionHistory;
 			sourceTree = "<group>";
@@ -477,7 +486,7 @@
 				0469642220ABBC3800459EC8 /* WalletDetail.swift */,
 				046963C420AAC89000459EC8 /* TransactionFrom.swift */,
 				046963CC20AAC89200459EC8 /* TransactionFormData.swift */,
-				57D9A43E20AC05F600344BB1 /* MemoryWalletData.swift */,
+				573FB47520B6460B007CE1E5 /* MarketTradingPairs.swift */,
 			);
 			path = Wallet_Models;
 			sourceTree = "<group>";
@@ -501,6 +510,7 @@
 		57048C1720AEA16F00393EF6 /* DetailPage */ = {
 			isa = PBXGroup;
 			children = (
+				573FB47720B65BF1007CE1E5 /* Helper */,
 				570B036C20B28A720014DF8E /* Model */,
 				570B036B20B28A650014DF8E /* Controller */,
 				570B035D20B125B00014DF8E /* View */,
@@ -524,11 +534,12 @@
 			isa = PBXGroup;
 			children = (
 				57048C1820AEA1A700393EF6 /* DetailController.swift */,
+				57CE547620B4D1AF0095FCB6 /* GloabalController.swift */,
+				57CE547820B4D7BA0095FCB6 /* CoinDetailController.swift */,
 				570B036D20B28A8A0014DF8E /* GerneralController.swift */,
 				57E162F420B2A0F9005A8D3B /* TransactionsHistoryController.swift */,
 				57E162F620B2A1E3005A8D3B /* AlertController.swift */,
-				57CE547620B4D1AF0095FCB6 /* GloabalController.swift */,
-				57CE547820B4D7BA0095FCB6 /* CoinDetailController.swift */,
+				57DDC9CC20B7712C002F868F /* MarketSelectController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -539,6 +550,15 @@
 				57CF55F720B3E87800614071 /* CoinDetailData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		573FB47720B65BF1007CE1E5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				573FB47820B65C02007CE1E5 /* NotificationName.swift */,
+				57DDC9CE20B7A8CE002F868F /* ChangeRiseFallColor.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		57510E1D20A13F2B00E7A7D9 /* Wallet */ = {
@@ -699,6 +719,7 @@
 			files = (
 				041F40E1207EDD49008DCA69 /* LaunchScreen.storyboard in Resources */,
 				041F40DE207EDD49008DCA69 /* Assets.xcassets in Resources */,
+				57DDC9CA20B68F58002F868F /* SellTableViewCell.xib in Resources */,
 				046963E320AAC8B400459EC8 /* README.md in Resources */,
 				041F40D9207EDD48008DCA69 /* Main.storyboard in Resources */,
 				04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */,
@@ -775,6 +796,7 @@
 				046963B820AAC86B00459EC8 /* GetDataResult.swift in Sources */,
 				570B036120B134780014DF8E /* AllLossView.swift in Sources */,
 				046963CE20AAC89200459EC8 /* TransactionsController.swift in Sources */,
+				57DDC9CF20B7A8CE002F868F /* ChangeRiseFallColor.swift in Sources */,
 				570B036E20B28A8A0014DF8E /* GerneralController.swift in Sources */,
 				0419422C20A42FB1006B26C6 /* News.swift in Sources */,
 				046963D320AAC89200459EC8 /* SearchExchangesController.swift in Sources */,
@@ -783,6 +805,7 @@
 				0419422620A42F7E006B26C6 /* VideoDetailViewController.swift in Sources */,
 				0469642320ABBC3800459EC8 /* WalletDetail.swift in Sources */,
 				046963CF20AAC89200459EC8 /* CaculationFunction.swift in Sources */,
+				573FB47620B6460B007CE1E5 /* MarketTradingPairs.swift in Sources */,
 				046963BC20AAC86B00459EC8 /* AllTransactions.swift in Sources */,
 				04BDD42A20A42B16009D8A0A /* NewsMenuBar.swift in Sources */,
 				046963C020AAC86B00459EC8 /* CryptoCompareCoinsRealm.swift in Sources */,
@@ -798,10 +821,10 @@
 				0419422320A42F7E006B26C6 /* NewsDetailViewController.swift in Sources */,
 				045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */,
 				570B036420B229C50014DF8E /* DetailMenuBar.swift in Sources */,
-				57D9A43F20AC05F600344BB1 /* MemoryWalletData.swift in Sources */,
 				576FA8F42092E670005B6406 /* AppImage.swift in Sources */,
 				046963DF20AAC8B400459EC8 /* APIErrors.swift in Sources */,
 				576FA90B20980201005B6406 /* MarketFilterCollectionView.swift in Sources */,
+				573FB47920B65C02007CE1E5 /* NotificationName.swift in Sources */,
 				0419423420A43080006B26C6 /* APIService.swift in Sources */,
 				0479A03D20A16584004A0433 /* GlobalDataRealm.swift in Sources */,
 				04B982BC20AD06500020A6A8 /* CancelTouchKeyboard.swift in Sources */,
@@ -868,6 +891,7 @@
 				046963E420AAC8B400459EC8 /* CryptoCompareEndpoint.swift in Sources */,
 				046963BF20AAC86B00459EC8 /* CryptoCompareCoinListResult.swift in Sources */,
 				576FA903209733ED005B6406 /* MarketsTotalView.swift in Sources */,
+				57DDC9CD20B7712C002F868F /* MarketSelectController.swift in Sources */,
 				046963CD20AAC89200459EC8 /* TransactionFrom.swift in Sources */,
 				041519B420A283C70031D98F /* TickerDataRealm.swift in Sources */,
 				046963BB20AAC86B00459EC8 /* Exchange.swift in Sources */,

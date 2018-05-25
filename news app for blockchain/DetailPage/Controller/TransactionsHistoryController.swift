@@ -14,10 +14,14 @@ import RealmSwift
 class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITableViewDelegate{
 
     let realm = try! Realm()
-    var results = try! Realm().objects(NewsFlash.self).sorted(byKeyPath: "dateTime", ascending: false)
+    var results = try! Realm().objects(AllTransactions.self)
+    var indexSelected:Int = 0
+    var generalData = generalDetail()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let filterName = "coinAbbName = '" + generalData.coinAbbName + "' "
+        results = realm.objects(AllTransactions.self).filter(filterName)
         setUpView()
     }
     
@@ -35,19 +39,95 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "History", for: indexPath) as! HistoryTableViewCell
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
-        cell.timeline.backColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
-        cell.dateLabel.text = "5月"
-        cell.dateLabel.textColor = UIColor.white
-        return cell
+        let object = results[indexPath.row]
+        if object.status == "Buy"{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "BuyHistory", for: indexPath) as! HistoryTableViewCell
+            cell.dateLabel.textColor = UIColor.white
+            cell.buyMarket.textColor = UIColor.white
+            cell.labelPoint.text = "B"
+            cell.labelPoint.layer.backgroundColor = UIColor.green.cgColor
+            cell.dateLabel.text = object.date + " " + object.time
+            cell.buyMarket.text = "交易市场:" + object.exchangName
+            cell.SinglePrice.text = object.coinAbbName + " " + object.status + " " + "Price"
+            cell.amount.text = "Amount" + " " + object.status
+            cell.SinglePriceResult.text = scientificMethod(number:object.audSinglePrice)
+            cell.tradingPairsResult.text = object.tradingPairsName
+            cell.amountResult.text = scientificMethod(number:object.amount)
+            cell.costResult.text = scientificMethod(number:object.audTotalPrice)
+            cell.buyDeleteButton.tag = object.id
+            cell.buyDeleteButton.addTarget(self, action: #selector(deleteTransaction), for: .touchUpInside)
+            let filterName = "coinAbbName = '" + object.coinAbbName + "' "
+            let currentWorth = try! Realm().objects(MarketTradingPairs.self).filter(filterName)
+            var currentWorthData:Double = 0
+            for value in currentWorth{
+                currentWorthData = value.singlePrice * object.amount
+            }
+            cell.worthResult.text = scientificMethod(number:currentWorthData)
+            let delta = ((currentWorthData - object.totalPrice) / object.totalPrice) * 100
+            cell.deltaResult.text = scientificMethod(number:delta) + "%"
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
+            return cell
+        } else if object.status == "Sell"{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SellHistory", for: indexPath) as! HistoryTableViewCell
+            cell.sellDateLabel.textColor = UIColor.white
+            cell.sellMarket.textColor = UIColor.white
+            cell.labelPoint.text = "S"
+            cell.labelPoint.layer.backgroundColor = UIColor.red.cgColor
+            cell.sellDateLabel.text = object.date + " " + object.time
+            cell.sellPrice.text = object.coinAbbName + " " + object.status + " " + "Price"
+            cell.sellTradingPairs.text = object.coinAbbName + "/" + object.tradingPairsName
+            cell.sellPriceResult.text = scientificMethod(number:object.singlePrice)
+            cell.sellTradingPairs.text = object.coinAbbName + "/" + object.tradingPairsName
+            cell.sellAmountResult.text = scientificMethod(number:object.amount)
+            cell.sellProceedsResult.text = scientificMethod(number:object.totalPrice)
+            cell.sellDeleteButton.tag = object.id
+            cell.sellDeleteButton.addTarget(self, action: #selector(deleteTransaction), for: .touchUpInside)
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let transactionForm = TransactionsController()
+//        let cell = self.historyTableView.cellForRow(at: indexPath) as! HistoryTableViewCell
+        transactionForm.updateTransaction = results[indexPath.row]
+        transactionForm.transactionStatus = "Update"
+        print(transactionForm.updateTransaction.coinName)
+        navigationController?.pushViewController(transactionForm, animated: true)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = UIColor.clear
         cell.selectionStyle = .none
+    }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        let cell:HistoryTableViewCell = historyTableView.cellForRow(at: indexPath) as! HistoryTableViewCell
+//
+//
+////            cell.bb(kk)
+//
+////        if editingStyle == UITableViewCellEditingStyle.delete{
+////            let statusItem = realm.objects(AllTransactions.self)[indexPath.row]
+////            try! realm.write {
+////                realm.delete(statusItem)
+////            }
+////        }
+//    }
+    
+    func kk(_sender:UIButton){
+        print("dddd")
+    }
+    
+    @objc func deleteTransaction(sender:UIButton){
+        let filterName = "id = " + String(sender.tag)
+        let statusItem = realm.objects(AllTransactions.self).filter(filterName)
+        try! realm.write {
+            realm.delete(statusItem)
+        }
+        historyTableView.reloadData()
     }
     
     lazy var refresher: UIRefreshControl = {
@@ -74,7 +154,9 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
         tableView.separatorStyle = .none
         tableView.backgroundColor = ThemeColor().themeColor()
         let timelineTableViewCellNib = UINib(nibName: "TimeHistoryTableViewCell", bundle: Bundle(for: HistoryTableViewCell.self))
-        tableView.register(timelineTableViewCellNib, forCellReuseIdentifier: "History")
+        let SellTableViewCellNib = UINib(nibName: "SellTableViewCell", bundle: Bundle(for: HistoryTableViewCell.self))
+        tableView.register(timelineTableViewCellNib, forCellReuseIdentifier: "BuyHistory")
+        tableView.register(SellTableViewCellNib, forCellReuseIdentifier: "SellHistory")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.rowHeight = 200
         tableView.delegate = self
