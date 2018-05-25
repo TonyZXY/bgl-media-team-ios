@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension UIViewController{
-    func caculateScientificMethod(number:Double)->String{
+    func scientificMethod(number:Double)->String{
         var value:String = ""
         var getNumber:String =  String(number)
         
@@ -19,7 +19,7 @@ extension UIViewController{
         }
         
         if getNumber[getNumber.index(getNumber.startIndex, offsetBy: 2)] == "."{
-            value = String(format:"%.8f",number)
+            value = String(format:"%.6f",number)
         } else{
             value = String(format:"%.2f",number)
         }
