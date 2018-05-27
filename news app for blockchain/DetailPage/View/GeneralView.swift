@@ -147,10 +147,11 @@ class GeneralView:UIView{
         return view
     }()
     
-    var ImageView:UIImageView = {
-        var imageView = UIImageView()
-        imageView.backgroundColor = ThemeColor().walletCellcolor()
+    var ImageView:UIView = {
+        var imageView = UIView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.frame.size.height = 250
+        imageView.backgroundColor = .orange
         return imageView
     }()
     

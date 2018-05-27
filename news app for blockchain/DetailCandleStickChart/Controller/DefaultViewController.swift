@@ -9,7 +9,6 @@
 import UIKit
 
 class DefaultViewController: UIViewController {
-    
     lazy var container: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -17,7 +16,6 @@ class DefaultViewController: UIViewController {
         view.backgroundColor = .orange
         return view
     }()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

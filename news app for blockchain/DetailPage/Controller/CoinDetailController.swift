@@ -19,7 +19,7 @@ class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollecti
         super.viewDidLoad()
         setUpView()
     }
-
+    
     func setUpView(){
         //Menu Bar
         view.addSubview(menuBar)

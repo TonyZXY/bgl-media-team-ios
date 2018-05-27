@@ -31,6 +31,7 @@ class DetailController: UIViewController{
     let coinDetailController = CoinDetailController()
     let general = generalDetail()
     var marketSelectedData = MarketTradingPairs()
+    var globalMarketData = GlobalMarket()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +40,13 @@ class DetailController: UIViewController{
     }
     
 
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+//    }
     
     @objc func loadData(){
-        let generalPage = coinDetailController.gerneralController.mainView
+        let generalPage = coinDetailController.gerneralController
         let filterName = "coinAbbName = '" + coinDetails.selectCoinAbbName + "' "
         let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
         for value in selectItem{
@@ -49,9 +54,9 @@ class DetailController: UIViewController{
             mainView.portfolioResult.text = scientificMethod(number:value.coinAmount) + " " + value.coinAbbName
             mainView.marketValueRsult.text = "A$"+scientificMethod(number:value.totalPrice)
             mainView.netCostResult.text =  "A$"+scientificMethod(number:value.transactionPrice)
-            generalPage.totalNumber.text = "A$"+scientificMethod(number:value.singlePrice)
-            generalPage.tradingPairs.text = value.tradingPairsName
-            generalPage.market.text = value.exchangeName
+            generalPage.mainView.totalNumber.text = "A$"+scientificMethod(number:value.singlePrice)
+            generalPage.mainView.tradingPairs.text = value.tradingPairsName
+            generalPage.mainView.market.text = value.exchangeName
             general.coinAbbName = value.coinAbbName
             general.coinName = value.coinName
             general.exchangeName = value.exchangeName
@@ -62,7 +67,14 @@ class DetailController: UIViewController{
             marketSelectedData.tradingPairsName = value.tradingPairsName
             marketSelectedData.transactionPrice = value.transactionPrice
             marketSelectedData.coinAmount = value.coinAmount
+            generalPage.coinSymbol = value.coinAbbName
             coinDetailController.transactionHistoryController.generalData = general
+            generalPage.mainView.marketCapResult.text = String(globalMarketData.market_cap!)
+            generalPage.mainView.volumeResult.text = String(globalMarketData.volume_24h!)
+            generalPage.mainView.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
+        }
+        if getCoinName(coinAbbName: coinDetails.selectCoinAbbName) != 0 {
+            getCoinDetail(coinId: getCoinName(coinAbbName: coinDetails.selectCoinAbbName), priceType: "AUD")
         }
     }
 
@@ -118,8 +130,8 @@ class DetailController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
-        self.loadData()
-         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
     }
 
     func addChildViewControllers(childViewControllers:UIViewController,views:UIView){
@@ -138,7 +150,7 @@ class DetailController: UIViewController{
     }
     
     func setUpView(){
-         coinDetailController.gerneralController.mainView.edit.addTarget(self, action: #selector(edit), for: .touchUpInside)
+        coinDetailController.gerneralController.mainView.edit.addTarget(self, action: #selector(edit), for: .touchUpInside)
         view.backgroundColor = ThemeColor().themeColor()
         let titleLabel = UILabel()
         titleLabel.text = coinDetails.selectCoinName
@@ -178,6 +190,28 @@ class DetailController: UIViewController{
     func getCoinData(CoinName:String){
 //        coinDetail.coinName = "k"
         
+    }
+    
+    func getCoinName(coinAbbName:String)->Int{
+        let data = GetDataResult().getMarketCapCoinList()
+        var coinId:Int = 0
+        for value in data {
+            if value.symbol == coinAbbName{
+                coinId = value.id!
+            }
+        }
+        return coinId
+    }
+    
+    func getCoinDetail(coinId:Int,priceType:String){
+        GetDataResult().getMarketCapCoinDetail(coinId: coinId, priceType: priceType){(globalMarket) in
+            if let globalMarket = globalMarket {
+                DispatchQueue.main.async {
+                    self.globalMarketData = globalMarket
+                    self.loadData()
+                }
+            }
+        }
     }
 
 }

@@ -25,10 +25,11 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
         setUpView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh(_:)), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -103,24 +104,6 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
         cell.selectionStyle = .none
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        let cell:HistoryTableViewCell = historyTableView.cellForRow(at: indexPath) as! HistoryTableViewCell
-//
-//
-////            cell.bb(kk)
-//
-////        if editingStyle == UITableViewCellEditingStyle.delete{
-////            let statusItem = realm.objects(AllTransactions.self)[indexPath.row]
-////            try! realm.write {
-////                realm.delete(statusItem)
-////            }
-////        }
-//    }
-    
-    func kk(_sender:UIButton){
-        print("dddd")
-    }
-    
     @objc func deleteTransaction(sender:UIButton){
         let filterName = "id = " + String(sender.tag)
         let statusItem = realm.objects(AllTransactions.self).filter(filterName)
@@ -133,8 +116,7 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor.gray
-        
+        refreshControl.tintColor = UIColor.white
         return refreshControl
     }()
     
@@ -178,6 +160,8 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     }()
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        historyTableView.reloadData()
+        print("call noti")
         self.refresher.endRefreshing()
     }
 
