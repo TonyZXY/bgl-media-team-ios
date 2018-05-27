@@ -376,6 +376,10 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             filterDateSelection = indexPath.row
             coinList.reloadData()
         }
+        if collectionView == coinList {
+            let globalController = GloabalController()
+            UINavigationController().pushViewController(globalController, animated: true)
+        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

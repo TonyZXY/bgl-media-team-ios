@@ -135,6 +135,7 @@
 		57DDC9CA20B68F58002F868F /* SellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57DDC9C820B68F58002F868F /* SellTableViewCell.xib */; };
 		57DDC9CD20B7712C002F868F /* MarketSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9CC20B7712C002F868F /* MarketSelectController.swift */; };
 		57DDC9CF20B7A8CE002F868F /* ChangeRiseFallColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9CE20B7A8CE002F868F /* ChangeRiseFallColor.swift */; };
+		57DDC9D220BA86DF002F868F /* GlobalMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9D120BA86DF002F868F /* GlobalMarket.swift */; };
 		57E162F320B298D6005A8D3B /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F220B298D6005A8D3B /* GeneralView.swift */; };
 		57E162F520B2A0F9005A8D3B /* TransactionsHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F420B2A0F9005A8D3B /* TransactionsHistoryController.swift */; };
 		57E162F720B2A1E3005A8D3B /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F620B2A1E3005A8D3B /* AlertController.swift */; };
@@ -274,6 +275,7 @@
 		57DDC9C820B68F58002F868F /* SellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SellTableViewCell.xib; sourceTree = "<group>"; };
 		57DDC9CC20B7712C002F868F /* MarketSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketSelectController.swift; sourceTree = "<group>"; };
 		57DDC9CE20B7A8CE002F868F /* ChangeRiseFallColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRiseFallColor.swift; sourceTree = "<group>"; };
+		57DDC9D120BA86DF002F868F /* GlobalMarket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalMarket.swift; sourceTree = "<group>"; };
 		57E162F220B298D6005A8D3B /* GeneralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralView.swift; sourceTree = "<group>"; };
 		57E162F420B2A0F9005A8D3B /* TransactionsHistoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsHistoryController.swift; sourceTree = "<group>"; };
 		57E162F620B2A1E3005A8D3B /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
@@ -665,6 +667,7 @@
 			isa = PBXGroup;
 			children = (
 				57CF55F720B3E87800614071 /* CoinDetailData.swift */,
+				57DDC9D120BA86DF002F868F /* GlobalMarket.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -992,7 +995,6 @@
 				04E4F019209B19A700A2D0BF /* NewsFlash.swift in Sources */,
 				046963BA20AAC86B00459EC8 /* SaveStructToRealmObjects.swift in Sources */,
 				0469641E20ABB87200459EC8 /* TransAdditionalCell.swift in Sources */,
-				0469638A20AAB20F00459EC8 /* WebMainViewController.swift in Sources */,
 				57048C1920AEA1A700393EF6 /* DetailController.swift in Sources */,
 				5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */,
 				576FA8F12092DA5C005B6406 /* ThemeColor.swift in Sources */,
@@ -1031,6 +1033,7 @@
 				046963E220AAC8B400459EC8 /* TickerDataFetcherV2.swift in Sources */,
 				0419422520A42F7E006B26C6 /* GenuineDetailViewController.swift in Sources */,
 				57E162F520B2A0F9005A8D3B /* TransactionsHistoryController.swift in Sources */,
+				57DDC9D220BA86DF002F868F /* GlobalMarket.swift in Sources */,
 				04BDD41820A42A87009D8A0A /* GenuineSliderViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

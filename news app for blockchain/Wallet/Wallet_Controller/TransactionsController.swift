@@ -21,6 +21,7 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     var transcationData = TransactionFormData()
     var updateTransaction = AllTransactions()
     var transactionStatus = "Add"
+    var transactionNumber:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,8 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     func updateTransactionDetail(){
         print(updateTransaction.amount)
         if transactionStatus == "Update"{
+            transactionNumber = 1
+            newTransaction.id = updateTransaction.id
             newTransaction.coinAbbName = updateTransaction.coinAbbName
             newTransaction.coinName = updateTransaction.coinName
             newTransaction.exchangName = updateTransaction.exchangName
@@ -53,12 +56,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             transcationData.tradingPairsSecond = [newTransaction.tradingPairsName, "%" + newTransaction.coinAbbName]
         }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
-    }
-    
     
     @objc func addTransaction(){
         newTransaction.totalPrice = Double(newTransaction.amount) * newTransaction.singlePrice
@@ -93,15 +90,27 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     func writeToRealm(){
         //Write to Transaction Model to realm
         realm.beginWrite()
-        let transaction = realm.objects(AllTransactions.self)
         var currentTransactionId:Int = 0
-        if transaction.count != 0{
-            currentTransactionId = (transaction.last?.id)! + 1
+        if transactionStatus == "Update"{
+            currentTransactionId = newTransaction.id
         } else {
-            currentTransactionId = 1
+            let transaction = realm.objects(AllTransactions.self)
+            if transaction.count != 0{
+                currentTransactionId = (transaction.last?.id)! + 1
+            } else {
+                currentTransactionId = 1
+            }
         }
         
-        realm.create(AllTransactions.self, value: [currentTransactionId,newTransaction.status,newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice])
+        let realmData:[Any] = [currentTransactionId,newTransaction.status,newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice]
+        
+        if realm.object(ofType: AllTransactions.self, forPrimaryKey: currentTransactionId) == nil {
+            realm.create(AllTransactions.self, value: realmData)
+        } else {
+            print("success123")
+            realm.create(AllTransactions.self, value: realmData, update: true)
+        }
+        
         try! realm.commitWrite()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
         self.navigationController?.popViewController(animated: true)
@@ -331,9 +340,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadPrice(){
-        if transactionStatus == "Update"{
-            transactionStatus = "Add"
-        } else if transactionStatus == "Add"{
+        if transactionNumber == 1 {
+            transactionNumber = 0
+        } else {
             var readData:Double = 0
             if newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != ""{
                 cryptoCompareClient.getTradePrice(from: newTransaction.coinAbbName, to: newTransaction.tradingPairsName, exchange: newTransaction.exchangName){
@@ -429,25 +438,5 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         if textField.tag == 8{
             newTransaction.additional = textField.text!
         }
-//        if textField.tag == 10{
-//            if textField.text == "单价"{
-//            let index = IndexPath(row: 3, section: 0)
-//            let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
-//                cell.price.text = String(Double(newTransaction.singlePrice)! * Double(newTransaction.amount))
-//            }else if textField.text == "总额"{
-//
-//            }
-//        }
     }
-    
-    //    func textFieldDidBeginEditing(_ textField: UITextField) {
-    //        print(textField.tag)
-    //        if textField.tag == 3{
-    //            priceTextField = textField.text!
-    //            print(self.priceTextField + "/2")
-    //        }
-    //        if textField.tag == 4{
-    //            amountTextField = textField.text!
-    //        }
-    //    }
 }
