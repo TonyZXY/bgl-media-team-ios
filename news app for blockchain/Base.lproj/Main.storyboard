@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="188" y="-90"/>
         </scene>
-        <!--Home View Controller-->
+        <!--News Home View Controller-->
         <scene sceneID="iDc-km-PSG">
             <objects>
-                <viewController id="izm-yd-kfl" customClass="HomeViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="izm-yd-kfl" customClass="NewsHomeViewController" customModule="news_app_for_blockchain" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Br7-Qz-w9l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
