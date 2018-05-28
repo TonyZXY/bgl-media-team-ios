@@ -26,11 +26,9 @@
 		042B2A2320B7F702005A7D0B /* defDisplayOpt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1520B7F702005A7D0B /* defDisplayOpt.swift */; };
 		042B2A2420B7F702005A7D0B /* OtherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1620B7F702005A7D0B /* OtherDetailViewController.swift */; };
 		042B2A2520B7F702005A7D0B /* OtherOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1720B7F702005A7D0B /* OtherOptionViewController.swift */; };
-		042B2A2620B7F702005A7D0B /* WebDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1920B7F702005A7D0B /* WebDetailViewController.swift */; };
 		042B2A2720B7F702005A7D0B /* WebMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1A20B7F702005A7D0B /* WebMainViewController.swift */; };
 		042B2A2820B7F702005A7D0B /* ViewOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1C20B7F702005A7D0B /* ViewOptionsViewController.swift */; };
 		042B2A2920B7F702005A7D0B /* MoreOptionMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1D20B7F702005A7D0B /* MoreOptionMainViewController.swift */; };
-		042B2A2A20B7F702005A7D0B /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1F20B7F702005A7D0B /* NotificationViewController.swift */; };
 		042B2AD720B7FFCE005A7D0B /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AC720B7FFCE005A7D0B /* CandleStickChartViewController.swift */; };
 		042B2AD820B7FFCE005A7D0B /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AC820B7FFCE005A7D0B /* DefaultViewController.swift */; };
 		042B2AD920B7FFCE005A7D0B /* HistoricalDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACA20B7FFCE005A7D0B /* HistoricalDataStruct.swift */; };
@@ -42,7 +40,6 @@
 		042B2ADF20B7FFCE005A7D0B /* XAxisLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD120B7FFCE005A7D0B /* XAxisLabelView.swift */; };
 		042B2AE020B7FFCE005A7D0B /* ContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD220B7FFCE005A7D0B /* ContainerView.swift */; };
 		042B2AE120B7FFCE005A7D0B /* FetchHistoricalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD420B7FFCE005A7D0B /* FetchHistoricalData.swift */; };
-		042B2AE220B7FFCE005A7D0B /* DateTimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD520B7FFCE005A7D0B /* DateTimeConverter.swift */; };
 		045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BB20A3F52C00796F2E /* CoinImageSetter.swift */; };
 		045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045BF2BD20A4060600796F2E /* CoinsInWatchListRealm.swift */; };
 		046963B820AAC86B00459EC8 /* GetDataResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046963AC20AAC86800459EC8 /* GetDataResult.swift */; };
@@ -108,7 +105,12 @@
 		04E4F021209B19BB00A2D0BF /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01D209B19BB00A2D0BF /* Timeline.swift */; };
 		04E4F022209B19BB00A2D0BF /* TimelinePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E4F01E209B19BB00A2D0BF /* TimelinePoint.swift */; };
 		04E4F023209B19BB00A2D0BF /* TimelineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */; };
-		1AF2BE2D20AE997800323D6A /* NewsDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */; };
+		1A1F11CF20BB8489004E59CD /* GlobalMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9D120BA86DF002F868F /* GlobalMarket.swift */; };
+		1A1F11D020BB84A4004E59CD /* DateTimeConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AD520B7FFCE005A7D0B /* DateTimeConverter.swift */; };
+		1A1F11D120BB84A8004E59CD /* TransactionsHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F420B2A0F9005A8D3B /* TransactionsHistoryController.swift */; };
+		1A1F11D220BB84AC004E59CD /* NewsDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */; };
+		1A1F11D320BB84B1004E59CD /* WebDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1920B7F702005A7D0B /* WebDetailViewController.swift */; };
+		1A1F11D420BB84B5004E59CD /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1F20B7F702005A7D0B /* NotificationViewController.swift */; };
 		5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701A8FD209B6C3F00A216C4 /* MarketCollectionViewCell.swift */; };
 		57048C1920AEA1A700393EF6 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57048C1820AEA1A700393EF6 /* DetailController.swift */; };
 		570B035F20B126D00014DF8E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B035E20B126D00014DF8E /* MainView.swift */; };
@@ -134,9 +136,7 @@
 		57DDC9CA20B68F58002F868F /* SellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57DDC9C820B68F58002F868F /* SellTableViewCell.xib */; };
 		57DDC9CD20B7712C002F868F /* MarketSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9CC20B7712C002F868F /* MarketSelectController.swift */; };
 		57DDC9CF20B7A8CE002F868F /* ChangeRiseFallColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9CE20B7A8CE002F868F /* ChangeRiseFallColor.swift */; };
-		57DDC9D220BA86DF002F868F /* GlobalMarket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DDC9D120BA86DF002F868F /* GlobalMarket.swift */; };
 		57E162F320B298D6005A8D3B /* GeneralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F220B298D6005A8D3B /* GeneralView.swift */; };
-		57E162F520B2A0F9005A8D3B /* TransactionsHistoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F420B2A0F9005A8D3B /* TransactionsHistoryController.swift */; };
 		57E162F720B2A1E3005A8D3B /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E162F620B2A1E3005A8D3B /* AlertController.swift */; };
 		57E1630120B2ACA0005A8D3B /* TimeHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57E162FF20B2ACA0005A8D3B /* TimeHistoryTableViewCell.xib */; };
 		F0A477DC98285AF7CF6AD1CC /* Pods_news_app_for_blockchain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2523D3F8E20ECC3644FC3C0 /* Pods_news_app_for_blockchain.framework */; };
@@ -906,6 +906,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A1F11D420BB84B5004E59CD /* NotificationViewController.swift in Sources */,
+				1A1F11D320BB84B1004E59CD /* WebDetailViewController.swift in Sources */,
+				1A1F11D220BB84AC004E59CD /* NewsDetailWebViewController.swift in Sources */,
+				1A1F11D120BB84A8004E59CD /* TransactionsHistoryController.swift in Sources */,
+				1A1F11D020BB84A4004E59CD /* DateTimeConverter.swift in Sources */,
+				1A1F11CF20BB8489004E59CD /* GlobalMarket.swift in Sources */,
 				046963C120AAC86B00459EC8 /* ExchangeList.swift in Sources */,
 				042B2AE020B7FFCE005A7D0B /* ContainerView.swift in Sources */,
 				0469641720ABB87200459EC8 /* TransExpensesCell.swift in Sources */,
@@ -935,7 +941,6 @@
 				57CF55F820B3E87800614071 /* CoinDetailData.swift in Sources */,
 				045BF2BC20A3F52C00796F2E /* CoinImageSetter.swift in Sources */,
 				04BDD42420A42AF3009D8A0A /* NewsMenuCell.swift in Sources */,
-
 				045BF2BE20A4060600796F2E /* CoinsInWatchListRealm.swift in Sources */,
 				570B036420B229C50014DF8E /* DetailMenuBar.swift in Sources */,
 				576FA8F42092E670005B6406 /* AppImage.swift in Sources */,
@@ -1022,11 +1027,9 @@
 				57DDC9CD20B7712C002F868F /* MarketSelectController.swift in Sources */,
 				046963CD20AAC89200459EC8 /* TransactionFrom.swift in Sources */,
 				041519B420A283C70031D98F /* TickerDataRealm.swift in Sources */,
-
 				046963BB20AAC86B00459EC8 /* Exchange.swift in Sources */,
 				042B2AD920B7FFCE005A7D0B /* HistoricalDataStruct.swift in Sources */,
 				046963E220AAC8B400459EC8 /* TickerDataFetcherV2.swift in Sources */,
-
 				04BDD41820A42A87009D8A0A /* GenuineSliderViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
