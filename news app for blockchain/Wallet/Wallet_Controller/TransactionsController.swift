@@ -268,6 +268,7 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             cell.priceType.tag = 10
             cell.priceType.delegate = self
             cell.price.delegate = self
+            cell.priceType.isHidden = true
             return cell
         } else if indexPath.row == 4{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[4], for: indexPath) as! TransNumberCell

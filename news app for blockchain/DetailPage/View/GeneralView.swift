@@ -79,7 +79,7 @@ class GeneralView:UIView{
         
         //Image View constraint
         scrollView.addConstraintsWithFormat(format: "H:|[v1]|", views: SecondView,ImageView)
-        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(250)]", views: SecondView,ImageView)
+        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(200)]", views: SecondView,ImageView)
         NSLayoutConstraint(item: ImageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
         
         //Last View constraint
@@ -155,7 +155,7 @@ class GeneralView:UIView{
     var ImageView:UIView = {
         var imageView = UIView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.frame.size.height = 250
+        imageView.frame.size.height = 200
         imageView.backgroundColor = .orange
         return imageView
     }()
