@@ -35,8 +35,6 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
                 allCoinObject.append(coin)
             }
         }
-        
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

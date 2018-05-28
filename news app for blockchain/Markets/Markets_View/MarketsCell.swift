@@ -20,12 +20,26 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     let sortPickerView = UIPickerView()
     
     let realm = try! Realm()
-    var globalData = try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
+    var globalData: GlobalDataRealm? {
+        get {
+            return try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
+        }
+    }
     var refreshTimer: Timer!
     
     let currency = "AUD $"
     
-    var tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self)
+    var tickerDataRealmObjects: Results<TickerDataRealm> {
+        get {
+            return try! Realm().objects(TickerDataRealm.self).sorted(byKeyPath: "symbol", ascending: true)
+        }
+    }
+    
+    var tickerDataRealmObjectsSortedByPrice: Results<TickerDataRealm> {
+        get {
+            return try! Realm().objects(TickerDataRealm.self).sorted(byKeyPath: "price", ascending: false)
+        }
+    }
     
     var filterDateSelection: Int?
     
@@ -38,6 +52,21 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     lazy var filteredCoinList = try! Realm().objects(TickerDataRealm.self)
     
     let tickerDataFetcher = TickerDataFetcherV2()
+    
+    var sortOption: Int {
+        get {
+            return sortPickerView.selectedRow(inComponent: 0)
+        }
+    }
+    
+    lazy var spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        if tickerDataRealmObjects.count == 0 {
+            spinner.startAnimating()
+        }
+        return spinner
+    }()
             
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,9 +76,8 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         refreshGlobalData()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: .updateCoinDataInMarketsView, object: nil)
         
-        refreshTimer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(refreshGlobalData), userInfo: nil, repeats: true)
+        refreshTimer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(refreshGlobalData), userInfo: nil, repeats: true)
     }
     
     //总额view
@@ -110,7 +138,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         addSubview(filterDate)
         addSubview(searchBar)
         addSubview(coinList)
-        
+        coinList.addSubview(spinner)
         //总额View
         totalCollectionView.translatesAutoresizingMaskIntoConstraints = false
         totalCollectionView.register(MarketsTotalView.self, forCellWithReuseIdentifier: "CellId")
@@ -131,13 +159,18 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         //搜索栏
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":sortCoin]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":sortCoin]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0(30)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":sortCoin]))
         
         //币种列表
         coinList.translatesAutoresizingMaskIntoConstraints = false
         //        coinList.register(MarketCollectionViewCell.self, forCellReuseIdentifier: "MarketCollectionViewCell")
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-10-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-0-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
+        
+//        print(coinList.frame.height)
+        
+        NSLayoutConstraint(item: spinner, attribute: .centerX, relatedBy: .equal, toItem: coinList, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: spinner, attribute: .centerY, relatedBy: .equal, toItem: coinList, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -202,7 +235,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             return cell
         } else if collectionView == coinList{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MarketCollectionViewCell", for: indexPath) as! MarketCollectionViewCell
-            var object = tickerDataRealmObjects[indexPath.row]
+            var object = sortOption == 0 ? tickerDataRealmObjects[indexPath.row] : tickerDataRealmObjectsSortedByPrice[indexPath.row]
             if isSearching {
                 object = filteredCoinList[indexPath.row]
             }
@@ -302,11 +335,6 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         let row = sortPickerView.selectedRow(inComponent: 0)
         sortCoin.text = "▼ "+sortItems[row]
         self.endEditing(true)
-        if row == 0 {
-            tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self).sorted(byKeyPath: "symbol", ascending: true)
-        } else {
-            tickerDataRealmObjects = try! Realm().objects(TickerDataRealm.self).sorted(byKeyPath: "price", ascending: false)
-        }
         coinList.reloadData()
     }
     
@@ -323,16 +351,14 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
                     let total_market_cap_aud = String((globalCap["total_market_cap_aud"]!! / 10000000.0).rounded() / 100.0)
                     let total_24h_volume_aud = String((globalCap["total_24h_volume_aud"]!! / 10000000.0).rounded() / 100.0)
                     
-                    self.realm.beginWrite()
-                    self.realm.create(GlobalDataRealm.self, value: [bitcoin_percentage_of_market_cap, total_market_cap_aud, total_24h_volume_aud, "0"], update: true)
-                    try! self.realm.commitWrite()
-                    
-                    self.globalData = try! Realm().object(ofType: GlobalDataRealm.self, forPrimaryKey: "0")
+                    let realm = try! Realm()
+                    realm.beginWrite()
+                    realm.create(GlobalDataRealm.self, value: [bitcoin_percentage_of_market_cap, total_market_cap_aud, total_24h_volume_aud, "0"], update: true)
+                    try! realm.commitWrite()
                     
                     DispatchQueue.main.async {
                         self.totalCollectionView.reloadData()
                     }
-                    
                 case .failure(let error):
                     print("the error \(error.localizedDescription)")
                 }
@@ -341,7 +367,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         
         let tickerDataFetcher = TickerDataFetcherV2()
         tickerDataFetcher.getCoinList() {
-            tickerDataFetcher.getAllData()
+            tickerDataFetcher.getAllTickerData()
         }
     }
     
@@ -349,6 +375,10 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         if collectionView == filterDate {
             filterDateSelection = indexPath.row
             coinList.reloadData()
+        }
+        if collectionView == coinList {
+            let globalController = GloabalController()
+            UINavigationController().pushViewController(globalController, animated: true)
         }
     }
     
@@ -365,6 +395,9 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     }
     
     @objc func reloadDataAfterUpdateWatchList() {
+        if tickerDataRealmObjects.count != 0 {
+            spinner.stopAnimating()
+        }
         coinList.reloadData()
     }
     

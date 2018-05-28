@@ -25,7 +25,7 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         
         let tickerDataFetcher = TickerDataFetcherV2()
         tickerDataFetcher.getCoinList() {
-            tickerDataFetcher.getAllData()
+            tickerDataFetcher.getAllTickerData()
         }
     }
     

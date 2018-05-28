@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 class AllTransactions:Object{
-//    @objc dynamic var id:Int = 0
+    @objc dynamic var id:Int = 0
     @objc dynamic var status = ""
     @objc dynamic var coinName = ""
     @objc dynamic var coinAbbName = ""
@@ -28,7 +28,7 @@ class AllTransactions:Object{
     @objc dynamic var audSinglePrice:Double = 0
     @objc dynamic var audTotalPrice:Double = 0
     
-//    override class func primaryKey() -> String {
-//        return "id"
-//    }
+    override class func primaryKey() -> String {
+        return "id"
+    }
 }

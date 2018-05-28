@@ -25,7 +25,7 @@ public struct HistoryLine {
     internal var (start, end) = (CGPoint(x: 0, y: 0), CGPoint(x: 0, y: 0))
     
     //    internal var leftMargin: CGFloat = 60.0
-    internal var leftMargin: CGFloat = 10.0
+    internal var leftMargin: CGFloat = 20.0
     
     public init(width: CGFloat, frontColor: UIColor, backColor: UIColor) {
         self.width = width

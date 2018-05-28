@@ -58,7 +58,9 @@ extension UIImageView {
             let url = URL(string: "https://www.cryptocompare.com" + coin.ImageUrl)
             self.kf.setImage(with: url, completionHandler: {
                 (image, error, cacheType, imageUrl) in
-                icon.removeFromSuperview()
+                if error == nil {
+                    icon.removeFromSuperview()
+                }
             })
         }
     }

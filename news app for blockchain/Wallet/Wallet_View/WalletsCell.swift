@@ -8,8 +8,18 @@
 
 import UIKit
 
+class SelectCoin{
+    var selectCoinName:String = ""
+    var selectCoinAbbName:String = ""
+    var selectExchangeName:String = ""
+    var selectTradingPairs:String = ""
+}
+
 class WalletsCell:UITableViewCell{
     var color = ThemeColor()
+    var selectCoin = SelectCoin()
+    
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
