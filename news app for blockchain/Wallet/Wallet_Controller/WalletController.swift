@@ -9,8 +9,6 @@
 import UIKit
 import RealmSwift
 
-
-
 class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     var color = ThemeColor()
     var image = AppImage()
@@ -23,22 +21,29 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     var walletResults = [WalletDetail]()
     var displayType:String = "Percent"
     let priceType:String = "AUD"
-    var totalPrice:Double = 0
-    var totalProfit:Double = 0
     var refreshTimer: Timer!
     var coinDetail = SelectCoin()
+    var profitPrice:Double = 0
+    var profitPercent:Double = 0
+    var price:Double = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         SetDataResult().writeJsonExchange()
         SetDataResult().writeMarketCapCoinList()
-        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+        GetDataResult().getCoinList()
+        refreshTimer = Timer.scheduledTimer(timeInterval: 20, target: self, selector: #selector(reloadWalletData), userInfo: nil, repeats: true)
         print(allResult)
         print(all)
-        refreshAllData()
         refreshData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadWalletData), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
     }
     
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
@@ -50,12 +55,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                     walletData.totalRiseFallPercent = ((walletData.totalPrice - transactionPrice) / transactionPrice) * 100
                     walletData.totalRiseFall = walletData.totalPrice - transactionPrice
                     
-                    
-                    
-                    self.totalProfit = self.totalProfit + walletData.totalRiseFall
-                    self.totalPrice = self.totalPrice + walletData.totalPrice
-                    
-
                     self.realm.beginWrite()
                     if self.realm.object(ofType: MarketTradingPairs.self, forPrimaryKey: walletData.coinAbbName) == nil {
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType])
@@ -63,7 +62,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
-                    self.walletList.reloadData()
                 }
             } else{
                 print("fail")
@@ -71,44 +69,18 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
     }
     
-    var spinner:UIActivityIndicatorView = {
-        var spinner = UIActivityIndicatorView()
-        spinner.translatesAutoresizingMaskIntoConstraints = false
-        return spinner
-    }()
     
-    @objc func refreshData() {
-        getnumber{(success,respone,error) in
-            if success {
-                DispatchQueue.main.async {
-                    print("Success")
-                    self.totalNumber.text = self.priceType + "$" + self.scientificMethod(number: self.totalPrice)
-                    self.checkRiseandfallNumber(risefallnumber: self.scientificMethod(number: self.totalProfit))
-                    self.totalPrice = 0
-                    self.totalProfit = 0
-                }
-                self.refresher.endRefreshing()
-            } else if let error = error {
-                print(error)
-            }
-        }
+    func refreshData() {
+        self.refresher.beginRefreshing()
+        setWalletData()
+        refreshAllData()
     }
     
     @objc func reloadWalletData() {
         refreshData()
     }
     
-    func getnumber(completion:(Bool,Any?,Error?)->Void){
-        self.walletResults = self.setWalletData()
-        refreshAllData()
-        completion(true,"Good",nil)
-    }
     
-    override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadWalletData), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return all.count
@@ -125,12 +97,19 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         cell.selectCoin.selectCoinName = object.coinName
         cell.selectCoin.selectExchangeName = object.exchangeName
         cell.selectCoin.selectTradingPairs = object.tradingPairsName
-        if self.displayType == "Percent"{
-            cell.checkRiseandfallPercent(risefallnumber: self.scientificMethod(number: object.totalRiseFallPercent))
-        } else if self.displayType == "Number"{
-            cell.checkRiseandfallNumber(risefallnumber: self.scientificMethod(number: object.totalRiseFall))
-        }
         cell.coinImage.coinImageSetter(coinName: object.coinAbbName, width: 30, height: 30, fontSize: 5)
+        if self.displayType == "Percent"{
+            cell.checkRiseandfallPercent(risefallnumber: object.totalRiseFallPercent)
+        } else if self.displayType == "Number"{
+            cell.checkRiseandfallNumber(risefallnumber: object.totalRiseFall)
+        }
+        
+        if self.displayType == "Percent"{
+            self.checkRiseandfallPercent(risefallnumber: self.profitPercent)
+        } else if self.displayType == "Number"{
+            self.checkRiseandfallNumber(risefallnumber: self.profitPrice)
+        }
+        self.totalNumber.text = self.priceType + "$" + self.scientificMethod(number: self.price)
         return cell
     }
     
@@ -148,11 +127,14 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             let cell:WalletsCell = walletList.cellForRow(at: indexPath) as! WalletsCell
             let filterName = "coinName = '" + cell.coinName.text! + "' "
             let statusItem = realm.objects(AllTransactions.self).filter(filterName)
+            let status = realm.objects(MarketTradingPairs.self).filter(filterName)
+            
             try! realm.write {
                 realm.delete(statusItem)
+                realm.delete(status)
             }
-            self.totalNumber.text = self.priceType + "$" + "0"
-            self.checkRiseandfallNumber(risefallnumber: "0.0")
+            self.totalNumber.text = self.priceType + "$" + "-"
+            self.checkRiseandfallNumber(risefallnumber: 0)
             refreshData()
         }
     }
@@ -164,7 +146,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     
     lazy var refresher: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        //        refreshControl.perform(#selector(self.handleRefresh(_:)), with: nil, afterDelay: 5.5)
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.white
         return refreshControl
@@ -175,9 +156,31 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     }
     
     func refreshAllData(){
-        let objects = walletResults
+        loadCoinPrice { (success) in
+            if success{
+                DispatchQueue.main.async {
+                    self.profitPrice = 0
+                    self.profitPercent = 0
+                    self.price = 0
+                    let coinSelected = self.realm.objects(MarketTradingPairs.self)
+                    var transactionPrice:Double = 0
+                    for value in coinSelected{
+                        self.price = self.price + value.totalPrice
+                        self.profitPrice = self.profitPrice + value.totalRiseFall
+                        transactionPrice = transactionPrice + value.transactionPrice
+                    }
+                    self.profitPercent = (self.profitPrice / transactionPrice) * 100
+                    self.walletList.reloadData()
+                    self.refresher.endRefreshing()
+                }
+            }
+        }
+    }
+    
+    func loadCoinPrice(completion:@escaping (Bool)->Void){
+        let objects = self.walletResults
+        print(String(objects.count) + "hahaha")
         let marketSelectedData = MarketTradingPairs()
-        
         for object in objects{
             marketSelectedData.coinAbbName = object.coinAbbName
             marketSelectedData.coinName = object.coinName
@@ -209,12 +212,11 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                 }
             }
         }
-        
+        completion(true)
     }
     
     
-    
-    func setWalletData() -> [WalletDetail]{
+    func setWalletData(){
         var wallets = [WalletDetail]()
         var list = [String]()
         
@@ -248,7 +250,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                 list.append(value.coinName)
             }
         }
-        return wallets
+        walletResults = wallets
     }
     
     func setupView(){
@@ -421,22 +423,37 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
-    func checkRiseandfallNumber(risefallnumber: String) {
-        if risefallnumber.prefix(1) == "-" {
+    func checkRiseandfallNumber(risefallnumber: Double) {
+        if String(risefallnumber).prefix(1) == "-" {
             // lost with red
             totalChange.textColor = color.fallColor()
-            totalChange.text = "▼ " + risefallnumber
-        } else if risefallnumber == "0.00000000"{
+            totalChange.text = "▼ " + scientificMethod(number: risefallnumber)
+        } else if String(risefallnumber) == "0.0"{
             // Not any change with white
             totalChange.text = "--"
             totalChange.textColor = UIColor.white
         } else {
             //Profit with green
             totalChange.textColor = color.riseColor()
-            totalChange.text = "▲ " + "+" + risefallnumber
+            totalChange.text = "▲ " + "+" + scientificMethod(number: risefallnumber)
         }
     }
     
+    func checkRiseandfallPercent(risefallnumber: Double) {
+        if String(risefallnumber).prefix(1) == "-" {
+            // lost with red
+            totalChange.textColor = color.fallColor()
+            totalChange.text = "▼ " + scientificMethod(number: risefallnumber) + "%"
+        } else if String(risefallnumber) == "0.0"{
+            // Not any change with white
+            totalChange.text = "--"
+            totalChange.textColor = UIColor.white
+        } else {
+            //Profit with green
+            totalChange.textColor = color.riseColor()
+            totalChange.text = "▲ " + "+" + scientificMethod(number: risefallnumber)  + "%"
+        }
+    }
     
     func getDoubleFrom(textField: UILabel) -> Double
     {
@@ -469,5 +486,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     //    }
     
 }
+
 
 
