@@ -31,8 +31,8 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        //        SetDataResult().writeJsonExchange()
-        //        SetDataResult().writeMarketCapCoinList()
+        SetDataResult().writeJsonExchange()
+        SetDataResult().writeMarketCapCoinList()
         refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
         print(allResult)
         print(all)
@@ -211,6 +211,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
         
     }
+    
     
     
     func setWalletData() -> [WalletDetail]{
