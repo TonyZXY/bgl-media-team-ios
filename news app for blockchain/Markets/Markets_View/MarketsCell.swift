@@ -67,7 +67,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         }
         return spinner
     }()
-            
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -78,6 +78,8 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         NotificationCenter.default.addObserver(self, selector: #selector(reloadDataAfterUpdateWatchList), name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
         
         refreshTimer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(refreshGlobalData), userInfo: nil, repeats: true)
+        
+        coinList.addSubview(refresher)
     }
     
     //总额view
@@ -163,11 +165,8 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
         
         //币种列表
         coinList.translatesAutoresizingMaskIntoConstraints = false
-        //        coinList.register(MarketCollectionViewCell.self, forCellReuseIdentifier: "MarketCollectionViewCell")
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v1]-0-[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":coinList,"v1":searchBar]))
-        
-//        print(coinList.frame.height)
         
         NSLayoutConstraint(item: spinner, attribute: .centerX, relatedBy: .equal, toItem: coinList, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: spinner, attribute: .centerY, relatedBy: .equal, toItem: coinList, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
@@ -365,10 +364,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             }
         }
         
-        let tickerDataFetcher = TickerDataFetcherV2()
-        tickerDataFetcher.getCoinList() {
-            tickerDataFetcher.getAllTickerData()
-        }
+        tickerDataFetcher.fetchTickerDataWrapper()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -403,6 +399,19 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+    }
+    
+    lazy var refresher: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.gray
+        
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        tickerDataFetcher.fetchTickerDataWrapper()
+        self.refresher.endRefreshing()
     }
 }
 

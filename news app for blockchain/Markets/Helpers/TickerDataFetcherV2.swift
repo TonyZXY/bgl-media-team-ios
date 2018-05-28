@@ -13,12 +13,30 @@ import RealmSwift
 class TickerDataFetcherV2 {
     static var starts = 1
     static var num_cryptocurrencies = 1623
+    static var isFetching = false
+    
+    func fetchTickerDataWrapper() {
+        if !TickerDataFetcherV2.isFetching {
+            TickerDataFetcherV2.isFetching = true
+            getCoinList() {
+                self.getAllTickerData()
+            }
+        }
+    }
     
     func getTickerData(completionHandler: CompletionHandler = nil) {
         let url = "https://api.coinmarketcap.com/v2/ticker/?convert=AUD&start=\(String(describing: TickerDataFetcherV2.starts))"
         
         DispatchQueue.global(qos: .userInitiated).async {
-            guard let data = try? Data(contentsOf: URL(string: url)!) else { return }
+            guard let data = try? Data(contentsOf: URL(string: url)!) else {
+                // fetching failed
+                TickerDataFetcherV2.isFetching = false
+                TickerDataFetcherV2.starts = Int.max
+                DispatchQueue.main.async {
+                    completionHandler?()
+                }
+                return
+            }
             let json = JSON(data)
             self.JSONtoData(json: json)
             DispatchQueue.main.async {
@@ -67,6 +85,7 @@ class TickerDataFetcherV2 {
                 self.getAllTickerData()
             } else {
                 TickerDataFetcherV2.starts = 1
+                TickerDataFetcherV2.isFetching = false
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
             }
         }

@@ -10,6 +10,8 @@ import UIKit
 
 class MarketController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
+    let tickerDataFetcher = TickerDataFetcherV2()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
@@ -22,11 +24,12 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         navigationItem.titleView = titleLabel
         
         cancelTouchKeyboard()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
-        let tickerDataFetcher = TickerDataFetcherV2()
-        tickerDataFetcher.getCoinList() {
-            tickerDataFetcher.getAllTickerData()
-        }
+        tickerDataFetcher.fetchTickerDataWrapper()
     }
     
     var color = ThemeColor()
