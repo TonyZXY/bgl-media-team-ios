@@ -40,6 +40,7 @@ class GeneralView:UIView{
         scrollView.addSubview(ImageView)
         scrollView.addSubview(LastView)
         
+        FirstView.addSubview(spinner)
         FirstView.addSubview(totalNumber)
         FirstView.addSubview(totalRiseFall)
         
@@ -96,6 +97,10 @@ class GeneralView:UIView{
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 10).isActive = true
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.height, multiplier: 1/2, constant: 0).isActive = true
+        
+        //First View Spinnner
+        NSLayoutConstraint(item: spinner, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 10).isActive = true
+        NSLayoutConstraint(item: spinner, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -15).isActive = true
         
         //Second View market Label Constraint
         NSLayoutConstraint(item: market, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: SecondView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 5).isActive = true
@@ -250,6 +255,12 @@ class GeneralView:UIView{
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    var spinner:UIActivityIndicatorView = {
+        var spinner = UIActivityIndicatorView()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
     }()
     
     var volumeResult:UILabel = {

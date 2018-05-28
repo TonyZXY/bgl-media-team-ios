@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIViewController{
+extension UIView{
     func ChangeRiseFallColor(risefallnumber: String)->UILabel{
         let result = UILabel()
         if risefallnumber.prefix(1) == "-" {

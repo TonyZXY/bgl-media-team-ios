@@ -26,7 +26,6 @@ class NewsFlashViewController: UIViewController {
             label.text = "今天" + formatter.string(from: Date())
             
             label.layer.cornerRadius = label.frame.height / 4
-            // label.backgroundColor = .yellow
             label.clipsToBounds = true
             label.layer.borderWidth = 2
             label.layer.borderColor = #colorLiteral(red: 0.7294117647, green: 0.7294117647, blue: 0.7294117647, alpha: 1)
@@ -35,10 +34,4 @@ class NewsFlashViewController: UIViewController {
         // Do any additional setup after loading the view.
         
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }

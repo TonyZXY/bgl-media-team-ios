@@ -37,13 +37,8 @@ class DetailController: UIViewController{
         super.viewDidLoad()
         setUpView()
         loadData()
+        refreshData()
     }
-    
-
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
-//    }
     
     @objc func loadData(){
         let generalPage = coinDetailController.gerneralController
@@ -73,24 +68,26 @@ class DetailController: UIViewController{
             generalPage.mainView.volumeResult.text = String(globalMarketData.volume_24h!)
             generalPage.mainView.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
         }
-        if getCoinName(coinAbbName: coinDetails.selectCoinAbbName) != 0 {
-            getCoinDetail(coinId: getCoinName(coinAbbName: coinDetails.selectCoinAbbName), priceType: "AUD")
-        }
     }
-
+    
     @objc func refreshData(){
-        cryptoCompareClient.getTradePrice(from: marketSelectedData.coinAbbName, to: marketSelectedData.tradingPairsName, exchange: marketSelectedData.exchangeName){ result in
-            switch result{
-            case .success(let resultData):
-                for results in resultData!{
-                    let single = Double(results.value)
-                    self.getAllData(priceType: "AUD", walletData:self.marketSelectedData, single: single, eachCell: WalletsCell(), transactionPrice: self.marketSelectedData.transactionPrice)
+        coinDetailController.gerneralController.mainView.spinner.startAnimating()
+        loadCoinPrice { (success) in
+            if success{
+                if self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName) != 0 {
+                    print("dfsf")
+                    GetDataResult().getMarketCapCoinDetail(coinId: self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName), priceType: "AUD"){(globalMarket) in
+                        if let globalMarket = globalMarket {
+                            DispatchQueue.main.async {
+                                self.globalMarketData = globalMarket
+                                self.loadData()
+                                self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                            }
+                        }
+                    }
                 }
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
             }
         }
-        
     }
     
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
@@ -109,13 +106,43 @@ class DetailController: UIViewController{
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
-                    print("success")
-                    self.loadData()
                 }
             } else{
                 print("fail")
             }
         }
+    }
+    
+    func loadCoinPrice(completion:@escaping (Bool)->Void){
+        let filterName = "coinAbbName = '" + coinDetails.selectCoinAbbName + "' "
+        let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
+        var tradingPairs:String = ""
+        var exchangeName:String = ""
+        for value in selectItem{
+            exchangeName = value.exchangeName
+            tradingPairs = value.tradingPairsName
+            print(exchangeName)
+        }
+        
+        
+        cryptoCompareClient.getTradePrice(from: marketSelectedData.coinAbbName, to: tradingPairs, exchange: exchangeName){ result in
+            switch result{
+            case .success(let resultData):
+                for results in resultData!{
+                    let single = Double(results.value)
+                    self.getAllData(priceType: "AUD", walletData:self.marketSelectedData, single: single, eachCell: WalletsCell(), transactionPrice: self.marketSelectedData.transactionPrice)
+                }
+            case .failure(let error):
+                print("the error \(error.localizedDescription)")
+            }
+        }
+        completion(true)
+    }
+    
+    var spinner:UIActivityIndicatorView{
+        let spinner = UIActivityIndicatorView()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
     }
     
     @objc func edit(){
@@ -203,15 +230,15 @@ class DetailController: UIViewController{
         return coinId
     }
     
-    func getCoinDetail(coinId:Int,priceType:String){
-        GetDataResult().getMarketCapCoinDetail(coinId: coinId, priceType: priceType){(globalMarket) in
-            if let globalMarket = globalMarket {
-                DispatchQueue.main.async {
-                    self.globalMarketData = globalMarket
-                    self.loadData()
-                }
-            }
-        }
-    }
+//    func getCoinDetail(coinId:Int,priceType:String){
+//        GetDataResult().getMarketCapCoinDetail(coinId: coinId, priceType: priceType){(globalMarket) in
+//            if let globalMarket = globalMarket {
+//                DispatchQueue.main.async {
+//                    self.globalMarketData = globalMarket
+//                    self.loadData()
+//                }
+//            }
+//        }
+//    }
 
 }
