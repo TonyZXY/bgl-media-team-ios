@@ -24,7 +24,6 @@ class TimelineTableViewController: UITableViewController {
         
         //Prevent empty rows
         self.tableView.tableFooterView = UIView()
-//        self.tableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2039215686, blue: 0.2235294118, alpha: 1)
         self.tableView.backgroundColor = ThemeColor().themeColor()
         self.tableView.separatorStyle = .none
         

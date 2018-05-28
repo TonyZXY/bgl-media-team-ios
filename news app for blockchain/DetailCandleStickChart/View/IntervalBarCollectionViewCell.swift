@@ -18,6 +18,7 @@ class IntervalBarCollectionViewCell: UICollectionViewCell {
     lazy var label: UILabel = {
         var label = UILabel()
         label.textColor = .gray
+        label.font = label.font.withSize(10)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.sizeToFit()
         return label

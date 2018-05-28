@@ -13,6 +13,10 @@ typealias CompletionHandler = (() -> Void)?
 class HistoricalDataFetcher {
     var historicalDataStruct: HistoricalDataStruct?
     
+    static var dataTask: URLSessionDataTask?
+    
+    let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+    
     var limit: Int {
         return Params.amountOfCandlesDisplayed * Params.interval * Params.multipleData
     }
@@ -22,12 +26,19 @@ class HistoricalDataFetcher {
     func fetcher(coinSymbol: String, currency: String = "AUD", completionHandler: CompletionHandler = nil) {
         let url = URL(string: "https://min-api.cryptocompare.com/data/\(Params.intervalParam)?fsym=\(coinSymbol)&tsym=\(currency)&limit=\(limit)")
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            let data = try? Data(contentsOf: url!)
-            DispatchQueue.main.async {
-                self?.historicalDataStruct = HistoricalDataStruct(json: data)
-                completionHandler?()
-            }
+        DispatchQueue.global(qos: .userInitiated).async { [unowned self] in
+            let urlRequest = URLRequest(url: url!)
+            HistoricalDataFetcher.dataTask = self.defaultSession.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+                if let _ = error {
+                    return
+                } else {
+                    DispatchQueue.main.async {
+                        self.historicalDataStruct = HistoricalDataStruct(json: data)
+                        completionHandler?()
+                    }
+                }
+            })
+            HistoricalDataFetcher.dataTask?.resume()
         }
     }
 }

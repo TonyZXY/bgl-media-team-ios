@@ -234,6 +234,7 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
             $0.removeFromSuperview()
         }
         scrollView.contentOffset.x = scrollView.contentSize.width - scrollView.frame.size.width
+        HistoricalDataFetcher.dataTask?.cancel()
         fetchData()
     }
 }
