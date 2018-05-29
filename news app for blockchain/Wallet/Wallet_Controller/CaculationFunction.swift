@@ -23,7 +23,6 @@ class CaculationFunction{
                 results.single = Double(price)
                 results.total = Double(price) * Double(amount)
                 results.profit = results.total - transactionPrice
-                print(results.single)
             case .failure(let error):
                 print("the error \(error.localizedDescription)")
             }

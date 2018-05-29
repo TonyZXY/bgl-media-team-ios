@@ -112,7 +112,6 @@ class DetailController: UIViewController{
                     walletData.totalPrice = Double(price) * Double(walletData.coinAmount)
                     walletData.totalRiseFallPercent = ((walletData.totalPrice - transactionPrice) / transactionPrice) * 100
                     walletData.totalRiseFall = walletData.totalPrice - transactionPrice
-                    print("sdfsfsdsd")
                     self.realm.beginWrite()
                     if self.realm.object(ofType: MarketTradingPairs.self, forPrimaryKey: walletData.coinAbbName) == nil {
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType])
@@ -120,8 +119,6 @@ class DetailController: UIViewController{
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
-//                    let ss = self.realm.objects(MarketTradingPairs.self)
-//                    print(ss)
                 }
             } else{
                     self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
@@ -140,7 +137,6 @@ class DetailController: UIViewController{
         for value in selectItem{
             exchangeName = value.exchangeName
             tradingPairs = value.tradingPairsName
-            print(exchangeName)
         }
         
         marketSelectedData.exchangeName = exchangeName

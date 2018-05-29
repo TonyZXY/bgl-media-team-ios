@@ -148,22 +148,22 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         self.addChildViewController(tableVC)
     }
     
-    func hehe(){
-        cryptoCompareClient.getCoinList(){result in
-            switch result{
-            case .success(let resultData):
-                guard let coinList = resultData?.Data else {return}
-                for (key,value) in coinList{
-                    print(key, value.FullName ?? "")
-                }
-                
-                print(coinList.count)
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
-                
-            }
-        }
-    }
+//    func hehe(){
+//        cryptoCompareClient.getCoinList(){result in
+//            switch result{
+//            case .success(let resultData):
+//                guard let coinList = resultData?.Data else {return}
+//                for (key,value) in coinList{
+//                    print(key, value.FullName ?? "")
+//                }
+//                
+//                print(coinList.count)
+//            case .failure(let error):
+//                print("the error \(error.localizedDescription)")
+//                
+//            }
+//        }
+//    }
     
     
 }

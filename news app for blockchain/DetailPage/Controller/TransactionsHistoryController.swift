@@ -98,7 +98,6 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
 //        let cell = self.historyTableView.cellForRow(at: indexPath) as! HistoryTableViewCell
         transactionForm.updateTransaction = results[indexPath.row]
         transactionForm.transactionStatus = "Update"
-        print(transactionForm.updateTransaction.coinName)
         navigationController?.pushViewController(transactionForm, animated: true)
     }
     
@@ -164,7 +163,6 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         historyTableView.reloadData()
-        print("call noti")
         self.refresher.endRefreshing()
     }
 

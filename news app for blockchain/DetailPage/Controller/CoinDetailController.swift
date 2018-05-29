@@ -60,6 +60,10 @@ class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollecti
         collectionview.isPagingEnabled = true
         collectionview.delegate = self
         collectionview.dataSource = self
+        collectionview.showsHorizontalScrollIndicator = false
+        collectionview.bounces = false
+        collectionview.alwaysBounceHorizontal = false
+
         return collectionview
     }()
     
