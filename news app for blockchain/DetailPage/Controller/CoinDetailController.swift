@@ -60,6 +60,9 @@ class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollecti
         collectionview.isPagingEnabled = true
         collectionview.delegate = self
         collectionview.dataSource = self
+        collectionview.showsHorizontalScrollIndicator = false
+        collectionview.bounces = false
+        collectionview.alwaysBounceHorizontal = false
         return collectionview
     }()
     
@@ -92,21 +95,6 @@ class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollecti
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
-    
-//    lazy var gerneralController:GerneralController = {
-//        var general = GerneralController()
-//        return general
-//    }()
-//
-//    lazy var transactionHistoryController:TransactionsHistoryController = {
-//        var transaction = TransactionsHistoryController()
-//        return transaction
-//    }()
-//
-//    lazy var alertController:AlertController = {
-//        var alert = AlertController()
-//        return alert
-//    }()
     
     func addChildViewController(childViewControllers:UIViewController,cell:UICollectionViewCell){
         addChildViewController(childViewControllers)

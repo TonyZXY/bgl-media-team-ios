@@ -85,14 +85,15 @@ class VideoCell: BaseCell {
         view.addSubview(imageContainer)
         imageContainer.clipsToBounds = true
         imageContainer.addSubview(imageView)
+        addConstraintsWithFormat(format: "H:|[v0]|", views: imageView)
+        addConstraintsWithFormat(format: "V:|[v0]|", views: imageView)
         view.addSubview(titleLabel)
         view.addSubview(timeLabel)
         view.addSubview(authorLabel)
         let height = (frame.width - 30) * 9 / 16
-        addConstraintsWithFormat(format: "H:|[v0]|", views: imageView)
-        addConstraintsWithFormat(format: "V:|[v0]|", views: imageView)
+
         addConstraintsWithFormat(format: "H:|-10-[v0(90)]", views: authorLabel, timeLabel)
-        addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: imageContainer)
+        addConstraintsWithFormat(format: "H:|-10-[v0(\(frame.width-30))]-10-|", views: imageContainer)
         addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: titleLabel)
         addConstraintsWithFormat(format: "V:|-10-[v0(\(height))]-5-[v1(25)]-5-[v2(15)]", views: imageContainer, titleLabel, authorLabel)
 

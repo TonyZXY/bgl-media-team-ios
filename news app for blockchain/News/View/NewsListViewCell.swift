@@ -193,9 +193,9 @@ class NewsListViewCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
 
     // refresh data
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.refresher.beginRefreshing()
         numberOfItemsToDisplay = 7
         fetchData()
-        print("start refreshing")
         self.refresher.endRefreshing()
     }
 

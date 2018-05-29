@@ -38,7 +38,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func updateTransactionDetail(){
-        print(updateTransaction.amount)
         if transactionStatus == "Update"{
             transactionNumber = 1
             newTransaction.id = updateTransaction.id
@@ -78,13 +77,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                     self.newTransaction.audSinglePrice = price
                     self.newTransaction.audTotalPrice = self.newTransaction.audSinglePrice * Double(self.newTransaction.amount)
                     DispatchQueue.main.sync{
-                        print(self.newTransaction.singlePrice)
                         self.writeToRealm()
                     }
                 } else{
-                    DispatchQueue.main.sync{
-                    self.navigationController?.popViewController(animated: true)
-                    }
                     print("fail")
                 }
             }
@@ -111,7 +106,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         if realm.object(ofType: AllTransactions.self, forPrimaryKey: currentTransactionId) == nil {
             realm.create(AllTransactions.self, value: realmData)
         } else {
-            print("success123")
             realm.create(AllTransactions.self, value: realmData, update: true)
         }
         
@@ -135,7 +129,7 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         tableViews.register(TransAdditionalCell.self, forCellReuseIdentifier: "AdditionalCell")
         tableViews.delegate = self
         tableViews.dataSource = self
-        tableViews.separatorStyle = .none
+//        tableViews.separatorStyle = .none
         return tableViews
     }()
     
@@ -263,11 +257,13 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         }else if indexPath.row == 3{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[3], for: indexPath) as! TransPriceCell
             if transaction == "Buy"{
-                cell.priceLabel.text = "买入价格" + " " + newTransaction.tradingPairsName
+                cell.priceLabel.text = "买入价格(单价)" + " " + newTransaction.tradingPairsName
             } else if transaction == "Sell"{
-                cell.priceLabel.text = "卖出价格" + " " + newTransaction.tradingPairsName
+                cell.priceLabel.text = "卖出价格(单价)" + " " + newTransaction.tradingPairsName
             }
-            cell.price.text = scientificMethod(number: newTransaction.singlePrice)
+            if transactionStatus == "Update"{
+                cell.price.text = scientificMethod(number: newTransaction.singlePrice)
+            }
             cell.price.tag = indexPath.row
             cell.priceType.tag = 10
             cell.priceType.delegate = self
@@ -281,7 +277,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             } else if transaction == "Sell"{
                 cell.numberLabel.text = "出售数量"
             }
-            cell.number.text = String(newTransaction.amount)
+            if transactionStatus == "Update"{
+                cell.number.text = String(newTransaction.amount)
+            }
             cell.number.tag = indexPath.row
             cell.number.delegate = self
             cell.number.clearsOnBeginEditing = true
@@ -293,7 +291,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             } else if transaction == "Sell"{
                 cell.dateLabel.text = "出售日期"
             }
-            cell.date.text = String(newTransaction.date)
+            if transactionStatus == "Update"{
+                cell.date.text = String(newTransaction.date)
+            }
             cell.date.tag = indexPath.row
             textFieldDidEndEditing(cell.date)
             cell.date.delegate = self
@@ -305,7 +305,9 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             } else if transaction == "Sell"{
                 cell.timeLabel.text = "出售时间"
             }
-            cell.time.text = String(newTransaction.time)
+            if transactionStatus == "Update"{
+                cell.time.text = String(newTransaction.time)
+            }
             cell.time.tag = indexPath.row
             textFieldDidEndEditing(cell.time)
             cell.time.delegate = self

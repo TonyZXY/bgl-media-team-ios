@@ -85,7 +85,7 @@ class GeneralView:UIView{
         
         //Last View constraint
         scrollView.addConstraintsWithFormat(format: "H:|[v1]|", views: ImageView,LastView)
-        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(200)]|", views: ImageView,LastView)
+        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(120)]|", views: ImageView,LastView)
         NSLayoutConstraint(item: LastView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
         
         //First View TotalNumebr Label Constraint
@@ -172,7 +172,7 @@ class GeneralView:UIView{
         var label = UILabel()
         label.textColor = UIColor.white
         label.text = "0"
-        label.font = label.font.withSize(18)
+        label.font = label.font.withSize(30)
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -219,7 +219,7 @@ class GeneralView:UIView{
     var marketCap:UILabel = {
         var label = UILabel()
         label.text = "Market Cap"
-        label.font = label.font.withSize(22)
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -228,6 +228,7 @@ class GeneralView:UIView{
     var marketCapResult:UILabel = {
         var label = UILabel()
         label.text = "0"
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -252,7 +253,7 @@ class GeneralView:UIView{
     var volume:UILabel = {
         var label = UILabel()
         label.text = "Volume(24h)"
-        label.font = label.font.withSize(22)
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -267,6 +268,7 @@ class GeneralView:UIView{
     var volumeResult:UILabel = {
         var label = UILabel()
         label.text = "0"
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -275,7 +277,7 @@ class GeneralView:UIView{
     var circulatingSupply:UILabel = {
         var label = UILabel()
         label.text = "Circulating Supply"
-        label.font = label.font.withSize(22)
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -284,6 +286,7 @@ class GeneralView:UIView{
     var circulatingSupplyResult:UILabel = {
         var label = UILabel()
         label.text = "0"
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -12,7 +12,6 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
     // MARK: Instance variables
     
     private var fetcher = HistoricalDataFetcher()
-    var abc:Double = 1
     private var historicalDataStruct: HistoricalDataStruct? {
         didSet {
             spinner.stopAnimating()
@@ -30,12 +29,8 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
         get {
             if let data = historicalDataStruct {
                 let lastIndex = data.selectedData.count
-                print("count", lastIndex)
                 if let last = data.selectedData[lastIndex - 1]?.close, let secondLast = data.selectedData[lastIndex - 2]?.close
                 {
-                    print("last", last)
-                    print("secondLast", secondLast)
-                    abc = secondLast
                     return last - secondLast
                 }
             }
