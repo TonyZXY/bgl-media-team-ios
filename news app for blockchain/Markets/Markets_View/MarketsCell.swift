@@ -15,7 +15,7 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
     var sortItems = ["按字母排序","按最高价排序"]
     var filterDateitems = ["1W","1D","1H"]
     var coinItems = ["bitcoin","haha"]
-    
+    let general = generalDetail()
     //排序窗口 sort window
     let sortPickerView = UIPickerView()
     
@@ -373,8 +373,9 @@ class MarketsCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionV
             coinList.reloadData()
         }
         if collectionView == coinList {
-            let globalController = GloabalController()
-            UINavigationController().pushViewController(globalController, animated: true)
+            let cell = coinList.cellForItem(at: indexPath) as! MarketCollectionViewCell
+            general.coinAbbName = cell.coinLabel.text!
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectGlobalCoin"), object: self)
         }
     }
     

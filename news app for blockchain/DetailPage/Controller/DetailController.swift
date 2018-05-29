@@ -84,8 +84,9 @@ class DetailController: UIViewController{
     @objc func refreshData(){
         loadCoinPrice { (success) in
             if success{
-                if self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName) != 0 {
-                    GetDataResult().getMarketCapCoinDetail(coinId: self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName), priceType: "AUD"){(globalMarket,bool) in
+                let coinNameId = self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName)
+                if coinNameId != 0 {
+                    GetDataResult().getMarketCapCoinDetail(coinId: coinNameId, priceType: "AUD"){(globalMarket,bool) in
                         if bool {
                             DispatchQueue.main.async {
                                 self.globalMarketData = globalMarket!
@@ -137,6 +138,7 @@ class DetailController: UIViewController{
         for value in selectItem{
             exchangeName = value.exchangeName
             tradingPairs = value.tradingPairsName
+            print(exchangeName)
         }
         
         marketSelectedData.exchangeName = exchangeName
@@ -254,14 +256,13 @@ class DetailController: UIViewController{
             generalPage.mainView.volumeResult.text = "--"
             generalPage.mainView.circulatingSupplyResult.text = "--"
         }
-
-
         return coinId
     }
     
     @objc func setPriceChange() {
         let candleData = coinDetailController.gerneralController.vc
-        coinDetailController.gerneralController.mainView.totalRiseFall.text = scientificMethod(number: candleData.priceChange!)
+        coinDetailController.gerneralController.mainView.totalRiseFall.text = scientificMethod(number: candleData.priceChange!) + "(" + scientificMethod(number: candleData.priceChangeRatio!) + "%" + ")"
+        
     }
     
 
