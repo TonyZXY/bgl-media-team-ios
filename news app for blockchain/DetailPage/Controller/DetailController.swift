@@ -70,6 +70,7 @@ class DetailController: UIViewController{
             marketSelectedData.coinAmount = value.coinAmount
             generalPage.coinSymbol = value.coinAbbName
             coinDetailController.transactionHistoryController.generalData = general
+            
             generalPage.mainView.marketCapResult.text = String(globalMarketData.market_cap!)
             generalPage.mainView.volumeResult.text = String(globalMarketData.volume_24h!)
             generalPage.mainView.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
@@ -84,13 +85,15 @@ class DetailController: UIViewController{
         loadCoinPrice { (success) in
             if success{
                 if self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName) != 0 {
-                    GetDataResult().getMarketCapCoinDetail(coinId: self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName), priceType: "AUD"){(globalMarket) in
-                        if let globalMarket = globalMarket {
+                    GetDataResult().getMarketCapCoinDetail(coinId: self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName), priceType: "AUD"){(globalMarket,bool) in
+                        if bool {
                             DispatchQueue.main.async {
-                                self.globalMarketData = globalMarket
+                                self.globalMarketData = globalMarket!
                                 self.loadData()
                                 self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
                             }
+                        } else {
+                            self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
                         }
                     }
                 }
@@ -152,9 +155,6 @@ class DetailController: UIViewController{
                     completion(true)
                 }
             case .failure(let error):
-
-                    self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
-                
                 print("the error \(error.localizedDescription)")
             }
         }
@@ -176,9 +176,8 @@ class DetailController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
-         refreshData()
+        refreshData()
         self.tabBarController?.tabBar.isHidden = true
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
@@ -245,11 +244,22 @@ class DetailController: UIViewController{
     func getCoinName(coinAbbName:String)->Int{
         let data = GetDataResult().getMarketCapCoinList()
         var coinId:Int = 0
+        print(data)
+
         for value in data {
             if value.symbol == coinAbbName{
-                coinId = value.id!
-            }
+                    coinId = value.id!
         }
+        }
+        if coinId == 0{
+            self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+            let generalPage = coinDetailController.gerneralController
+            generalPage.mainView.marketCapResult.text = "--"
+            generalPage.mainView.volumeResult.text = "--"
+            generalPage.mainView.circulatingSupplyResult.text = "--"
+        }
+
+
         return coinId
     }
     

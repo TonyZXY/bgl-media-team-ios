@@ -98,16 +98,16 @@ class GetDataResult{
         return jsonData
     }
     
-    func getMarketCapCoinDetail(coinId:Int,priceType:String,completion:@escaping (GlobalMarket?)->Void){
+    func getMarketCapCoinDetail(coinId:Int,priceType:String,completion:@escaping (GlobalMarket?,Bool)->Void){
         let baseUrl:String = "https://api.coinmarketcap.com/v2/ticker/"
         let urlString:String = baseUrl + String(coinId) + "/?convert=" + priceType
         Alamofire.request(urlString).responseJSON { (response) in
             let json = try! JSONDecoder().decode(MarketAllData.self, from: response.data!)
             if json.data != nil{
                 let globalMarket:GlobalMarket = GlobalMarket(market: json, priceType: priceType)
-                completion(globalMarket)
+                completion(globalMarket,true)
             } else{
-                completion(nil)
+                completion(nil,false)
             }
         }
     }

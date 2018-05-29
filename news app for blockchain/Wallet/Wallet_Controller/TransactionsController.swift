@@ -82,9 +82,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                         self.writeToRealm()
                     }
                 } else{
-                    DispatchQueue.main.sync{
-                    self.navigationController?.popViewController(animated: true)
-                    }
                     print("fail")
                 }
             }

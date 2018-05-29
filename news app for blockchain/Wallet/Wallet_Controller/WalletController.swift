@@ -142,7 +142,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         marketSelectedData.coinAmount = object.coinAmount
         let filterName = "coinAbbName = '" + object.coinAbbName + "' "
         let coinSelected = realm.objects(MarketTradingPairs.self).filter(filterName)
-        print(String(coinSelected.count)+"sdfsd")
         if coinSelected.count == 0{
             marketSelectedData.exchangeName = object.exchangeName
             marketSelectedData.tradingPairsName = object.tradingPairsName
@@ -199,7 +198,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             }
             self.totalNumber.text = self.priceType + "$" + "0"
             self.checkRiseandfallNumber(risefallnumber: 0)
-//            self.walletResults = self.setWalletData()
+            self.walletResults = self.setWalletData()
             refreshData()
         }
     }
@@ -217,7 +216,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     }()
 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.walletResults = self.setWalletData()
         refreshData()
     }
 
