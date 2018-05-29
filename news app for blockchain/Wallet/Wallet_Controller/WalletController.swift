@@ -68,6 +68,11 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
+                    self.loading = self.loading + 1
+                    if self.loading == self.walletResults.count{
+                            self.caculate()
+                        
+                    }
                     self.refresher.endRefreshing()
                 }
             } else{
@@ -88,7 +93,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             refresher.endRefreshing()
         }
         self.walletList.reloadData()
-        caculate()
+        
     }
     
     func loadData(){
@@ -120,6 +125,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         }
         self.totalNumber.text = self.priceType + "$" + self.scientificMethod(number: totalNumber)
         self.checkRiseandfallNumber(risefallnumber: profitsRiseFall)
+        self.loading = 0
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,6 +139,10 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         return walletResults.count
     }
 
+    func geettt(){
+        
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WalletCell", for: indexPath) as! WalletsCell
         let object = walletResults[indexPath.row]
@@ -198,7 +208,8 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             }
             self.totalNumber.text = self.priceType + "$" + "0"
             self.checkRiseandfallNumber(risefallnumber: 0)
-            self.walletResults = self.setWalletData()
+//            self.walletResults = self.setWalletData()
+            walletResults.remove(at: indexPath.row)
             refreshData()
         }
     }
