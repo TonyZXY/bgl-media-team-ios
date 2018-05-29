@@ -242,7 +242,6 @@ class DetailController: UIViewController{
     func getCoinName(coinAbbName:String)->Int{
         let data = GetDataResult().getMarketCapCoinList()
         var coinId:Int = 0
-        print(data)
 
         for value in data {
             if value.symbol == coinAbbName{

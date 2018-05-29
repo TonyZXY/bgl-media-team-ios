@@ -58,7 +58,6 @@ class MarketCapClient: APIClient{
         endpoint.query = queryStr
         
         let request = endpoint.request
-        print(request.url!)
         fetch(with: request, decode: { json -> GlobalCap? in
             guard let globalCap = json as? GlobalCap else {return nil}
             return globalCap
