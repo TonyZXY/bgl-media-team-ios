@@ -107,7 +107,7 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
             for n in allCoinObject{
                 result.append(n.Name)
             }
-            filterObject = allCoinObject.filter({(mod) -> Bool in return mod.CoinName.lowercased().contains(searchBar.text!.lowercased())})
+            filterObject = allCoinObject.filter({(mod) -> Bool in return mod.Name.lowercased().contains(searchBar.text!.lowercased())})
             searchResult.reloadData()
         }
     }

@@ -24,7 +24,6 @@ class CandleStickChart: UIView {
                 candleStick.frame.size.height = self.frame.height
                 candleStick.frame.size.width = candleStickWidth
                 candleStick.configure(priceRange: dataStruct.priceRange, highest: dataStruct.highest, candleData: data)
-                candleUnitsArray.append(candleStick)
                 return candleStick
             }
             
