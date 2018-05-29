@@ -82,8 +82,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let detailViewController = DetailViewController()
             detailViewController.index0 = indexItem
-//            let detailViewController = AboutUsDetailViewController()
-//            detailViewController.label.text = "changed to about us"
             self.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: self)
             
         } else {
@@ -91,37 +89,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             detailViewController.index1 = indexItem
             self.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: self)
         }
-        
-//        if (indexSelected == [0,1]) {
-//            let detailViewController = WebMainViewController()
-//            detailViewController.label.text = "changed to community main menu"
-//            self.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: self)
-//
-//        }
-//
-//        if (indexSelected == [1,0]) {
-//            let detailViewController = DefaultCurrencyViewController()
-//            detailViewController.label.text = "changed to default currency menu"
-//            self.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: self)
-//        }
-//
-//        if (indexSelected == [1,1]) {
-//            let detailViewController = NotificationViewController()
-//            detailViewController.label.text = "changed to notifications menu"
-//            self.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: self)
-//        }
-//
-//        if (indexSelected == [1,2]) {
-//            let detailViewController = ViewOptionsViewController()
-//            detailViewController.label.text = "changed to view options menu"
-//            self.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: self)
-//        }
-//
-//        if (indexSelected == [1,3]) {
-//            let detailViewController = OtherOptionViewController()
-//            detailViewController.label.text = "changed to default display page menu"
-//            self.showDetailViewController(UINavigationController(rootViewController: detailViewController), sender: self)
-//        }
         
         //let detailViewController = AboutUsDetailViewController()
         //detailViewController.label.text = "changed when click"
