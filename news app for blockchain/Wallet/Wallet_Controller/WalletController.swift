@@ -34,12 +34,8 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         super.viewDidLoad()
         setupView()
         SetDataResult().writeJsonExchange()
-//        self.walletResults = self.setWalletData()
-//        refreshData()
         GetDataResult().getCoinList()
         refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
-        print(allResult)
-        print(all)
     }
 
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
