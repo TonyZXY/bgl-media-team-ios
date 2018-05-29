@@ -33,11 +33,17 @@ class DetailController: UIViewController{
     var marketSelectedData = MarketTradingPairs()
     var globalMarketData = GlobalMarket()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         loadData()
         refreshData()
+        NotificationCenter.default.addObserver(self, selector: #selector(setPriceChange), name: NSNotification.Name(rawValue: "setPriceChange"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "setPriceChange"), object: nil)
     }
     
     @objc func loadData(){
@@ -67,15 +73,17 @@ class DetailController: UIViewController{
             generalPage.mainView.marketCapResult.text = String(globalMarketData.market_cap!)
             generalPage.mainView.volumeResult.text = String(globalMarketData.volume_24h!)
             generalPage.mainView.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
+            
+//            let candleData = coinDetailController.gerneralController.vc
+////            print(candleData.priceChange)
+////            generalPage.mainView.totalRiseFall.text = String(candleData.priceChange)
         }
     }
     
     @objc func refreshData(){
-        coinDetailController.gerneralController.mainView.spinner.startAnimating()
         loadCoinPrice { (success) in
             if success{
                 if self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName) != 0 {
-                    print("dfsf")
                     GetDataResult().getMarketCapCoinDetail(coinId: self.getCoinName(coinAbbName: self.coinDetails.selectCoinAbbName), priceType: "AUD"){(globalMarket) in
                         if let globalMarket = globalMarket {
                             DispatchQueue.main.async {
@@ -86,8 +94,11 @@ class DetailController: UIViewController{
                         }
                     }
                 }
+            } else{
+                self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
             }
         }
+        
     }
     
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
@@ -98,7 +109,7 @@ class DetailController: UIViewController{
                     walletData.totalPrice = Double(price) * Double(walletData.coinAmount)
                     walletData.totalRiseFallPercent = ((walletData.totalPrice - transactionPrice) / transactionPrice) * 100
                     walletData.totalRiseFall = walletData.totalPrice - transactionPrice
-
+                    print("sdfsfsdsd")
                     self.realm.beginWrite()
                     if self.realm.object(ofType: MarketTradingPairs.self, forPrimaryKey: walletData.coinAbbName) == nil {
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType])
@@ -106,15 +117,20 @@ class DetailController: UIViewController{
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
+//                    let ss = self.realm.objects(MarketTradingPairs.self)
+//                    print(ss)
                 }
             } else{
+                    self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
                 print("fail")
             }
         }
     }
     
     func loadCoinPrice(completion:@escaping (Bool)->Void){
+        coinDetailController.gerneralController.mainView.spinner.startAnimating()
         let filterName = "coinAbbName = '" + coinDetails.selectCoinAbbName + "' "
+        
         let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
         var tradingPairs:String = ""
         var exchangeName:String = ""
@@ -124,6 +140,8 @@ class DetailController: UIViewController{
             print(exchangeName)
         }
         
+        marketSelectedData.exchangeName = exchangeName
+        marketSelectedData.tradingPairsName = tradingPairs
         
         cryptoCompareClient.getTradePrice(from: marketSelectedData.coinAbbName, to: tradingPairs, exchange: exchangeName){ result in
             switch result{
@@ -131,12 +149,15 @@ class DetailController: UIViewController{
                 for results in resultData!{
                     let single = Double(results.value)
                     self.getAllData(priceType: "AUD", walletData:self.marketSelectedData, single: single, eachCell: WalletsCell(), transactionPrice: self.marketSelectedData.transactionPrice)
+                    completion(true)
                 }
             case .failure(let error):
+
+                    self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                
                 print("the error \(error.localizedDescription)")
             }
         }
-        completion(true)
     }
     
     var spinner:UIActivityIndicatorView{
@@ -155,7 +176,9 @@ class DetailController: UIViewController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
+         refreshData()
         self.tabBarController?.tabBar.isHidden = true
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshData), name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
@@ -230,15 +253,10 @@ class DetailController: UIViewController{
         return coinId
     }
     
-//    func getCoinDetail(coinId:Int,priceType:String){
-//        GetDataResult().getMarketCapCoinDetail(coinId: coinId, priceType: priceType){(globalMarket) in
-//            if let globalMarket = globalMarket {
-//                DispatchQueue.main.async {
-//                    self.globalMarketData = globalMarket
-//                    self.loadData()
-//                }
-//            }
-//        }
-//    }
+    @objc func setPriceChange() {
+        let candleData = coinDetailController.gerneralController.vc
+        coinDetailController.gerneralController.mainView.totalRiseFall.text = scientificMethod(number: candleData.priceChange!)
+    }
+    
 
 }

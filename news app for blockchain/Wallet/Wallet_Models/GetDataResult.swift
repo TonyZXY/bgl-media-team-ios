@@ -167,9 +167,9 @@ class GetDataResult{
         let queue = DispatchQueue(label: "ssss")
         
         queue.sync {
-            guard let url = URL(string: urlString) else { return }
+            guard let url = URL(string: urlString) else { return completion(false,0)}
             let transferPrices = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data else { return }
+                guard let data = data else { return completion(false,0)}
                 do{
                     let json = try JSONDecoder().decode([String:Double].self, from: data)
                     for n in json{
@@ -178,7 +178,7 @@ class GetDataResult{
                     completion(true,transferPrice)
                 } catch let jsonErr{
                     print("Error serializing json:",jsonErr)
-                    completion(false,transferPrice)
+//                    completion(false,transferPrice)
                 }
             }
             transferPrices.resume()

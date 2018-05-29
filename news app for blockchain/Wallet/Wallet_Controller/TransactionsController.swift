@@ -62,15 +62,17 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         newTransaction.status = transaction
         if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0.0" && String(newTransaction.singlePrice) != "0.0"{
             transactionButton.setTitle("Loading...", for: .normal)
-            GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "USD", price: self.newTransaction.singlePrice){success,price in
-                if success{
-                    self.newTransaction.usdSinglePrice = price
-                    self.newTransaction.usdTotalPrice = self.newTransaction.usdSinglePrice * Double(self.newTransaction.amount)
-                } else{
-                    print("fail")
-                }
-                
-            }
+            
+//            GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "USD", price: self.newTransaction.singlePrice){success,price in
+//                if success{
+//                    self.newTransaction.usdSinglePrice = price
+//                    self.newTransaction.usdTotalPrice = self.newTransaction.usdSinglePrice * Double(self.newTransaction.amount)
+//                } else{
+//                    print("fail")
+//                }
+//
+//            }
+            
             GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "AUD", price: self.newTransaction.singlePrice){success,price in
                 if success{
                     self.newTransaction.audSinglePrice = price
@@ -79,8 +81,10 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                         print(self.newTransaction.singlePrice)
                         self.writeToRealm()
                     }
-                    
                 } else{
+                    DispatchQueue.main.sync{
+                    self.navigationController?.popViewController(animated: true)
+                    }
                     print("fail")
                 }
             }

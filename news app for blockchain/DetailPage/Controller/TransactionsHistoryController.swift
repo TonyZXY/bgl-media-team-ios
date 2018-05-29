@@ -22,14 +22,17 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
         super.viewDidLoad()
         let filterName = "coinAbbName = '" + generalData.coinAbbName + "' "
         results = realm.objects(AllTransactions.self).filter(filterName)
+             NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh(_:)), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
         setUpView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh(_:)), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
     }
 
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -13,6 +13,7 @@ class GerneralController: UIViewController {
     let mainView = GeneralView()
     var generalData = generalDetail()
     let realm = try! Realm()
+    let vc = CandleStickChartViewController()
     var coinSymbol:String = ""
     
     override func viewDidLoad() {
@@ -26,12 +27,12 @@ class GerneralController: UIViewController {
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: mainView)
         view.addConstraintsWithFormat(format: "V:|[v0]|", views: mainView)
         
-        let vc = CandleStickChartViewController()
         vc.willMove(toParentViewController: self)
         mainView.ImageView.addSubview(vc.view)
         self.addChildViewController(vc)
         vc.view.translatesAutoresizingMaskIntoConstraints = false
         vc.view.frame.size.height = mainView.ImageView.frame.size.height
+//        vc.view.frame.size.width = mainView.ImageView.frame.size.width
 
         NSLayoutConstraint(item: vc.view, attribute: .centerX, relatedBy: .equal, toItem: mainView.ImageView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: vc.view, attribute: .centerY, relatedBy: .equal, toItem: mainView.ImageView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
