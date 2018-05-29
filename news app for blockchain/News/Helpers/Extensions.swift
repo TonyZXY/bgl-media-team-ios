@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
@@ -26,10 +27,30 @@ extension UIView {
     }
 }
 
+class IndicatorView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    func setupView(){
+        backgroundColor = UIColor.darkGray
+        let indicator = UIActivityIndicatorView()
+        indicator.center = self.center
+        addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension IndicatorView: Placeholder { /* Just leave it empty */}
+
 extension UIImageView {
     func setImage(urlString: String) {
-//        self.kf.setImage(with: URL(string: urlString))
-        self.kf.setImage(with: URL(string: urlString), placeholder: UIImage(named: "loading"))
+        self.kf.setImage(with: URL(string: urlString), placeholder: IndicatorView(frame: frame) as Placeholder)
     }
 }
 
