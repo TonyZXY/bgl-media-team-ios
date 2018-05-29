@@ -48,18 +48,14 @@ class GeneralView:UIView{
         SecondView.addSubview(tradingPairs)
         SecondView.addSubview(edit)
         
-        
-//        let stack1 = setUpStackView(view: [setUpStackView(view: [marketCap,marketCapResult], spacing: 5, axis: .vertical),setUpStackView(view: [marketRiseFall,marketRiseFallResult], spacing: 5, axis: .vertical)], spacing: 5, axis: .horizontal)
 
         
         let stack2 = setUpStackView(view: [setUpStackView(view: [volume,volumeResult], spacing: 0, axis: .vertical),setUpStackView(view: [circulatingSupply,circulatingSupplyResult], spacing: 0, axis: .vertical)], spacing: 5, axis: .horizontal)
         
         let totalStack = setUpStackView(view: [setUpStackView(view: [marketCap,marketCapResult], spacing: 0, axis: .vertical),stack2], spacing: 5, axis: .vertical)
-        
-//        let totalStack = setUpStackView(view: [stack1,stack2,stack3], spacing: 15, axis: .vertical)
+
         
         LastView.addSubview(totalStack)
-        
         LastView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: totalStack)
         LastView.addConstraintsWithFormat(format: "V:|[v0]|", views: totalStack)
         
@@ -78,10 +74,13 @@ class GeneralView:UIView{
         NSLayoutConstraint(item: SecondView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
         
         //Image View constraint
-//        ImageView.frame.size.width = 200
+        
         scrollView.addConstraintsWithFormat(format: "H:|[v1]|", views: SecondView,ImageView)
         scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(200)]", views: SecondView,ImageView)
         NSLayoutConstraint(item: ImageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
+        print(ImageView.frame.size.width)
+        print(ImageView.frame.size.height)
+        print()
         
         //Last View constraint
         scrollView.addConstraintsWithFormat(format: "H:|[v1]|", views: ImageView,LastView)
@@ -157,6 +156,7 @@ class GeneralView:UIView{
         var imageView = UIView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.frame.size.height = 200
+//        imageView.frame.size.width = 300
         imageView.backgroundColor = .orange
         return imageView
     }()

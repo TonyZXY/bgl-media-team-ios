@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-extension UIView{
+extension UIViewController{
     func ChangeRiseFallColor(risefallnumber: String)->UILabel{
         let result = UILabel()
         if risefallnumber.prefix(1) == "-" {
@@ -26,5 +26,21 @@ extension UIView{
             result.text = "▲ " + "+" + risefallnumber
         }
         return result
+    }
+    
+    func checkDataRiseFallColor(risefallnumber: Double,label:UILabel) {
+        if String(risefallnumber).prefix(1) == "-" {
+            // lost with red
+            label.textColor = ThemeColor().fallColor()
+            label.text = "▼ " + scientificMethod(number: risefallnumber)
+        } else if String(risefallnumber) == "0.0"{
+            // Not any change with white
+            label.text = "--"
+            label.textColor = UIColor.white
+        } else {
+            //Profit with green
+            label.textColor = ThemeColor().riseColor()
+            label.text = "▲ " + "+" + scientificMethod(number: risefallnumber)
+        }
     }
 }

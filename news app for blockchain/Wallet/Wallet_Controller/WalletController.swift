@@ -35,7 +35,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         setupView()
         SetDataResult().writeJsonExchange()
         GetDataResult().getCoinList()
-        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+//        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
     }
 
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
@@ -472,6 +472,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                 totalChange.text = "▲ " + "+" + scientificMethod(number: risefallnumber)  + "%"
             }
         }
+    
 
 
     func getDoubleFrom(textField: UILabel) -> Double

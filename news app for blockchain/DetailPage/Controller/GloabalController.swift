@@ -46,16 +46,16 @@ class GloabalController: UIViewController {
     
     @objc func loadData(){
         let generalPage = coinDetailController.gerneralController
-        generalPage.mainView.edit.isHidden = true
-        generalPage.mainView.tradingPairs.text = coinDetail.coinName + "/" + "AUD"
-        generalPage.mainView.market.text = "Global average"
-        generalPage.mainView.marketCapResult.text = "A$" + scientificMethod(number: globalMarketData.market_cap!)
-        generalPage.mainView.volumeResult.text = "A$" + scientificMethod(number: globalMarketData.volume_24h!)
-        generalPage.mainView.circulatingSupplyResult.text = scientificMethod(number: globalMarketData.circulating_supply!)
+        generalPage.edit.isHidden = true
+        generalPage.tradingPairs.text = coinDetail.coinName + "/" + "AUD"
+        generalPage.market.text = "Global average"
+        generalPage.marketCapResult.text = "A$" + scientificMethod(number: globalMarketData.market_cap!)
+        generalPage.volumeResult.text = "A$" + scientificMethod(number: globalMarketData.volume_24h!)
+        generalPage.circulatingSupplyResult.text = scientificMethod(number: globalMarketData.circulating_supply!)
         generalPage.coinSymbol = coinDetail.coinName
         general.coinAbbName = coinDetail.coinName
         coinDetailController.transactionHistoryController.generalData = general
-        generalPage.mainView.totalNumber.text = "A$"+scientificMethod(number:globalMarketData.price!)
+        generalPage.totalNumber.text = "A$"+scientificMethod(number:globalMarketData.price!)
         
 //        generalPage
         
@@ -116,10 +116,10 @@ class GloabalController: UIViewController {
                     DispatchQueue.main.async {
                          self.globalMarketData = globalMarket!
                          self.loadData()
-                         self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                         self.coinDetailController.gerneralController.spinner.stopAnimating()
                     }
                 } else {
-                    self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                    self.coinDetailController.gerneralController.spinner.stopAnimating()
                 }
             }
         }
@@ -135,18 +135,18 @@ class GloabalController: UIViewController {
             }
         }
         if coinId == 0{
-            self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+            self.coinDetailController.gerneralController.spinner.stopAnimating()
             let generalPage = coinDetailController.gerneralController
-            generalPage.mainView.marketCapResult.text = "--"
-            generalPage.mainView.volumeResult.text = "--"
-            generalPage.mainView.circulatingSupplyResult.text = "--"
+            generalPage.marketCapResult.text = "--"
+            generalPage.volumeResult.text = "--"
+            generalPage.circulatingSupplyResult.text = "--"
         }
         return coinId
     }
     
     @objc func setPriceChange() {
         let candleData = coinDetailController.gerneralController.vc
-        coinDetailController.gerneralController.mainView.totalRiseFall.text = scientificMethod(number: candleData.priceChange!)
+        coinDetailController.gerneralController.totalRiseFall.text = scientificMethod(number: candleData.priceChange!)
     }
 
 }
