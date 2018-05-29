@@ -15,7 +15,7 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
     var allTradingPairs = [String]()
     let getDataResults = GetDataResult()
     var delegate:TransactionFrom?
-    var selectValues:String = ""
+    var selectValues:Double = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         getTradingPairsList()
@@ -41,8 +41,6 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
         delegate?.setTradingPairsName(tradingPairsName: (table.textLabel?.text)!)
         delegate?.setTradingPairsSecondType(secondCoinType: allPairs)
 //        loadPrice(selectTradingPairs: (table.textLabel?.text)!)
-//        print(selectValues)
-//        delegate?.setPrice(price: selectValues)
         navigationController?.popViewController(animated: true)
     }
     
@@ -77,21 +75,18 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
     }
     
 //    func loadPrice(selectTradingPairs:String){
-//        let selectValue:String = ""
+//        selectValues = 0
 //        cryptoCompareClient.getTradePrice(from: (delegate?.getCoinName())!, to: selectTradingPairs, exchange: delegate?.getExchangeName()){ result in
 //                switch result{
 //                case .success(let resultData):
 //                    for result in resultData!{
-//                        self.selectValues = String(result.value)
-//                        print(self.selectValues)
+//                        self.selectValues = Double(result.value)
+////                        self.delegate?.setSinglePrice(single: self.selectValues)
 //                    }
 //                case .failure(let error):
 //                    print("the error \(error.localizedDescription)")
 //                }
-//            }
-//        } else{
-//            selectValue = ""
-//            return selectValue
 //        }
 //    }
+
 }

@@ -84,5 +84,27 @@ class CryptoCompareClient: APIClient{
         
     }
     
+    func getTradePrices(from: String, to: String?=nil, exchange: String?=nil, completion: @escaping (Result<Price?, APIError>) -> Void) {
+        
+        let fsym = "fsym=" + from
+        let toSymbel = to ?? self.defaultCurrency
+        let tsym = "tsyms=" + toSymbel
+        var queryStr = [fsym, tsym].joined(separator: "&")
+        if (exchange != nil){
+            queryStr = [queryStr, "e=" + exchange!].joined(separator: "&")
+        }
+        
+        let endpoint = CryptoCompareEndpoint(type: CryptoComparePath.price)
+        endpoint.query = queryStr
+        
+        let request = endpoint.request
+        
+        fetch(with: request, decode: { json -> Price? in
+            guard let price = json as? Price else {return nil}
+            return price
+        }, completion: completion)
+        
+    }
+    
     
 }

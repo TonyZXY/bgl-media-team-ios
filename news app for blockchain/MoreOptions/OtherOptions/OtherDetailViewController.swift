@@ -23,6 +23,11 @@ class OtherDetailViewController: UIViewController, UITableViewDataSource, UITabl
         // Do any additional setup after loading the view.
         otherDTableView.dataSource = self
         otherDTableView.delegate = self
+        let label130 = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 50))
+        label130.textAlignment = .center
+        label130.textColor = UIColor.white
+        label130.text = "启动时默认显示页面"
+        self.navigationItem.titleView = label130
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -42,8 +47,6 @@ class OtherDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let str1 = data[indexPath.row]
-        //print(str1)
-        //let realm = try! Realm()
         print(realm.configuration.fileURL ?? "")
         
         let newDisplayPage = defDisplayOpt()

@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import UIKit
+import SwiftyJSON
+import Alamofire
 
 struct Currency:Decodable{
     var query:[String:Int]
@@ -20,12 +23,33 @@ struct CurrencyPairs:Decodable{
     var val:Double?
 }
 
+struct GlobalCoinList:Decodable{
+    var id:Int?
+    var name:String?
+    var symbol:String?
+    var website_slug:String?
+}
+
+struct MetaData:Decodable{
+    var timestamp:Int?
+    var num_cryptocurrencies:Int?
+    var error:String?
+}
+
+struct MarketCapData:Decodable {
+    var data:[GlobalCoinList]?
+    var metadata:MetaData?
+}
+
 class GetDataResult{
     let cryptoCompareClient = CryptoCompareClient()
     let container = try! Container()
     typealias tradingCoin = [String]
     typealias chooseCoin = [String:tradingCoin]
     typealias exchangeChoose = [String:chooseCoin]
+//    typealias globalCoinList = ["String":[GlobalCoinList]]
+    
+//    let cc:[String:[AnyObject]] = ["data":[GlobalCoinList]]
     
     func getCoinList(){
         cryptoCompareClient.getCoinList(){result in
@@ -59,6 +83,35 @@ class GetDataResult{
         return jsonData
     }
     
+    func getMarketCapCoinList()->[GlobalCoinList]{
+        var jsonData = [GlobalCoinList]()
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let filePath = documentsURL.appendingPathComponent("CoinList.json").path
+        if FileManager.default.fileExists(atPath: filePath), let data = FileManager.default.contents(atPath: filePath) {
+            do{
+                let json = try JSONDecoder().decode(MarketCapData.self, from: data)
+                jsonData = (json.data)!
+            } catch let jsonErr{
+                print("Error serializing json:",jsonErr)
+            }
+        }
+        return jsonData
+    }
+    
+    func getMarketCapCoinDetail(coinId:Int,priceType:String,completion:@escaping (GlobalMarket?)->Void){
+        let baseUrl:String = "https://api.coinmarketcap.com/v2/ticker/"
+        let urlString:String = baseUrl + String(coinId) + "/?convert=" + priceType
+        Alamofire.request(urlString).responseJSON { (response) in
+            let json = try! JSONDecoder().decode(MarketAllData.self, from: response.data!)
+            if json.data != nil{
+                let globalMarket:GlobalMarket = GlobalMarket(market: json, priceType: priceType)
+                completion(globalMarket)
+            } else{
+                completion(nil)
+            }
+        }
+    }
+            
     func getTradingCoinList(market:String,coin:String)->tradingCoin{
         var jsonData = tradingCoin()
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -114,9 +167,9 @@ class GetDataResult{
         let queue = DispatchQueue(label: "ssss")
         
         queue.sync {
-            guard let url = URL(string: urlString) else { return }
+            guard let url = URL(string: urlString) else { return completion(false,0)}
             let transferPrices = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                guard let data = data else { return }
+                guard let data = data else { return completion(false,0)}
                 do{
                     let json = try JSONDecoder().decode([String:Double].self, from: data)
                     for n in json{
@@ -125,7 +178,7 @@ class GetDataResult{
                     completion(true,transferPrice)
                 } catch let jsonErr{
                     print("Error serializing json:",jsonErr)
-                    completion(false,transferPrice)
+//                    completion(false,transferPrice)
                 }
             }
             transferPrices.resume()

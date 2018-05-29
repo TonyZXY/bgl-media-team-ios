@@ -19,7 +19,7 @@ class Video: Object {
     @objc dynamic var author: String? = ""
     @objc dynamic var localeTag: String? = ""
     @objc dynamic var typeTag: String? = ""
-    
+
     override class func primaryKey() -> String {
         return "_id"
     }

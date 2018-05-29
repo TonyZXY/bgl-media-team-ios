@@ -24,10 +24,6 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
         setupView()
         searchBar.becomeFirstResponder()
         searchBar.returnKeyType = UIReturnKeyType.done
-        
-        
-        
-        
         DispatchQueue.main.async {
             self.searchResult.reloadData()
         }

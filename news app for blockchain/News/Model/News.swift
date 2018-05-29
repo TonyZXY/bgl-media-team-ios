@@ -14,12 +14,12 @@ class News: Object {
     @objc dynamic var title: String? = ""
     @objc dynamic var newsDescription: String? = ""
     @objc dynamic var imageURL: String? = ""
-    @objc dynamic var detail: String? = ""
+    @objc dynamic var url: String? = ""
     @objc dynamic var publishedTime: String? = ""
     @objc dynamic var author: String? = ""
     @objc dynamic var localeTag: String? = ""
     @objc dynamic var contentTag: String? = ""
-    
+
     override class func primaryKey() -> String {
         return "_id"
     }

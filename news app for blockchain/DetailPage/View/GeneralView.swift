@@ -40,6 +40,7 @@ class GeneralView:UIView{
         scrollView.addSubview(ImageView)
         scrollView.addSubview(LastView)
         
+        FirstView.addSubview(spinner)
         FirstView.addSubview(totalNumber)
         FirstView.addSubview(totalRiseFall)
         
@@ -48,13 +49,14 @@ class GeneralView:UIView{
         SecondView.addSubview(edit)
         
         
-        let stack1 = setUpStackView(view: [setUpStackView(view: [marketCap,marketCapResult], spacing: 5, axis: .vertical),setUpStackView(view: [marketRiseFall,marketRiseFallResult], spacing: 5, axis: .vertical)], spacing: 5, axis: .horizontal)
+//        let stack1 = setUpStackView(view: [setUpStackView(view: [marketCap,marketCapResult], spacing: 5, axis: .vertical),setUpStackView(view: [marketRiseFall,marketRiseFallResult], spacing: 5, axis: .vertical)], spacing: 5, axis: .horizontal)
 
-        let stack2 = setUpStackView(view: [setUpStackView(view: [volume,volumeResult], spacing: 5, axis: .vertical),setUpStackView(view: [circulatingSupply,circulatingSupplyResult], spacing: 5, axis: .vertical)], spacing: 5, axis: .horizontal)
         
-        let stack3 = setUpStackView(view: [setUpStackView(view: [low,lowResult], spacing: 5, axis: .vertical),setUpStackView(view: [high,highResult], spacing: 5, axis: .vertical)], spacing: 5, axis: .horizontal)
+        let stack2 = setUpStackView(view: [setUpStackView(view: [volume,volumeResult], spacing: 0, axis: .vertical),setUpStackView(view: [circulatingSupply,circulatingSupplyResult], spacing: 0, axis: .vertical)], spacing: 5, axis: .horizontal)
         
-        let totalStack = setUpStackView(view: [stack1,stack2,stack3], spacing: 15, axis: .vertical)
+        let totalStack = setUpStackView(view: [setUpStackView(view: [marketCap,marketCapResult], spacing: 0, axis: .vertical),stack2], spacing: 5, axis: .vertical)
+        
+//        let totalStack = setUpStackView(view: [stack1,stack2,stack3], spacing: 15, axis: .vertical)
         
         LastView.addSubview(totalStack)
         
@@ -76,8 +78,9 @@ class GeneralView:UIView{
         NSLayoutConstraint(item: SecondView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
         
         //Image View constraint
+//        ImageView.frame.size.width = 200
         scrollView.addConstraintsWithFormat(format: "H:|[v1]|", views: SecondView,ImageView)
-        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(250)]", views: SecondView,ImageView)
+        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(200)]", views: SecondView,ImageView)
         NSLayoutConstraint(item: ImageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
         
         //Last View constraint
@@ -95,6 +98,10 @@ class GeneralView:UIView{
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 10).isActive = true
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.height, multiplier: 1/2, constant: 0).isActive = true
+        
+        //First View Spinnner
+        NSLayoutConstraint(item: spinner, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 10).isActive = true
+        NSLayoutConstraint(item: spinner, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -15).isActive = true
         
         //Second View market Label Constraint
         NSLayoutConstraint(item: market, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: SecondView, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 5).isActive = true
@@ -146,10 +153,11 @@ class GeneralView:UIView{
         return view
     }()
     
-    var ImageView:UIImageView = {
-        var imageView = UIImageView()
-        imageView.backgroundColor = ThemeColor().walletCellcolor()
+    var ImageView:UIView = {
+        var imageView = UIView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.frame.size.height = 200
+        imageView.backgroundColor = .orange
         return imageView
     }()
     
@@ -210,7 +218,8 @@ class GeneralView:UIView{
     
     var marketCap:UILabel = {
         var label = UILabel()
-        label.text = "0"
+        label.text = "Market Cap"
+        label.font = label.font.withSize(22)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -242,10 +251,17 @@ class GeneralView:UIView{
     
     var volume:UILabel = {
         var label = UILabel()
-        label.text = "0"
+        label.text = "Volume(24h)"
+        label.font = label.font.withSize(22)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    var spinner:UIActivityIndicatorView = {
+        var spinner = UIActivityIndicatorView()
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
     }()
     
     var volumeResult:UILabel = {
@@ -258,7 +274,8 @@ class GeneralView:UIView{
     
     var circulatingSupply:UILabel = {
         var label = UILabel()
-        label.text = "0"
+        label.text = "Circulating Supply"
+        label.font = label.font.withSize(22)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

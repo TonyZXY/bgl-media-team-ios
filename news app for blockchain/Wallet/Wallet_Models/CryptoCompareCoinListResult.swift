@@ -10,6 +10,17 @@ import Foundation
 
 struct  CryptoCompareCoinListResult: Decodable {
     let Data: [String:CryptoCompareCoin]
-    let Response: String?
-    let Message: String?
+    
+    init?(json: Data?) // take some JSON and try to init an EmojiArt from it
+    {
+        if let data = json, let newValue = try? JSONDecoder().decode(CryptoCompareCoinListResult.self, from: data) {
+            self = newValue
+        } else {
+            return nil
+        }
+    }
+    
+    init(data: [String:CryptoCompareCoin]) {
+        self.Data = data
+    }
 }

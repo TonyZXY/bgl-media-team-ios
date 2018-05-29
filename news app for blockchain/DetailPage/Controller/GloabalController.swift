@@ -19,11 +19,6 @@ class GloabalController: UIViewController {
         addChildViewControllers(childViewControllers: CoinDetailController(), views: view)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func addChildViewControllers(childViewControllers:UIViewController,views:UIView){
         addChildViewController(childViewControllers)
         views.addSubview(childViewControllers.view)

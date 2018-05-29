@@ -9,12 +9,17 @@
 import UIKit
 
 class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-
+    var observer:NSObjectProtocol?
+    var observer1:NSObject?
+    let gerneralController = GerneralController()
+    let transactionHistoryController = TransactionsHistoryController()
+    let alertController = AlertController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
     }
-
+    
     func setUpView(){
         //Menu Bar
         view.addSubview(menuBar)
@@ -88,20 +93,20 @@ class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollecti
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
-    lazy var gerneralController:GerneralController = {
-        var general = GerneralController()
-        return general
-    }()
-    
-    lazy var transactionHistoryController:TransactionsHistoryController = {
-        var transaction = TransactionsHistoryController()
-        return transaction
-    }()
-    
-    lazy var alertController:AlertController = {
-        var alert = AlertController()
-        return alert
-    }()
+//    lazy var gerneralController:GerneralController = {
+//        var general = GerneralController()
+//        return general
+//    }()
+//
+//    lazy var transactionHistoryController:TransactionsHistoryController = {
+//        var transaction = TransactionsHistoryController()
+//        return transaction
+//    }()
+//
+//    lazy var alertController:AlertController = {
+//        var alert = AlertController()
+//        return alert
+//    }()
     
     func addChildViewController(childViewControllers:UIViewController,cell:UICollectionViewCell){
         addChildViewController(childViewControllers)
@@ -122,5 +127,7 @@ class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollecti
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
 
 }
