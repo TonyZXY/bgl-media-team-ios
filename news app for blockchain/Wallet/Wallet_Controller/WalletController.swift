@@ -101,16 +101,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         refreshData()
     }
 
-    func getnumber(completion:(Bool,Any?,Error?)->Void){
-            if self.walletResults.count == 0{
-            refresher.endRefreshing()
-            }
-            self.walletList.reloadData()
-            caculate()
-            completion(true,"Good",nil)
-    
-    }
-
     func caculate(){
         let ss = try! Realm().objects(MarketTradingPairs.self)
         var totalNumber:Double = 0

@@ -11,25 +11,50 @@ import UIKit
 class MarketController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     
     let tickerDataFetcher = TickerDataFetcherV2()
+    let general = generalDetail()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barTintColor = color.themeColor()
+        NotificationCenter.default.addObserver(self, selector: #selector(globalToDetail), name: NSNotification.Name(rawValue: "selectGlobalCoin"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(watchListToDetail), name: NSNotification.Name(rawValue: "selectWatchListCoin"), object: nil)
         setupMenuBar()
         setupColleectionView()
         let titleLabel = UILabel()
         titleLabel.text = "Blockchain Global"
         titleLabel.textColor = UIColor.white
         navigationItem.titleView = titleLabel
-        
         cancelTouchKeyboard()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         tickerDataFetcher.fetchTickerDataWrapper()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "selectGlobalCoin"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "selectWatchListCoin"), object: nil)
+    }
+    
+    @objc func globalToDetail(notificaiton:Notification){
+        let result = notificaiton.object as! MarketsCell
+        let global = GloabalController()
+        global.coinDetail.coinName = result.general.coinAbbName
+        navigationController?.pushViewController(global, animated: true)
+    }
+    
+    @objc func watchListToDetail(notificaiton:Notification){
+        let result = notificaiton.object as! WatchList
+        let global = GloabalController()
+        global.coinDetail.coinName = result.general.coinAbbName
+        navigationController?.pushViewController(global, animated: true)
     }
     
     var color = ThemeColor()
