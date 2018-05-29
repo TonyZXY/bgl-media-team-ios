@@ -50,8 +50,8 @@ extension IndicatorView: Placeholder { /* Just leave it empty */}
 
 extension UIImageView {
     func setImage(urlString: String) {
-//        self.kf.setImage(with: URL(string: urlString), placeholder: IndicatorView(frame: frame) as Placeholder)
-        self.kf.setImage(with: URL(string: urlString), placeholder: UIImage(named: "loading"))
+        self.kf.setImage(with: URL(string: urlString), placeholder: IndicatorView(frame: frame) as Placeholder)
+//        self.kf.setImage(with: URL(string: urlString), placeholder: UIImage(named: "loading"))
     }
 }
 
