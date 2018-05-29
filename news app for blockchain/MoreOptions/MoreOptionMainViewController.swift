@@ -62,10 +62,10 @@ class MoreOptionMainViewController: UIViewController, UITableViewDataSource, UIT
         // select view segues accoding to indexPath values
         if ((secnum == [0,0]) || (secnum == [0,1])) {
             performSegue(withIdentifier: segueIdentities[indexPath.row], sender: self)
-            //print(segueIdentities[indexPath.row])
+
         } else {
             performSegue(withIdentifier: segueIdentities[(indexPath.row+2)], sender: self)
-            //print(segueIdentities[(indexPath.row+2)])
+
         }
     }
     
