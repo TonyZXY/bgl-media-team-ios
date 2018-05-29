@@ -12,7 +12,7 @@ class MoreOptionsRootViewController: UIViewController, UISplitViewControllerDele
     
     let mainSplitView: UISplitViewController = UISplitViewController()
     let masterViewController: UINavigationController = UINavigationController(rootViewController: MasterViewController())
-    let detailViewController: UINavigationController = UINavigationController(rootViewController: AboutUsDetailViewController())
+    let detailViewController: UINavigationController = UINavigationController(rootViewController: DetailViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +20,13 @@ class MoreOptionsRootViewController: UIViewController, UISplitViewControllerDele
         mainSplitView.viewControllers = [masterViewController,detailViewController]
         self.view.addSubview(mainSplitView.view)
         mainSplitView.delegate = self
-        mainSplitView.preferredDisplayMode = .automatic
+        mainSplitView.preferredDisplayMode = .allVisible
     }
     
-    //    override func awakeFromNib() {
-    //        super.awakeFromNib()
-    //        splitViewController?.delegate = self
-    //    }
+//        override func awakeFromNib() {
+//            super.awakeFromNib()
+//            splitViewController?.delegate = self
+//        }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -40,9 +40,10 @@ class MoreOptionsRootViewController: UIViewController, UISplitViewControllerDele
         // Return true to prevent UIKit from applying its default behavior
         return true
     }
-    
+
 }
 
+// extension to add contraints
 //extension UIView {
 //    func addConstraintsWithFormat(format: String, views: UIView...){
 //        var viewsDictionary = [String:UIView]()
