@@ -30,4 +30,25 @@ class SetDataResult{
             }
         }
     }
+    
+    func writeMarketCapCoinList(){
+        Alamofire.request("https://api.coinmarketcap.com/v2/listings/", method: .get).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+                let fileURL = documentsURL.appendingPathComponent("CoinList.json")
+                let json = JSON(value)
+                do {
+                    let rawData = try json.rawData()
+                    try rawData.write(to: fileURL, options: .atomic)
+                } catch {
+                    print("Error \(error)")
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    
 }

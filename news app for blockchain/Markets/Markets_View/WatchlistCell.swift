@@ -15,6 +15,7 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
     var sortitems = ["按字母排序","按最高价排序"]
     var sortdate = ["1W","1D","1H"]
     let pickerview = UIPickerView()
+    let general = generalDetail()
     var color = ThemeColor()
     
     var coinSymbolInWatchListRealm = try! Realm().objects(CoinsInWatchListRealm.self)
@@ -118,6 +119,14 @@ class WatchList: UICollectionViewCell, UICollectionViewDelegate, UICollectionVie
         if collectionView == sortDate {
             filterDateSelection = indexPath.row
             coinList.reloadData()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == coinList{
+            let cell = coinList.cellForRow(at: indexPath) as! MarketsCoinTableViewCell
+            general.coinAbbName = cell.coinLabel.text!
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "selectWatchListCoin"), object: self)
         }
     }
     

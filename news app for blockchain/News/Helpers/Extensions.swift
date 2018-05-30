@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 extension UIColor {
     static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat) -> UIColor {
-        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+        return UIColor(red: red / 255, green: green / 255, blue: blue / 255, alpha: 1)
     }
 }
 
 extension UIView {
-    func addConstraintsWithFormat(format: String, views: UIView...){
-        var viewsDictionary = [String:UIView]()
-        for (index,view) in views.enumerated(){
+    func addConstraintsWithFormat(format: String, views: UIView...) {
+        var viewsDictionary = [String: UIView]()
+        for (index, view) in views.enumerated() {
             let key = "v\(index)"
             view.translatesAutoresizingMaskIntoConstraints = false
             viewsDictionary[key] = view
@@ -26,10 +27,31 @@ extension UIView {
     }
 }
 
+class IndicatorView: UIView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    func setupView(){
+        backgroundColor = UIColor.darkGray
+        let indicator = UIActivityIndicatorView()
+        indicator.center = self.center
+        addSubview(indicator)
+        indicator.startAnimating()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension IndicatorView: Placeholder { /* Just leave it empty */}
+
 extension UIImageView {
     func setImage(urlString: String) {
-//        self.kf.setImage(with: URL(string: urlString))
-        self.kf.setImage(with: URL(string: urlString), placeholder: UIImage(named: "loading"))
+        self.kf.setImage(with: URL(string: urlString), placeholder: IndicatorView(frame: frame) as Placeholder)
+//        self.kf.setImage(with: URL(string: urlString), placeholder: UIImage(named: "loading"))
     }
 }
 
@@ -55,7 +77,9 @@ public extension UIDevice {
         uname(&systemInfo)
         let machineMirror = Mirror(reflecting: systemInfo.machine)
         let identifier = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8, value != 0 else { return identifier }
+            guard let value = element.value as? Int8, value != 0 else {
+                return identifier
+            }
             return identifier + String(UnicodeScalar(UInt8(value)))
         }
 

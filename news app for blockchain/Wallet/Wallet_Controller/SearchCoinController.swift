@@ -35,8 +35,6 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
                 allCoinObject.append(coin)
             }
         }
-        
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -109,7 +107,7 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
             for n in allCoinObject{
                 result.append(n.Name)
             }
-            filterObject = allCoinObject.filter({(mod) -> Bool in return mod.CoinName.lowercased().contains(searchBar.text!.lowercased())})
+            filterObject = allCoinObject.filter({(mod) -> Bool in return mod.Name.lowercased().contains(searchBar.text!.lowercased())})
             searchResult.reloadData()
         }
     }
@@ -150,22 +148,22 @@ class SearchCoinController: UIViewController,UITableViewDelegate,UITableViewData
         self.addChildViewController(tableVC)
     }
     
-    func hehe(){
-        cryptoCompareClient.getCoinList(){result in
-            switch result{
-            case .success(let resultData):
-                guard let coinList = resultData?.Data else {return}
-                for (key,value) in coinList{
-                    print(key, value.FullName ?? "")
-                }
-                
-                print(coinList.count)
-            case .failure(let error):
-                print("the error \(error.localizedDescription)")
-                
-            }
-        }
-    }
+//    func hehe(){
+//        cryptoCompareClient.getCoinList(){result in
+//            switch result{
+//            case .success(let resultData):
+//                guard let coinList = resultData?.Data else {return}
+//                for (key,value) in coinList{
+//                    print(key, value.FullName ?? "")
+//                }
+//                
+//                print(coinList.count)
+//            case .failure(let error):
+//                print("the error \(error.localizedDescription)")
+//                
+//            }
+//        }
+//    }
     
     
 }

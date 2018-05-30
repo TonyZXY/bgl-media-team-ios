@@ -27,6 +27,11 @@ class DefaultCurrencyViewController: UIViewController, UITableViewDataSource, UI
         currencyTableView.delegate = self
         currencySearchBar.delegate = self
         filteredData = data
+        let label10 = UILabel(frame: CGRect(x: 0, y: 0, width: 250, height: 50))
+        label10.textAlignment = .center
+        label10.textColor = UIColor.white
+        label10.text = "默认法定货币"
+        self.navigationItem.titleView = label10
         
     }
     
@@ -53,8 +58,6 @@ class DefaultCurrencyViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let str = data[indexPath.row]
-        //print(str)
-        //let realm = try! Realm()
         print(realm.configuration.fileURL ?? "")
         
         let newDC = defCurrency()

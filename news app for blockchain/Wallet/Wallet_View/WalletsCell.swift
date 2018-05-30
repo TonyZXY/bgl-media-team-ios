@@ -8,8 +8,18 @@
 
 import UIKit
 
+class SelectCoin{
+    var selectCoinName:String = ""
+    var selectCoinAbbName:String = ""
+    var selectExchangeName:String = ""
+    var selectTradingPairs:String = ""
+}
+
 class WalletsCell:UITableViewCell{
     var color = ThemeColor()
+    var selectCoin = SelectCoin()
+    
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -83,6 +93,7 @@ class WalletsCell:UITableViewCell{
     
     var coinName:UILabel = {
         var label = UILabel()
+        label.font = label.font.withSize(20)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -107,6 +118,7 @@ class WalletsCell:UITableViewCell{
         var label = UILabel()
         label.text = "(--)"
         label.textColor = UIColor.white
+        label.font = label.font.withSize(15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -114,40 +126,41 @@ class WalletsCell:UITableViewCell{
     var coinSinglePrice:UILabel = {
         var label = UILabel()
         label.text = "--"
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    func checkRiseandfallPercent(risefallnumber: String) {
-        if risefallnumber.prefix(1) == "-" {
+    func checkRiseandfallPercent(risefallnumber: Double) {
+        if String(risefallnumber).prefix(1) == "-" {
             // lost with red
             profitChange.textColor = color.fallColor()
-            profitChange.text = "▼ " + risefallnumber + "%"
-        } else if risefallnumber == "0.00000000"{
+            profitChange.text = "▼ " + scientificMethod(number: risefallnumber) + "%"
+        } else if String(risefallnumber) == "0.0"{
             // Not any change with white
             profitChange.text = "--"
             profitChange.textColor = UIColor.white
         } else {
             //Profit with green
             profitChange.textColor = color.riseColor()
-            profitChange.text = "▲ " + "+" + risefallnumber + "%"
+            profitChange.text = "▲ " + "+" + scientificMethod(number: risefallnumber) + "%"
         }
     }
 
-    func checkRiseandfallNumber(risefallnumber: String) {
-        if risefallnumber.prefix(1) == "-" {
+    func checkRiseandfallNumber(risefallnumber: Double) {
+        if String(risefallnumber).prefix(1) == "-" {
             // lost with red
             profitChange.textColor = color.fallColor()
-            profitChange.text = "▼ " + risefallnumber
-        } else if risefallnumber == "0.00000000"{
+            profitChange.text = "▼ " + scientificMethod(number: risefallnumber)
+        } else if String(risefallnumber) == "0.0"{
             // Not any change with white
             profitChange.text = "--"
             profitChange.textColor = UIColor.white
         } else {
             //Profit with green
             profitChange.textColor = color.riseColor()
-            profitChange.text = "▲ " + "+" + risefallnumber
+            profitChange.text = "▲ " + "+" + scientificMethod(number: risefallnumber)
         }
     }
     
