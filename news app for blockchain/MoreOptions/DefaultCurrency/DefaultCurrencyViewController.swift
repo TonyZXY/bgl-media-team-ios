@@ -40,7 +40,7 @@ class DefaultCurrencyViewController: UIViewController, UITableViewDataSource, UI
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "currencyTableCell", for: indexPath) as UITableViewCell
+        let cell = currencyTableView.dequeueReusableCell(withIdentifier: "currencyTableCell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = filteredData[indexPath.row]
         cell.textLabel?.textColor = #colorLiteral(red: 0.3294117647, green: 0.7019607843, blue: 0.6901960784, alpha: 0.8015839041)
         return cell
