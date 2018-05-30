@@ -109,8 +109,6 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
         collectionview.delegate = self
         collectionview.dataSource = self
         collectionview.showsHorizontalScrollIndicator = false
-        collectionview.bounces = false
-        collectionview.alwaysBounceHorizontal = false
         return collectionview
     }()
     

@@ -51,13 +51,14 @@ class DetailController: UIViewController{
         let filterName = "coinAbbName = '" + coinDetails.selectCoinAbbName + "' "
         let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
         for value in selectItem{
-            allLossView.profitLoss.text = scientificMethod(number:value.totalRiseFall)
+            
+            checkDataRiseFallColor(risefallnumber: value.totalRiseFall, label: allLossView.profitLoss)
             mainView.portfolioResult.text = scientificMethod(number:value.coinAmount) + " " + value.coinAbbName
             mainView.marketValueRsult.text = "A$"+scientificMethod(number:value.totalPrice)
             mainView.netCostResult.text =  "A$"+scientificMethod(number:value.transactionPrice)
-            generalPage.mainView.totalNumber.text = "A$"+scientificMethod(number:value.singlePrice)
-            generalPage.mainView.tradingPairs.text = value.tradingPairsName
-            generalPage.mainView.market.text = value.exchangeName
+            generalPage.totalNumber.text = "A$"+scientificMethod(number:value.singlePrice)
+            generalPage.tradingPairs.text = value.tradingPairsName
+            generalPage.market.text = value.exchangeName
             general.coinAbbName = value.coinAbbName
             general.coinName = value.coinName
             general.exchangeName = value.exchangeName
@@ -71,9 +72,9 @@ class DetailController: UIViewController{
             generalPage.coinSymbol = value.coinAbbName
             coinDetailController.transactionHistoryController.generalData = general
             
-            generalPage.mainView.marketCapResult.text = String(globalMarketData.market_cap!)
-            generalPage.mainView.volumeResult.text = String(globalMarketData.volume_24h!)
-            generalPage.mainView.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
+            generalPage.marketCapResult.text = String(globalMarketData.market_cap!)
+            generalPage.volumeResult.text = String(globalMarketData.volume_24h!)
+            generalPage.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
             
 //            let candleData = coinDetailController.gerneralController.vc
 ////            print(candleData.priceChange)
@@ -91,15 +92,15 @@ class DetailController: UIViewController{
                             DispatchQueue.main.async {
                                 self.globalMarketData = globalMarket!
                                 self.loadData()
-                                self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                                self.coinDetailController.gerneralController.spinner.stopAnimating()
                             }
                         } else {
-                            self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                            self.coinDetailController.gerneralController.spinner.stopAnimating()
                         }
                     }
                 }
             } else{
-                self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                self.coinDetailController.gerneralController.spinner.stopAnimating()
             }
         }
         
@@ -122,14 +123,16 @@ class DetailController: UIViewController{
                     try! self.realm.commitWrite()
                 }
             } else{
-                    self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+                    self.coinDetailController.gerneralController.spinner.stopAnimating()
                 print("fail")
             }
         }
     }
     
+    
+    
     func loadCoinPrice(completion:@escaping (Bool)->Void){
-        coinDetailController.gerneralController.mainView.spinner.startAnimating()
+        coinDetailController.gerneralController.spinner.startAnimating()
         let filterName = "coinAbbName = '" + coinDetails.selectCoinAbbName + "' "
         
         let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
@@ -197,7 +200,7 @@ class DetailController: UIViewController{
     }
     
     func setUpView(){
-        coinDetailController.gerneralController.mainView.edit.addTarget(self, action: #selector(edit), for: .touchUpInside)
+        coinDetailController.gerneralController.edit.addTarget(self, action: #selector(edit), for: .touchUpInside)
         view.backgroundColor = ThemeColor().themeColor()
         let titleLabel = UILabel()
         titleLabel.text = coinDetails.selectCoinName
@@ -249,18 +252,18 @@ class DetailController: UIViewController{
         }
         }
         if coinId == 0{
-            self.coinDetailController.gerneralController.mainView.spinner.stopAnimating()
+            self.coinDetailController.gerneralController.spinner.stopAnimating()
             let generalPage = coinDetailController.gerneralController
-            generalPage.mainView.marketCapResult.text = "--"
-            generalPage.mainView.volumeResult.text = "--"
-            generalPage.mainView.circulatingSupplyResult.text = "--"
+            generalPage.marketCapResult.text = "--"
+            generalPage.volumeResult.text = "--"
+            generalPage.circulatingSupplyResult.text = "--"
         }
         return coinId
     }
     
     @objc func setPriceChange() {
         let candleData = coinDetailController.gerneralController.vc
-        coinDetailController.gerneralController.mainView.totalRiseFall.text = scientificMethod(number: candleData.priceChange!) + "(" + scientificMethod(number: candleData.priceChangeRatio!) + "%" + ")"
+        coinDetailController.gerneralController.totalRiseFall.text = scientificMethod(number: candleData.priceChange!) + "(" + scientificMethod(number: candleData.priceChangeRatio!) + "%" + ")"
         
     }
     
