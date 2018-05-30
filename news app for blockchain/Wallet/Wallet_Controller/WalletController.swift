@@ -36,8 +36,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         SetDataResult().writeJsonExchange()
         SetDataResult().writeMarketCapCoinList()
         GetDataResult().getCoinList()
-        print(all)
-        print(allResult)
     }
 
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
@@ -66,7 +64,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
-                    print("caculate")
                     self.loading = self.loading + 1
                     if self.loading == self.walletResults.count{
                             self.caculate()
@@ -108,7 +105,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         var profitsRiseFall:Double = 0
         for value in ss{
             totalNumber = value.totalPrice + totalNumber
-            profitsRiseFall = value.totalRiseFall + totalNumber
+            profitsRiseFall = value.totalRiseFall + profitsRiseFall
         }
         self.totalNumber.text = self.priceType + "$" + self.scientificMethod(number: totalNumber)
         self.checkRiseandfallNumber(risefallnumber: profitsRiseFall)
