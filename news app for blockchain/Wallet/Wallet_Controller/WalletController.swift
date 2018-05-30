@@ -117,6 +117,9 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     
     override func viewWillAppear(_ animated: Bool) {
         self.walletResults = self.setWalletData()
+        if self.walletResults.count == 0 {
+            caculate()
+        }
         refreshData()
         tabBarController?.tabBar.isHidden = false
         NotificationCenter.default.addObserver(self, selector: #selector(reloadWalletData), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
