@@ -14,14 +14,18 @@ extension UIViewController{
         var value:String = ""
         var getNumber:String =  String(number)
         
-        if getNumber.prefix(1) != "-" {
-            getNumber = "+" + getNumber
-        }
-        
-        if getNumber[getNumber.index(getNumber.startIndex, offsetBy: 2)] == "."{
-            value = String(format:"%.6f",number)
+        if number == 0.0{
+            value = "--"
         } else{
-            value = String(format:"%.2f",number)
+            if getNumber.prefix(1) != "-" {
+                getNumber = "+" + getNumber
+            }
+            
+            if getNumber[getNumber.index(getNumber.startIndex, offsetBy: 2)] == "."{
+                value = String(format:"%.6f",number)
+            } else{
+                value = String(format:"%.2f",number)
+            }
         }
         return value
     }
@@ -32,14 +36,18 @@ extension UITableViewCell{
         var value:String = ""
         var getNumber:String =  String(number)
         
-        if getNumber.prefix(1) != "-" {
-            getNumber = "+" + getNumber
-        }
-        
-        if getNumber[getNumber.index(getNumber.startIndex, offsetBy: 2)] == "."{
-            value = String(format:"%.6f",number)
+        if number == 0.0{
+            value = "--"
         } else{
-            value = String(format:"%.2f",number)
+            if getNumber.prefix(1) != "-" {
+                getNumber = "+" + getNumber
+            }
+            
+            if getNumber[getNumber.index(getNumber.startIndex, offsetBy: 2)] == "."{
+                value = String(format:"%.6f",number)
+            } else{
+                value = String(format:"%.2f",number)
+            }
         }
         return value
     }

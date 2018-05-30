@@ -30,7 +30,7 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
         get {
             if let data = historicalDataStruct {
                 let lastIndex = data.selectedData.count
-                if let last = data.selectedData[lastIndex - 1]?.close, let secondLast = data.selectedData[lastIndex - 2]?.close
+                if let last = data.selectedData[lastIndex - 1]?.close, let secondLast = data.selectedData[0]?.close
                 {
                     return last - secondLast
                 }
@@ -43,9 +43,9 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
         get {
             if let data = historicalDataStruct {
                 let lastIndex = data.selectedData.count
-                if let last = data.selectedData[lastIndex - 1]?.close, let secondLast = data.selectedData[lastIndex - 2]?.close
+                if let last = data.selectedData[lastIndex - 1]?.close, let secondLast = data.selectedData[0]?.close
                 {
-                    return (last - secondLast) / last
+                    return (last - secondLast) / last * 100.0
                 }
             }
             return nil

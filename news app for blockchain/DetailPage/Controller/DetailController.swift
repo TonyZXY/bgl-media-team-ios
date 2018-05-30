@@ -31,7 +31,7 @@ class DetailController: UIViewController{
     let coinDetailController = CoinDetailController()
     let general = generalDetail()
     var marketSelectedData = MarketTradingPairs()
-    var globalMarketData = GlobalMarket()
+    var globalMarketData = GlobalMarket.init()
     var refreshTimer: Timer!
     
     override func viewDidLoad() {
@@ -57,7 +57,7 @@ class DetailController: UIViewController{
         let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
         generalPage.coinSymbol = coinDetails.selectCoinAbbName
         for value in selectItem{
-            checkDataRiseFallColor(risefallnumber: value.totalRiseFall, label: allLossView.profitLoss)
+            checkDataRiseFallColor(risefallnumber: value.totalRiseFall, label: allLossView.profitLoss,type:"Number")
             mainView.portfolioResult.text = scientificMethod(number:value.coinAmount) + " " + value.coinAbbName
             mainView.marketValueRsult.text = "A$"+scientificMethod(number:value.totalPrice)
             mainView.netCostResult.text =  "A$"+scientificMethod(number:value.transactionPrice)
@@ -77,9 +77,9 @@ class DetailController: UIViewController{
 //            generalPage.coinSymbol = value.coinAbbName
             coinDetailController.transactionHistoryController.generalData = general
             
-            generalPage.marketCapResult.text = String(globalMarketData.market_cap!)
-            generalPage.volumeResult.text = String(globalMarketData.volume_24h!)
-            generalPage.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
+            generalPage.marketCapResult.text = String(globalMarketData.market_cap ?? 0.0)
+            generalPage.volumeResult.text = String(globalMarketData.volume_24h ?? 0.0)
+            generalPage.circulatingSupplyResult.text = String(globalMarketData.circulating_supply ?? 0.0)
         }
     }
     
@@ -266,7 +266,8 @@ class DetailController: UIViewController{
     @objc func setPriceChange() {
         let candleData = coinDetailController.gerneralController.vc
         if let priceChange = candleData.priceChange, let priceChangeRatio = candleData.priceChangeRatio {
-            coinDetailController.gerneralController.totalRiseFall.text = scientificMethod(number: priceChange) + "(" + scientificMethod(number: priceChangeRatio) + "%" + ")"
+            checkDataRiseFallColor(risefallnumber: priceChange, label: coinDetailController.gerneralController.totalRiseFall,type: "number")
+            checkDataRiseFallColor(risefallnumber: priceChangeRatio, label: coinDetailController.gerneralController.totalRiseFallPercent,type: "Percent")
         }
     }
     

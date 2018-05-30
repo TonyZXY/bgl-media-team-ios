@@ -29,6 +29,7 @@ class GloabalController: UIViewController {
         setUpView()
         loadData()
         getCoinGloablDetail()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(setPriceChange), name: NSNotification.Name(rawValue: "setPriceChange"), object: nil)
     }
 
@@ -49,13 +50,14 @@ class GloabalController: UIViewController {
         generalPage.edit.isHidden = true
         generalPage.tradingPairs.text = coinDetail.coinName + "/" + "AUD"
         generalPage.market.text = "Global average"
-        generalPage.marketCapResult.text = "A$" + scientificMethod(number: globalMarketData.market_cap!)
-        generalPage.volumeResult.text = "A$" + scientificMethod(number: globalMarketData.volume_24h!)
-        generalPage.circulatingSupplyResult.text = scientificMethod(number: globalMarketData.circulating_supply!)
+        
+        generalPage.marketCapResult.text = "A$" + scientificMethod(number: globalMarketData.market_cap ?? 0.0)
+        generalPage.volumeResult.text = "A$" + scientificMethod(number: globalMarketData.volume_24h ?? 0.0)
+        generalPage.circulatingSupplyResult.text = scientificMethod(number: globalMarketData.circulating_supply ?? 0.0)
         generalPage.coinSymbol = coinDetail.coinName
         general.coinAbbName = coinDetail.coinName
         coinDetailController.transactionHistoryController.generalData = general
-        generalPage.totalNumber.text = "A$"+scientificMethod(number:globalMarketData.price!)
+        generalPage.totalNumber.text = "A$"+scientificMethod(number:globalMarketData.price ?? 0.0)
     }
     
     func addChildViewControllers(childViewControllers:UIViewController,views:UIView){
@@ -112,7 +114,10 @@ class GloabalController: UIViewController {
     
     @objc func setPriceChange() {
         let candleData = coinDetailController.gerneralController.vc
-        coinDetailController.gerneralController.totalRiseFall.text = scientificMethod(number: candleData.priceChange!)
+        if let priceChange = candleData.priceChange, let priceChangeRatio = candleData.priceChangeRatio {
+            checkDataRiseFallColor(risefallnumber: priceChange, label: coinDetailController.gerneralController.totalRiseFall,type: "number")
+            checkDataRiseFallColor(risefallnumber: priceChangeRatio, label: coinDetailController.gerneralController.totalRiseFallPercent,type: "Percent")
+        }
     }
 
 }

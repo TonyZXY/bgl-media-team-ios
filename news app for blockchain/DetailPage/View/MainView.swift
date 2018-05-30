@@ -67,6 +67,7 @@ class MainView:UIView{
     var portfolio:UILabel = {
         var label = UILabel()
         label.text = "Portfolio"
+        label.font = label.font.withSize(18)
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -76,6 +77,7 @@ class MainView:UIView{
     var portfolioResult:UILabel = {
         var label = UILabel()
         label.text = "0"
+        label.font = label.font.withSize(13)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -83,6 +85,7 @@ class MainView:UIView{
     
     var marketValue:UILabel = {
         var label = UILabel()
+        label.font = label.font.withSize(18)
         label.textAlignment = .center
         label.textColor = UIColor.white
         label.text = "Market Value"
@@ -92,6 +95,7 @@ class MainView:UIView{
     
     var marketValueRsult:UILabel = {
         var label = UILabel()
+        label.font = label.font.withSize(13)
         label.text = "0"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -100,6 +104,7 @@ class MainView:UIView{
     
     var netCost:UILabel = {
         var label = UILabel()
+        label.font = label.font.withSize(18)
         label.text = "Net Cost"
         label.textAlignment = .center
         label.textColor = UIColor.white
@@ -109,6 +114,7 @@ class MainView:UIView{
     
     var netCostResult:UILabel = {
         var label = UILabel()
+        label.font = label.font.withSize(13)
         label.text = "0"
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false

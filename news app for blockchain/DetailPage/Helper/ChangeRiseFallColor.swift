@@ -28,11 +28,15 @@ extension UIViewController{
         return result
     }
     
-    func checkDataRiseFallColor(risefallnumber: Double,label:UILabel) {
+    func checkDataRiseFallColor(risefallnumber: Double,label:UILabel,type:String) {
         if String(risefallnumber).prefix(1) == "-" {
             // lost with red
             label.textColor = ThemeColor().fallColor()
-            label.text = "▼ " + scientificMethod(number: risefallnumber)
+            if type == "Percent"{
+                label.text = "(" + scientificMethod(number: risefallnumber) + "%" + ")"
+            } else{
+                label.text = "▼ " + "A$" + scientificMethod(number: risefallnumber)
+            }
         } else if String(risefallnumber) == "0.0"{
             // Not any change with white
             label.text = "--"
@@ -40,7 +44,11 @@ extension UIViewController{
         } else {
             //Profit with green
             label.textColor = ThemeColor().riseColor()
-            label.text = "▲ " + "+" + scientificMethod(number: risefallnumber)
+            if type == "Percent"{
+                label.text =  "(" +  scientificMethod(number: risefallnumber) + "%" + ")"
+            } else{
+                  label.text = "▲ " + "A$" + scientificMethod(number: risefallnumber)
+            }
         }
     }
 }
