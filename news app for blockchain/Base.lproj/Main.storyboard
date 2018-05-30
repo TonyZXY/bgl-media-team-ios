@@ -84,7 +84,7 @@
         <scene sceneID="9xf-BY-cQa">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vDn-uj-q1H" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="钱包" id="REJ-BG-MsD"/>
+                    <tabBarItem key="tabBarItem" title="钱包" image="icons8-mywallet-25" id="REJ-BG-MsD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="02N-S3-wju">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -103,7 +103,7 @@
         <scene sceneID="z75-Sl-2ee">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yJ1-Ou-v1F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="行情" id="5Be-hW-a4s"/>
+                    <tabBarItem key="tabBarItem" title="行情" image="icons8-market-25" id="5Be-hW-a4s"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="x11-yH-Fax">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -160,7 +160,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CCK-e4-100"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="快讯" id="zIz-NJ-VV8"/>
+                    <tabBarItem key="tabBarItem" title="快讯" image="icons8-newsflash-25" id="zIz-NJ-VV8"/>
                     <connections>
                         <outlet property="dateAndTimeLabel" destination="doB-Q4-FzU" id="KUr-wb-5FK"/>
                         <outlet property="newsFlashLabel" destination="x0K-v2-OZB" id="w1M-8d-ups"/>
@@ -194,7 +194,7 @@
         <scene sceneID="xkC-wr-ebI">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TX3-Hz-XTC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="新闻" id="8jz-a5-K0Q"/>
+                    <tabBarItem key="tabBarItem" title="新闻" image="icons8-news-25" id="8jz-a5-K0Q"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9e9-CO-PLV">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -944,7 +944,7 @@
         <scene sceneID="Uir-4m-Jw5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6Jp-rd-DnY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="更多" id="QkS-WU-f5a"/>
+                    <tabBarItem key="tabBarItem" title="更多" image="icons8-otheroptions-25" id="QkS-WU-f5a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eK4-ld-KCO">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -966,5 +966,10 @@
     </scenes>
     <resources>
         <image name="bcg_new_white01" width="420" height="155"/>
+        <image name="icons8-market-25" width="25" height="25"/>
+        <image name="icons8-mywallet-25" width="25" height="25"/>
+        <image name="icons8-news-25" width="25" height="25"/>
+        <image name="icons8-newsflash-25" width="25" height="25"/>
+        <image name="icons8-otheroptions-25" width="25" height="25"/>
     </resources>
 </document>
