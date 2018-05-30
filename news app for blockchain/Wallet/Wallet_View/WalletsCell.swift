@@ -93,6 +93,7 @@ class WalletsCell:UITableViewCell{
     
     var coinName:UILabel = {
         var label = UILabel()
+        label.font = label.font.withSize(20)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -117,6 +118,7 @@ class WalletsCell:UITableViewCell{
         var label = UILabel()
         label.text = "(--)"
         label.textColor = UIColor.white
+        label.font = label.font.withSize(15)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -124,6 +126,7 @@ class WalletsCell:UITableViewCell{
     var coinSinglePrice:UILabel = {
         var label = UILabel()
         label.text = "--"
+        label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

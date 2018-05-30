@@ -17,6 +17,7 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     var results = try! Realm().objects(AllTransactions.self)
     var indexSelected:Int = 0
     var generalData = generalDetail()
+    var priceType = "AUD"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +50,7 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
             cell.dateLabel.textColor = UIColor.white
             cell.buyMarket.textColor = UIColor.white
             cell.labelPoint.text = "B"
-            cell.labelPoint.layer.backgroundColor = UIColor.green.cgColor
+            cell.labelPoint.layer.backgroundColor = ThemeColor().greenColor().cgColor
             cell.dateLabel.text = object.date + " " + object.time
             cell.buyMarket.text = "交易市场:" + object.exchangName
             cell.SinglePrice.text = object.coinAbbName + " " + object.status + " " + "Price"
@@ -77,7 +78,7 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
             cell.sellDateLabel.textColor = UIColor.white
             cell.sellMarket.textColor = UIColor.white
             cell.labelPoint.text = "S"
-            cell.labelPoint.layer.backgroundColor = UIColor.red.cgColor
+            cell.labelPoint.layer.backgroundColor = ThemeColor().redColor().cgColor
             cell.sellDateLabel.text = object.date + " " + object.time
             cell.sellPrice.text = object.coinAbbName + " " + object.status + " " + "Price"
             cell.sellTradingPairs.text = object.coinAbbName + "/" + object.tradingPairsName
@@ -108,7 +109,17 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     
     @objc func deleteTransaction(sender:UIButton){
         let filterName = "id = " + String(sender.tag)
+        var name:String = ""
         let statusItem = realm.objects(AllTransactions.self).filter(filterName)
+        if statusItem.count == 1{
+            for value in statusItem{
+                name = "coinAbbName = '" + value.coinAbbName + "' "
+            }
+            let coinSelected = realm.objects(MarketTradingPairs.self).filter(name)
+            try! realm.write {
+                realm.delete(coinSelected)
+            }
+        }
         try! realm.write {
             realm.delete(statusItem)
         }
@@ -123,6 +134,7 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     }()
     
     func setUpView(){
+        view.backgroundColor = ThemeColor().themeColor()
         view.addSubview(historyTableView)
         view.addSubview(averageView)
         
@@ -130,7 +142,7 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
         view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: averageView)
         
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: historyTableView,averageView)
-        view.addConstraintsWithFormat(format: "V:[v1]-5-[v0]|", views: historyTableView,averageView)
+        view.addConstraintsWithFormat(format: "V:[v1]-0-[v0]|", views: historyTableView,averageView)
     }
     
     lazy var historyTableView:UITableView = {
@@ -148,11 +160,58 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
         
         //Prevent empty rows
         tableView.tableFooterView = UIView()
-        tableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2039215686, blue: 0.2235294118, alpha: 1)
+//        tableView.backgroundColor = #colorLiteral(red: 0.2, green: 0.2039215686, blue: 0.2235294118, alpha: 1)
         tableView.separatorStyle = .none
         tableView.addSubview(self.refresher)
         return tableView
     }()
+    
+    func setWalletData() -> [WalletDetail]{
+        var wallets = [WalletDetail]()
+        var list = [String]()
+        let allResult = realm.objects(AllTransactions.self)
+        let coinSelected = realm.objects(MarketTradingPairs.self)
+        for value in allResult{
+            if list.contains(value.coinName){
+                let indexs = wallets.index(where: { (item) -> Bool in
+                    item.coinName == value.coinName
+                })
+                let filterName = "coinAbbName = '" + value.coinAbbName + "' "
+                let coinSelected = coinSelected.filter(filterName)
+                if coinSelected.count == 0{
+                    wallets[indexs!].tradingPairsName = value.tradingPairsName
+                    wallets[indexs!].exchangeName = value.exchangName
+                } else {
+                    for result in coinSelected{
+                        wallets[indexs!].exchangeName = result.exchangeName
+                        wallets[indexs!].tradingPairsName = result.tradingPairsName
+                    }
+                }
+                if value.status == "Buy"{
+                    if priceType == "AUD"{
+                        wallets[indexs!].coinAmount += value.amount
+                        wallets[indexs!].TransactionPrice += value.audTotalPrice
+                    }
+                }else if value.status == "Sell"{
+                    wallets[indexs!].coinAmount -= value.amount
+                    if priceType == "AUD"{
+                        wallets[indexs!].TransactionPrice -= value.audTotalPrice
+                    }
+                }
+            } else{
+                let newWallet = WalletDetail()
+                newWallet.coinName = value.coinName
+                newWallet.exchangeName = value.exchangName
+                newWallet.coinAbbName = value.coinAbbName
+                newWallet.coinAmount = value.amount
+                newWallet.TransactionPrice = value.audTotalPrice
+                newWallet.tradingPairsName = value.tradingPairsName
+                wallets.append(newWallet)
+                list.append(value.coinName)
+            }
+        }
+        return wallets
+    }
     
     var averageView:UIView = {
         var view = UIView()

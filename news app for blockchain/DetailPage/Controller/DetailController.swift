@@ -31,15 +31,20 @@ class DetailController: UIViewController{
     let coinDetailController = CoinDetailController()
     let general = generalDetail()
     var marketSelectedData = MarketTradingPairs()
-    var globalMarketData = GlobalMarket()
-    
+    var globalMarketData = GlobalMarket.init()
+    var refreshTimer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         loadData()
         refreshData()
+        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshPage), userInfo: nil, repeats: true)
         NotificationCenter.default.addObserver(self, selector: #selector(setPriceChange), name: NSNotification.Name(rawValue: "setPriceChange"), object: nil)
+    }
+    
+    @objc func refreshPage(){
+        refreshData()
     }
     
     deinit {
@@ -50,9 +55,9 @@ class DetailController: UIViewController{
         let generalPage = coinDetailController.gerneralController
         let filterName = "coinAbbName = '" + coinDetails.selectCoinAbbName + "' "
         let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
+        generalPage.coinSymbol = coinDetails.selectCoinAbbName
         for value in selectItem{
-            
-            checkDataRiseFallColor(risefallnumber: value.totalRiseFall, label: allLossView.profitLoss)
+            checkDataRiseFallColor(risefallnumber: value.totalRiseFall, label: allLossView.profitLoss,type:"Number")
             mainView.portfolioResult.text = scientificMethod(number:value.coinAmount) + " " + value.coinAbbName
             mainView.marketValueRsult.text = "A$"+scientificMethod(number:value.totalPrice)
             mainView.netCostResult.text =  "A$"+scientificMethod(number:value.transactionPrice)
@@ -69,16 +74,12 @@ class DetailController: UIViewController{
             marketSelectedData.tradingPairsName = value.tradingPairsName
             marketSelectedData.transactionPrice = value.transactionPrice
             marketSelectedData.coinAmount = value.coinAmount
-            generalPage.coinSymbol = value.coinAbbName
+//            generalPage.coinSymbol = value.coinAbbName
             coinDetailController.transactionHistoryController.generalData = general
             
-            generalPage.marketCapResult.text = String(globalMarketData.market_cap!)
-            generalPage.volumeResult.text = String(globalMarketData.volume_24h!)
-            generalPage.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
-            
-//            let candleData = coinDetailController.gerneralController.vc
-////            print(candleData.priceChange)
-////            generalPage.mainView.totalRiseFall.text = String(candleData.priceChange)
+            generalPage.marketCapResult.text = String(globalMarketData.market_cap ?? 0.0)
+            generalPage.volumeResult.text = String(globalMarketData.volume_24h ?? 0.0)
+            generalPage.circulatingSupplyResult.text = String(globalMarketData.circulating_supply ?? 0.0)
         }
     }
     
@@ -121,6 +122,7 @@ class DetailController: UIViewController{
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
+                    self.loadData()
                 }
             } else{
                     self.coinDetailController.gerneralController.spinner.stopAnimating()
@@ -134,14 +136,13 @@ class DetailController: UIViewController{
     func loadCoinPrice(completion:@escaping (Bool)->Void){
         coinDetailController.gerneralController.spinner.startAnimating()
         let filterName = "coinAbbName = '" + coinDetails.selectCoinAbbName + "' "
-        
         let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
         var tradingPairs:String = ""
         var exchangeName:String = ""
+        
         for value in selectItem{
             exchangeName = value.exchangeName
             tradingPairs = value.tradingPairsName
-            print(exchangeName)
         }
         
         marketSelectedData.exchangeName = exchangeName
@@ -178,6 +179,7 @@ class DetailController: UIViewController{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadData()
         refreshData()
         self.tabBarController?.tabBar.isHidden = true
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
@@ -263,8 +265,10 @@ class DetailController: UIViewController{
     
     @objc func setPriceChange() {
         let candleData = coinDetailController.gerneralController.vc
-        coinDetailController.gerneralController.totalRiseFall.text = scientificMethod(number: candleData.priceChange!) + "(" + scientificMethod(number: candleData.priceChangeRatio!) + "%" + ")"
-        
+        if let priceChange = candleData.priceChange, let priceChangeRatio = candleData.priceChangeRatio {
+            checkDataRiseFallColor(risefallnumber: priceChange, label: coinDetailController.gerneralController.totalRiseFall,type: "number")
+            checkDataRiseFallColor(risefallnumber: priceChangeRatio, label: coinDetailController.gerneralController.totalRiseFallPercent,type: "Percent")
+        }
     }
     
 

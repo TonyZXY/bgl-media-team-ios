@@ -55,6 +55,7 @@ class GerneralController: UIViewController {
         FirstView.addSubview(spinner)
         FirstView.addSubview(totalNumber)
         FirstView.addSubview(totalRiseFall)
+        FirstView.addSubview(totalRiseFallPercent)
 
         SecondView.addSubview(market)
         SecondView.addSubview(tradingPairs)
@@ -77,17 +78,15 @@ class GerneralController: UIViewController {
 
         //Second View constraint
         scrollView.addConstraintsWithFormat(format: "H:|[v1]|", views: FirstView,SecondView)
-        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(50)]", views: FirstView,SecondView)
+        scrollView.addConstraintsWithFormat(format: "V:[v0]-5-[v1(50)]", views: FirstView,SecondView)
         NSLayoutConstraint(item: SecondView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: mainViews, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
 
         //Image View constraint
         ImageView.frame.size.width = view.frame.size.width-20
         scrollView.addConstraintsWithFormat(format: "H:[v1(\(view.frame.size.width-20))]", views: SecondView,ImageView)
-        scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(200)]", views: SecondView,ImageView)
+        scrollView.addConstraintsWithFormat(format: "V:[v0]-5-[v1(200)]", views: SecondView,ImageView)
         NSLayoutConstraint(item: ImageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: mainViews, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
 //         NSLayoutConstraint(item: ImageView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: mainViews, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
-        print(ImageView.frame.size.width)
-        print(ImageView.frame.size.height)
 
         //Last View constraint
         scrollView.addConstraintsWithFormat(format: "H:|-10-[v1]-10-|", views: ImageView,LastView)
@@ -105,6 +104,10 @@ class GerneralController: UIViewController {
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: totalRiseFall, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.height, multiplier: 1/2, constant: 0).isActive = true
 
+        //First View TotalRiseFallPercent Label Constraint
+        NSLayoutConstraint(item: totalRiseFallPercent, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: totalRiseFall, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: totalRiseFallPercent, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: totalRiseFall, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 10).isActive = true
+        
         //First View Spinnner
         NSLayoutConstraint(item: spinner, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 10).isActive = true
         NSLayoutConstraint(item: spinner, attribute: NSLayoutAttribute.trailing, relatedBy: NSLayoutRelation.equal, toItem: FirstView, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: -15).isActive = true
@@ -145,7 +148,6 @@ class GerneralController: UIViewController {
         vc.view.frame.size.height = ImageView.frame.size.height
         vc.view.frame.size.width = ImageView.frame.size.width
         
-        print(vc.view.frame.size.width)
         NSLayoutConstraint(item: vc.view, attribute: .centerX, relatedBy: .equal, toItem: ImageView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: vc.view, attribute: .centerY, relatedBy: .equal, toItem: ImageView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: vc.view, attribute: .width, relatedBy: .equal, toItem: ImageView, attribute: .width, multiplier: 1, constant: 0).isActive = true
@@ -212,7 +214,14 @@ class GerneralController: UIViewController {
     
     var totalRiseFall:UILabel = {
         var label = UILabel()
-        label.text = "0"
+        label.text = "--"
+        label.textColor = UIColor.white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    var totalRiseFallPercent:UILabel = {
+        var label = UILabel()
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

@@ -38,16 +38,20 @@ class MarketSelectController: UIViewController,UITableViewDelegate,UITableViewDa
     
     @objc func done(){
 //        self.realm.beginWrite()
-        let filterName = "coinAbbName = '" + newTransaction.coinAbbName + "' "
-        let statusItem = realm.objects(MarketTradingPairs.self).filter(filterName)
-        if let object = statusItem.first{
-            try! self.realm.write {
-                object.exchangeName = newTransaction.exchangName
-                object.tradingPairsName = newTransaction.tradingPairsName
+        if newTransaction.tradingPairsName == ""{
+            
+        } else {
+            let filterName = "coinAbbName = '" + newTransaction.coinAbbName + "' "
+            let statusItem = realm.objects(MarketTradingPairs.self).filter(filterName)
+            if let object = statusItem.first{
+                try! self.realm.write {
+                    object.exchangeName = newTransaction.exchangName
+                    object.tradingPairsName = newTransaction.tradingPairsName
+                }
             }
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
+            navigationController?.popViewController(animated: true)
         }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadDetail"), object: nil)
-        navigationController?.popViewController(animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -29,7 +29,6 @@
 		042B2A2720B7F702005A7D0B /* WebMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1A20B7F702005A7D0B /* WebMainViewController.swift */; };
 		042B2A2820B7F702005A7D0B /* ViewOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1C20B7F702005A7D0B /* ViewOptionsViewController.swift */; };
 		042B2A2920B7F702005A7D0B /* MoreOptionMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1D20B7F702005A7D0B /* MoreOptionMainViewController.swift */; };
-		042B2AD720B7FFCE005A7D0B /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AC720B7FFCE005A7D0B /* CandleStickChartViewController.swift */; };
 		042B2AD820B7FFCE005A7D0B /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2AC820B7FFCE005A7D0B /* DefaultViewController.swift */; };
 		042B2AD920B7FFCE005A7D0B /* HistoricalDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACA20B7FFCE005A7D0B /* HistoricalDataStruct.swift */; };
 		042B2ADA20B7FFCE005A7D0B /* Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2ACB20B7FFCE005A7D0B /* Params.swift */; };
@@ -111,6 +110,7 @@
 		1A1F11D220BB84AC004E59CD /* NewsDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */; };
 		1A1F11D320BB84B1004E59CD /* WebDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1920B7F702005A7D0B /* WebDetailViewController.swift */; };
 		1A1F11D420BB84B5004E59CD /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042B2A1F20B7F702005A7D0B /* NotificationViewController.swift */; };
+		5700FFC620BE2FE800BF656D /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5700FFC520BE2FE800BF656D /* CandleStickChartViewController.swift */; };
 		5701A8FE209B6C3F00A216C4 /* MarketCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5701A8FD209B6C3F00A216C4 /* MarketCollectionViewCell.swift */; };
 		57048C1920AEA1A700393EF6 /* DetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57048C1820AEA1A700393EF6 /* DetailController.swift */; };
 		570B035F20B126D00014DF8E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570B035E20B126D00014DF8E /* MainView.swift */; };
@@ -170,7 +170,6 @@
 		042B2A1C20B7F702005A7D0B /* ViewOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewOptionsViewController.swift; sourceTree = "<group>"; };
 		042B2A1D20B7F702005A7D0B /* MoreOptionMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreOptionMainViewController.swift; sourceTree = "<group>"; };
 		042B2A1F20B7F702005A7D0B /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		042B2AC720B7FFCE005A7D0B /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
 		042B2AC820B7FFCE005A7D0B /* DefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
 		042B2ACA20B7FFCE005A7D0B /* HistoricalDataStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoricalDataStruct.swift; sourceTree = "<group>"; };
 		042B2ACB20B7FFCE005A7D0B /* Params.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Params.swift; sourceTree = "<group>"; };
@@ -249,6 +248,7 @@
 		04E4F01F209B19BB00A2D0BF /* TimelineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineTableViewCell.xib; sourceTree = "<group>"; };
 		1AF2BE2C20AE997800323D6A /* NewsDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailWebViewController.swift; sourceTree = "<group>"; };
 		2021A9E52FD0BE1EC8D009DC /* Pods-news app for blockchain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-news app for blockchain.release.xcconfig"; path = "Pods/Target Support Files/Pods-news app for blockchain/Pods-news app for blockchain.release.xcconfig"; sourceTree = "<group>"; };
+		5700FFC520BE2FE800BF656D /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
 		5701A8FD209B6C3F00A216C4 /* MarketCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketCollectionViewCell.swift; sourceTree = "<group>"; };
 		57048C1820AEA1A700393EF6 /* DetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailController.swift; sourceTree = "<group>"; };
 		570B035E20B126D00014DF8E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -444,7 +444,7 @@
 		042B2AC620B7FFCE005A7D0B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				042B2AC720B7FFCE005A7D0B /* CandleStickChartViewController.swift */,
+				5700FFC520BE2FE800BF656D /* CandleStickChartViewController.swift */,
 				042B2AC820B7FFCE005A7D0B /* DefaultViewController.swift */,
 			);
 			path = Controller;
@@ -972,7 +972,6 @@
 				046963E520AAC8B400459EC8 /* CryptoCompareClient.swift in Sources */,
 				0469641D20ABB87200459EC8 /* TransPriceCell.swift in Sources */,
 				576FA9092097D41A005B6406 /* WatchlistCell.swift in Sources */,
-				042B2AD720B7FFCE005A7D0B /* CandleStickChartViewController.swift in Sources */,
 				04BDD42220A42AE6009D8A0A /* NewsSliderCell.swift in Sources */,
 				0469642020ABB87200459EC8 /* HistoryLine.swift in Sources */,
 				576FA90D20980641005B6406 /* MarketSortPickerView.swift in Sources */,
@@ -1009,6 +1008,7 @@
 				0419423520A43080006B26C6 /* Extensions.swift in Sources */,
 				046963E120AAC8B400459EC8 /* MarketCapEndpoint.swift in Sources */,
 				57E162F720B2A1E3005A8D3B /* AlertController.swift in Sources */,
+				5700FFC620BE2FE800BF656D /* CandleStickChartViewController.swift in Sources */,
 				041F40D4207EDD48008DCA69 /* AppDelegate.swift in Sources */,
 				042B2A2120B7F702005A7D0B /* DefaultCurrencyViewController.swift in Sources */,
 				04BDD42820A42B0A009D8A0A /* GenuineSliderCell.swift in Sources */,

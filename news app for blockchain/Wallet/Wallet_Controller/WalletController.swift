@@ -34,8 +34,10 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         super.viewDidLoad()
         setupView()
         SetDataResult().writeJsonExchange()
+        SetDataResult().writeMarketCapCoinList()
         GetDataResult().getCoinList()
-//        refreshTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+        print(all)
+        print(allResult)
     }
 
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
@@ -46,9 +48,9 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                     walletData.totalPrice = Double(price) * Double(walletData.coinAmount)
                     walletData.totalRiseFallPercent = ((walletData.totalPrice - transactionPrice) / transactionPrice) * 100
                     walletData.totalRiseFall = walletData.totalPrice - transactionPrice
-
-                    eachCell.coinSinglePrice.text = self.scientificMethod(number:walletData.singlePrice)
-                    eachCell.coinTotalPrice.text = "("+self.scientificMethod(number: walletData.totalPrice)+")"
+                    
+                    eachCell.coinSinglePrice.text = "A$" + self.scientificMethod(number:walletData.singlePrice)
+                    eachCell.coinTotalPrice.text = "(" + "A$" + self.scientificMethod(number: walletData.totalPrice)+")"
                     self.totalProfit = self.totalProfit + walletData.totalRiseFall
                     self.totalPrice = self.totalPrice + walletData.totalPrice
                     if self.displayType == "Percent"{
@@ -64,10 +66,10 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                         self.realm.create(MarketTradingPairs.self,value:[walletData.coinName,walletData.coinAbbName,walletData.exchangeName,walletData.tradingPairsName,walletData.coinAmount,walletData.totalRiseFall,walletData.singlePrice,walletData.totalPrice,walletData.totalRiseFallPercent,walletData.transactionPrice,walletData.priceType],update:true)
                     }
                     try! self.realm.commitWrite()
+                    print("caculate")
                     self.loading = self.loading + 1
                     if self.loading == self.walletResults.count{
                             self.caculate()
-                        
                     }
                     self.refresher.endRefreshing()
                 }
@@ -89,7 +91,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
             refresher.endRefreshing()
         }
         self.walletList.reloadData()
-        
     }
     
     func loadData(){
@@ -213,6 +214,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     }()
 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.walletResults = self.setWalletData()
         refreshData()
     }
 
@@ -263,12 +265,14 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
                 list.append(value.coinName)
             }
         }
-        
+        return wallets
+    }
+    
+    func remove(){
         let marketResult = self.realm.objects(MarketTradingPairs.self)
         try! self.realm.write {
             self.realm.delete(marketResult)
         }
-        return wallets
     }
 
     func setupView(){
