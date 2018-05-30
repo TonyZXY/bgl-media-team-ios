@@ -37,7 +37,6 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         SetDataResult().writeMarketCapCoinList()
         GetDataResult().getCoinList()
         print(all)
-        print(allResult)
     }
 
     func getAllData(priceType:String,walletData:MarketTradingPairs,single:Double,eachCell:WalletsCell,transactionPrice:Double){
@@ -81,6 +80,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
 
     var spinner:UIActivityIndicatorView = {
         var spinner = UIActivityIndicatorView()
+        spinner.tintColor = UIColor.white
         spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
     }()
@@ -108,7 +108,7 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
         var profitsRiseFall:Double = 0
         for value in ss{
             totalNumber = value.totalPrice + totalNumber
-            profitsRiseFall = value.totalRiseFall + totalNumber
+            profitsRiseFall = value.totalRiseFall + profitsRiseFall
         }
         self.totalNumber.text = self.priceType + "$" + self.scientificMethod(number: totalNumber)
         self.checkRiseandfallNumber(risefallnumber: profitsRiseFall)
@@ -117,6 +117,9 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
     
     override func viewWillAppear(_ animated: Bool) {
         self.walletResults = self.setWalletData()
+        if self.walletResults.count == 0{
+            caculate()
+        }
         refreshData()
         tabBarController?.tabBar.isHidden = false
         NotificationCenter.default.addObserver(self, selector: #selector(reloadWalletData), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
@@ -215,6 +218,9 @@ class WalletController: UIViewController,UITableViewDelegate,UITableViewDataSour
 
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
         self.walletResults = self.setWalletData()
+        if self.walletResults.count == 0{
+           caculate()
+        }
         refreshData()
     }
 
