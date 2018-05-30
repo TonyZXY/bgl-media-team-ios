@@ -10,10 +10,14 @@ import UIKit
 
 // REVIEW: class name perhaps can be BGLNewsHomeViewController -Johnny Lin
 class NewsHomeViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    // REVIEW: use specific id instead of general id and it should be stored in ListViewCell
-    // For instance something like static let CellIdentifier = "NewsListCell"  -Johnny Lin
     let cellId = "cellId"
 
+    lazy var menuBar: NewsMenuBar = {
+        let mb = NewsMenuBar()
+        mb.homeController = self // REVIEW: homeController can be a generic delegate  -Johnny Lin
+        return mb
+    }()
+    
     // set up view
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,24 +34,13 @@ class NewsHomeViewController: UIViewController, UICollectionViewDataSource, UICo
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         navigationItem.titleView = titleLabel
         setupView()
-
     }
-
 
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
     }
 
-    // REVIEW: move property definitions up above funcs -Johnny Lin
-    lazy var menuBar: NewsMenuBar = {
-        let mb = NewsMenuBar()
-        mb.homeController = self // REVIEW: homeController can be a generic delegate  -Johnny Lin
-        return mb
-    }()
-
-
     lazy var selectView: UICollectionView = {
-
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
@@ -62,7 +55,6 @@ class NewsHomeViewController: UIViewController, UICollectionViewDataSource, UICo
     func setupView() {
         view.addSubview(menuBar)
         view.addSubview(selectView)
-        // REVIEW: should be in a separate method for instance configLayouts -Johnny Lin
         view.addConstraintsWithFormat(format: "V:[v0(40)]-0-[v1]|", views: menuBar, selectView)
 
         menuBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
@@ -70,7 +62,6 @@ class NewsHomeViewController: UIViewController, UICollectionViewDataSource, UICo
         selectView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor).isActive = true
         selectView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor).isActive = true
         menuBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-
 
         selectView.register(NewsListViewCell.self, forCellWithReuseIdentifier: cellId)
         selectView.register(GenuineListViewCell.self, forCellWithReuseIdentifier: "genuineCell")
@@ -106,10 +97,8 @@ class NewsHomeViewController: UIViewController, UICollectionViewDataSource, UICo
             return genuinePageCell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! NewsListViewCell
-            // REVIEW: when there is a homeviewcontroller here it should be a delegate (self), that's probably why the nav vc was nil when you tried to push -Johnny Lin
             cell.homeViewController = self
             return cell
-
         }
     }
 
@@ -125,8 +114,6 @@ class NewsHomeViewController: UIViewController, UICollectionViewDataSource, UICo
         let indexPath = IndexPath(item: menuIndex, section: 0)
         selectView.scrollToItem(at: indexPath, at: [], animated: true)
     }
-
-
 }
 
 

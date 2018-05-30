@@ -17,14 +17,12 @@ class SelectionViewCell: BaseCell {
 
     lazy var view: UIView = {
         var view = UIView()
-
         return view
     }()
 
     // constraints of the view
     func setupRootView() {
         addSubview(view)
-
         addConstraintsWithFormat(format: "H:|[v0]|", views: view)
         addConstraintsWithFormat(format: "V:|[v0]|", views: view)
         view.backgroundColor = ThemeColor().themeColor()

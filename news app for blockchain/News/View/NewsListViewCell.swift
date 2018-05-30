@@ -67,7 +67,6 @@ class NewsListViewCell: BaseCell, UICollectionViewDataSource, UICollectionViewDe
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.white
-
         return refreshControl
     }()
 

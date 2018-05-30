@@ -53,10 +53,8 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
             cell.labelPoint.layer.backgroundColor = ThemeColor().greenColor().cgColor
             cell.dateLabel.text = object.date + " " + object.time
             cell.buyMarket.text = "交易市场:" + object.exchangName
-            cell.SinglePrice.text = object.coinAbbName + " " + object.status + " " + "Price"
-            cell.amount.text = "Amount" + " " + object.status
             cell.SinglePriceResult.text = scientificMethod(number:object.audSinglePrice)
-            cell.tradingPairsResult.text = object.tradingPairsName
+            cell.tradingPairsResult.text = object.coinAbbName + "/" + object.tradingPairsName
             cell.amountResult.text = scientificMethod(number:object.amount)
             cell.costResult.text = scientificMethod(number:object.audTotalPrice)
             cell.buyDeleteButton.tag = object.id
@@ -80,10 +78,10 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
             cell.labelPoint.text = "S"
             cell.labelPoint.layer.backgroundColor = ThemeColor().redColor().cgColor
             cell.sellDateLabel.text = object.date + " " + object.time
-            cell.sellPrice.text = object.coinAbbName + " " + object.status + " " + "Price"
-            cell.sellTradingPairs.text = object.coinAbbName + "/" + object.tradingPairsName
+//            cell.sellPrice.text = object.coinAbbName + " " + object.status + " " + "Price"
+//            cell.sellTradingPairs.text = object.coinAbbName + "/" + object.tradingPairsName
             cell.sellPriceResult.text = scientificMethod(number:object.singlePrice)
-            cell.sellTradingPairs.text = object.coinAbbName + "/" + object.tradingPairsName
+            cell.sellTradingPairResult.text = object.coinAbbName + "/" + object.tradingPairsName
             cell.sellAmountResult.text = scientificMethod(number:object.amount)
             cell.sellProceedsResult.text = scientificMethod(number:object.totalPrice)
             cell.sellDeleteButton.tag = object.id

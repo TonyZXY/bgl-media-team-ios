@@ -41,7 +41,7 @@ class AllLossView:UIView{
     
     var allTimeLoss:UILabel = {
         var label = UILabel()
-        label.text = "AllTime Profit:"
+        label.text = "总收益:"
         label.textColor = UIColor.white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

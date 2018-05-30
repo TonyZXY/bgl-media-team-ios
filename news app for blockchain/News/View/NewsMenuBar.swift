@@ -44,7 +44,6 @@ class NewsMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate,
         horizontalBarView.backgroundColor = UIColor.white
         horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(horizontalBarView)
-
         horizontalBarLeftAnchorConstraint = horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
         horizontalBarLeftAnchorConstraint?.isActive = true
         horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
@@ -55,7 +54,6 @@ class NewsMenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         homeController?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
-
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

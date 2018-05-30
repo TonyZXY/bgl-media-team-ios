@@ -31,11 +31,9 @@ class NewsMenuCell: BaseCell {
 
     override func setupViews() {
         super.setupViews()
-
         addSubview(textView)
         addConstraintsWithFormat(format: "H:[v0(50)]", views: textView)
         addConstraintsWithFormat(format: "V:[v0(30)]", views: textView)
-
         addConstraint(NSLayoutConstraint(item: textView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: textView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
     }
