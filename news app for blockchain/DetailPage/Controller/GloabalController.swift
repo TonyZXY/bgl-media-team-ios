@@ -56,40 +56,6 @@ class GloabalController: UIViewController {
         general.coinAbbName = coinDetail.coinName
         coinDetailController.transactionHistoryController.generalData = general
         generalPage.totalNumber.text = "A$"+scientificMethod(number:globalMarketData.price!)
-        
-//        generalPage
-        
-//        let filterName = "coinAbbName = '" + general.coinAbbName + "' "
-//        let selectItem = realm.objects(MarketTradingPairs.self).filter(filterName)
-//        for value in selectItem{
-//            generalPage.mainView.totalNumber.text = "hah"
-//
-//
-////            generalPage.mainView.totalNumber.text = "A$"+scientificMethod(number:value.singlePrice)
-//            generalPage.mainView.tradingPairs.text = value.tradingPairsName
-//            generalPage.mainView.market.text = value.exchangeName
-//            general.coinAbbName = value.coinAbbName
-//            general.coinName = value.coinName
-//            general.exchangeName = value.exchangeName
-//            general.tradingPairs = value.tradingPairsName
-//            marketSelectedData.coinAbbName = value.coinAbbName
-//            marketSelectedData.coinName = value.coinName
-//            marketSelectedData.exchangeName = value.exchangeName
-//            marketSelectedData.tradingPairsName = value.tradingPairsName
-//            marketSelectedData.transactionPrice = value.transactionPrice
-//            marketSelectedData.coinAmount = value.coinAmount
-//            generalPage.coinSymbol = value.coinAbbName
-//            coinDetailController.transactionHistoryController.generalData = general
-//
-//            generalPage.mainView.marketCapResult.text = String(globalMarketData.market_cap!)
-//            generalPage.mainView.volumeResult.text = String(globalMarketData.volume_24h!)
-//            generalPage.mainView.circulatingSupplyResult.text = String(globalMarketData.circulating_supply!)
-//
-//            //            let candleData = coinDetailController.gerneralController.vc
-//            ////            print(candleData.priceChange)
-//            ////            generalPage.mainView.totalRiseFall.text = String(candleData.priceChange)
-//        }
-        
     }
     
     func addChildViewControllers(childViewControllers:UIViewController,views:UIView){

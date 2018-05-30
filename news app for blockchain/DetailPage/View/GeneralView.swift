@@ -54,7 +54,6 @@ class GeneralView:UIView{
         
         let totalStack = setUpStackView(view: [setUpStackView(view: [marketCap,marketCapResult], spacing: 0, axis: .vertical),stack2], spacing: 5, axis: .vertical)
 
-        
         LastView.addSubview(totalStack)
         LastView.addConstraintsWithFormat(format: "H:|-10-[v0]-10-|", views: totalStack)
         LastView.addConstraintsWithFormat(format: "V:|[v0]|", views: totalStack)

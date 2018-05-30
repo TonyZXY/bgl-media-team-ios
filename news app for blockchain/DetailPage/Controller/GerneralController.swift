@@ -86,8 +86,6 @@ class GerneralController: UIViewController {
         scrollView.addConstraintsWithFormat(format: "V:[v0]-10-[v1(200)]", views: SecondView,ImageView)
         NSLayoutConstraint(item: ImageView, attribute: NSLayoutAttribute.centerX, relatedBy: NSLayoutRelation.equal, toItem: mainViews, attribute: NSLayoutAttribute.centerX, multiplier: 1, constant: 0).isActive = true
 //         NSLayoutConstraint(item: ImageView, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: mainViews, attribute: NSLayoutAttribute.centerY, multiplier: 1, constant: 0).isActive = true
-        print(ImageView.frame.size.width)
-        print(ImageView.frame.size.height)
 
         //Last View constraint
         scrollView.addConstraintsWithFormat(format: "H:|-10-[v1]-10-|", views: ImageView,LastView)
@@ -145,7 +143,6 @@ class GerneralController: UIViewController {
         vc.view.frame.size.height = ImageView.frame.size.height
         vc.view.frame.size.width = ImageView.frame.size.width
         
-        print(vc.view.frame.size.width)
         NSLayoutConstraint(item: vc.view, attribute: .centerX, relatedBy: .equal, toItem: ImageView, attribute: .centerX, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: vc.view, attribute: .centerY, relatedBy: .equal, toItem: ImageView, attribute: .centerY, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: vc.view, attribute: .width, relatedBy: .equal, toItem: ImageView, attribute: .width, multiplier: 1, constant: 0).isActive = true

@@ -12,6 +12,7 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
     // MARK: Instance variables
     
     private var fetcher = HistoricalDataFetcher()
+    
     private var historicalDataStruct: HistoricalDataStruct? {
         didSet {
             spinner.stopAnimating()
@@ -57,12 +58,14 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
         }
     }
     
+    private static var selectedIntervalIndexPath: IndexPath = IndexPath(row: 0, section: 0)
+    
     
     
     // MARK: Layout constants and variables
     
     private let marginUpperAndLowerChart = CGFloat(15)
-    private let intervalBarHeight = CGFloat(30)
+    private let intervalBarHeight = CGFloat(20)
     private var intervalBarWidth: CGFloat { return self.view.frame.width }
     private var chartHeight: CGFloat { return self.view.frame.size.height - xAxisHeight - intervalBarHeight - 2 * marginUpperAndLowerChart }
     private var chartWidth: CGFloat { return (self.view.frame.size.width * 0.85).rounded(.down) * CGFloat(Params.multipleData) }
@@ -81,14 +84,12 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
     
     lazy var intervalBarCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let bar = UICollectionView(frame: .zero, collectionViewLayout:layout)
+        let bar = UICollectionView(frame: CGRect(x: 0, y: 0, width: intervalBarWidth, height: intervalBarHeight), collectionViewLayout: layout)
         bar.backgroundColor = ThemeColor().themeColor()
         bar.delegate = self
         bar.dataSource = self
         bar.register(IntervalBarCollectionViewCell.self, forCellWithReuseIdentifier: "IntervalBarCollectionViewCell")
         bar.translatesAutoresizingMaskIntoConstraints = false
-        bar.frame.size.height = intervalBarHeight
-        bar.frame.size.width = intervalBarWidth
         return bar
     }()
     
@@ -197,6 +198,7 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        intervalBarCollectionView.selectItem(at: CandleStickChartViewController.selectedIntervalIndexPath, animated: true, scrollPosition: [])
     }
     
     override func didMove(toParentViewController parent: UIViewController?) {
@@ -204,17 +206,12 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
         setupUI()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        intervalBarCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: [])
-    }
-    
     
     
     // MARK: CollectionViewDelegate for Interval Bar
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Params.intervalText.count
+        return Params.intervalTexts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -226,12 +223,13 @@ class CandleStickChartViewController: UIViewController, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         Params.category = indexPath.row
+        CandleStickChartViewController.selectedIntervalIndexPath = indexPath
         setupNewChart()
     }
     
     // CollectionViewDelegateFlowLayout for Interval Bar
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: intervalBarCollectionView.frame.width / CGFloat(Params.intervalText.count), height: intervalBarCollectionView.frame.height)
+        return CGSize(width: intervalBarCollectionView.frame.width / CGFloat(Params.intervalTexts.count), height: intervalBarCollectionView.frame.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
