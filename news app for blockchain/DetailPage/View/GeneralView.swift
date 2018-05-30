@@ -217,7 +217,7 @@ class GeneralView:UIView{
     
     var marketCap:UILabel = {
         var label = UILabel()
-        label.text = "Market Cap"
+        label.text = "市场总值"
         label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -251,7 +251,7 @@ class GeneralView:UIView{
     
     var volume:UILabel = {
         var label = UILabel()
-        label.text = "Volume(24h)"
+        label.text = "24小时交易量"
         label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -275,7 +275,7 @@ class GeneralView:UIView{
     
     var circulatingSupply:UILabel = {
         var label = UILabel()
-        label.text = "Circulating Supply"
+        label.text = "流动供给"
         label.font = label.font.withSize(15)
         label.textColor = UIColor.white
         label.translatesAutoresizingMaskIntoConstraints = false
