@@ -56,7 +56,7 @@ class NewsDetailWebViewController: UIViewController, WKNavigationDelegate {
     }
 
     @objc func handleShare() {
-        let activityController = UIActivityViewController(activityItems: [], applicationActivities: nil)
+        let activityController = UIActivityViewController(activityItems: [news?.title as Any,news?.url as Any], applicationActivities: nil)
         present(activityController, animated: true, completion: nil)
     }
 
