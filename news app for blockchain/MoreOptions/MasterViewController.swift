@@ -26,14 +26,10 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         navigationItem.titleView = titleLabel
         
         //splitViewController?.delegate = self
-        //print(self.navigationController as Any)
     }
     
     func setupRootView(){
         view.addSubview(tableView00)
-        //view.addSubview(naviBar)
-        //view.addConstraintsWithFormat(format: "H:|[v0]|", views: naviBar)
-        //view.addConstraintsWithFormat(format: "V:|[v0]|", views: naviBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: tableView00)
         view.addConstraintsWithFormat(format: "V:|[v0]|", views: tableView00)
     }

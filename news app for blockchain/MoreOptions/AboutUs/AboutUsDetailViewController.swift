@@ -9,9 +9,10 @@
 import UIKit
 
 class AboutUsDetailViewController: UIViewController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.titleView = titleLabel
         
         // Do any additional setup after loading the view.
         view.addSubview(rootView)
@@ -36,12 +37,25 @@ class AboutUsDetailViewController: UIViewController {
         vi.backgroundColor = .white
         return vi
     }()
+    
+    let aboutUsView: UIScrollView = {
+        let scrvi = UIScrollView()
+        return scrvi
+    }()
 
     let label: UILabel = {
         let la = UILabel()
         la.text = "This is about us detail view page"
         la.textAlignment = .center
         return la
+    }()
+    
+    let titleLabel: UILabel = {
+        let vi = UILabel()
+        vi.text = "关于 Blockchian Global"
+        vi.textColor = .black
+        vi.textAlignment = .center
+        return vi
     }()
     
 }

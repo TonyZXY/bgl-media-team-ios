@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
             if index0 == 1 {
                 let vc = WebMainViewController()
                 view.addSubview(vc.view)
+                self.addChildViewController(vc)
             }
         }
     }
@@ -31,18 +32,22 @@ class DetailViewController: UIViewController {
             if index1 == 0 {
                 let vc = DefaultCurrencyViewController()
                 view.addSubview(vc.view)
+                self.addChildViewController(vc)
             }
             if index1 == 1 {
                 let vc = NotificationViewController()
                 view.addSubview(vc.view)
+                self.addChildViewController(vc)
             }
             if index1 == 2 {
                 let vc = ViewOptionsViewController()
                 view.addSubview(vc.view)
+                self.addChildViewController(vc)
             }
             if index1 == 3 {
                 let vc = OtherOptionViewController()
                 view.addSubview(vc.view)
+                self.addChildViewController(vc)
             }
         }
     }
