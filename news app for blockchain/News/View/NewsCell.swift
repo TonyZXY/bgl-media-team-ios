@@ -71,7 +71,6 @@ class NewsCell: BaseCell {
 
     override func setupViews() {
         addSubview(view)
-
         setupView()
     }
 

@@ -14,9 +14,11 @@ class NewsDetailWebViewController: UIViewController, WKNavigationDelegate {
     // set up content of the view
     var news: (title: String, url: String)? {
         didSet {
-            let urlRequest: URLRequest = URLRequest(url: URL(string: news!.url)!)
-            titleLabel.text = news?.title
-            webView.load(urlRequest)
+            if news != nil {
+                let urlRequest: URLRequest = URLRequest(url: URL(string: news!.url)!)
+                titleLabel.text = news?.title
+                webView.load(urlRequest)
+            }
         }
     }
 
@@ -28,7 +30,6 @@ class NewsDetailWebViewController: UIViewController, WKNavigationDelegate {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(handleShare))
         tabBarController?.tabBar.isHidden = true
-        // Do any additional setup after loading the view.
     }
 
     let titleLabel: UILabel = {

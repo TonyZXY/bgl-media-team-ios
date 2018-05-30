@@ -69,7 +69,6 @@ class GenuineListViewCell: BaseCell, UICollectionViewDelegate, UICollectionViewD
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(self.handleRefresh(_:)), for: .valueChanged)
         refreshControl.tintColor = UIColor.white
-
         return refreshControl
     }()
 
@@ -98,7 +97,6 @@ class GenuineListViewCell: BaseCell, UICollectionViewDelegate, UICollectionViewD
 
     // constrains of the view
     func setupSubViews() {
-
         view.addSubview(line)
         view.addSubview(selectionView)
         view.addSubview(cellListView)
@@ -108,7 +106,6 @@ class GenuineListViewCell: BaseCell, UICollectionViewDelegate, UICollectionViewD
         addConstraintsWithFormat(format: "H:|-5-[v0]|", views: selectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: cellListView)
         addConstraintsWithFormat(format: "V:|[v0(1)]-5-[v1(30)]", views: line, selectionView)
-
 
         cellListView.topAnchor.constraint(equalTo: selectionView.bottomAnchor).isActive = true
         cellListView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
@@ -239,7 +236,6 @@ class GenuineListViewCell: BaseCell, UICollectionViewDelegate, UICollectionViewD
         fetchData()
         self.refresher.endRefreshing()
     }
-
 
     // load data online whit no arguement
     func fetchData() {
