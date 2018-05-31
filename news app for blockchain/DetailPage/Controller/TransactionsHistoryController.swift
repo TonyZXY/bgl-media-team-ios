@@ -26,9 +26,6 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
              NotificationCenter.default.addObserver(self, selector: #selector(handleRefresh(_:)), name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
         setUpView()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-    }
 
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
@@ -45,6 +42,7 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let object = results[indexPath.row]
+        //Create buy transaction cell
         if object.status == "Buy"{
             let cell = tableView.dequeueReusableCell(withIdentifier: "BuyHistory", for: indexPath) as! HistoryTableViewCell
             cell.dateLabel.textColor = UIColor.white
@@ -72,14 +70,13 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
             dateFormatter.dateFormat = "MMM d, yyyy, h:ma"
             return cell
         } else if object.status == "Sell"{
+             //Create sell transaction cell
             let cell = tableView.dequeueReusableCell(withIdentifier: "SellHistory", for: indexPath) as! HistoryTableViewCell
             cell.sellDateLabel.textColor = UIColor.white
             cell.sellMarket.textColor = UIColor.white
             cell.labelPoint.text = "S"
             cell.labelPoint.layer.backgroundColor = ThemeColor().redColor().cgColor
             cell.sellDateLabel.text = object.date + " " + object.time
-//            cell.sellPrice.text = object.coinAbbName + " " + object.status + " " + "Price"
-//            cell.sellTradingPairs.text = object.coinAbbName + "/" + object.tradingPairsName
             cell.sellPriceResult.text = scientificMethod(number:object.singlePrice)
             cell.sellTradingPairResult.text = object.coinAbbName + "/" + object.tradingPairsName
             cell.sellAmountResult.text = scientificMethod(number:object.amount)
@@ -163,53 +160,6 @@ class TransactionsHistoryController: UIViewController,UITableViewDataSource,UITa
         tableView.addSubview(self.refresher)
         return tableView
     }()
-    
-    func setWalletData() -> [WalletDetail]{
-        var wallets = [WalletDetail]()
-        var list = [String]()
-        let allResult = realm.objects(AllTransactions.self)
-        let coinSelected = realm.objects(MarketTradingPairs.self)
-        for value in allResult{
-            if list.contains(value.coinName){
-                let indexs = wallets.index(where: { (item) -> Bool in
-                    item.coinName == value.coinName
-                })
-                let filterName = "coinAbbName = '" + value.coinAbbName + "' "
-                let coinSelected = coinSelected.filter(filterName)
-                if coinSelected.count == 0{
-                    wallets[indexs!].tradingPairsName = value.tradingPairsName
-                    wallets[indexs!].exchangeName = value.exchangName
-                } else {
-                    for result in coinSelected{
-                        wallets[indexs!].exchangeName = result.exchangeName
-                        wallets[indexs!].tradingPairsName = result.tradingPairsName
-                    }
-                }
-                if value.status == "Buy"{
-                    if priceType == "AUD"{
-                        wallets[indexs!].coinAmount += value.amount
-                        wallets[indexs!].TransactionPrice += value.audTotalPrice
-                    }
-                }else if value.status == "Sell"{
-                    wallets[indexs!].coinAmount -= value.amount
-                    if priceType == "AUD"{
-                        wallets[indexs!].TransactionPrice -= value.audTotalPrice
-                    }
-                }
-            } else{
-                let newWallet = WalletDetail()
-                newWallet.coinName = value.coinName
-                newWallet.exchangeName = value.exchangName
-                newWallet.coinAbbName = value.coinAbbName
-                newWallet.coinAmount = value.amount
-                newWallet.TransactionPrice = value.audTotalPrice
-                newWallet.tradingPairsName = value.tradingPairsName
-                wallets.append(newWallet)
-                list.append(value.coinName)
-            }
-        }
-        return wallets
-    }
     
     var averageView:UIView = {
         var view = UIView()

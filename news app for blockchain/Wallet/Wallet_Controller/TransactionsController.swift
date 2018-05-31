@@ -17,18 +17,20 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     var transaction:String = "Buy"
     let cryptoCompareClient = CryptoCompareClient()
     let realm = try! Realm()
-    var priceCurrency:Double = 0.0
     var transcationData = TransactionFormData()
     var updateTransaction = AllTransactions()
     var transactionStatus = "Add"
     var transactionNumber:Int = 0
     
+    
+    //First load the page
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         updateTransactionDetail()
     }
     
+    //Every time this page appear
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
         DispatchQueue.main.async {
@@ -37,203 +39,12 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    func updateTransactionDetail(){
-        if transactionStatus == "Update"{
-            transactionNumber = 1
-            newTransaction.id = updateTransaction.id
-            newTransaction.coinAbbName = updateTransaction.coinAbbName
-            newTransaction.coinName = updateTransaction.coinName
-            newTransaction.exchangName = updateTransaction.exchangName
-            newTransaction.tradingPairsName = updateTransaction.tradingPairsName
-            newTransaction.singlePrice = updateTransaction.singlePrice
-            newTransaction.amount = updateTransaction.amount
-            newTransaction.date = updateTransaction.date
-            newTransaction.time = updateTransaction.time
-            newTransaction.expenses = updateTransaction.expenses
-            newTransaction.additional = updateTransaction.additional
-            transcationData.tradingPairsFirst = [newTransaction.coinAbbName,"%" + newTransaction.coinAbbName]
-            transcationData.tradingPairsSecond = [newTransaction.tradingPairsName, "%" + newTransaction.coinAbbName]
-        }
-    }
-    
-    @objc func addTransaction(){
-        newTransaction.totalPrice = Double(newTransaction.amount) * newTransaction.singlePrice
-        newTransaction.status = transaction
-        if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0.0" && String(newTransaction.singlePrice) != "0.0"{
-            transactionButton.setTitle("Loading...", for: .normal)
-            
-//            GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "USD", price: self.newTransaction.singlePrice){success,price in
-//                if success{
-//                    self.newTransaction.usdSinglePrice = price
-//                    self.newTransaction.usdTotalPrice = self.newTransaction.usdSinglePrice * Double(self.newTransaction.amount)
-//                } else{
-//                    print("fail")
-//                }
-//
-//            }
-            
-            GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "AUD", price: self.newTransaction.singlePrice){success,price in
-                if success{
-                    self.newTransaction.audSinglePrice = price
-                    self.newTransaction.audTotalPrice = self.newTransaction.audSinglePrice * Double(self.newTransaction.amount)
-                    DispatchQueue.main.sync{
-                        self.writeToRealm()
-                    }
-                } else{
-                    print("fail")
-                }
-            }
-        }
-    }
-    
-    func writeToRealm(){
-        //Write to Transaction Model to realm
-        realm.beginWrite()
-        var currentTransactionId:Int = 0
-        if transactionStatus == "Update"{
-            currentTransactionId = newTransaction.id
-        } else {
-            let transaction = realm.objects(AllTransactions.self)
-            if transaction.count != 0{
-                currentTransactionId = (transaction.last?.id)! + 1
-            } else {
-                currentTransactionId = 1
-            }
-        }
-        
-        let realmData:[Any] = [currentTransactionId,newTransaction.status,newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice]
-        
-        if realm.object(ofType: AllTransactions.self, forPrimaryKey: currentTransactionId) == nil {
-            realm.create(AllTransactions.self, value: realmData)
-        } else {
-            realm.create(AllTransactions.self, value: realmData, update: true)
-        }
-        
-        try! realm.commitWrite()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
-        self.navigationController?.popViewController(animated: true)
-        
-    }
-    
-    lazy var transactionTableView:UITableView = {
-        var tableViews = UITableView()
-        tableViews.backgroundColor = color.themeColor()
-        tableViews.register(TransCoinTypeCell.self, forCellReuseIdentifier: "CoinTypeCell")
-        tableViews.register(TransCoinMarketCell.self, forCellReuseIdentifier: "CoinMarketCell")
-        tableViews.register(TransTradePairsCell.self, forCellReuseIdentifier: "TradePairsCell")
-        tableViews.register(TransPriceCell.self, forCellReuseIdentifier: "PriceCell")
-        tableViews.register(TransNumberCell.self, forCellReuseIdentifier: "NumberCell")
-        tableViews.register(TransDateCell.self, forCellReuseIdentifier: "DateCell")
-        tableViews.register(TransTimeCell.self, forCellReuseIdentifier: "TimeCell")
-        tableViews.register(TransExpensesCell.self, forCellReuseIdentifier: "ExpensesCell")
-        tableViews.register(TransAdditionalCell.self, forCellReuseIdentifier: "AdditionalCell")
-        tableViews.delegate = self
-        tableViews.dataSource = self
-//        tableViews.separatorStyle = .none
-        return tableViews
-    }()
-    
-    lazy var transactionButton:UIButton = {
-        var button = UIButton(type: .system)
-        if transactionStatus == "Add" {
-            button.setTitle("Add Transaction", for: .normal)
-        } else if transactionStatus == "Update" {
-            button.setTitle("Update Transaction", for: .normal)
-        }
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.backgroundColor = color.riseColor()
-        return button
-    }()
-    
-    lazy var buy:UIButton = {
-        var button = UIButton(type: .system)
-        button.setTitle("Buy", for: .normal)
-        button.tintColor = UIColor.white
-        button.layer.borderColor = color.greenColor().cgColor
-        button.layer.borderWidth = 3
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(buyPage), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var sell:UIButton = {
-        var button = UIButton(type: .system)
-        button.setTitle("Sell", for: .normal)
-        button.tintColor = UIColor.white
-        button.layer.borderColor = UIColor.lightGray.cgColor
-        button.layer.borderWidth = 3
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(sellPage), for: .touchUpInside)
-        return button
-    }()
-    
-    @objc func buyPage(){
-        transaction = "Buy"
-        buy.layer.borderColor = color.greenColor().cgColor
-        sell.layer.borderColor = UIColor.lightGray.cgColor
-        transactionButton.backgroundColor = color.greenColor()        
-        DispatchQueue.main.async {
-            self.transactionTableView.reloadData()
-        }
-    }
-    
-    @objc func sellPage(){
-        transaction = "Sell"
-        sell.layer.borderColor = color.redColor().cgColor
-        buy.layer.borderColor = UIColor.lightGray.cgColor
-        transactionButton.backgroundColor = color.redColor()
-        DispatchQueue.main.async {
-            self.transactionTableView.reloadData()
-        }
-    }
-    
-    func setupView(){
-        view.backgroundColor = color.themeColor()
-        let titleLabel = UILabel()
-        titleLabel.text = "Blockchain Global"
-        titleLabel.textColor = UIColor.white
-        navigationItem.titleView = titleLabel
-        
-        transactionTableView.keyboardDismissMode = .onDrag
-        
-        navigationController?.navigationBar.barTintColor =  color.themeColor()
-        navigationController?.navigationBar.isTranslucent = false
-        view.addSubview(transactionButton)
-        view.addSubview(transactionTableView)
-        view.addSubview(buy)
-        view.addSubview(sell)
-        buy.translatesAutoresizingMaskIntoConstraints = false
-        sell.translatesAutoresizingMaskIntoConstraints = false
-        transactionTableView.translatesAutoresizingMaskIntoConstraints = false
-        transactionButton.translatesAutoresizingMaskIntoConstraints = false
-        transactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
-        
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]-10-[v1(==v0)]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v0(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v1(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
-        
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v2]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-5-[v2]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
-        
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v3]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v2]-0-[v3(80)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
-        
-        let tableVC = UITableViewController.init(style: .plain)
-        tableVC.tableView = self.transactionTableView
-        self.addChildViewController(tableVC)
-    }
-    
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
+    //Numbers of rows in tableView
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return cells.count
     }
     
+    //Create table view each cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: cells[0], for: indexPath) as! TransCoinTypeCell
@@ -346,6 +157,75 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
+    //Click add Transaction button, it will transfer the current trading price to specific price type, for example: USD -> AUD
+    @objc func addTransaction(){
+        newTransaction.totalPrice = Double(newTransaction.amount) * newTransaction.singlePrice
+        newTransaction.status = transaction
+        if newTransaction.coinName != "" && newTransaction.coinName != "" && newTransaction.exchangName != "" && newTransaction.tradingPairsName != "" && String(newTransaction.amount) != "0.0" && String(newTransaction.singlePrice) != "0.0"{
+            transactionButton.setTitle("加载中...", for: .normal)
+            GetDataResult().getCryptoCurrencyApi(from: self.newTransaction.tradingPairsName, to: "AUD", price: self.newTransaction.singlePrice){success,price in
+                if success{
+                    self.newTransaction.audSinglePrice = price
+                    self.newTransaction.audTotalPrice = self.newTransaction.audSinglePrice * Double(self.newTransaction.amount)
+                    DispatchQueue.main.sync{
+                        self.writeToRealm()
+                    }
+                } else{
+                    print("fail")
+                }
+            }
+        }
+    }
+    
+    //Write transaction to realm
+    func writeToRealm(){
+        //Write to Transaction Model to realm
+        realm.beginWrite()
+        var currentTransactionId:Int = 0
+        if transactionStatus == "Update"{
+            currentTransactionId = newTransaction.id
+        } else {
+            let transaction = realm.objects(AllTransactions.self)
+            if transaction.count != 0{
+                currentTransactionId = (transaction.last?.id)! + 1
+            } else {
+                currentTransactionId = 1
+            }
+        }
+        let realmData:[Any] = [currentTransactionId,newTransaction.status,newTransaction.coinName,newTransaction.coinAbbName,newTransaction.exchangName, newTransaction.tradingPairsName,newTransaction.singlePrice,newTransaction.totalPrice,newTransaction.amount,newTransaction.date,newTransaction.time,newTransaction.expenses,newTransaction.additional,newTransaction.usdSinglePrice,newTransaction.usdTotalPrice,newTransaction.audSinglePrice,newTransaction.audTotalPrice]
+        if realm.object(ofType: AllTransactions.self, forPrimaryKey: currentTransactionId) == nil {
+            realm.create(AllTransactions.self, value: realmData)
+        } else {
+            realm.create(AllTransactions.self, value: realmData, update: true)
+        }
+        try! realm.commitWrite()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadWallet"), object: nil)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    //Click buy button it will turn to the "Buy" Type
+    @objc func buyPage(){
+        transaction = "Buy"
+        buy.layer.borderColor = color.greenColor().cgColor
+        sell.layer.borderColor = UIColor.lightGray.cgColor
+        transactionButton.backgroundColor = color.greenColor()
+        DispatchQueue.main.async {
+            self.transactionTableView.reloadData()
+        }
+    }
+    
+    //Click buy button it will turn to the "Sell" Type
+    @objc func sellPage(){
+        transaction = "Sell"
+        sell.layer.borderColor = color.redColor().cgColor
+        buy.layer.borderColor = UIColor.lightGray.cgColor
+        transactionButton.backgroundColor = color.redColor()
+        DispatchQueue.main.async {
+            self.transactionTableView.reloadData()
+        }
+    }
+    
+    //Load current selected coins trading price
     func loadPrice(){
         if transactionNumber == 1 {
             transactionNumber = 0
@@ -372,17 +252,66 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
                 newTransaction.singlePrice = 0
             }
         }
-        
-        
-//        let index = IndexPath(row: 3, section: 0)
-//        let cell:TransPriceCell = self.transactionTableView.cellForRow(at: index) as! TransPriceCell
-//        if cell.priceType.text == "总额" {
-//            cell.price.text = String(newTransaction.singlePrice * newTransaction.amount)
-//        } else{
-//            cell.price.text = String(newTransaction.singlePrice)
-//        }
     }
     
+    //If this page is open from transaction history page, it can display the data in the transaction form and allow them to update
+    func updateTransactionDetail(){
+        if transactionStatus == "Update"{
+            transactionNumber = 1
+            newTransaction.id = updateTransaction.id
+            newTransaction.coinAbbName = updateTransaction.coinAbbName
+            newTransaction.coinName = updateTransaction.coinName
+            newTransaction.exchangName = updateTransaction.exchangName
+            newTransaction.tradingPairsName = updateTransaction.tradingPairsName
+            newTransaction.singlePrice = updateTransaction.singlePrice
+            newTransaction.amount = updateTransaction.amount
+            newTransaction.date = updateTransaction.date
+            newTransaction.time = updateTransaction.time
+            newTransaction.expenses = updateTransaction.expenses
+            newTransaction.additional = updateTransaction.additional
+            transcationData.tradingPairsFirst = [newTransaction.coinAbbName,"%" + newTransaction.coinAbbName]
+            transcationData.tradingPairsSecond = [newTransaction.tradingPairsName, "%" + newTransaction.coinAbbName]
+        }
+    }
+    
+    //Set up all the layout constraint
+    func setupView(){
+        view.backgroundColor = color.themeColor()
+        let titleLabel = UILabel()
+        titleLabel.text = "Blockchain Global"
+        titleLabel.textColor = UIColor.white
+        navigationItem.titleView = titleLabel
+        
+        transactionTableView.keyboardDismissMode = .onDrag
+        
+        navigationController?.navigationBar.barTintColor =  color.themeColor()
+        navigationController?.navigationBar.isTranslucent = false
+        view.addSubview(transactionButton)
+        view.addSubview(transactionTableView)
+        view.addSubview(buy)
+        view.addSubview(sell)
+        buy.translatesAutoresizingMaskIntoConstraints = false
+        sell.translatesAutoresizingMaskIntoConstraints = false
+        transactionTableView.translatesAutoresizingMaskIntoConstraints = false
+        transactionButton.translatesAutoresizingMaskIntoConstraints = false
+        transactionButton.addTarget(self, action: #selector(addTransaction), for: .touchUpInside)
+        
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[v0]-10-[v1(==v0)]-10-|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v0(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-10-[v1(50)]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v2]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-5-[v2]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v3]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v2]-0-[v3(80)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":buy,"v1":sell,"v2":transactionTableView,"v3":transactionButton]))
+        
+        let tableVC = UITableViewController.init(style: .plain)
+        tableVC.tableView = self.transactionTableView
+        self.addChildViewController(tableVC)
+    }
+    
+    //Delegate from search Page
     func getExchangeName() -> String {
         return newTransaction.exchangName
     }
@@ -390,7 +319,6 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
     func getCoinName() -> String {
         return newTransaction.coinAbbName
     }
-    
     
     func setTradingPairsFirstType(firstCoinType: [String]) {
         transcationData.tradingPairsFirst = firstCoinType
@@ -416,8 +344,7 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
         newTransaction.tradingPairsName = tradingPairsName
     }
     
-    
-    
+    //TextField edit delegate
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.tag == 3{
             if textField.text == "" || textField.text == nil{
@@ -446,4 +373,56 @@ class TransactionsController: UIViewController, UITableViewDelegate, UITableView
             newTransaction.additional = textField.text!
         }
     }
+    
+    lazy var transactionTableView:UITableView = {
+        var tableViews = UITableView()
+        tableViews.backgroundColor = color.themeColor()
+        tableViews.register(TransCoinTypeCell.self, forCellReuseIdentifier: "CoinTypeCell")
+        tableViews.register(TransCoinMarketCell.self, forCellReuseIdentifier: "CoinMarketCell")
+        tableViews.register(TransTradePairsCell.self, forCellReuseIdentifier: "TradePairsCell")
+        tableViews.register(TransPriceCell.self, forCellReuseIdentifier: "PriceCell")
+        tableViews.register(TransNumberCell.self, forCellReuseIdentifier: "NumberCell")
+        tableViews.register(TransDateCell.self, forCellReuseIdentifier: "DateCell")
+        tableViews.register(TransTimeCell.self, forCellReuseIdentifier: "TimeCell")
+        tableViews.register(TransExpensesCell.self, forCellReuseIdentifier: "ExpensesCell")
+        tableViews.register(TransAdditionalCell.self, forCellReuseIdentifier: "AdditionalCell")
+        tableViews.delegate = self
+        tableViews.dataSource = self
+        //        tableViews.separatorStyle = .none
+        return tableViews
+    }()
+    
+    lazy var transactionButton:UIButton = {
+        var button = UIButton(type: .system)
+        if transactionStatus == "Add" {
+            button.setTitle("添加交易", for: .normal)
+        } else if transactionStatus == "Update" {
+            button.setTitle("更新交易", for: .normal)
+        }
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = color.riseColor()
+        return button
+    }()
+    
+    lazy var buy:UIButton = {
+        var button = UIButton(type: .system)
+        button.setTitle("买入", for: .normal)
+        button.tintColor = UIColor.white
+        button.layer.borderColor = color.greenColor().cgColor
+        button.layer.borderWidth = 3
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(buyPage), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var sell:UIButton = {
+        var button = UIButton(type: .system)
+        button.setTitle("卖出", for: .normal)
+        button.tintColor = UIColor.white
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.layer.borderWidth = 3
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(sellPage), for: .touchUpInside)
+        return button
+    }()
 }

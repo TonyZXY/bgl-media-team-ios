@@ -75,6 +75,7 @@ class GloabalController: UIViewController {
         childViewControllers.view.heightAnchor.constraint(equalTo: views.heightAnchor).isActive = true
     }
     
+    //Get coins global data and Global Average Price
     func getCoinGloablDetail(){
         let coinNameId = self.getCoinName(coinAbbName: coinDetail.coinName)
         print(coinNameId)
@@ -93,6 +94,7 @@ class GloabalController: UIViewController {
         }
     }
     
+    //Get coin Id
     func getCoinName(coinAbbName:String)->Int{
         let data = GetDataResult().getMarketCapCoinList()
         var coinId:Int = 0

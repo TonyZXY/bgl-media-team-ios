@@ -29,8 +29,23 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
         }
     }
     
+    //Get trading Pairs Name
+    func getExchangeList()->Void{
+        let data = getDataResult.getExchangeList()
+        for (key,value) in data{
+            if delegate?.getCoinName() != ""{
+                let exactMarket = value.filter{name in return name.key == delegate?.getCoinName()}
+                if exactMarket.count != 0{
+                    self.allExchanges.append(key)
+                }
+            }
+            else {
+                self.allExchanges.append(key)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if isSearching {
             return filterExchanges.count
         }
@@ -52,21 +67,6 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
         delegate?.setExchangesName(exchangeName: (table.textLabel?.text)!)
         delegate?.setTradingPairsName(tradingPairsName: "")
         navigationController?.popViewController(animated: true)
-    }
-    
-    func getExchangeList()->Void{
-        let data = getDataResult.getExchangeList()
-        for (key,value) in data{
-            if delegate?.getCoinName() != ""{
-                let exactMarket = value.filter{name in return name.key == delegate?.getCoinName()}
-                if exactMarket.count != 0{
-                    self.allExchanges.append(key)
-                }
-            }
-            else {
-                self.allExchanges.append(key)
-            }
-        }
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -106,16 +106,9 @@ class SearchExchangesController:UIViewController,UITableViewDelegate,UITableView
     func setupView(){
         view.addSubview(searchBar)
         view.addSubview(searchResult)
-        
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar]))
-        
-        
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v1]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":searchResult]))
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[v0]-[v1]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchBar,"v1":searchResult]))
-        
-        let tableVC = UITableViewController.init(style: .plain)
-        tableVC.tableView = self.searchResult
-        self.addChildViewController(tableVC)
     }
 }

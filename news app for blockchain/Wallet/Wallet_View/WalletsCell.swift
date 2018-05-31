@@ -132,38 +132,6 @@ class WalletsCell:UITableViewCell{
         return label
     }()
     
-    func checkRiseandfallPercent(risefallnumber: Double) {
-        if String(risefallnumber).prefix(1) == "-" {
-            // lost with red
-            profitChange.textColor = color.fallColor()
-            profitChange.text = "▼ " + scientificMethod(number: risefallnumber) + "%"
-        } else if String(risefallnumber) == "0.0"{
-            // Not any change with white
-            profitChange.text = "--"
-            profitChange.textColor = UIColor.white
-        } else {
-            //Profit with green
-            profitChange.textColor = color.riseColor()
-            profitChange.text = "▲ " + "+" + scientificMethod(number: risefallnumber) + "%"
-        }
-    }
-
-    func checkRiseandfallNumber(risefallnumber: Double) {
-        if String(risefallnumber).prefix(1) == "-" {
-            // lost with red
-            profitChange.textColor = color.fallColor()
-            profitChange.text = "▼ " + scientificMethod(number: risefallnumber)
-        } else if String(risefallnumber) == "0.0"{
-            // Not any change with white
-            profitChange.text = "--"
-            profitChange.textColor = UIColor.white
-        } else {
-            //Profit with green
-            profitChange.textColor = color.riseColor()
-            profitChange.text = "▲ " + "+" + scientificMethod(number: risefallnumber)
-        }
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init Error")
     }

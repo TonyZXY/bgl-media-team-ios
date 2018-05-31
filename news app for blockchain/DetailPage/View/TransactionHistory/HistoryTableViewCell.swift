@@ -9,12 +9,9 @@
 import UIKit
 
 open class HistoryTableViewCell: UITableViewCell {
-    
 
     @IBOutlet weak open var historyView: UIView!
-    
-    
-   
+
     //Buy table view cell xib
     @IBOutlet weak var SinglePrice: UILabel!
     @IBOutlet weak var SinglePriceResult: UILabel!
@@ -32,8 +29,7 @@ open class HistoryTableViewCell: UITableViewCell {
     @IBOutlet weak var buyDeleteButton: UIButton!
     @IBOutlet weak var buyMarket: UILabel!
     
-    
-    
+
     //Sell table view Cell xib
     @IBOutlet weak var sellPrice: UILabel!
     @IBOutlet weak var sellPriceResult: UILabel!
@@ -76,16 +72,13 @@ open class HistoryTableViewCell: UITableViewCell {
     
     func setUpTheme(){
         historyView.backgroundColor = ThemeColor().walletCellcolor()
-        
     }
     
     func setUpLabelPoint(){
         addSubview(labelPoint)
-        
         NSLayoutConstraint(item: labelPoint, attribute: .leading, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: timeline.leftMargin + timeline.width / 2).isActive = true
         NSLayoutConstraint(item: labelPoint, attribute: .top, relatedBy: NSLayoutRelation.equal, toItem: self, attribute: NSLayoutAttribute.top, multiplier: 1, constant: timelinePoint.lineWidth).isActive = true
         NSLayoutConstraint(item: labelPoint, attribute: .height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.height, multiplier: 1, constant: 30).isActive = true
          NSLayoutConstraint(item: labelPoint, attribute: .width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.width, multiplier: 1, constant: 30).isActive = true
-        
     }
 }

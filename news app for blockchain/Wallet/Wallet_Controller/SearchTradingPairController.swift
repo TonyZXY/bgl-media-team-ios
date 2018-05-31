@@ -22,6 +22,16 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
         setupView()
     }
     
+    //Get Trading Pairs Name
+    func getTradingPairsList()->Void{
+        let data = getDataResults.getTradingCoinList(market: (delegate?.getExchangeName())!,coin:(delegate?.getCoinName())!)
+        if data != []{
+            for pairs in data{
+                self.allTradingPairs.append(pairs)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allTradingPairs.count
     }
@@ -38,19 +48,17 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
         var allPairs = [String]()
         allPairs.append((table.textLabel?.text)!)
         allPairs.append("%"+(table.textLabel?.text)!)
+        
+        //Delegate selected tradingPairsName to the transaction page
         delegate?.setTradingPairsName(tradingPairsName: (table.textLabel?.text)!)
         delegate?.setTradingPairsSecondType(secondCoinType: allPairs)
-//        loadPrice(selectTradingPairs: (table.textLabel?.text)!)
         navigationController?.popViewController(animated: true)
     }
     
-    func getTradingPairsList()->Void{
-        let data = getDataResults.getTradingCoinList(market: (delegate?.getExchangeName())!,coin:(delegate?.getCoinName())!)
-        if data != []{
-            for pairs in data{
-                self.allTradingPairs.append(pairs)
-            }
-        }
+    func setupView(){
+        view.addSubview(searchResult)
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchResult]))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchResult]))
     }
     
     lazy var searchResult:UITableView = {
@@ -63,30 +71,4 @@ class SearchTradingPairController:UIViewController,UITableViewDelegate,UITableVi
         tableViews.translatesAutoresizingMaskIntoConstraints = false
         return tableViews
     }()
-    
-    func setupView(){
-        view.addSubview(searchResult)
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchResult]))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0":searchResult]))
-        
-        let tableVC = UITableViewController.init(style: .plain)
-        tableVC.tableView = self.searchResult
-        self.addChildViewController(tableVC)
-    }
-    
-//    func loadPrice(selectTradingPairs:String){
-//        selectValues = 0
-//        cryptoCompareClient.getTradePrice(from: (delegate?.getCoinName())!, to: selectTradingPairs, exchange: delegate?.getExchangeName()){ result in
-//                switch result{
-//                case .success(let resultData):
-//                    for result in resultData!{
-//                        self.selectValues = Double(result.value)
-////                        self.delegate?.setSinglePrice(single: self.selectValues)
-//                    }
-//                case .failure(let error):
-//                    print("the error \(error.localizedDescription)")
-//                }
-//        }
-//    }
-
 }
