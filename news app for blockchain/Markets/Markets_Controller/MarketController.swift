@@ -30,7 +30,7 @@ class MarketController: UIViewController, UICollectionViewDelegate,UICollectionV
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        tickerDataFetcher.fetchTickerDataWrapper()
+        tickerDataFetcher.fetchTickerDataWrapper()
     }
     
     override func viewWillAppear(_ animated: Bool) {

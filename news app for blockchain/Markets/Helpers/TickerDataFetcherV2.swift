@@ -80,13 +80,13 @@ class TickerDataFetcherV2 {
     
     func getAllTickerData() {
         getTickerData() {
-            if TickerDataFetcherV2.starts + 100 < TickerDataFetcherV2.num_cryptocurrencies{
-                TickerDataFetcherV2.starts += 100
-                self.getAllTickerData()
-            } else {
+            if TickerDataFetcherV2.starts == Int.max || TickerDataFetcherV2.starts + 100 > TickerDataFetcherV2.num_cryptocurrencies{
                 TickerDataFetcherV2.starts = 1
                 TickerDataFetcherV2.isFetching = false
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removeWatchInMarketsCell"), object: nil)
+            } else {
+                TickerDataFetcherV2.starts += 100
+                self.getAllTickerData()
             }
         }
     }
