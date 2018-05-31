@@ -36,7 +36,6 @@ struct Quotes:Decodable{
     var percent_change_7d:Double?
 }
 
-
 struct MetaDatas:Decodable{
     var timestamp:Int?
     var error:String?
@@ -53,22 +52,6 @@ class GlobalMarket {
     let price:Double?
     let volume_24h:Double?
     let market_cap:Double?
-//
-//    struct CoinKeys {
-//        static let id = "id"
-//        static let symbol = "symbol"
-//        static let name = "symbol"
-//        static let circulating_supply = "circulating_supply"
-//        static let aud_percent_change_1h = "percent_change_1h"
-//        static let aud_percent_change_24h = "percent_change_24h"
-//        static let aud_percent_change_7d = "percent_change_7d"
-//        static let aud_price = "price"
-//        static let aud_volume_24h = "volume_24h"
-//        static let aud_market_cap = "market_cap"
-//        static let usd_price = "price"
-//        static let usd_volume_24h = "volume_24h"
-//        static let usd_market_cap = "market_cap"
-//    }
 
     init() {
         id = 0
@@ -82,8 +65,7 @@ class GlobalMarket {
         volume_24h = 0
         market_cap = 0
     }
-    
-    
+
     init(market:MarketAllData,priceType:String) {
         let marketData = market.data
         let quote = marketData?.quotes

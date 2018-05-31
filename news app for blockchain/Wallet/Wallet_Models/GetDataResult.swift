@@ -47,10 +47,8 @@ class GetDataResult{
     typealias tradingCoin = [String]
     typealias chooseCoin = [String:tradingCoin]
     typealias exchangeChoose = [String:chooseCoin]
-//    typealias globalCoinList = ["String":[GlobalCoinList]]
     
-//    let cc:[String:[AnyObject]] = ["data":[GlobalCoinList]]
-    
+    //Get coins details from CryptoCompare api and save to the realm
     func getCoinList(){
         cryptoCompareClient.getCoinList(){result in
             switch result{
@@ -67,7 +65,7 @@ class GetDataResult{
         }
     }
     
-    
+    //Get exchange market detail from local json file (Cryptocurrency Api)
     func getExchangeList()->exchangeChoose{
         var jsonData = exchangeChoose()
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -83,6 +81,7 @@ class GetDataResult{
         return jsonData
     }
     
+    //Get the coin list details from local json file (Market Cap Api)
     func getMarketCapCoinList()->[GlobalCoinList]{
         var jsonData = [GlobalCoinList]()
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -98,6 +97,7 @@ class GetDataResult{
         return jsonData
     }
     
+    //Get specific coins global detail data using market cap api (for example: Market Cap, Volume24h, Supply)
     func getMarketCapCoinDetail(coinId:Int,priceType:String,completion:@escaping (GlobalMarket?,Bool)->Void){
         let baseUrl:String = "https://api.coinmarketcap.com/v2/ticker/"
         let urlString:String = baseUrl + String(coinId) + "/?convert=" + priceType
@@ -111,7 +111,8 @@ class GetDataResult{
             }
         }
     }
-            
+    
+    //Get trading pairs Name base on specific market name and coin name
     func getTradingCoinList(market:String,coin:String)->tradingCoin{
         var jsonData = tradingCoin()
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -127,44 +128,20 @@ class GetDataResult{
                 print("Error serializing json:",jsonErr)
             }
         }
-       
         return jsonData
     }
     
+    
     typealias StringCompletion = (_ success: Bool, _ Double: Double) -> Void
     
-    func getCurrencyApi(from:String,to:String,price:Double,completion: @escaping StringCompletion){
-        var transferPrice:Double = 0
-        let baseUrl = "https://free.currencyconverterapi.com/api/v5/convert?q="
-        let currencyPairs = from + "_" + to
-        let urlString = baseUrl + currencyPairs
-        
-        guard let url = URL(string: urlString) else { return }
-        let transferPrices = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            do{
-                let json = try JSONDecoder().decode(Currency.self, from: data)
-                if json.query["count"] != 0 && json.query["count"] != nil{
-                    let currency = Double((json.results[currencyPairs]?.val)!)
-                    transferPrice = currency * price
-                    completion(true,transferPrice)
-                }
-            } catch let jsonErr{
-                print("Error serializing json:",jsonErr)
-                completion(false,transferPrice)
-            }
-        }
-        transferPrices.resume()
-    }
-    
-    
+    //Get currency rate and transfer the coin trading price to specific price type
     func getCryptoCurrencyApi(from:String,to:String,price:Double,completion: @escaping StringCompletion){
         var transferPrice:Double = 0
         let baseUrl = "https://min-api.cryptocompare.com/data/price?"
         let currencyPairs = "fsym="+from + "&" + "tsyms=" + to
         let urlString = baseUrl + currencyPairs
         
-        let queue = DispatchQueue(label: "ssss")
+        let queue = DispatchQueue(label: "currency rate")
         
         queue.sync {
             guard let url = URL(string: urlString) else { return completion(false,0)}
@@ -184,60 +161,6 @@ class GetDataResult{
             transferPrices.resume()
         }
     }
-    
-    typealias StringCompletion1 = (_ success: Bool, _ double: Double, _ double:Double) -> Void
-    
-    func getCryptoCurrencyApis(from:String,toAUD:String,toUSD:String,price:Double,completion: @escaping StringCompletion1){
-        
-        var transferAUDs:Double = 0
-        var transferUSDs:Double = 0
-        let baseUrl = "https://min-api.cryptocompare.com/data/price?"
-        let currencyAUD = "fsym="+from + "&" + "tsyms=" + toAUD
-        let currencyUSD = "fsym="+from + "&" + "tsyms=" + toAUD
-        let urlString1 = baseUrl + currencyAUD
-        let urlString2 = baseUrl + currencyUSD
-        
-        let queue = DispatchQueue(label: "sss")
-        
-        queue.sync {
-            guard let url1 = URL(string: urlString1) else { return }
-            let transferAUD = URLSession.shared.dataTask(with: url1) { (data, response, error) in
-                guard let data = data else { return }
-                do{
-                    let json = try JSONDecoder().decode([String:Double].self, from: data)
-                    for n in json{
-                        transferAUDs = Double(n.value) * price
-                    }
-                } catch let jsonErr{
-                    print("Error serializing json:",jsonErr)
-                }
-            }
-            transferAUD.resume()
-        }
-        
-        queue.sync {
-            guard let url2 = URL(string: urlString2) else { return }
-            let transferUSD = URLSession.shared.dataTask(with: url2) { (data, response, error) in
-                guard let data = data else { return }
-                do{
-                    let json = try JSONDecoder().decode([String:Double].self, from: data)
-                    for n in json{
-                        transferUSDs = Double(n.value) * price
-                    }
-                } catch let jsonErr{
-                    print("Error serializing json:",jsonErr)
-                    
-                }
-            }
-            transferUSD.resume()
-        }
-        
-        queue.sync {
-            completion(true,transferAUDs,transferUSDs)
-        }
-    }
-    
-    
 }
 
 

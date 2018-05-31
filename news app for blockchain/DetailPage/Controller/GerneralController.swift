@@ -34,17 +34,9 @@ class GerneralController: UIViewController {
         childViewControllers.view.widthAnchor.constraint(equalTo: views.widthAnchor).isActive = true
         childViewControllers.view.heightAnchor.constraint(equalTo: views.heightAnchor).isActive = true
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
+
     func setUpView(){
         view.backgroundColor = ThemeColor().themeColor()
-//        mainViews.frame.size.height = view.frame.size.height
-//        mainViews.frame.size.width = view.frame.size.width
         view.addSubview(mainViews)
         mainViews.addSubview(scrollView)
         scrollView.addSubview(FirstView)
@@ -155,6 +147,10 @@ class GerneralController: UIViewController {
         vc.coinSymbol = coinSymbol
         vc.didMove(toParentViewController: self)
         
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
     var mainViews:UIView = {

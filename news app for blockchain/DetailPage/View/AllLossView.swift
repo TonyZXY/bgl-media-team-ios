@@ -26,7 +26,6 @@ class AllLossView:UIView{
     func setUpView(){
         backgroundColor = ThemeColor().themeColor()
         translatesAutoresizingMaskIntoConstraints = false
-        
         addSubview(allTimeLoss)
         addSubview(profitLoss)
         
@@ -56,8 +55,6 @@ class AllLossView:UIView{
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    
 }
 
 

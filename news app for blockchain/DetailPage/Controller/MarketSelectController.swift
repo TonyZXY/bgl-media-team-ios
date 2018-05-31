@@ -37,10 +37,7 @@ class MarketSelectController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     @objc func done(){
-//        self.realm.beginWrite()
-        if newTransaction.tradingPairsName == ""{
-            
-        } else {
+        if newTransaction.tradingPairsName != "" {
             let filterName = "coinAbbName = '" + newTransaction.coinAbbName + "' "
             let statusItem = realm.objects(MarketTradingPairs.self).filter(filterName)
             if let object = statusItem.first{

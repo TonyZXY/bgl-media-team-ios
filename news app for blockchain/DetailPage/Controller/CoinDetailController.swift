@@ -73,6 +73,7 @@ class CoinDetailController: UIViewController,UICollectionViewDelegate,UICollecti
         return 3
     }
     
+    //Add child Controller to each collection View cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "containterController", for: indexPath)
         if indexPath.row == 0{

@@ -12,7 +12,7 @@ class CoinTypeTableViewCell:UITableViewCell{
     var coinNameItem = ["Bitcoin","CyberMiles"]
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-setupView()
+        setupView()
     }
     
     let coinImage: UIImageView = {
