@@ -1,11 +1,11 @@
 PODS:
   - Alamofire (4.7.2)
-  - Kingfisher (4.7.0)
-  - Realm (3.5.0):
-    - Realm/Headers (= 3.5.0)
-  - Realm/Headers (3.5.0)
-  - RealmSwift (3.5.0):
-    - Realm (= 3.5.0)
+  - Kingfisher (4.8.0)
+  - Realm (3.6.0):
+    - Realm/Headers (= 3.6.0)
+  - Realm/Headers (3.6.0)
+  - RealmSwift (3.6.0):
+    - Realm (= 3.6.0)
   - RxCocoa (4.1.2):
     - RxSwift (~> 4.0)
   - RxJSON (1.0.0):
@@ -38,9 +38,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
-  Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
-  Realm: 0378021c424e4e2bd6a0e63b27881e929d9b9ad1
-  RealmSwift: 3322562622fda2ad596985ead4d8d8be30cf838c
+  Kingfisher: 976d828df2b24834c6a3f2fc4d82cdbd26552be1
+  Realm: 08b464b462d4f31bbd4ba5f5a1c8722ef0a700b7
+  RealmSwift: 973e1499c44ab571f894c2c908e2db450be280c3
   RxCocoa: d88ba0f1f6abf040011a9eb4b539324fc426843a
   RxJSON: f1f70d66ae6598f88921a8dfc3a90c73442e7fec
   RxSwift: e49536837d9901277638493ea537394d4b55f570
@@ -49,4 +49,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: c565b1bed2cbbce98beb5b02a7b7d94c664ed80f
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
