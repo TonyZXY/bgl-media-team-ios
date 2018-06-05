@@ -60,20 +60,20 @@ class GloabalController: UIViewController {
         generalPage.totalNumber.text = "A$"+scientificMethod(number:globalMarketData.price ?? 0.0)
     }
     
-    func addChildViewControllers(childViewControllers:UIViewController,views:UIView){
-        addChildViewController(childViewControllers)
-        views.addSubview(childViewControllers.view)
-        childViewControllers.view.frame = views.bounds
-        childViewControllers.view.autoresizingMask = [.flexibleWidth,.flexibleHeight]
-        childViewControllers.didMove(toParentViewController: self)
-        
-        //Constraints
-        childViewControllers.view.translatesAutoresizingMaskIntoConstraints = false
-        childViewControllers.view.topAnchor.constraint(equalTo: views.topAnchor).isActive = true
-        childViewControllers.view.leftAnchor.constraint(equalTo: views.leftAnchor).isActive = true
-        childViewControllers.view.widthAnchor.constraint(equalTo: views.widthAnchor).isActive = true
-        childViewControllers.view.heightAnchor.constraint(equalTo: views.heightAnchor).isActive = true
-    }
+//    func addChildViewControllers(childViewControllers:UIViewController,views:UIView){
+//        addChildViewController(childViewControllers)
+//        views.addSubview(childViewControllers.view)
+//        childViewControllers.view.frame = views.bounds
+//        childViewControllers.view.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+//        childViewControllers.didMove(toParentViewController: self)
+//        
+//        //Constraints
+//        childViewControllers.view.translatesAutoresizingMaskIntoConstraints = false
+//        childViewControllers.view.topAnchor.constraint(equalTo: views.topAnchor).isActive = true
+//        childViewControllers.view.leftAnchor.constraint(equalTo: views.leftAnchor).isActive = true
+//        childViewControllers.view.widthAnchor.constraint(equalTo: views.widthAnchor).isActive = true
+//        childViewControllers.view.heightAnchor.constraint(equalTo: views.heightAnchor).isActive = true
+//    }
     
     //Get coins global data and Global Average Price
     func getCoinGloablDetail(){

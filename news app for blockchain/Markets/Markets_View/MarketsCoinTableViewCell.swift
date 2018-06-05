@@ -77,6 +77,8 @@ class MarketsCoinTableViewCell:UITableViewCell{
         addSubview(coinType)
         addSubview(coinNumber)
         addSubview(addWish)
+        self.selectionStyle = .none
+        
         addWish.addTarget(self, action: #selector(MarketsCoinTableViewCell.removeWatch), for: .touchUpInside)
         
         //coinImage
